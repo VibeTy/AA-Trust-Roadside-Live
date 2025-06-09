@@ -1,0 +1,52 @@
+// 🛠️ Diesel Repair Website — Florida Edition
+// Paste this full prompt into Replit AI Agent to generate the site starter
+
+"""
+Create a full website for a mobile diesel repair company based in Florida.
+Use Palm Coast, FL as the default city. This is a placeholder version the owner can customize later.
+
+Pages:
+- Home (scroll layout)
+- About (optional placeholder section)
+- Contact (form + phone number)
+
+Sections on Home Page:
+1. 🧰 Hero Banner
+   - Title: "24/7 Mobile Diesel Repair in Florida"
+   - Subtext: "Fast, Reliable, On-Site Service"
+   - CTA Buttons: [Get a Quote] [Call Now]
+
+2. 🔧 Services Grid (split into 6 categories)
+   Use this example grouping:
+   - Diagnostics & Electrical: Engine Diagnostics, Electrical Repairs, Check Engine Light, Battery, Charging Systems
+   - Heavy Equipment & Hydraulics: Heavy Equipment, Hydraulics, Welding, Fabrication
+   - Roadside & Mobile: Mobile Repair, Emergency Roadside Service, Flat Tire Changes, Trailer Repair
+   - Preventative: Oil Change, Tune Ups, Lube Service, Filters, Suspension, Brakes
+   - Fleet & Commercial: Commercial Repair, DOT Inspections, Lift Gate, Pneumatics, Power Systems
+   - Other: Lawn Mower, Marine, Steering, Troubleshooting, "Need Something Else? Just Call!"
+
+3. 💬 Testimonials Section (with 3 placeholders)
+4. 📍 Service Area Map centered on Palm Coast, FL (embed or image placeholder)
+5. 📞 Contact Section:
+   - Placeholder phone & email
+   - Form with fields: Name, Email, Phone, Message
+
+6. ⚙️ SEO Setup:
+   - Page title: "Mobile Diesel Repair in Florida | 24/7 Service"
+   - Meta description: "We provide reliable, 24/7 mobile diesel repair and diagnostics across Florida. Fast roadside help, heavy equipment service, DOT inspections, and more."
+   - Open Graph image placeholder
+
+Tech:
+- Tailwind CSS for styling
+- React or plain JSX
+- Modular components
+- Dark/light mode toggle (optional)
+- Mobile-first layout
+
+Mark all sections clearly with comments and keep code clean.
+"""
+
+// After build:
+// ✅ Swap placeholders for real contact info
+// ✅ Ask owner for preferred service area tags
+// ✅ Add real testimonials and logo later
