@@ -7,15 +7,15 @@ export default function WhyChooseUsSection() {
       color: "text-[hsl(43,96%,56%)]"
     },
     {
-      icon: "fas fa-truck",
-      title: "Mobile Team",
-      description: "Fully equipped service trucks come directly to your location",
+      icon: "fas fa-wrench",
+      title: "Experienced Mechanics",
+      description: "Certified technicians with 15+ years of diesel repair expertise",
       color: "text-[hsl(221,83%,53%)]"
     },
     {
-      icon: "fas fa-dollar-sign",
-      title: "Honest Pricing",
-      description: "Transparent, competitive rates with no hidden fees",
+      icon: "fas fa-truck-loading",
+      title: "Fleet Discounts",
+      description: "Special pricing and priority service for commercial fleet customers",
       color: "text-green-600"
     },
     {

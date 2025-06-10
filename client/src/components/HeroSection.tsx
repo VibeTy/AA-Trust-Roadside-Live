@@ -33,18 +33,18 @@ export default function HeroSection() {
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a 
-            href="/quote"
-            className="bg-[hsl(43,96%,56%)] hover:bg-yellow-500 text-gray-900 font-semibold px-8 py-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
-          >
-            <i className="fas fa-clipboard-list mr-2"></i>
-            Get a Quote
-          </a>
-          <a 
             href="tel:+15551234567" 
             className="bg-[hsl(0,84%,60%)] hover:bg-red-700 text-white font-semibold px-8 py-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
           >
             <i className="fas fa-phone mr-2"></i>
-            Call Now: (555) 123-4567
+            📞 Call Now
+          </a>
+          <a 
+            href="/quote"
+            className="bg-[hsl(43,96%,56%)] hover:bg-yellow-500 text-gray-900 font-semibold px-8 py-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+          >
+            <i className="fas fa-clipboard-list mr-2"></i>
+            📝 Get a Quote
           </a>
         </div>
         

@@ -19,7 +19,7 @@ export default function ThankYou() {
             Thank You!
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-400 mb-8">
-            We've received your service request and will get back to you shortly.
+            Thanks! A mechanic will reach out shortly.
           </p>
           
           {/* Details */}
@@ -35,22 +35,20 @@ export default function ThankYou() {
           
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a 
+              href="tel:+15551234567"
+              className="bg-[hsl(0,84%,60%)] hover:bg-red-700 text-white font-semibold px-8 py-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+            >
+              <i className="fas fa-phone mr-2"></i>
+              📞 Call Us Again
+            </a>
             <button 
               onClick={() => setLocation("/")}
               className="bg-[hsl(221,83%,53%)] hover:bg-blue-700 text-white font-semibold px-8 py-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
             >
               <i className="fas fa-home mr-2"></i>
-              Return Home
+              🏠 Return to Home
             </button>
-            <a 
-              href="https://www.google.com/search?q=Florida+Diesel+Pro+reviews" 
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-[hsl(43,96%,56%)] hover:bg-yellow-500 text-gray-900 font-semibold px-8 py-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
-            >
-              <i className="fab fa-google mr-2"></i>
-              Leave a Google Review
-            </a>
           </div>
           
           {/* Emergency Contact */}
