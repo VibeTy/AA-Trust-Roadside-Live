@@ -20,19 +20,26 @@ export default function ServiceAreaSection() {
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
-            {/* Map placeholder centered on Palm Coast, FL */}
-            <div className="bg-gray-200 dark:bg-gray-700 rounded-xl h-96 flex items-center justify-center relative overflow-hidden">
-              <img 
-                src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" 
-                alt="Palm Coast Florida service area map" 
-                className="w-full h-full object-cover rounded-xl"
-              />
-              <div className="absolute inset-0 bg-[hsl(221,83%,53%)] bg-opacity-20 rounded-xl"></div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center text-white">
-                  <i className="fas fa-map-marker-alt text-4xl mb-2"></i>
-                  <div className="font-semibold">Palm Coast, FL</div>
-                  <div className="text-sm">& Surrounding Areas</div>
+            {/* Google Map embed centered on Palm Coast, FL */}
+            <div className="bg-gray-200 dark:bg-gray-700 rounded-xl h-96 overflow-hidden relative">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d56834.14087894!2d-81.24611234863282!3d29.584945300000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88e6d1b1b9e1e8ab%3A0x1b1b1b1b1b1b1b1b!2sPalm%20Coast%2C%20FL!5e0!3m2!1sen!2sus!4v1632758400000!5m2!1sen!2sus"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="rounded-xl"
+                title="Palm Coast Florida Service Area Map"
+              ></iframe>
+              <div className="absolute top-4 left-4 bg-white dark:bg-gray-800 rounded-lg p-3 shadow-lg">
+                <div className="flex items-center">
+                  <i className="fas fa-map-marker-alt text-[hsl(221,83%,53%)] mr-2"></i>
+                  <div>
+                    <div className="font-semibold text-gray-900 dark:text-white text-sm">Service Center</div>
+                    <div className="text-xs text-gray-600 dark:text-gray-400">Palm Coast, FL</div>
+                  </div>
                 </div>
               </div>
             </div>

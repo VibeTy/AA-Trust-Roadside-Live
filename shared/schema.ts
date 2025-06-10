@@ -36,7 +36,14 @@ export const insertContactSubmissionSchema = createInsertSchema(contactSubmissio
   createdAt: true,
 });
 
+export const insertQuoteSubmissionSchema = createInsertSchema(quoteSubmissions).omit({
+  id: true,
+  createdAt: true,
+});
+
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
 export type InsertContactSubmission = z.infer<typeof insertContactSubmissionSchema>;
 export type ContactSubmission = typeof contactSubmissions.$inferSelect;
+export type InsertQuoteSubmission = z.infer<typeof insertQuoteSubmissionSchema>;
+export type QuoteSubmission = typeof quoteSubmissions.$inferSelect;

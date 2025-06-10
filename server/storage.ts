@@ -1,4 +1,4 @@
-import { users, contactSubmissions, type User, type InsertUser, type ContactSubmission, type InsertContactSubmission } from "@shared/schema";
+import { users, contactSubmissions, quoteSubmissions, type User, type InsertUser, type ContactSubmission, type InsertContactSubmission, type QuoteSubmission, type InsertQuoteSubmission } from "@shared/schema";
 
 export interface IStorage {
   getUser(id: number): Promise<User | undefined>;
@@ -6,19 +6,25 @@ export interface IStorage {
   createUser(user: InsertUser): Promise<User>;
   createContactSubmission(submission: InsertContactSubmission): Promise<ContactSubmission>;
   getContactSubmissions(): Promise<ContactSubmission[]>;
+  createQuoteSubmission(submission: InsertQuoteSubmission): Promise<QuoteSubmission>;
+  getQuoteSubmissions(): Promise<QuoteSubmission[]>;
 }
 
 export class MemStorage implements IStorage {
   private users: Map<number, User>;
   private contactSubmissions: Map<number, ContactSubmission>;
+  private quoteSubmissions: Map<number, QuoteSubmission>;
   private currentUserId: number;
   private currentSubmissionId: number;
+  private currentQuoteId: number;
 
   constructor() {
     this.users = new Map();
     this.contactSubmissions = new Map();
+    this.quoteSubmissions = new Map();
     this.currentUserId = 1;
     this.currentSubmissionId = 1;
+    this.currentQuoteId = 1;
   }
 
   async getUser(id: number): Promise<User | undefined> {
@@ -51,6 +57,27 @@ export class MemStorage implements IStorage {
 
   async getContactSubmissions(): Promise<ContactSubmission[]> {
     return Array.from(this.contactSubmissions.values()).sort(
+      (a, b) => b.createdAt.getTime() - a.createdAt.getTime()
+    );
+  }
+
+  async createQuoteSubmission(insertSubmission: InsertQuoteSubmission): Promise<QuoteSubmission> {
+    const id = this.currentQuoteId++;
+    const submission: QuoteSubmission = {
+      id,
+      name: insertSubmission.name,
+      phone: insertSubmission.phone,
+      cityOrZip: insertSubmission.cityOrZip || null,
+      serviceNeeded: insertSubmission.serviceNeeded,
+      message: insertSubmission.message,
+      createdAt: new Date(),
+    };
+    this.quoteSubmissions.set(id, submission);
+    return submission;
+  }
+
+  async getQuoteSubmissions(): Promise<QuoteSubmission[]> {
+    return Array.from(this.quoteSubmissions.values()).sort(
       (a, b) => b.createdAt.getTime() - a.createdAt.getTime()
     );
   }
