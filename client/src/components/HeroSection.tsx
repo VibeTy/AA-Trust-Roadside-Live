@@ -25,20 +25,20 @@ export default function HeroSection() {
           24/7 Mobile Diesel Repair in Florida
         </h1>
         <p className="text-xl md:text-2xl mb-8 text-gray-200">
-          Fast, Reliable, On-Site Service
+          Fast, Reliable, On-Site Service — Right When You Need It
         </p>
         <p className="text-lg mb-10 text-gray-300 max-w-2xl mx-auto">
           Professional mobile diesel repair services across Florida. We come to you with fully equipped service trucks for emergency roadside assistance, diagnostics, and complete fleet maintenance.
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <button 
-            onClick={() => scrollToSection("contact")}
+          <a 
+            href="/quote"
             className="bg-[hsl(43,96%,56%)] hover:bg-yellow-500 text-gray-900 font-semibold px-8 py-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
           >
             <i className="fas fa-clipboard-list mr-2"></i>
             Get a Quote
-          </button>
+          </a>
           <a 
             href="tel:+15551234567" 
             className="bg-[hsl(0,84%,60%)] hover:bg-red-700 text-white font-semibold px-8 py-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
