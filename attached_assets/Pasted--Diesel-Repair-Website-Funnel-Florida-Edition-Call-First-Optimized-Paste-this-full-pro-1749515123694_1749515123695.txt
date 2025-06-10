@@ -1,0 +1,66 @@
+// 🛠️ Diesel Repair Website Funnel — Florida Edition (Call-First Optimized)
+// Paste this full prompt into Replit AI Agent to generate a full call-focused diesel repair site with a complete quote funnel
+
+"""
+Create a mobile-first website for a diesel repair company based in Palm Coast, Florida.
+This should feel like a call funnel: every part of the site encourages visitors to call or request a quote.
+
+Pages:
+- Home (`/`)
+- Get a Quote (`/quote`)
+- Thank You (`/thank-you`)
+
+✅ 1. Homepage Sections:
+- Hero Banner:
+  - Title: "24/7 Mobile Diesel Repair in Florida"
+  - Subtitle: "Fast, Reliable, On-Site Service — Right When You Need It"
+  - CTA Buttons:
+    - [📞 Call Now] — `tel:` link
+    - [📝 Get a Quote] — links to `/quote`
+
+- Services Grid (grouped):
+  - Each service card includes a mini “📞 Tap to Call” link under the description
+
+- Why Choose Us:
+  - Fast Response, Experienced Mechanics, Fleet Discounts
+
+- Testimonials Section (3 placeholders)
+- Google Map Embed or Static Image centered on Palm Coast, FL
+- Contact Section:
+  - Phone number (tel link), email (mailto link)
+  - Simple form: Name, Email, Phone, Message
+
+- Sticky 📞 “Call Now” button on bottom-right of mobile view
+
+✅ 2. Quote Page (`/quote`):
+- Short form:
+  - Name (text), Phone (tel), ZIP or City (text)
+  - Service Needed (dropdown)
+  - Message (textarea)
+- On submit: routes to `/thank-you`
+- Log form to console or use placeholder logic (email integration optional)
+
+✅ 3. Thank You Page (`/thank-you`):
+- Message: “Thanks! A mechanic will reach out shortly.”
+- Buttons:
+  - [📞 Call Us Again]
+  - [🏠 Return to Home]
+
+✅ 4. SEO Setup:
+- Page title: "Mobile Diesel Repair in Florida | Fast, Reliable Service"
+- Meta description: "24/7 mobile diesel repair, DOT inspections, roadside service, and heavy equipment maintenance across Florida."
+- Open Graph tags and preview image (placeholder)
+
+Tech:
+- React or JSX with Tailwind CSS
+- Modular components
+- Mobile-first layout
+- No urgency text; we want users to feel confident we’re always available, not scarce
+
+Mark code sections clearly for easy editing.
+"""
+
+// After build:
+// ✅ Update contact info
+// ✅ Add owner logo or real services later
+// ✅ Connect quote form to DB or CRM if needed

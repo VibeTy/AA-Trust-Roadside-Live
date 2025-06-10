@@ -117,7 +117,7 @@ export default function ContactSection() {
                     {info.href ? (
                       <a 
                         href={info.href} 
-                        className="text-[hsl(221,83%,53%)] hover:text-blue-700 font-medium"
+                        className="text-[hsl(221,83%,53%)] hover:text-blue-700 font-medium transition-colors"
                       >
                         {info.contact}
                       </a>

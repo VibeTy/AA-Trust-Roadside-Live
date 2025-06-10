@@ -98,7 +98,7 @@ export default function ServicesSection() {
                 <i className={`${service.icon} text-4xl ${service.color} mb-3`}></i>
                 <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">{service.title}</h3>
               </div>
-              <ul className="space-y-2 text-gray-700 dark:text-gray-300">
+              <ul className="space-y-2 text-gray-700 dark:text-gray-300 mb-4">
                 {service.services.map((item, itemIndex) => (
                   <li key={itemIndex} className={`flex items-center ${item.includes("Need Something Else") ? "text-[hsl(43,96%,56%)] font-medium" : ""}`}>
                     <i className={`fas ${item.includes("Need Something Else") ? "fa-phone" : "fa-check"} text-green-500 mr-2`}></i>
@@ -106,6 +106,17 @@ export default function ServicesSection() {
                   </li>
                 ))}
               </ul>
+              
+              {/* Call to Action for each service */}
+              <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
+                <a 
+                  href="tel:+15551234567"
+                  className="inline-flex items-center justify-center w-full bg-[hsl(0,84%,60%)] hover:bg-red-700 text-white font-medium py-2 px-4 rounded-lg transition-all duration-300 text-sm"
+                >
+                  <i className="fas fa-phone mr-2"></i>
+                  📞 Tap to Call
+                </a>
+              </div>
             </div>
           ))}
         </div>
