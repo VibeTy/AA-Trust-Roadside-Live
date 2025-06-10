@@ -1,0 +1,68 @@
+// 🛠️ Diesel Repair Website Funnel — Florida Edition (Full Funnel Upgrade)
+// Paste this full prompt into Replit AI Agent to generate a complete diesel repair site with full lead funnel
+
+"""
+Create a full mobile-friendly website for a diesel repair company based in Palm Coast, Florida.
+This site should include a homepage, quote funnel, and thank you page. Make all details editable later.
+
+Pages:
+- Home (`/`)
+- Get a Quote (`/quote`)
+- Thank You (`/thank-you`)
+- Contact (section on homepage)
+
+✅ 1. Home Page Sections:
+- Hero Banner:
+  - Title: "24/7 Mobile Diesel Repair in Florida"
+  - Subtitle: "Fast, Reliable, On-Site Service — Right When You Need It"
+  - Buttons: [Get a Quote] → `/quote` and [Call Now] → tel link
+- Services Grid: Group services into these categories:
+  - Diagnostics & Electrical
+  - Heavy Equipment & Hydraulics
+  - Roadside & Mobile
+  - Preventative Maintenance
+  - Fleet & Commercial
+  - Other / Miscellaneous
+- Why Choose Us: Icons or badges for "Fast Response," "Mobile Team," "Honest Pricing"
+- Testimonials: Include 3 placeholder reviews
+- Map Embed: Google Map centered on Palm Coast, FL (or placeholder div with instructions)
+- Sticky mobile call button (bottom-right)
+
+✅ 2. Get a Quote Page (`/quote`):
+- Short form:
+  - Name (text)
+  - Phone (tel)
+  - City or ZIP (optional)
+  - Service Needed (dropdown)
+  - Message (textarea)
+- Submit button: routes to `/thank-you`
+- Log form data to console or send via email using placeholder logic
+
+✅ 3. Thank You Page (`/thank-you`):
+- Message: "Thanks! We'll get back to you shortly."
+- Buttons: [Return Home] or [Leave a Google Review] (placeholder link)
+
+✅ 4. Contact Section:
+- Located at bottom of homepage
+- Includes placeholder phone number, email, and address
+- Contact form as alternative to quote form
+
+✅ 5. SEO Setup:
+- Title tag: "Mobile Diesel Repair in Florida | Fast, Reliable Service"
+- Meta description: "24/7 mobile diesel repair, DOT inspections, roadside service, and heavy equipment maintenance across Florida."
+- Open Graph image and social preview tags (placeholder)
+
+Tech:
+- Tailwind CSS
+- React (or JSX modules)
+- Mobile-first design
+- Modular components for form, button, card, section, and layout
+- Commented sections so user can edit easily
+
+No Twilio or external DB required. Use local state or Replit-compatible logging for demo purposes.
+"""
+
+// After build:
+// ✅ Replace placeholders with real contact info
+// ✅ Ask owner for domain setup (optional)
+// ✅ Later: connect form to Replit DB or TyreseOS for lead storage
