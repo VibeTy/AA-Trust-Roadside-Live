@@ -14,10 +14,10 @@ export default function Footer() {
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center mb-4">
               <i className="fas fa-wrench text-[hsl(221,83%,53%)] text-2xl mr-3"></i>
-              <span className="text-xl font-bold">Florida Diesel Pro</span>
+              <span className="text-xl font-bold">AA Trust Roadside</span>
             </div>
             <p className="text-gray-400 mb-4 max-w-md">
-              Professional mobile diesel repair services across Florida. We bring expert technicians and fully equipped service trucks directly to your location for fast, reliable repairs.
+              Professional mobile mechanic and roadside assistance services across Northeast Florida. We bring expert technicians and fully equipped service vehicles directly to your location for fast, reliable repairs.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-400 hover:text-[hsl(221,83%,53%)] transition-colors">
