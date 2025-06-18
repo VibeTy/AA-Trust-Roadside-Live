@@ -19,14 +19,14 @@ export default function HeroSection() {
       
       <div className="relative z-10 text-center text-white px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
         <div className="mb-6">
-          <i className="fas fa-truck text-6xl mb-4 text-[hsl(43,96%,56%)]"></i>
+          <i className="fas fa-truck text-6xl mb-4 text-red-500"></i>
         </div>
         <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-          <span className="text-red-500">STRANDED?</span> WE'VE GOT YOU.<br />
-          <span className="text-4xl md:text-6xl">24/7 <span className="text-red-500">ROADSIDE</span> HELP</span>
+          <span className="text-red-500">DIESEL</span> BREAKDOWN?<br />
+          <span className="text-4xl md:text-6xl">24/7 <span className="text-red-500">HEAVY DUTY</span> HELP</span>
         </h1>
         <p className="text-xl md:text-2xl text-gray-200 mb-8 max-w-3xl">
-          Fast, mobile mechanic service in Palm Coast, Jacksonville, Daytona & beyond.
+          Professional heavy duty diesel repair and emergency service in Palm Coast, Jacksonville, Daytona & beyond.
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 mb-8">

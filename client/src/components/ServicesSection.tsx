@@ -1,32 +1,32 @@
 export default function ServicesSection() {
   const services = [
     {
-      icon: "fas fa-car-crash",
-      title: "Emergency Roadside Service",
+      icon: "fas fa-truck",
+      title: "Heavy Duty Diesel Repair",
       color: "text-red-600",
       services: [
-        "Jump Starts & Battery Service",
-        "Flat Tire Repair/Change",
-        "Lockout Service",
-        "Emergency Towing Coordination",
-        "Fuel Delivery"
+        "Engine Overhauls & Rebuilds",
+        "Turbocharger Service",
+        "Fuel System Repair",
+        "Hydraulic System Service",
+        "Transmission Repair"
       ]
     },
     {
-      icon: "fas fa-wrench",
-      title: "Mobile Mechanic Service",
+      icon: "fas fa-tools",
+      title: "Emergency Roadside Service",
       color: "text-blue-600",
       services: [
-        "Engine Diagnostics & Repair",
-        "Brake Service",
-        "Oil Changes & Maintenance",
-        "Alternator & Starter Repair",
-        "Belt & Hose Replacement"
+        "Mobile Diesel Diagnostics",
+        "Heavy Equipment Jumpstart",
+        "Tire Service & Repair", 
+        "Emergency Fuel Delivery",
+        "Hydraulic Hose Repair"
       ]
     },
     {
-      icon: "fas fa-search",
-      title: "Diagnostic Services",
+      icon: "fas fa-cogs",
+      title: "Heavy Equipment Service",
       color: "text-green-600",
       services: [
         "Check Engine Light Diagnosis",
