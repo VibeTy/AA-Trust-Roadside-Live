@@ -1,23 +1,24 @@
 import { useState } from "react";
+import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
-import { useMutation } from "@tanstack/react-query";
+import { insertQuoteSubmissionSchema } from "@shared/schema";
 import { apiRequest } from "@/lib/queryClient";
+import { z } from "zod";
 
-const quoteFormSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  phone: z.string().min(10, "Please enter a valid phone number"),
-  cityOrZip: z.string().optional(),
-  serviceNeeded: z.string().min(1, "Please select a service"),
-  message: z.string().min(10, "Please describe your service needs")
+const quoteFormSchema = insertQuoteSubmissionSchema.extend({
+  location: z.string().min(1, "Location is required"),
+  serviceType: z.string().min(1, "Please select a service type"),
+  urgency: z.string().min(1, "Please select urgency level"),
+  description: z.string().min(10, "Please provide more details about your needs"),
 });
 
 type QuoteFormData = z.infer<typeof quoteFormSchema>;
@@ -25,212 +26,316 @@ type QuoteFormData = z.infer<typeof quoteFormSchema>;
 export default function Quote() {
   const [, setLocation] = useLocation();
   const { toast } = useToast();
-  
+
   const form = useForm<QuoteFormData>({
     resolver: zodResolver(quoteFormSchema),
     defaultValues: {
       name: "",
       phone: "",
-      cityOrZip: "",
-      serviceNeeded: "",
-      message: ""
-    }
+      email: "",
+      location: "",
+      serviceType: "",
+      vehicleInfo: "",
+      urgency: "",
+      description: "",
+    },
   });
 
-  const quoteMutation = useMutation({
+  const submitQuoteMutation = useMutation({
     mutationFn: async (data: QuoteFormData) => {
-      // Log form data for demo purposes
-      console.log("Quote form submission:", data);
-      return await apiRequest("POST", "/api/quotes", data);
+      return apiRequest("/api/quotes", {
+        method: "POST",
+        body: JSON.stringify(data),
+      });
     },
     onSuccess: () => {
-      // Redirect to thank you page
+      toast({
+        title: "Quote Request Submitted!",
+        description: "We'll contact you soon with your custom quote.",
+      });
       setLocation("/thank-you");
     },
-    onError: (error) => {
+    onError: () => {
       toast({
         title: "Error",
-        description: "Failed to submit quote request. Please try again or call us directly.",
-        variant: "destructive"
+        description: "Failed to submit quote request. Please try again.",
+        variant: "destructive",
       });
-    }
+    },
   });
 
   const onSubmit = (data: QuoteFormData) => {
-    quoteMutation.mutate(data);
+    submitQuoteMutation.mutate(data);
   };
 
-  const serviceOptions = [
-    "Engine Diagnostics",
-    "Electrical Repair",
-    "Heavy Equipment Service", 
-    "Hydraulic Systems",
-    "Emergency Roadside",
-    "Mobile Repair",
-    "Oil Change & Maintenance",
-    "DOT Inspection",
-    "Fleet Service",
-    "Welding & Fabrication",
-    "Other (specify in message)"
+  const serviceTypes = [
+    "Emergency Roadside Service",
+    "Mobile Mechanic Service", 
+    "Diagnostic Services",
+    "Fleet & Commercial Service",
+    "Motorcycle Service",
+    "General Automotive",
+    "Other"
+  ];
+
+  const urgencyLevels = [
+    "Emergency (ASAP)",
+    "Urgent (Same Day)",
+    "Today",
+    "This Week",
+    "Flexible"
+  ];
+
+  const serviceAreas = [
+    "Palm Coast, FL",
+    "Jacksonville, FL",
+    "Daytona Beach, FL",
+    "St. Augustine, FL",
+    "Flagler Beach, FL",
+    "Ormond Beach, FL",
+    "Bunnell, FL",
+    "New Smyrna Beach, FL",
+    "Other (Please specify in description)"
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      {/* Header */}
-      <header className="bg-white dark:bg-gray-800 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              <i className="fas fa-wrench text-[hsl(221,83%,53%)] text-2xl mr-3"></i>
-              <span className="text-xl font-bold text-gray-900 dark:text-white">Florida Diesel Pro</span>
-            </div>
-            <button 
-              onClick={() => setLocation("/")}
-              className="text-gray-600 dark:text-gray-400 hover:text-[hsl(221,83%,53%)] transition-colors"
-            >
-              <i className="fas fa-arrow-left mr-2"></i>
-              Back to Home
-            </button>
-          </div>
-        </div>
-      </header>
-
-      {/* Main Content */}
-      <main className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="text-center mb-8">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Get Your Free Quote</h1>
           <p className="text-xl text-gray-600 dark:text-gray-400">
-            Tell us about your diesel repair needs and we'll get back to you with a competitive quote within 15 minutes.
+            Tell us about your automotive service needs and we'll provide a custom quote
           </p>
-        </div>
-
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8">
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-              <FormField
-                control={form.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-gray-700 dark:text-gray-300">Full Name *</FormLabel>
-                    <FormControl>
-                      <Input 
-                        placeholder="Enter your full name" 
-                        className="h-12 dark:bg-gray-700 dark:text-white dark:border-gray-600"
-                        {...field} 
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              
-              <FormField
-                control={form.control}
-                name="phone"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-gray-700 dark:text-gray-300">Phone Number *</FormLabel>
-                    <FormControl>
-                      <Input 
-                        type="tel"
-                        placeholder="(555) 123-4567" 
-                        className="h-12 dark:bg-gray-700 dark:text-white dark:border-gray-600"
-                        {...field} 
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              
-              <FormField
-                control={form.control}
-                name="cityOrZip"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-gray-700 dark:text-gray-300">City or ZIP Code</FormLabel>
-                    <FormControl>
-                      <Input 
-                        placeholder="Palm Coast, FL or 32164" 
-                        className="h-12 dark:bg-gray-700 dark:text-white dark:border-gray-600"
-                        {...field} 
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              
-              <FormField
-                control={form.control}
-                name="serviceNeeded"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-gray-700 dark:text-gray-300">Service Needed *</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                      <FormControl>
-                        <SelectTrigger className="h-12 dark:bg-gray-700 dark:text-white dark:border-gray-600">
-                          <SelectValue placeholder="Select the service you need" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent className="dark:bg-gray-700 dark:border-gray-600">
-                        {serviceOptions.map((service) => (
-                          <SelectItem key={service} value={service} className="dark:text-white dark:hover:bg-gray-600">
-                            {service}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              
-              <FormField
-                control={form.control}
-                name="message"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-gray-700 dark:text-gray-300">Describe Your Issue *</FormLabel>
-                    <FormControl>
-                      <Textarea 
-                        rows={5}
-                        placeholder="Please describe your diesel repair needs, vehicle type, current location, and any symptoms you're experiencing..." 
-                        className="dark:bg-gray-700 dark:text-white dark:border-gray-600"
-                        {...field} 
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              
-              <Button 
-                type="submit" 
-                className="w-full bg-[hsl(221,83%,53%)] hover:bg-blue-700 text-white font-semibold py-4 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg h-14 text-lg"
-                disabled={quoteMutation.isPending}
-              >
-                <i className="fas fa-paper-plane mr-2"></i>
-                {quoteMutation.isPending ? "Submitting..." : "Get My Free Quote"}
-              </Button>
-            </form>
-          </Form>
-          
-          <div className="mt-8 p-6 bg-gray-50 dark:bg-gray-700 rounded-lg">
-            <div className="flex items-center mb-3">
-              <i className="fas fa-clock text-[hsl(43,96%,56%)] mr-3"></i>
-              <span className="font-semibold text-gray-900 dark:text-white">Quick Response Time</span>
-            </div>
-            <p className="text-gray-700 dark:text-gray-300 text-sm">
-              We typically respond to quote requests within 15 minutes during business hours. For immediate assistance, call us at{" "}
-              <a href="tel:+15551234567" className="text-[hsl(0,84%,60%)] hover:text-red-700 font-medium">
-                (555) 123-4567
-              </a>
-            </p>
+          <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center">
+            <a 
+              href="tel:+13863728412"
+              className="inline-flex items-center bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-full text-lg shadow-lg transition-all duration-300 transform hover:scale-105"
+            >
+              <i className="fas fa-phone mr-2"></i>
+              Call Now: (386) 372-8412
+            </a>
+            <a 
+              href="tel:+13863387945"
+              className="inline-flex items-center bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-full text-lg shadow-lg transition-all duration-300 transform hover:scale-105"
+            >
+              <i className="fas fa-phone mr-2"></i>
+              Backup: (386) 338-7945
+            </a>
           </div>
         </div>
-      </main>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Request Service Quote</CardTitle>
+            <CardDescription>
+              Fill out the form below and we'll get back to you with a detailed quote. For emergencies, please call directly.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <FormField
+                    control={form.control}
+                    name="name"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Full Name *</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Your name" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="phone"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Phone Number *</FormLabel>
+                        <FormControl>
+                          <Input placeholder="(386) 555-0123" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Email (Optional)</FormLabel>
+                        <FormControl>
+                          <Input placeholder="your.email@example.com" type="email" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="location"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Service Location *</FormLabel>
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Select your location" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            {serviceAreas.map((area) => (
+                              <SelectItem key={area} value={area}>
+                                {area}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <FormField
+                    control={form.control}
+                    name="serviceType"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Service Type *</FormLabel>
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Select service type" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            {serviceTypes.map((service) => (
+                              <SelectItem key={service} value={service}>
+                                {service}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="urgency"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Urgency Level *</FormLabel>
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="How urgent is this?" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            {urgencyLevels.map((urgency) => (
+                              <SelectItem key={urgency} value={urgency}>
+                                {urgency}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+
+                <FormField
+                  control={form.control}
+                  name="vehicleInfo"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Vehicle Information (Optional)</FormLabel>
+                      <FormControl>
+                        <Input placeholder="e.g., 2018 Honda Civic, 2020 Ford F-150, etc." {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="description"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Detailed Description *</FormLabel>
+                      <FormControl>
+                        <Textarea
+                          placeholder="Please describe the issue, symptoms, or service you need. Include any relevant details that will help us provide an accurate quote."
+                          className="min-h-32"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4">
+                  <div className="flex items-start">
+                    <i className="fas fa-info-circle text-yellow-600 dark:text-yellow-400 mt-1 mr-3"></i>
+                    <div>
+                      <h4 className="font-medium text-yellow-800 dark:text-yellow-200 mb-2">Payment Information</h4>
+                      <p className="text-sm text-yellow-700 dark:text-yellow-300">
+                        We accept all forms of payment including Cash, Zelle, Cash App, Credit/Debit Cards, and more. 
+                        Payment details will be discussed when we contact you with your quote.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <Button 
+                  type="submit" 
+                  className="w-full bg-red-600 hover:bg-red-700" 
+                  disabled={submitQuoteMutation.isPending}
+                >
+                  {submitQuoteMutation.isPending ? "Submitting..." : "Get My Free Quote"}
+                </Button>
+              </form>
+            </Form>
+          </CardContent>
+        </Card>
+
+        <div className="mt-8 text-center">
+          <p className="text-gray-600 dark:text-gray-400 mb-4">
+            Need immediate assistance? We're available 24/7 for emergencies!
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a 
+              href="tel:+13863728412"
+              className="inline-flex items-center bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-full text-lg shadow-lg transition-all duration-300 transform hover:scale-105"
+            >
+              <i className="fas fa-phone mr-2"></i>
+              Main: (386) 372-8412
+            </a>
+            <a 
+              href="tel:+13863387945"
+              className="inline-flex items-center bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-full text-lg shadow-lg transition-all duration-300 transform hover:scale-105"
+            >
+              <i className="fas fa-phone mr-2"></i>
+              Backup: (386) 338-7945
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

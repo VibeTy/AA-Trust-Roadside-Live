@@ -8,6 +8,7 @@ export interface IStorage {
   getContactSubmissions(): Promise<ContactSubmission[]>;
   createQuoteSubmission(submission: InsertQuoteSubmission): Promise<QuoteSubmission>;
   getQuoteSubmissions(): Promise<QuoteSubmission[]>;
+  updateQuoteContacted(id: number, contacted: boolean): Promise<QuoteSubmission | undefined>;
 }
 
 export class MemStorage implements IStorage {
@@ -67,9 +68,13 @@ export class MemStorage implements IStorage {
       id,
       name: insertSubmission.name,
       phone: insertSubmission.phone,
-      cityOrZip: insertSubmission.cityOrZip || null,
-      serviceNeeded: insertSubmission.serviceNeeded,
-      message: insertSubmission.message,
+      email: insertSubmission.email || null,
+      location: insertSubmission.location,
+      serviceType: insertSubmission.serviceType,
+      vehicleInfo: insertSubmission.vehicleInfo || null,
+      urgency: insertSubmission.urgency,
+      description: insertSubmission.description,
+      contacted: false,
       createdAt: new Date(),
     };
     this.quoteSubmissions.set(id, submission);
@@ -80,6 +85,16 @@ export class MemStorage implements IStorage {
     return Array.from(this.quoteSubmissions.values()).sort(
       (a, b) => b.createdAt.getTime() - a.createdAt.getTime()
     );
+  }
+
+  async updateQuoteContacted(id: number, contacted: boolean): Promise<QuoteSubmission | undefined> {
+    const quote = this.quoteSubmissions.get(id);
+    if (quote) {
+      quote.contacted = contacted;
+      this.quoteSubmissions.set(id, quote);
+      return quote;
+    }
+    return undefined;
   }
 }
 

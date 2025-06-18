@@ -101,6 +101,49 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Update quote contacted status
+  app.patch("/api/quotes/:id/contacted", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const { contacted = true } = req.body;
+      
+      const updatedQuote = await storage.updateQuoteContacted(id, contacted);
+      
+      if (!updatedQuote) {
+        return res.status(404).json({
+          success: false,
+          message: "Quote not found"
+        });
+      }
+      
+      res.json({
+        success: true,
+        message: "Quote updated successfully",
+        quote: updatedQuote
+      });
+    } catch (error) {
+      console.error("Error updating quote:", error);
+      res.status(500).json({
+        success: false,
+        message: "Internal server error"
+      });
+    }
+  });
+
+  // Get all contact submissions (for admin purposes)
+  app.get("/api/contacts", async (req, res) => {
+    try {
+      const submissions = await storage.getContactSubmissions();
+      res.json(submissions);
+    } catch (error) {
+      console.error("Error fetching contact submissions:", error);
+      res.status(500).json({
+        success: false,
+        message: "Internal server error"
+      });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }
