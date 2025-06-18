@@ -59,19 +59,19 @@ export default function ContactSection() {
   const contactInfo = [
     {
       icon: "fas fa-phone",
-      bgColor: "bg-[hsl(0,84%,60%)]",
-      title: "Emergency Phone",
-      subtitle: "24/7 Emergency Line",
-      contact: "(555) 123-4567",
-      href: "tel:+15551234567"
+      bgColor: "bg-red-600",
+      title: "Call Us Now",
+      subtitle: "(386) 372-8412",
+      href: "tel:+13863728412",
+      contact: "24/7 Emergency Line"
     },
     {
-      icon: "fas fa-envelope", 
-      bgColor: "bg-[hsl(221,83%,53%)]",
-      title: "Email",
-      subtitle: "For quotes & general inquiries",
-      contact: "info@floridadieselpro.com",
-      href: "mailto:info@floridadieselpro.com"
+      icon: "fas fa-phone",
+      bgColor: "bg-gray-600",
+      title: "Backup Line",
+      subtitle: "(386) 338-7945",
+      href: "tel:+13863387945",
+      contact: "Secondary Number"
     },
     {
       icon: "fas fa-clock",
