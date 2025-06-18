@@ -29,11 +29,11 @@ export default function ServicesSection() {
       title: "Heavy Equipment Service",
       color: "text-green-600",
       services: [
-        "Check Engine Light Diagnosis",
-        "Computer System Scanning",
-        "Electrical System Troubleshooting",
-        "Performance Issues",
-        "Warning Light Analysis"
+        "Excavator & Bulldozer Service",
+        "Generator Repair",
+        "Compressor Service",
+        "Industrial Equipment Service",
+        "Construction Equipment Repair"
       ]
     },
     {

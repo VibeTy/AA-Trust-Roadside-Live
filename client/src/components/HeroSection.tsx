@@ -1,21 +1,23 @@
-export default function HeroSection() {
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+import truck1 from "@assets/image_1750232639530.jpeg";
 
+export default function HeroSection() {
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-[hsl(221,83%,53%)] to-blue-800 dark:from-gray-800 dark:to-gray-900">
-      {/* Background overlay with truck image */}
-      <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+      {/* Background Image - Using actual truck photo */}
       <div 
-        className="absolute inset-0 bg-cover bg-center" 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
         style={{
-          backgroundImage: "url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1920&h=1080')"
+          backgroundImage: `url(${truck1})`,
         }}
       ></div>
+      
+      {/* Background Image Overlay */}
+      <div className="absolute inset-0 bg-black opacity-50"></div>
+      
+      {/* Background Pattern */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black opacity-70"></div>
+      </div>
       
       <div className="relative z-10 text-center text-white px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
         <div className="mb-6">
@@ -48,28 +50,18 @@ export default function HeroSection() {
         
         <div className="mt-12 grid grid-cols-3 gap-8 text-center">
           <div>
-            <div className="text-3xl font-bold text-[hsl(43,96%,56%)]">24/7</div>
+            <div className="text-3xl font-bold text-red-500">24/7</div>
             <div className="text-sm text-gray-300">Emergency Service</div>
           </div>
           <div>
-            <div className="text-3xl font-bold text-[hsl(43,96%,56%)]">15+</div>
-            <div className="text-sm text-gray-300">Years Experience</div>
+            <div className="text-3xl font-bold text-red-500">15min</div>
+            <div className="text-sm text-gray-300">Response Time</div>
           </div>
           <div>
-            <div className="text-3xl font-bold text-[hsl(43,96%,56%)]">100%</div>
-            <div className="text-sm text-gray-300">Satisfaction Rate</div>
+            <div className="text-3xl font-bold text-red-500">100%</div>
+            <div className="text-sm text-gray-300">Mobile Service</div>
           </div>
         </div>
-      </div>
-      
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <button 
-          onClick={() => scrollToSection("services")}
-          className="text-white hover:text-[hsl(43,96%,56%)] transition-colors"
-        >
-          <i className="fas fa-chevron-down text-2xl"></i>
-        </button>
       </div>
     </section>
   );
