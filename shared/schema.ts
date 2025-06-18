@@ -1,4 +1,4 @@
-import { pgTable, text, serial, timestamp } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, timestamp, boolean } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -21,9 +21,13 @@ export const quoteSubmissions = pgTable("quote_submissions", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
   phone: text("phone").notNull(),
-  cityOrZip: text("city_or_zip"),
-  serviceNeeded: text("service_needed").notNull(),
-  message: text("message").notNull(),
+  email: text("email"),
+  location: text("location").notNull(),
+  serviceType: text("service_type").notNull(),
+  vehicleInfo: text("vehicle_info"),
+  urgency: text("urgency").notNull(),
+  description: text("description").notNull(),
+  contacted: boolean("contacted").default(false).notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
@@ -39,6 +43,7 @@ export const insertContactSubmissionSchema = createInsertSchema(contactSubmissio
 export const insertQuoteSubmissionSchema = createInsertSchema(quoteSubmissions).omit({
   id: true,
   createdAt: true,
+  contacted: true,
 });
 
 export type InsertUser = z.infer<typeof insertUserSchema>;
