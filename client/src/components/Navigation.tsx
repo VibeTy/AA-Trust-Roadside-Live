@@ -29,39 +29,46 @@ export default function Navigation() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center cursor-pointer" onClick={() => scrollToSection("home")}>
-            <i className="fas fa-wrench text-diesel-blue text-2xl mr-3"></i>
-            <span className="text-xl font-bold text-gray-900 dark:text-white">Florida Diesel Pro</span>
+            <i className="fas fa-wrench text-red-600 text-2xl mr-3"></i>
+            <span className="text-xl font-bold text-gray-900 dark:text-white">AA Trust Roadside</span>
           </div>
           
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-8">
             <button 
               onClick={() => scrollToSection("home")} 
-              className="text-gray-700 dark:text-gray-300 hover:text-diesel-blue transition-colors"
+              className="text-gray-700 dark:text-gray-300 hover:text-red-600 transition-colors"
             >
               Home
             </button>
             <button 
               onClick={() => scrollToSection("services")} 
-              className="text-gray-700 dark:text-gray-300 hover:text-diesel-blue transition-colors"
+              className="text-gray-700 dark:text-gray-300 hover:text-red-600 transition-colors"
             >
               Services
             </button>
             <button 
               onClick={() => scrollToSection("testimonials")} 
-              className="text-gray-700 dark:text-gray-300 hover:text-diesel-blue transition-colors"
+              className="text-gray-700 dark:text-gray-300 hover:text-red-600 transition-colors"
             >
               Reviews
             </button>
             <button 
               onClick={() => scrollToSection("contact")} 
-              className="text-gray-700 dark:text-gray-300 hover:text-diesel-blue transition-colors"
+              className="text-gray-700 dark:text-gray-300 hover:text-red-600 transition-colors"
             >
               Contact
             </button>
+            <a 
+              href="tel:+13863728412" 
+              className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-2"
+            >
+              <i className="fas fa-phone"></i>
+              (386) 372-8412
+            </a>
             <button 
               onClick={toggleTheme}
-              className="text-gray-700 dark:text-gray-300 hover:text-diesel-blue transition-colors"
+              className="text-gray-700 dark:text-gray-300 hover:text-red-600 transition-colors"
             >
               <i className={`fas ${theme === "dark" ? "fa-sun" : "fa-moon"}`}></i>
             </button>
@@ -71,7 +78,7 @@ export default function Navigation() {
           <div className="md:hidden flex items-center">
             <button 
               onClick={toggleTheme}
-              className="text-gray-700 dark:text-gray-300 hover:text-diesel-blue transition-colors mr-4"
+              className="text-gray-700 dark:text-gray-300 hover:text-red-600 transition-colors mr-4"
             >
               <i className={`fas ${theme === "dark" ? "fa-sun" : "fa-moon"}`}></i>
             </button>
@@ -90,28 +97,35 @@ export default function Navigation() {
             <div className="flex flex-col space-y-3">
               <button 
                 onClick={() => scrollToSection("home")} 
-                className="text-gray-700 dark:text-gray-300 hover:text-diesel-blue transition-colors text-left"
+                className="text-gray-700 dark:text-gray-300 hover:text-red-600 transition-colors text-left"
               >
                 Home
               </button>
               <button 
                 onClick={() => scrollToSection("services")} 
-                className="text-gray-700 dark:text-gray-300 hover:text-diesel-blue transition-colors text-left"
+                className="text-gray-700 dark:text-gray-300 hover:text-red-600 transition-colors text-left"
               >
                 Services
               </button>
               <button 
                 onClick={() => scrollToSection("testimonials")} 
-                className="text-gray-700 dark:text-gray-300 hover:text-diesel-blue transition-colors text-left"
+                className="text-gray-700 dark:text-gray-300 hover:text-red-600 transition-colors text-left"
               >
                 Reviews
               </button>
               <button 
                 onClick={() => scrollToSection("contact")} 
-                className="text-gray-700 dark:text-gray-300 hover:text-diesel-blue transition-colors text-left"
+                className="text-gray-700 dark:text-gray-300 hover:text-red-600 transition-colors text-left"
               >
                 Contact
               </button>
+              <a 
+                href="tel:+13863728412" 
+                className="bg-red-600 hover:bg-red-700 text-white block px-3 py-2 rounded-md text-base font-medium"
+              >
+                <i className="fas fa-phone mr-2"></i>
+                Call (386) 372-8412
+              </a>
             </div>
           </div>
         )}
