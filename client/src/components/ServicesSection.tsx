@@ -1,75 +1,75 @@
 export default function ServicesSection() {
   const services = [
     {
-      icon: "fas fa-search",
-      title: "Diagnostics & Electrical",
-      color: "text-[hsl(221,83%,53%)]",
+      icon: "fas fa-car-crash",
+      title: "Emergency Roadside Service",
+      color: "text-red-600",
       services: [
-        "Engine Diagnostics",
-        "Electrical Repairs", 
-        "Check Engine Light",
-        "Battery Service",
-        "Charging Systems"
-      ]
-    },
-    {
-      icon: "fas fa-cogs",
-      title: "Heavy Equipment & Hydraulics", 
-      color: "text-[hsl(221,83%,53%)]",
-      services: [
-        "Heavy Equipment",
-        "Hydraulics",
-        "Welding",
-        "Fabrication",
-        "System Repairs"
-      ]
-    },
-    {
-      icon: "fas fa-road",
-      title: "Roadside & Mobile",
-      color: "text-[hsl(0,84%,60%)]",
-      services: [
-        "Mobile Repair",
-        "Emergency Roadside",
-        "Flat Tire Changes", 
-        "Trailer Repair",
-        "24/7 Response"
+        "Jump Starts & Battery Service",
+        "Flat Tire Repair/Change",
+        "Lockout Service",
+        "Emergency Towing Coordination",
+        "Fuel Delivery"
       ]
     },
     {
       icon: "fas fa-wrench",
-      title: "Preventative Maintenance",
-      color: "text-[hsl(43,96%,56%)]",
+      title: "Mobile Mechanic Service",
+      color: "text-blue-600",
       services: [
-        "Oil Changes",
-        "Tune Ups",
-        "Lube Service",
-        "Filter Replacement",
-        "Brake & Suspension"
+        "Engine Diagnostics & Repair",
+        "Brake Service",
+        "Oil Changes & Maintenance",
+        "Alternator & Starter Repair",
+        "Belt & Hose Replacement"
       ]
     },
     {
-      icon: "fas fa-building",
-      title: "Fleet & Commercial",
-      color: "text-[hsl(221,83%,53%)]",
+      icon: "fas fa-search",
+      title: "Diagnostic Services",
+      color: "text-green-600",
       services: [
-        "Commercial Repair",
-        "DOT Inspections",
-        "Lift Gate Service",
-        "Pneumatics", 
-        "Power Systems"
+        "Check Engine Light Diagnosis",
+        "Computer System Scanning",
+        "Electrical System Troubleshooting",
+        "Performance Issues",
+        "Warning Light Analysis"
+      ]
+    },
+    {
+      icon: "fas fa-truck",
+      title: "Fleet & Commercial Service",
+      color: "text-purple-600",
+      services: [
+        "Fleet Maintenance Programs",
+        "Commercial Vehicle Repair",
+        "DOT Inspection Prep",
+        "Preventive Maintenance",
+        "Emergency Commercial Service"
+      ]
+    },
+    {
+      icon: "fas fa-motorcycle",
+      title: "Motorcycle Service",
+      color: "text-orange-600",
+      services: [
+        "Motorcycle Diagnostics",
+        "Battery & Electrical Service",
+        "Tire Repair & Replacement",
+        "Chain & Sprocket Service",
+        "Emergency Motorcycle Repair"
       ]
     },
     {
       icon: "fas fa-tools",
-      title: "Specialized Services",
-      color: "text-green-600",
+      title: "General Automotive",
+      color: "text-indigo-600",
       services: [
-        "Lawn Mower Repair",
-        "Marine Engines",
-        "Steering Systems",
-        "Troubleshooting",
-        "Need Something Else? Just Call!"
+        "Transmission Service",
+        "Cooling System Repair",
+        "Air Conditioning Service",
+        "Suspension & Steering",
+        "Custom Repairs - Just Ask!"
       ]
     }
   ];
@@ -87,7 +87,7 @@ export default function ServicesSection() {
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Our Services</h2>
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-            Complete mobile diesel repair solutions for all your heavy-duty vehicle needs. From emergency roadside assistance to scheduled maintenance, we've got you covered.
+            Professional mobile mechanic and roadside assistance services across Northeast Florida. We bring our expertise directly to your location, 24/7.
           </p>
         </div>
         
@@ -110,11 +110,11 @@ export default function ServicesSection() {
               {/* Call to Action for each service */}
               <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
                 <a 
-                  href="tel:+15551234567"
+                  href="tel:+13863728412"
                   className="inline-flex items-center justify-center w-full bg-[hsl(0,84%,60%)] hover:bg-red-700 text-white font-medium py-2 px-4 rounded-lg transition-all duration-300 text-sm"
                 >
                   <i className="fas fa-phone mr-2"></i>
-                  📞 Tap to Call
+                  Call Now
                 </a>
               </div>
             </div>
@@ -122,13 +122,31 @@ export default function ServicesSection() {
         </div>
         
         <div className="text-center mt-12">
-          <button 
-            onClick={() => scrollToSection("contact")}
-            className="bg-[hsl(221,83%,53%)] hover:bg-blue-700 text-white font-semibold px-8 py-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
-          >
-            <i className="fas fa-envelope mr-2"></i>
-            Request Service Quote
-          </button>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a 
+              href="tel:+13863728412" 
+              className="inline-flex items-center bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-full text-lg shadow-lg transition-all duration-300 transform hover:scale-105"
+            >
+              <i className="fas fa-phone mr-3"></i>
+              Call Now: (386) 372-8412
+            </a>
+            <a 
+              href="tel:+13863387945" 
+              className="inline-flex items-center bg-gray-600 hover:bg-gray-700 text-white font-bold py-4 px-8 rounded-full text-lg shadow-lg transition-all duration-300 transform hover:scale-105"
+            >
+              <i className="fas fa-phone mr-3"></i>
+              Backup: (386) 338-7945
+            </a>
+          </div>
+          <div className="mt-4">
+            <a 
+              href="/quote"
+              className="inline-flex items-center bg-[hsl(43,96%,56%)] hover:bg-yellow-500 text-gray-900 font-bold py-4 px-8 rounded-full text-lg shadow-lg transition-all duration-300 transform hover:scale-105"
+            >
+              <i className="fas fa-clipboard-list mr-3"></i>
+              Get Free Quote
+            </a>
+          </div>
         </div>
       </div>
     </section>

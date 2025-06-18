@@ -22,29 +22,30 @@ export default function HeroSection() {
           <i className="fas fa-truck text-6xl mb-4 text-[hsl(43,96%,56%)]"></i>
         </div>
         <h1 className="text-4xl md:text-6xl font-bold mb-6">
-          24/7 Mobile Diesel Repair in Florida
+          <span className="text-[hsl(43,96%,56%)] block">AA Trust Roadside</span>
+          24/7 Mobile Mechanic
         </h1>
         <p className="text-xl md:text-2xl mb-8 text-gray-200">
-          Fast, Reliable, On-Site Service — Right When You Need It
+          Emergency Roadside Service & Mobile Mechanic
         </p>
         <p className="text-lg mb-10 text-gray-300 max-w-2xl mx-auto">
-          Professional mobile diesel repair services across Florida. We come to you with fully equipped service trucks for emergency roadside assistance, diagnostics, and complete fleet maintenance.
+          Professional mobile mechanic and roadside assistance serving Palm Coast, Jacksonville, Daytona Beach & St. Augustine. We come to you with complete automotive repair services.
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a 
-            href="tel:+15551234567" 
+            href="tel:+13863728412" 
             className="bg-[hsl(0,84%,60%)] hover:bg-red-700 text-white font-semibold px-8 py-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
           >
             <i className="fas fa-phone mr-2"></i>
-            📞 Call Now
+            Call Now: (386) 372-8412
           </a>
           <a 
             href="/quote"
             className="bg-[hsl(43,96%,56%)] hover:bg-yellow-500 text-gray-900 font-semibold px-8 py-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
           >
             <i className="fas fa-clipboard-list mr-2"></i>
-            📝 Get a Quote
+            Get Free Quote
           </a>
         </div>
         

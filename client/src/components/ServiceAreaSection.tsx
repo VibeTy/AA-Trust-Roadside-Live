@@ -1,11 +1,13 @@
 export default function ServiceAreaSection() {
   const serviceAreas = [
     "Palm Coast",
-    "Flagler Beach", 
-    "Ormond Beach",
+    "Jacksonville", 
     "Daytona Beach",
     "St. Augustine",
-    "Bunnell"
+    "Flagler Beach",
+    "Ormond Beach",
+    "Bunnell",
+    "New Smyrna Beach"
   ];
 
   return (
@@ -14,7 +16,7 @@ export default function ServiceAreaSection() {
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Service Areas</h2>
           <p className="text-xl text-gray-600 dark:text-gray-400">
-            Proudly serving Palm Coast, FL and surrounding areas with mobile diesel repair
+            Proudly serving Palm Coast, Jacksonville, Daytona Beach, St. Augustine and surrounding areas with mobile mechanic and roadside assistance
           </p>
         </div>
         
@@ -59,7 +61,7 @@ export default function ServiceAreaSection() {
             <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6">
               <h4 className="font-semibold text-gray-900 dark:text-white mb-3">Service Radius</h4>
               <p className="text-gray-700 dark:text-gray-300 mb-4">
-                We provide mobile diesel repair services within a 50-mile radius of Palm Coast, FL. Emergency roadside assistance available 24/7.
+                We provide mobile mechanic and roadside assistance services throughout Northeast Florida. Emergency service available 24/7.
               </p>
               <div className="flex items-center text-[hsl(43,96%,56%)] font-medium">
                 <i className="fas fa-clock mr-2"></i>
