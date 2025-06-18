@@ -1,9 +1,14 @@
 export default function GallerySection() {
   const galleryImages = [
     {
-      src: "https://images.unsplash.com/photo-1632823469092-073d9dc6b043?w=400&h=300&fit=crop",
+      src: "/attached_assets/image_1750232639530.jpeg",
       alt: "AA Trust Roadside service truck",
-      title: "Mobile Service Unit"
+      title: "Our Mobile Service Unit"
+    },
+    {
+      src: "/attached_assets/image_1750233313706.jpeg", 
+      alt: "AA Trust Roadside truck ready for service",
+      title: "Ready to Help 24/7"
     },
     {
       src: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=300&fit=crop",
@@ -11,14 +16,9 @@ export default function GallerySection() {
       title: "Emergency Response"
     },
     {
-      src: "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=400&h=300&fit=crop",
-      alt: "Professional mechanic at work",
-      title: "Expert Service"
-    },
-    {
       src: "https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=400&h=300&fit=crop",
-      alt: "Diagnostic equipment",
-      title: "Advanced Diagnostics"
+      alt: "Professional diagnostic service",
+      title: "Professional Service"
     }
   ];
 
