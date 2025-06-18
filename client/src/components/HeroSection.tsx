@@ -21,31 +21,28 @@ export default function HeroSection() {
         <div className="mb-6">
           <i className="fas fa-truck text-6xl mb-4 text-[hsl(43,96%,56%)]"></i>
         </div>
-        <h1 className="text-4xl md:text-6xl font-bold mb-6">
-          <span className="text-[hsl(43,96%,56%)] block">AA Trust Roadside</span>
-          24/7 Mobile Mechanic
+        <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+          <span className="text-red-500">STRANDED?</span> WE'VE GOT YOU.<br />
+          <span className="text-4xl md:text-6xl">24/7 <span className="text-red-500">ROADSIDE</span> HELP</span>
         </h1>
-        <p className="text-xl md:text-2xl mb-8 text-gray-200">
-          Emergency Roadside Service & Mobile Mechanic
-        </p>
-        <p className="text-lg mb-10 text-gray-300 max-w-2xl mx-auto">
-          Professional mobile mechanic and roadside assistance serving Palm Coast, Jacksonville, Daytona Beach & St. Augustine. We come to you with complete automotive repair services.
+        <p className="text-xl md:text-2xl text-gray-200 mb-8 max-w-3xl">
+          Fast, mobile mechanic service in Palm Coast, Jacksonville, Daytona & beyond.
         </p>
         
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <div className="flex flex-col sm:flex-row gap-4 mb-8">
           <a 
-            href="tel:+13863728412" 
-            className="bg-[hsl(0,84%,60%)] hover:bg-red-700 text-white font-semibold px-8 py-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+            href="tel:+13863728412"
+            className="bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-full text-lg shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
           >
-            <i className="fas fa-phone mr-2"></i>
-            Call Now: (386) 372-8412
+            <i className="fas fa-phone"></i>
+            📞 Call Now
           </a>
           <a 
-            href="/quote"
-            className="bg-[hsl(43,96%,56%)] hover:bg-yellow-500 text-gray-900 font-semibold px-8 py-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+            href="#contact"
+            className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-gray-900 font-bold py-4 px-8 rounded-full text-lg transition-all duration-300 flex items-center justify-center gap-2"
           >
-            <i className="fas fa-clipboard-list mr-2"></i>
-            Get Free Quote
+            <i className="fas fa-clipboard-list"></i>
+            📋 Get a Quote
           </a>
         </div>
         
