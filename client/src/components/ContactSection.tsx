@@ -137,7 +137,7 @@ export default function ContactSection() {
           
           {/* Contact Form */}
           <div className="bg-white dark:bg-gray-900 rounded-xl p-8 shadow-lg">
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Request Service Quote</h3>
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Quote Request Form</h3>
             
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -161,14 +161,14 @@ export default function ContactSection() {
                 
                 <FormField
                   control={form.control}
-                  name="email"
+                  name="phone"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-gray-700 dark:text-gray-300">Email Address *</FormLabel>
+                      <FormLabel className="text-gray-700 dark:text-gray-300">Phone Number *</FormLabel>
                       <FormControl>
                         <Input 
-                          type="email"
-                          placeholder="Enter your email address" 
+                          type="tel"
+                          placeholder="Enter your phone number" 
                           className="dark:bg-gray-800 dark:text-white dark:border-gray-600"
                           {...field} 
                         />
@@ -202,11 +202,11 @@ export default function ContactSection() {
                   name="message"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-gray-700 dark:text-gray-300">Service Details *</FormLabel>
+                      <FormLabel className="text-gray-700 dark:text-gray-300">Car Issue or Symptoms *</FormLabel>
                       <FormControl>
                         <Textarea 
                           rows={4}
-                          placeholder="Describe your diesel repair needs, vehicle type, and location" 
+                          placeholder="Describe what's wrong with your vehicle or what help you need" 
                           className="dark:bg-gray-800 dark:text-white dark:border-gray-600"
                           {...field} 
                         />
@@ -218,11 +218,11 @@ export default function ContactSection() {
                 
                 <Button 
                   type="submit" 
-                  className="w-full bg-[hsl(221,83%,53%)] hover:bg-blue-700 text-white font-semibold py-4 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+                  className="w-full bg-red-600 hover:bg-red-700 text-white py-3 text-lg font-semibold"
                   disabled={contactMutation.isPending}
                 >
                   <i className="fas fa-paper-plane mr-2"></i>
-                  {contactMutation.isPending ? "Sending..." : "Send Service Request"}
+                  {contactMutation.isPending ? "Sending..." : "Submit Quote Request"}
                 </Button>
               </form>
             </Form>
@@ -230,8 +230,8 @@ export default function ContactSection() {
             <div className="mt-6 text-center">
               <p className="text-sm text-gray-600 dark:text-gray-400">
                 Need immediate assistance? 
-                <a href="tel:+15551234567" className="text-[hsl(0,84%,60%)] hover:text-red-700 font-medium ml-1">
-                  Call (555) 123-4567
+                <a href="tel:+13863728412" className="text-red-600 hover:text-red-700 font-medium ml-1">
+                  Call (386) 372-8412
                 </a>
               </p>
             </div>

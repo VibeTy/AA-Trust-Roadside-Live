@@ -11,8 +11,10 @@ export const users = pgTable("users", {
 export const contactSubmissions = pgTable("contact_submissions", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
-  email: text("email").notNull(),
+  email: text("email"),
   phone: text("phone").notNull(),
+  location: text("location").notNull(),
+  urgency: text("urgency").notNull(),
   message: text("message").notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
