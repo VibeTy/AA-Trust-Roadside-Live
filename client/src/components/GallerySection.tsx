@@ -1,14 +1,17 @@
+import truck1 from "@assets/image_1750232639530.jpeg";
+import truck2 from "@assets/image_1750233313706.jpeg";
+
 export default function GallerySection() {
   const galleryImages = [
     {
-      src: "/attached_assets/image_1750232639530.jpeg",
-      alt: "AA Trust Roadside service truck",
-      title: "Our Mobile Service Unit"
+      src: truck1,
+      alt: "AA Trust Roadside heavy duty service truck",
+      title: "Heavy Duty Service Unit"
     },
     {
-      src: "/attached_assets/image_1750233313706.jpeg", 
-      alt: "AA Trust Roadside truck ready for service",
-      title: "Ready to Help 24/7"
+      src: truck2, 
+      alt: "AA Trust Roadside diesel repair truck ready for service",
+      title: "Diesel Repair Specialists"
     },
     {
       src: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=300&fit=crop",
@@ -28,7 +31,7 @@ export default function GallerySection() {
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Trusted. Local. Ready.</h2>
           <p className="text-xl text-gray-600 dark:text-gray-400">
-            See our professional mobile service units and team in action
+            See our professional heavy duty service units and team in action
           </p>
         </div>
         
@@ -49,7 +52,7 @@ export default function GallerySection() {
         
         <div className="text-center mt-12">
           <p className="text-lg text-gray-600 dark:text-gray-400 mb-6">
-            Need help right now? We're standing by 24/7
+            Need heavy duty diesel repair right now? We're standing by 24/7
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a 
