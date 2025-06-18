@@ -1,0 +1,137 @@
+🚀 Replit AI Agent Prompt — AA Trust Roadside Funnel + CRM (Final with SEO)
+plaintext
+Copy
+Edit
+Build a professional, mobile-first roadside service website and admin CRM dashboard for a business called **AA Trust Roadside**. This site is a lead generation funnel meant to drive **calls**, collect **quote form submissions**, and allow the owner to manage leads in a lightweight CRM.
+
+---
+
+🧾 BUSINESS DETAILS
+
+- **Business Name**: AA Trust Roadside
+- **Type**: 24/7 Mobile Mechanic & Roadside Assistance
+- **Phone Numbers**: (386) 372-8412 (main), (386) 338-7945 (backup)
+- **Primary CTA**: Call preferred, then form, then text/email
+- **Service Areas**: Palm Coast, Jacksonville, Daytona Beach, St. Augustine
+  - *(Add logic to suggest other nearby cities automatically)*
+- **Accepted Payments**: All types (Cash, Zelle, Cash App, Card, etc.)
+- **No prices displayed — quote only**
+
+---
+
+🎯 LANDING PAGE STRUCTURE
+
+1. **SEO Meta Tags**
+   Include the following in the `<head>`:
+   ```html
+   <title>AA Trust Roadside - 24/7 Mobile Mechanic in Palm Coast & Jacksonville</title>
+   <meta name="description" content="Emergency roadside service, engine diagnostics, and more. Serving Palm Coast, Daytona, Jacksonville & surrounding areas 24/7. Call (386) 372-8412.">
+Hero Section
+
+Headline: “Stranded? We’ve Got You. 24/7 Roadside Help.”
+
+Subline: “Fast, mobile mechanic service in Palm Coast, Jacksonville, Daytona & beyond.”
+
+Buttons:
+
+[📞 Call Now] — tel:3863728412
+
+[📋 Get a Quote] — scrolls to form
+
+Use a placeholder for uploaded truck image as background/hero visual
+
+Services Offered (Only show actual services provided)
+
+✅ Emergency Roadside Assistance
+
+✅ Engine Diagnostics
+
+✅ Battery Jumpstart
+
+✅ Tire Help
+
+✅ Lockout Assistance
+
+Quote Request Form
+
+Fields:
+
+Full Name
+
+Phone Number
+
+City / Zip
+
+Car Issue or Symptoms
+
+Urgency (ASAP / Today / Flexible)
+
+Submit confirmation: “Thanks! We’ll reach out shortly.”
+
+Gallery
+
+Placeholder for truck photos (Tyrese will upload later)
+
+Section title: “Trusted. Local. Ready.”
+
+Placeholder Testimonials
+
+Clearly labeled “What our clients say”
+
+Examples:
+
+“Fast, professional, and saved my night.”
+
+“Diagnosed the issue in minutes!”
+
+“Came through when no one else would.”
+
+Sticky Call Button (Mobile)
+
+Floating “📞 Call Now” button always visible on mobile screens
+
+Accepted Payment Logos
+
+Icons: Zelle, Cash App, Visa, Mastercard, AmEx
+
+🛠️ CRM DASHBOARD (/admin)
+
+Route: /admin
+
+Protected with simple username/password login
+
+Show table of all submitted leads:
+
+Name, Phone, City, Issue, Urgency, Status (New / Called / Repaired)
+
+Ability to add internal notes
+
+Filter by city or status
+
+📦 Tech & Build Notes
+
+Use Replit DB or form-handling backend to store leads
+
+Form data auto-populates CRM dashboard
+
+Placeholder image logic for truck photos
+
+Code is mobile-first, fast-loading, and SEO-optimized
+
+Prepare site for future SMS/email automation (after payment)
+
+🎨 Design Style
+
+Bold, clean, urgent
+
+Color palette: Black, white, red or blue accents
+
+Font: Easy to read and large enough for mobile users
+
+CTA buttons must be large and obvious on phones
+
+🚨 This site is urgent — launch-ready, mobile-optimized, and focused on converting visitors into calls and form leads. Prioritize emergency tone and lead capture flow.
+
+yaml
+Copy
+Edit
