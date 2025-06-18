@@ -43,10 +43,15 @@ export default function Quote() {
 
   const submitQuoteMutation = useMutation({
     mutationFn: async (data: QuoteFormData) => {
-      return apiRequest("/api/quotes", {
+      const response = await fetch("/api/quotes", {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify(data),
       });
+      if (!response.ok) throw new Error('Failed to submit quote');
+      return response.json();
     },
     onSuccess: () => {
       toast({

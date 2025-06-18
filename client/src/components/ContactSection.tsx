@@ -96,7 +96,7 @@ export default function ContactSection() {
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Get In Touch</h2>
           <p className="text-xl text-gray-600 dark:text-gray-400">
-            Ready to get your diesel vehicle back on the road? Contact us today for fast, reliable service.
+            Ready to get your vehicle back on the road? Contact us today for fast, reliable automotive service.
           </p>
         </div>
         
