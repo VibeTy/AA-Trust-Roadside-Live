@@ -97,9 +97,12 @@ export default function Footer() {
         
         <div className="border-t border-gray-800 mt-8 pt-8 text-center">
           <p className="text-gray-400">
-            © 2024 Florida Diesel Pro. All rights reserved. | 
-            <span className="text-[hsl(43,96%,56%)] ml-1">24/7 Emergency Service Available</span>
+            © 2024 AA Trust Roadside. All rights reserved. | 
+            <span className="text-red-500 ml-1">24/7 Emergency Service Available</span>
           </p>
+          <div className="mt-2">
+            <a href="/admin" className="text-xs text-gray-600 hover:text-gray-400 opacity-30 hover:opacity-70">•</a>
+          </div>
         </div>
       </div>
     </footer>
