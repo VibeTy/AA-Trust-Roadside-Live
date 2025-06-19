@@ -3,8 +3,28 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertContactSubmissionSchema, insertQuoteSubmissionSchema } from "@shared/schema";
 import { z } from "zod";
+import session from "express-session";
+
+// Simple admin authentication middleware
+const isAdminAuthenticated = (req: any, res: any, next: any) => {
+  if (req.session?.isAdmin) {
+    next();
+  } else {
+    res.status(401).json({ message: "Unauthorized" });
+  }
+};
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Configure session middleware
+  app.use(session({
+    secret: process.env.SESSION_SECRET || 'admin-secret-key-change-in-production',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      secure: false, // Set to true in production with HTTPS
+      maxAge: 24 * 60 * 60 * 1000 // 24 hours
+    }
+  }));
   // Contact form submission endpoint
   app.post("/api/contact", async (req, res) => {
     try {
