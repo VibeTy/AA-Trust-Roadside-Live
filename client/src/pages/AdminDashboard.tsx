@@ -1,26 +1,43 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
+import { useLocation } from "wouter";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
 import { Phone, Mail, MapPin, Clock, CheckCircle, AlertCircle } from "lucide-react";
-import { queryClient } from "@/lib/queryClient";
+import { queryClient, apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import type { QuoteSubmission, ContactSubmission } from "@shared/schema";
 
 export default function AdminDashboard() {
   const { toast } = useToast();
+  const [, setLocation] = useLocation();
   const [activeTab, setActiveTab] = useState("quotes");
 
-  const { data: quotes, isLoading: quotesLoading } = useQuery<QuoteSubmission[]>({
+  const { data: quotes, isLoading: quotesLoading, error: quotesError } = useQuery<QuoteSubmission[]>({
     queryKey: ['/api/quotes'],
+    retry: false,
   });
 
-  const { data: contacts, isLoading: contactsLoading } = useQuery<ContactSubmission[]>({
+  const { data: contacts, isLoading: contactsLoading, error: contactsError } = useQuery<ContactSubmission[]>({
     queryKey: ['/api/contacts'],
+    retry: false,
   });
+
+  // Check if user is authenticated
+  useEffect(() => {
+    if ((quotesError && quotesError.message.includes("401")) || 
+        (contactsError && contactsError.message.includes("401"))) {
+      toast({
+        title: "Session Expired",
+        description: "Please log in again",
+        variant: "destructive"
+      });
+      setLocation("/admin");
+    }
+  }, [quotesError, contactsError, setLocation, toast]);
 
   const markContactedMutation = useMutation({
     mutationFn: async (id: number) => {
@@ -39,6 +56,23 @@ export default function AdminDashboard() {
       });
     },
   });
+
+  const logoutMutation = useMutation({
+    mutationFn: async () => {
+      return await apiRequest("POST", "/api/admin/logout", {});
+    },
+    onSuccess: () => {
+      toast({
+        title: "Logged Out",
+        description: "You have been logged out successfully"
+      });
+      setLocation("/admin");
+    }
+  });
+
+  const handleLogout = () => {
+    logoutMutation.mutate();
+  };
 
   const formatDate = (dateString: string | Date) => {
     const date = typeof dateString === 'string' ? new Date(dateString) : dateString;
@@ -73,9 +107,14 @@ export default function AdminDashboard() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">AA Trust Roadside - Admin Dashboard</h1>
-          <p className="text-gray-600 dark:text-gray-400 mt-2">Manage leads and customer inquiries</p>
+        <div className="mb-8 flex justify-between items-center">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">AA Trust Roadside - Admin Dashboard</h1>
+            <p className="text-gray-600 dark:text-gray-400 mt-2">Manage leads and customer inquiries</p>
+          </div>
+          <Button onClick={handleLogout} variant="outline" className="text-red-600 border-red-600 hover:bg-red-50">
+            Logout
+          </Button>
         </div>
 
         {/* Stats Cards */}
