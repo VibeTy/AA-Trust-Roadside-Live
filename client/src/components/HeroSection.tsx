@@ -1,13 +1,14 @@
-import truck1 from "@assets/image_1750232639530.jpeg";
+// Using string path for emergency service image
+const emergencyService = "/attached_assets/D51BAF30-01DB-4D89-A56B-6A2135C674B4_1750441686536.PNG";
 
 export default function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
-      {/* Background Image - Using actual truck photo */}
+      {/* Background Image - Emergency roadside service photo */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
         style={{
-          backgroundImage: `url(${truck1})`,
+          backgroundImage: `url(${emergencyService})`,
         }}
       ></div>
       
