@@ -1,7 +1,5 @@
-// Using string paths for images
-const truck1 = "/attached_assets/image_1750232639530.jpeg";
-const truck2 = "/attached_assets/image_1750233313706.jpeg";
-const emergencyService = "/attached_assets/D51BAF30-01DB-4D89-A56B-6A2135C674B4_1750441686536.PNG";
+import truck1 from "@assets/image_1750232639530.jpeg";
+import truck2 from "@assets/image_1750233313706.jpeg";
 
 export default function TruckShowcase() {
   return (
@@ -14,21 +12,7 @@ export default function TruckShowcase() {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
-          {/* Emergency service image */}
-          <div className="relative">
-            <img 
-              src={emergencyService}
-              alt="AA Trust Roadside emergency service technician working on diesel engine"
-              className="w-full h-80 object-cover rounded-xl shadow-2xl"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-xl"></div>
-            <div className="absolute bottom-6 left-6">
-              <h3 className="text-2xl font-bold text-white mb-2">Expert Service</h3>
-              <p className="text-gray-200">Professional technicians with AA Trust Roadside uniforms and tools</p>
-            </div>
-          </div>
-          
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* First truck image */}
           <div className="relative">
             <img 
@@ -38,8 +22,8 @@ export default function TruckShowcase() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-xl"></div>
             <div className="absolute bottom-6 left-6">
-              <h3 className="text-2xl font-bold text-white mb-2">Mobile Service Unit</h3>
-              <p className="text-gray-200">Fully equipped trucks bringing diesel repair to your location</p>
+              <h3 className="text-2xl font-bold text-white mb-2">Heavy Duty Service Unit</h3>
+              <p className="text-gray-200">Equipped with professional diesel diagnostic tools and heavy equipment parts</p>
             </div>
           </div>
           
@@ -52,8 +36,8 @@ export default function TruckShowcase() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-xl"></div>
             <div className="absolute bottom-6 left-6">
-              <h3 className="text-2xl font-bold text-white mb-2">Always Ready</h3>
-              <p className="text-gray-200">Standing by 24/7 for heavy duty diesel emergencies</p>
+              <h3 className="text-2xl font-bold text-white mb-2">Diesel Specialists</h3>
+              <p className="text-gray-200">Standing by 24/7 for heavy duty diesel and equipment emergencies</p>
             </div>
           </div>
         </div>
