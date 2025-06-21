@@ -78,7 +78,7 @@ export default function Footer() {
               <div className="flex items-center">
                 <i className="fas fa-phone text-[hsl(0,84%,60%)] mr-3"></i>
                 <a href="tel:+15551234567" className="text-gray-400 hover:text-white transition-colors">
-                  (555) 123-4567
+                  (386) 372-8412
                 </a>
               </div>
               <div className="flex items-center">
