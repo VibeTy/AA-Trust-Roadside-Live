@@ -47,6 +47,20 @@ app.use((req, res, next) => {
     throw err;
   });
 
+  // Serve static assets before Vite middleware
+  const path = await import("path");
+  const assetsPath = path.resolve(import.meta.dirname, "../attached_assets");
+  app.use('/attached_assets', express.static(assetsPath, {
+    setHeaders: (res, filePath) => {
+      if (filePath.endsWith('.PNG') || filePath.endsWith('.png')) {
+        res.setHeader('Content-Type', 'image/png');
+      }
+      if (filePath.endsWith('.jpeg') || filePath.endsWith('.jpg')) {
+        res.setHeader('Content-Type', 'image/jpeg');
+      }
+    }
+  }));
+
   // importantly only setup vite in development and after
   // setting up all the other routes so the catch-all route
   // doesn't interfere with the other routes
