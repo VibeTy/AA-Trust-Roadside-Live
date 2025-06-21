@@ -14,8 +14,8 @@ export default function GallerySection() {
       title: "Diesel Repair Specialists"
     },
     {
-      src: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=300&fit=crop",
-      alt: "Emergency roadside assistance",
+      src: "/attached_assets/D51BAF30-01DB-4D89-A56B-6A2135C674B4_1750487527873.PNG",
+      alt: "AA Trust Roadside technician performing emergency roadside service",
       title: "Emergency Response"
     },
     {
