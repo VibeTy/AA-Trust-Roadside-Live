@@ -1,7 +1,7 @@
 import truck1 from "@assets/image_1750232639530.jpeg";
 import truck2 from "@assets/image_1750233313706.jpeg";
-// Using public folder for reliable image serving
-const technicianImage = "/technician.png";
+// Direct path to attached assets
+const technicianImage = "/attached_assets/D51BAF30-01DB-4D89-A56B-6A2135C674B4_1750487527873.PNG";
 
 export default function GallerySection() {
   const galleryImages = [
