@@ -1,7 +1,5 @@
-// Using string paths for images
-const truck1 = "/attached_assets/image_1750232639530.jpeg";
-const truck2 = "/attached_assets/image_1750233313706.jpeg";
-const emergencyService = "/attached_assets/D51BAF30-01DB-4D89-A56B-6A2135C674B4_1750441686536.PNG";
+import truck1 from "@assets/image_1750232639530.jpeg";
+import truck2 from "@assets/image_1750233313706.jpeg";
 
 export default function GallerySection() {
   const galleryImages = [
@@ -16,8 +14,8 @@ export default function GallerySection() {
       title: "Diesel Repair Specialists"
     },
     {
-      src: emergencyService,
-      alt: "AA Trust Roadside emergency service technician",
+      src: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=300&fit=crop",
+      alt: "Emergency roadside assistance",
       title: "Emergency Response"
     },
     {
