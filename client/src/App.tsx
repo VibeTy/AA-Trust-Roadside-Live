@@ -10,6 +10,7 @@ import ThankYou from "@/pages/ThankYou";
 import AdminDashboard from "@/pages/AdminDashboard";
 import AdminLogin from "@/pages/AdminLogin";
 import NotFound from "@/pages/not-found";
+import Bookings from "@/pages/Bookings";
 
 function Router() {
   return (
@@ -19,6 +20,7 @@ function Router() {
       <Route path="/thank-you" component={ThankYou} />
       <Route path="/admin" component={AdminLogin} />
       <Route path="/admin/dashboard" component={AdminDashboard} />
+      <Route path="/bookings" component={Bookings} />
       <Route component={NotFound} />
     </Switch>
   );
