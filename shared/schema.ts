@@ -33,6 +33,22 @@ export const quoteSubmissions = pgTable("quote_submissions", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
+export const bookingSubmissions = pgTable("booking_submissions", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  phone: text("phone").notNull(),
+  email: text("email"),
+  vehicleType: text("vehicle_type").notNull(),
+  location: text("location").notNull(),
+  serviceNeeded: text("service_needed").notNull(),
+  urgency: text("urgency").notNull(),
+  description: text("description").notNull(),
+  preferredDate: text("preferred_date"),
+  preferredTime: text("preferred_time"),
+  contacted: boolean("contacted").default(false).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
 export const insertUserSchema = createInsertSchema(users).omit({
   id: true,
 });
@@ -48,9 +64,17 @@ export const insertQuoteSubmissionSchema = createInsertSchema(quoteSubmissions).
   contacted: true,
 });
 
+export const insertBookingSubmissionSchema = createInsertSchema(bookingSubmissions).omit({
+  id: true,
+  createdAt: true,
+  contacted: true,
+});
+
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
 export type InsertContactSubmission = z.infer<typeof insertContactSubmissionSchema>;
 export type ContactSubmission = typeof contactSubmissions.$inferSelect;
 export type InsertQuoteSubmission = z.infer<typeof insertQuoteSubmissionSchema>;
 export type QuoteSubmission = typeof quoteSubmissions.$inferSelect;
+export type InsertBookingSubmission = z.infer<typeof insertBookingSubmissionSchema>;
+export type BookingSubmission = typeof bookingSubmissions.$inferSelect;
