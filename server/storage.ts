@@ -9,23 +9,30 @@ export interface IStorage {
   createQuoteSubmission(submission: InsertQuoteSubmission): Promise<QuoteSubmission>;
   getQuoteSubmissions(): Promise<QuoteSubmission[]>;
   updateQuoteContacted(id: number, contacted: boolean): Promise<QuoteSubmission | undefined>;
+  createBookingSubmission(submission: InsertBookingSubmission): Promise<BookingSubmission>;
+  getBookingSubmissions(): Promise<BookingSubmission[]>;
+  updateBookingContacted(id: number, contacted: boolean): Promise<BookingSubmission | undefined>;
 }
 
 export class MemStorage implements IStorage {
   private users: Map<number, User>;
   private contactSubmissions: Map<number, ContactSubmission>;
   private quoteSubmissions: Map<number, QuoteSubmission>;
+  private bookingSubmissions: Map<number, BookingSubmission>;
   private currentUserId: number;
   private currentSubmissionId: number;
   private currentQuoteId: number;
+  private currentBookingId: number;
 
   constructor() {
     this.users = new Map();
     this.contactSubmissions = new Map();
     this.quoteSubmissions = new Map();
+    this.bookingSubmissions = new Map();
     this.currentUserId = 1;
     this.currentSubmissionId = 1;
     this.currentQuoteId = 1;
+    this.currentBookingId = 1;
   }
 
   async getUser(id: number): Promise<User | undefined> {
