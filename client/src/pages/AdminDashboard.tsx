@@ -9,7 +9,7 @@ import { Separator } from "@/components/ui/separator";
 import { Phone, Mail, MapPin, Clock, CheckCircle, AlertCircle } from "lucide-react";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
-import type { QuoteSubmission, ContactSubmission } from "@shared/schema";
+import type { QuoteSubmission, ContactSubmission, BookingSubmission } from "@shared/schema";
 
 export default function AdminDashboard() {
   const { toast } = useToast();
@@ -26,10 +26,16 @@ export default function AdminDashboard() {
     retry: false,
   });
 
+  const { data: bookings, isLoading: bookingsLoading, error: bookingsError } = useQuery<BookingSubmission[]>({
+    queryKey: ['/api/bookings'],
+    retry: false,
+  });
+
   // Check if user is authenticated
   useEffect(() => {
     if ((quotesError && quotesError.message.includes("401")) || 
-        (contactsError && contactsError.message.includes("401"))) {
+        (contactsError && contactsError.message.includes("401")) ||
+        (bookingsError && bookingsError.message.includes("401"))) {
       toast({
         title: "Session Expired",
         description: "Please log in again",
@@ -37,7 +43,7 @@ export default function AdminDashboard() {
       });
       setLocation("/admin");
     }
-  }, [quotesError, contactsError, setLocation, toast]);
+  }, [quotesError, contactsError, bookingsError, setLocation, toast]);
 
   const markContactedMutation = useMutation({
     mutationFn: async (id: number) => {
@@ -94,10 +100,38 @@ export default function AdminDashboard() {
     }
   };
 
+  const markBookingContactedMutation = useMutation({
+    mutationFn: async (id: number) => {
+      const response = await fetch(`/api/bookings/${id}/contacted`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ contacted: true })
+      });
+      if (!response.ok) throw new Error('Failed to update booking');
+      return response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['/api/bookings'] });
+      toast({
+        title: "Success",
+        description: "Booking marked as contacted",
+      });
+    },
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Failed to update booking",
+        variant: "destructive"
+      });
+    }
+  });
+
   const stats = {
     totalQuotes: quotes?.length || 0,
     uncontactedQuotes: quotes?.filter(q => !q.contacted).length || 0,
     totalContacts: contacts?.length || 0,
+    totalBookings: bookings?.length || 0,
+    uncontactedBookings: bookings?.filter(b => !b.contacted).length || 0,
     todayQuotes: quotes?.filter(q => {
       const today = new Date().toDateString();
       return new Date(q.createdAt).toDateString() === today;
