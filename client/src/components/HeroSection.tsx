@@ -27,9 +27,24 @@ export default function HeroSection() {
           <span className="text-red-500">DIESEL</span> BREAKDOWN?<br />
           <span className="text-4xl md:text-6xl">24/7 <span className="text-red-500">HEAVY DUTY</span> HELP</span>
         </h1>
-        <p className="text-xl md:text-2xl text-gray-200 mb-8 max-w-3xl">
+        <p className="text-xl md:text-2xl text-gray-200 mb-6 max-w-3xl">
           Professional heavy duty diesel repair and emergency service in Palm Coast, Jacksonville, Daytona & beyond.
         </p>
+        
+        {/* Star Rating Display */}
+        <div className="flex items-center justify-center gap-3 mb-8">
+          <div className="flex text-yellow-400">
+            {[...Array(5)].map((_, i) => (
+              <i key={i} className="fas fa-star text-xl"></i>
+            ))}
+          </div>
+          <span className="text-lg font-semibold text-white">
+            4.8 out of 5 stars
+          </span>
+          <span className="text-gray-300">
+            (62+ verified reviews)
+          </span>
+        </div>
         
         <div className="flex flex-col sm:flex-row gap-4 mb-8">
           <a 
