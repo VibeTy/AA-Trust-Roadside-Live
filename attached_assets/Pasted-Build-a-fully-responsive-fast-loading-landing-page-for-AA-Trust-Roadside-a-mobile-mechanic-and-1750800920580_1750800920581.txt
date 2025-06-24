@@ -1,0 +1,100 @@
+Build a fully responsive, fast-loading landing page for **AA Trust Roadside**, a mobile mechanic and roadside tire service based in Palm Coast, FL. This business is run by Fritzner and specializes in **mobile tire repair and replacement**, with light mechanic services as secondary. Use a clean, professional design with a **black/white/blue color palette** to match the official logo.
+
+The primary goals are:
+- Bold, modern design that builds trust instantly
+- Clear 70/30 service focus (tires as main service)
+- Strong calls to action for emergency response
+- Optimized for mobile, SEO, and loading speed
+
+🖼️ Brand Assets:
+- Background color: #0D0D0D (dark)
+- Text: White (#FFFFFF), Gray (#DDDDDD)
+- Accent color: Blue (#2D72D9 or extracted from logo)
+- Logo: Use uploaded PNG of white truck with blue “ROADSIDE”
+- Font: Inter, Roboto, or Poppins (clean sans-serif)
+
+---
+
+🧱 Sections to Include:
+
+1. ✅ **Navbar (Sticky on Scroll)**
+   - Logo (use provided)
+   - Links: Home, Services, Reviews, Contact
+   - Button: “Call Now” (blue button with white text)
+   - Mobile toggle version
+
+2. 🛻 **Hero Section**
+   - Headline: **“Mobile Tire Repair & Roadside Help, 24/7.”**
+   - Subheadline: “Fast tire replacement + essential repairs in Palm Coast, Daytona, Jacksonville & beyond.”
+   - Buttons:
+     - [📞 Call Now] → tel:(386) 372-8412
+     - [📋 Get Free Quote]
+   - Stats Row:
+     - ✅ 15min Avg Response
+     - ✅ 100% Mobile
+     - ✅ Trusted by 60+ drivers
+   - Background: Slight overlay over image of truck or dark blurred photo with tires
+
+3. 🔧 **Main Services (70% Emphasis)**
+   **Title**: “Tire Services – Fast, Mobile, & Affordable”
+   - Flat Tire Repair & Patching  
+   - Emergency Roadside Tire Service  
+   - Complete Tire Replacement  
+   - Tire Pressure Checks  
+   - Sourcing Wholesale Tires  
+   - Commercial Truck Tire Help  
+
+4. 🔩 **Light Mechanic & Roadside Repairs (30%)**
+   **Title**: “Also Offering Light Repair Services”
+   - Brake Pad Replacement  
+   - Oil Changes  
+   - DPF/Flapper Replacement  
+   - Basic Engine Diagnostics  
+   - Jumpstarts / Battery Swap  
+   - Mobile Fuel Delivery
+
+5. 📍 **Service Area Map**
+   - Palm Coast, Jacksonville, St. Augustine, Daytona, Flagler Beach, Ormond Beach, New Smyrna
+   - Add Google Map embed
+   - Add a "Service Radius: 50 miles" note
+
+6. ⭐ **Customer Reviews**
+   - Carousel with 5 reviews  
+   - Highlight: 4.9 avg rating  
+   - Quote design with stars and name + occupation
+
+7. 🚨 **Fleet Section (Optional Visual Section)**
+   - Images of AA Trust trucks with tire racks
+   - Badges for: Fast Arrival • Fully Equipped • 24/7 Diesel Coverage
+   - Optional: “Diesel Capable” box but downplayed
+
+8. 💬 **Contact / Quote Section**
+   - Form: Name, Phone, Vehicle Type, Problem Description
+   - Phone Buttons: Blue + Black (Primary/Backup Lines)
+   - Hours: 7AM–7PM Mon–Fri, Emergency 24/7
+   - Email: info@floridadieselpro.com
+
+9. 💳 **Payment Section**
+   - Icons: Zelle, Cash App, Visa, MasterCard, Amex
+   - Text: “No upfront payment required – Pay after service is complete.”
+
+10. 🔚 **Footer**
+   - Logo (small)
+   - Pages: Home | Services | Reviews | Contact
+   - Legal: © 2024 AA Trust Roadside – All rights reserved
+   - Note: “Website by Tyrese Scott | KingdomBuilders.org”
+
+---
+
+📈 SEO Metadata:
+- Title: **Mobile Tire Repair Palm Coast | AA Trust Roadside**
+- Meta Desc: “24/7 mobile tire repair, roadside assistance, and light mechanic service in Palm Coast, Daytona, and Jacksonville. Fast. Reliable. Trusted.”
+
+---
+
+📌 Optional Features to Add (let me know if you want any now):
+- Live chatbot
+- SMS/Email lead collection
+- Client dashboard access
+- AI scheduling or auto-response bot
+

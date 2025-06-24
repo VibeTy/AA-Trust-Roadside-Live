@@ -63,13 +63,45 @@ export default function ServicesSection() {
   };
 
   return (
-    <section id="services" className="py-20 bg-white dark:bg-gray-900">
+    <section id="services" className="py-20 bg-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Main Tire Services Section */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Our Services</h2>
-          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-            Professional mobile mechanic and roadside assistance services across Northeast Florida. We bring our expertise directly to your location, 24/7.
+          <h2 className="text-4xl font-bold text-white mb-4">Tire Services – Fast, Mobile, & Affordable</h2>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            Our specialty: professional mobile tire repair and replacement services across Northeast Florida.
           </p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+          {primaryServices.map((service, index) => (
+            <div key={index} className="bg-gray-900 border border-gray-800 rounded-lg p-6 hover:border-blue-500 transition-all duration-300">
+              <div className="flex items-center mb-3">
+                <i className="fas fa-tire text-blue-400 text-xl mr-3"></i>
+                <h3 className="text-lg font-semibold text-white">{service}</h3>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Secondary Services Section */}
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold text-white mb-4">Also Offering Light Repair Services</h2>
+          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+            Essential roadside and mechanic services to keep you moving.
+          </p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {secondaryServices.map((service, index) => (
+            <div key={index} className="bg-gray-900 border border-gray-800 rounded-lg p-6 hover:border-blue-500 transition-all duration-300">
+              <div className="flex items-center mb-3">
+                <i className="fas fa-tools text-gray-400 text-xl mr-3"></i>
+                <h3 className="text-lg font-semibold text-white">{service}</h3>
+              </div>
+            </div>
+          ))}
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
