@@ -2,14 +2,14 @@ import { Link } from "wouter";
 import { Phone, MapPin, Wrench, Clock } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 
-export default function Jacksonville() {
+export default function Palatka() {
   const services = [
     "24/7 Emergency Roadside Assistance",
     "Mobile Diesel Engine Repair",
     "Heavy Duty Truck Diagnostics",
     "DPF Filter Cleaning & Replacement",
-    "Transmission & Clutch Service", 
-    "Brake System Repair",
+    "Transmission & Clutch Service",
+    "Brake System Repair", 
     "Electrical System Diagnostics",
     "Mobile Oil Changes & Maintenance"
   ];
@@ -17,10 +17,10 @@ export default function Jacksonville() {
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
       <SEOHead 
-        title="Mobile Truck Repair Jacksonville FL | 24/7 Diesel Service | AA Trust Roadside"
-        description="Expert mobile truck repair in Jacksonville, FL. 24/7 emergency roadside diesel help throughout the River City. Call (386) 372-8412 for fast response."
-        keywords="mobile truck repair Jacksonville, roadside diesel help Jacksonville FL, heavy duty truck repair Duval County, emergency truck service JAXPORT"
-        canonicalUrl="https://aatrustroadside.com/locations/jacksonville"
+        title="Mobile Truck Repair Palatka FL | 24/7 Diesel Service | AA Trust Roadside"
+        description="Reliable mobile truck repair in Palatka, FL. 24/7 emergency roadside diesel help along the St. Johns River. Call (386) 372-8412 for professional service."
+        keywords="mobile truck repair Palatka, roadside diesel help Palatka FL, heavy duty truck repair Putnam County, emergency truck service St Johns River"
+        canonicalUrl="https://aatrustroadside.com/locations/palatka"
       />
       {/* Header */}
       <header className="bg-red-600 text-white py-4">
@@ -45,50 +45,50 @@ export default function Jacksonville() {
         {/* Hero Section */}
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-            Mobile Truck Repair in Jacksonville, Florida
+            Mobile Truck Repair in Palatka, Florida
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-400 mb-8">
-            Expert heavy-duty diesel repair and emergency roadside assistance in the River City
+            Reliable heavy-duty diesel repair and emergency roadside assistance along the St. Johns River
           </p>
           <div className="flex items-center justify-center text-gray-600 dark:text-gray-400 mb-8">
             <MapPin className="w-5 h-5 mr-2" />
-            <span>Serving Jacksonville, Duval County, and Northeast Florida</span>
+            <span>Serving Palatka, Putnam County, and North Central Florida</span>
           </div>
         </div>
 
         {/* Location-Specific Content */}
         <div className="prose prose-lg max-w-none mb-12 text-gray-700 dark:text-gray-300">
           <p>
-            When your heavy-duty truck needs reliable mobile truck repair in Jacksonville, AA Trust Roadside provides 
-            professional roadside diesel help throughout the River City's extensive metropolitan area. From the busy 
-            JAXPORT facilities to the sprawling industrial corridors along I-95, I-10, and I-295, our certified diesel 
-            mechanics deliver 24/7 emergency truck repair services. Whether you're broken down near Jacksonville International 
-            Airport, stuck on the busy Hart Bridge, or need service at your business location in one of Jacksonville's 
-            many industrial parks, we bring fully equipped mobile repair units directly to you.
+            When your heavy-duty truck needs professional mobile truck repair in Palatka, AA Trust Roadside delivers 
+            expert roadside diesel help throughout this historic St. Johns River community and surrounding areas. From 
+            the busy US-17 corridor to the industrial areas near Palatka Municipal Airport, our certified diesel mechanics 
+            provide 24/7 emergency truck repair services. Whether you're broken down near Ravine Gardens State Park, 
+            stuck on SR-20, or need service at your business location along the St. Johns River, we bring fully equipped 
+            mobile repair units directly to your location.
           </p>
           
           <p>
-            Our Jacksonville mobile truck repair team specializes in serving the unique demands of Florida's largest 
-            city by area. From delivery trucks serving the downtown financial district to heavy equipment working 
-            construction projects throughout Duval County, we provide fast roadside diesel help that keeps your business 
-            operating efficiently. Our mobile truck repair near Jacksonville Beach, Atlantic Beach, and Neptune Beach 
-            ensures coastal operations stay running smoothly, while our coverage of the Westside, Northside, and Southside 
-            areas means comprehensive service throughout this sprawling metropolitan region.
+            Our Palatka mobile truck repair specialists understand the unique needs of commercial vehicles operating 
+            in this important transportation hub. From delivery trucks serving the agricultural operations throughout 
+            Putnam County to heavy equipment working forestry and construction projects in the region, we provide fast 
+            roadside diesel help that minimizes your downtime. Our mobile truck repair near Crescent City, Interlachen, 
+            and Welaka ensures comprehensive coverage throughout the area, whether you're hauling agricultural products 
+            to processing facilities or transporting goods along the busy SR-19 corridor.
           </p>
 
           <p>
-            Don't let a diesel breakdown disrupt your operations in Jacksonville's competitive business environment. 
+            Don't let a diesel breakdown disrupt your operations in Palatka's agricultural and industrial economy. 
             Our experienced technicians provide comprehensive mobile truck repair services for all major diesel engines 
             including Cummins, Caterpillar, Detroit Diesel, and International. From emergency roadside diesel help near 
-            the St. Johns River to scheduled fleet maintenance for your Jacksonville-based operations, we understand the 
-            critical importance of keeping your trucks running reliably in this major transportation and logistics hub.
+            the historic downtown district to scheduled maintenance for your fleet operations, we keep your heavy-duty 
+            trucks running reliably in Putnam County's diverse business environment and challenging rural conditions.
           </p>
         </div>
 
         {/* Services Section */}
         <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-8 mb-12">
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6 text-center">
-            Our Jacksonville Mobile Truck Repair Services
+            Our Palatka Mobile Truck Repair Services
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {services.map((service, index) => (
@@ -102,9 +102,9 @@ export default function Jacksonville() {
 
         {/* CTA Section */}
         <div className="bg-red-600 text-white rounded-lg p-8 text-center">
-          <h3 className="text-2xl font-bold mb-4">Need Emergency Roadside Diesel Help in Jacksonville?</h3>
+          <h3 className="text-2xl font-bold mb-4">Need Emergency Roadside Diesel Help in Palatka?</h3>
           <p className="text-lg mb-6">
-            Our mobile truck repair experts are available 24/7 to provide fast, professional service anywhere in Jacksonville.
+            Our certified mobile truck repair technicians are ready 24/7 to provide expert service anywhere in Palatka.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a 

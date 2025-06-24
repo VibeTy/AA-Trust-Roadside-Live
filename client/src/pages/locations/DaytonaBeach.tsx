@@ -1,5 +1,6 @@
 import { Link } from "wouter";
 import { Phone, MapPin, Wrench, Clock } from "lucide-react";
+import SEOHead from "@/components/SEOHead";
 
 export default function DaytonaBeach() {
   const services = [
@@ -15,6 +16,12 @@ export default function DaytonaBeach() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
+      <SEOHead 
+        title="Mobile Truck Repair Daytona Beach FL | 24/7 Diesel Service | AA Trust Roadside"
+        description="Expert mobile truck repair in Daytona Beach, FL. 24/7 emergency roadside diesel help near Speedway and beaches. Call (386) 372-8412 for immediate service."
+        keywords="mobile truck repair Daytona Beach, roadside diesel help Daytona FL, heavy duty truck repair Volusia County, emergency truck service Daytona Beach"
+        canonicalUrl="https://aatrustroadside.com/locations/daytona-beach"
+      />
       {/* Header */}
       <header className="bg-red-600 text-white py-4">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

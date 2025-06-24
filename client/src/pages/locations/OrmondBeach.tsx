@@ -1,5 +1,6 @@
 import { Link } from "wouter";
 import { Phone, MapPin, Wrench, Clock } from "lucide-react";
+import SEOHead from "@/components/SEOHead";
 
 export default function OrmondBeach() {
   const services = [
@@ -15,6 +16,12 @@ export default function OrmondBeach() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
+      <SEOHead 
+        title="Mobile Truck Repair Ormond Beach FL | 24/7 Diesel Service | AA Trust Roadside"
+        description="Professional mobile truck repair in Ormond Beach, FL. 24/7 emergency roadside diesel help in the Birthplace of Speed. Call (386) 372-8412 now."
+        keywords="mobile truck repair Ormond Beach, roadside diesel help Ormond Beach FL, heavy duty truck repair Volusia County, emergency truck service Ormond"
+        canonicalUrl="https://aatrustroadside.com/locations/ormond-beach"
+      />
       {/* Header */}
       <header className="bg-red-600 text-white py-4">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
