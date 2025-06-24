@@ -24,11 +24,11 @@ export default function HeroSection() {
           <i className="fas fa-truck text-6xl mb-4 text-red-500"></i>
         </div>
         <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-          <span className="text-red-500">DIESEL</span> BREAKDOWN?<br />
-          <span className="text-4xl md:text-6xl">24/7 <span className="text-red-500">HEAVY DUTY</span> HELP</span>
+          <span className="text-red-500">MOBILE TIRE</span> TROUBLE?<br />
+          <span className="text-4xl md:text-6xl">24/7 <span className="text-red-500">TIRE & DIESEL</span> HELP</span>
         </h1>
         <p className="text-xl md:text-2xl text-gray-200 mb-6 max-w-3xl">
-          Professional heavy duty diesel repair and emergency service in Palm Coast, Jacksonville, Daytona & beyond.
+          Professional mobile tire repair, replacement & diesel service in Palm Coast, Jacksonville, Daytona & beyond.
         </p>
         
         {/* Star Rating Display */}
