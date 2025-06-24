@@ -93,25 +93,25 @@ export default function Navigation() {
             <div className="flex flex-col space-y-3 px-4 pt-4">
               <button 
                 onClick={() => scrollToSection("home")} 
-                className="text-gray-300 hover:text-blue-400 transition-colors text-left"
+                className="text-gray-300 hover:text-blue-500 transition-colors text-left"
               >
                 Home
               </button>
               <button 
                 onClick={() => scrollToSection("services")} 
-                className="text-gray-300 hover:text-blue-400 transition-colors text-left"
+                className="text-gray-300 hover:text-blue-500 transition-colors text-left"
               >
                 Services
               </button>
               <button 
                 onClick={() => scrollToSection("testimonials")} 
-                className="text-gray-300 hover:text-blue-400 transition-colors text-left"
+                className="text-gray-300 hover:text-blue-500 transition-colors text-left"
               >
                 Reviews
               </button>
               <button 
                 onClick={() => scrollToSection("contact")} 
-                className="text-gray-300 hover:text-blue-400 transition-colors text-left"
+                className="text-gray-300 hover:text-blue-500 transition-colors text-left"
               >
                 Contact
               </button>
