@@ -30,7 +30,7 @@ export default function Navigation() {
           {/* Logo */}
           <div className="flex items-center cursor-pointer" onClick={() => scrollToSection("home")}>
             <img 
-              src="/attached_assets/7cee5f29-87e1-4f9e-8d71-1135f5c282ea_1750801644199.png" 
+              src="/attached_assets/7938bab5-b302-4cf1-8a69-78cfce3c9be4_1750802043592.png" 
               alt="AA Trust Roadside Logo" 
               className="h-10 w-auto mr-3"
             />
