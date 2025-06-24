@@ -24,11 +24,11 @@ export default function HeroSection() {
           <i className="fas fa-tire text-6xl mb-4 text-red-500"></i>
         </div>
         <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-          Fast, Reliable <span className="text-red-500">Tire & Roadside</span> Help<br />
-          <span className="text-4xl md:text-6xl">– Wherever You Are</span>
+          <span className="text-blue-400">Mobile Tire Repair</span> & Roadside Help<br />
+          <span className="text-4xl md:text-6xl">24/7</span>
         </h1>
         <p className="text-xl md:text-2xl text-gray-200 mb-6 max-w-3xl">
-          Specializing in Mobile Tire Repair, Replacement, and Emergency Light Mechanic Services
+          Fast tire replacement + essential repairs in Palm Coast, Daytona, Jacksonville & beyond.
         </p>
         
         {/* Star Rating Display */}
