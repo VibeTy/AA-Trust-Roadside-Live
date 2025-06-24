@@ -31,7 +31,7 @@ export default function ServicesSection() {
     {
       icon: "fas fa-truck",
       title: "Fleet & Commercial Service",
-      color: "text-purple-600",
+      color: "text-blue-600",
       services: [
         "Fleet Maintenance Programs",
         "Commercial Vehicle Repair",
@@ -40,11 +40,11 @@ export default function ServicesSection() {
         "Emergency Commercial Service"
       ]
     },
-    
+
     {
       icon: "fas fa-tools",
       title: "General Automotive",
-      color: "text-indigo-600",
+      color: "text-blue-600",
       services: [
         "Cooling System Repair",
         "Suspension & Steering",
@@ -64,7 +64,7 @@ export default function ServicesSection() {
   return (
     <section id="services" className="py-20 bg-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Main Tire Services Section */}
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-white mb-4">Tire Services – Fast, Mobile, & Affordable</h2>
@@ -72,7 +72,7 @@ export default function ServicesSection() {
             Our specialty: professional mobile tire repair and replacement services across Northeast Florida.
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
           {primaryServices.map((service, index) => (
             <div key={index} className="bg-gray-900 border border-gray-800 rounded-lg p-6 hover:border-blue-500 transition-all duration-300">
@@ -91,7 +91,7 @@ export default function ServicesSection() {
             Essential roadside and mechanic services to keep you moving.
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {secondaryServices.map((service, index) => (
             <div key={index} className="bg-gray-900 border border-gray-800 rounded-lg p-6 hover:border-blue-500 transition-all duration-300">
@@ -102,7 +102,7 @@ export default function ServicesSection() {
             </div>
           ))}
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <div key={index} className="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
@@ -118,7 +118,7 @@ export default function ServicesSection() {
                   </li>
                 ))}
               </ul>
-              
+
               {/* Call to Action for each service */}
               <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
                 <a 
@@ -132,7 +132,7 @@ export default function ServicesSection() {
             </div>
           ))}
         </div>
-        
+
         <div className="text-center mt-12">
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a 
