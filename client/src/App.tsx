@@ -22,16 +22,6 @@ import Palatka from "@/pages/locations/Palatka";
 import Gainesville from "@/pages/locations/Gainesville";
 import DeLand from "@/pages/locations/DeLand";
 
-// Location pages
-import PalmCoast from "@/pages/locations/PalmCoast";
-import DaytonaBeach from "@/pages/locations/DaytonaBeach";
-import StAugustine from "@/pages/locations/StAugustine";
-import OrmondBeach from "@/pages/locations/OrmondBeach";
-import Jacksonville from "@/pages/locations/Jacksonville";
-import Palatka from "@/pages/locations/Palatka";
-import Gainesville from "@/pages/locations/Gainesville";
-import DeLand from "@/pages/locations/DeLand";
-
 function Router() {
   return (
     <Switch>

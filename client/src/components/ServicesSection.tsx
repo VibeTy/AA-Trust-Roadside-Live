@@ -1,39 +1,40 @@
 export default function ServicesSection() {
   const services = [
     {
-      icon: "fas fa-truck",
-      title: "Heavy Duty Diesel Repair",
+      icon: "fas fa-tire",
+      title: "Mobile Tire Repair & Replacement",
       color: "text-red-600",
       services: [
-        "Engine Overhauls & Rebuilds",
-        "Turbocharger Service",
-        "Fuel System Repair",
-        "Hydraulic System Service",
-        "Transmission Repair"
+        "Flat Tire Repair & Patching",
+        "Complete Tire Replacement",
+        "Emergency Roadside Tire Service",
+        "New & Used Tire Sales",
+        "Tire Pressure & Safety Checks",
+        "Commercial Truck Tire Service"
       ]
     },
     {
-      icon: "fas fa-tools",
-      title: "Emergency Roadside Service",
+      icon: "fas fa-road",
+      title: "24/7 Emergency Roadside",
       color: "text-blue-600",
       services: [
-        "Mobile Diesel Diagnostics",
-        "Heavy Equipment Jumpstart",
-        "Tire Service & Repair", 
-        "Emergency Fuel Delivery",
-        "Hydraulic Hose Repair"
+        "Jump Starts & Battery Service",
+        "Lockout & Key Recovery",
+        "Emergency Fuel Delivery", 
+        "Mobile Diagnostics",
+        "Breakdown Recovery"
       ]
     },
     {
-      icon: "fas fa-cogs",
-      title: "Heavy Equipment Service",
+      icon: "fas fa-wrench", 
+      title: "Light Diesel & Mechanic Service",
       color: "text-green-600",
       services: [
-        "Excavator & Bulldozer Service",
-        "Generator Repair",
-        "Compressor Service",
-        "Industrial Equipment Service",
-        "Construction Equipment Repair"
+        "Brake System Repair & Service",
+        "Mobile Oil Changes",
+        "DPF Flapper Replacement",
+        "Light Engine Diagnostics", 
+        "Basic Maintenance Service"
       ]
     },
     {
