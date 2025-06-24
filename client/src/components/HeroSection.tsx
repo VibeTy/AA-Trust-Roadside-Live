@@ -21,11 +21,15 @@ export default function HeroSection() {
       
       <div className="relative z-10 text-center text-white px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
         <div className="mb-6">
-          <i className="fas fa-tire text-6xl mb-4 text-red-500"></i>
+          <img 
+            src="/attached_assets/7cee5f29-87e1-4f9e-8d71-1135f5c282ea_1750801644199.png" 
+            alt="AA Trust Roadside Logo" 
+            className="h-24 w-auto mx-auto mb-4"
+          />
         </div>
         <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
           <span className="text-blue-400">Mobile Tire Repair</span> & Roadside Help<br />
-          <span className="text-4xl md:text-6xl">24/7</span>
+          <span className="text-4xl md:text-6xl text-white">24/7</span>
         </h1>
         <p className="text-xl md:text-2xl text-gray-200 mb-6 max-w-3xl">
           Fast tire replacement + essential repairs in Palm Coast, Daytona, Jacksonville & beyond.
@@ -46,21 +50,37 @@ export default function HeroSection() {
           </span>
         </div>
         
-        <div className="flex flex-col sm:flex-row gap-4 mb-8">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
           <a 
             href="tel:+13863728412"
-            className="bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-full text-lg shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
+            className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-lg text-lg shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
           >
             <i className="fas fa-phone"></i>
-            Call Now
+            📞 Call Now
           </a>
           <a 
             href="#contact"
-            className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-gray-900 font-bold py-4 px-8 rounded-full text-lg transition-all duration-300 flex items-center justify-center gap-2"
+            className="bg-transparent border-2 border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white font-bold py-4 px-8 rounded-lg text-lg transition-all duration-300 flex items-center justify-center gap-2"
           >
-            <i className="fas fa-hands-helping"></i>
-            Get Instant Help
+            <i className="fas fa-clipboard-list"></i>
+            📋 Get Free Quote
           </a>
+        </div>
+
+        {/* Stats Row */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-2xl mx-auto">
+          <div className="text-center">
+            <div className="text-blue-400 text-2xl font-bold">✅ 15min</div>
+            <div className="text-gray-300 text-sm">Avg Response</div>
+          </div>
+          <div className="text-center">
+            <div className="text-blue-400 text-2xl font-bold">✅ 100%</div>
+            <div className="text-gray-300 text-sm">Mobile</div>
+          </div>
+          <div className="text-center">
+            <div className="text-blue-400 text-2xl font-bold">✅ 60+</div>
+            <div className="text-gray-300 text-sm">Trusted Drivers</div>
+          </div>
         </div>
         
         <div className="mt-12 grid grid-cols-3 gap-8 text-center">
