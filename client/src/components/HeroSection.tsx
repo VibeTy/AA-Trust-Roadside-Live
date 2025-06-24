@@ -21,7 +21,7 @@ export default function HeroSection() {
       
       <div className="relative z-10 text-center text-white px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
         <div className="mb-6">
-          <i className="fas fa-truck text-6xl mb-4 text-red-500"></i>
+          <i className="fas fa-tire text-6xl mb-4 text-red-500"></i>
         </div>
         <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
           Fast, Reliable <span className="text-red-500">Tire & Roadside</span> Help<br />

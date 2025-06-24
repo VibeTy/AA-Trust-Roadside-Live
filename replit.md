@@ -104,9 +104,11 @@ AA Trust Roadside is a full-stack web application for a mobile tire repair and r
 ## Recent Changes
 
 **January 24, 2025:**
-- Implemented complete design overhaul per user specifications with 70/30 service split
+- Implemented complete design overhaul emphasizing mobile tire services as primary focus
 - Updated hero section with "Fast, Reliable Tire & Roadside Help – Wherever You Are" messaging
-- Restructured services section to clearly show Primary Services (Tire Work – 70%) and Secondary Services (Roadside/Mechanic – 30%)
+- Restructured services section to prioritize tire services with additional roadside offerings
+- Removed percentage labels from services section for cleaner presentation
+- Changed hero icon from truck to tire to better represent core business
 - Added new About section highlighting Fritzner's mission and company values
 - Updated contact form with Vehicle Type and Service Needed dropdowns for better lead qualification
 - Modified testimonials to include specific tire service feedback
