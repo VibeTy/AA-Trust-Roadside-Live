@@ -18,13 +18,13 @@ export default function ServicesSection() {
   const services = [
     {
       icon: "fas fa-tire",
-      title: "Primary Services (Tire Work – 70%)",
+      title: "Mobile Tire Services",
       color: "text-red-600",
       services: primaryServices
     },
     {
       icon: "fas fa-tools",
-      title: "Secondary Services (Roadside/Mechanic – 30%)",
+      title: "Additional Roadside Services",
       color: "text-blue-600",
       services: secondaryServices
     },
