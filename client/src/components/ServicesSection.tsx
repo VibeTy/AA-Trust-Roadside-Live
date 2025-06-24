@@ -1,51 +1,51 @@
 export default function ServicesSection() {
   const services = [
     {
-      icon: "fas fa-truck",
-      title: "Heavy Duty Diesel Repair",
+      icon: "fas fa-tire",
+      title: "Mobile Tire Services (Primary - 70%)",
       color: "text-red-600",
       services: [
-        "Engine Overhauls & Rebuilds",
-        "Turbocharger Service",
-        "Fuel System Repair",
-        "Hydraulic System Service",
-        "Transmission Repair"
+        "Mobile Tire Replacement",
+        "Tire Repair (Punctures, Flats)",
+        "Tire Rotation & Balancing",
+        "Wholesale Tire Sourcing",
+        "Emergency Flat Tire Service"
       ]
     },
     {
       icon: "fas fa-tools",
-      title: "Emergency Roadside Service",
+      title: "Light Mechanic Services (30%)",
       color: "text-blue-600",
       services: [
-        "Mobile Diesel Diagnostics",
-        "Heavy Equipment Jumpstart",
-        "Tire Service & Repair", 
-        "Emergency Fuel Delivery",
-        "Hydraulic Hose Repair"
+        "Brake Pad Replacement",
+        "Oil Changes",
+        "Engine Diagnostics",
+        "Battery & Alternator Service",
+        "Flapper Replacement"
       ]
     },
     {
-      icon: "fas fa-cogs",
-      title: "Heavy Equipment Service",
+      icon: "fas fa-road",
+      title: "Emergency Roadside Help",
       color: "text-green-600",
       services: [
-        "Excavator & Bulldozer Service",
-        "Generator Repair",
-        "Compressor Service",
-        "Industrial Equipment Service",
-        "Construction Equipment Repair"
+        "Emergency Jumpstarts",
+        "Light Mobile Roadside Help",
+        "Lockout Service",
+        "Fuel Delivery",
+        "Towing Coordination"
       ]
     },
     {
-      icon: "fas fa-truck",
-      title: "Fleet & Commercial Service",
+      icon: "fas fa-clock",
+      title: "24/7 Mobile Service",
       color: "text-purple-600",
       services: [
-        "Fleet Maintenance Programs",
-        "Commercial Vehicle Repair",
-        "DOT Inspection Prep",
-        "Preventive Maintenance",
-        "Emergency Commercial Service"
+        "Same-Day Service Available",
+        "Emergency After-Hours Help",
+        "Fleet Tire Maintenance",
+        "Roadside Safety Inspections",
+        "Mobile Service Coverage"
       ]
     },
     
