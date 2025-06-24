@@ -2,14 +2,14 @@ import { Link } from "wouter";
 
 export default function ServiceAreaSection() {
   const serviceAreas = [
-    { name: "Palm Coast", href: "/locations/palm-coast", description: "Mobile tire repair & light diesel service" },
-    { name: "Daytona Beach", href: "/locations/daytona-beach", description: "24/7 emergency truck repair" },
-    { name: "St. Augustine", href: "/locations/st-augustine", description: "Heavy-duty diesel repair" },
-    { name: "Ormond Beach", href: "/locations/ormond-beach", description: "Mobile truck repair services" },
-    { name: "Jacksonville", href: "/locations/jacksonville", description: "Commercial roadside assistance" },
-    { name: "Palatka", href: "/locations/palatka", description: "Mobile diesel engine repair" },
-    { name: "Gainesville", href: "/locations/gainesville", description: "University city truck repair" },
-    { name: "DeLand", href: "/locations/deland", description: "Volusia County mobile service" }
+    { name: "Palm Coast", href: "/locations/palm-coast", description: "Mobile tire repair & light automotive service" },
+    { name: "Daytona Beach", href: "/locations/daytona-beach", description: "24/7 emergency roadside assistance" },
+    { name: "St. Augustine", href: "/locations/st-augustine", description: "Mobile tire & brake repair services" },
+    { name: "Ormond Beach", href: "/locations/ormond-beach", description: "On-site tire replacement & repair" },
+    { name: "Jacksonville", href: "/locations/jacksonville", description: "Mobile tire & roadside assistance" },
+    { name: "Palatka", href: "/locations/palatka", description: "Emergency tire repair & service" },
+    { name: "Gainesville", href: "/locations/gainesville", description: "University area mobile tire service" },
+    { name: "DeLand", href: "/locations/deland", description: "Volusia County tire & repair service" }
   ];
 
   return (
@@ -20,7 +20,7 @@ export default function ServiceAreaSection() {
             Our Service Areas
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Professional mobile truck repair and roadside assistance throughout Northeast Florida
+            Professional mobile tire repair and roadside assistance throughout Northeast Florida
           </p>
         </div>
 
@@ -50,7 +50,7 @@ export default function ServiceAreaSection() {
           <div className="bg-blue-600 text-white rounded-lg p-8 inline-block">
             <h3 className="text-2xl font-bold mb-4">Need Service Outside These Areas?</h3>
             <p className="text-lg mb-6">
-              We also provide mobile repair services throughout Central and Northeast Florida
+              We also provide mobile tire repair and roadside services throughout Central and Northeast Florida
             </p>
             <a 
               href="tel:+13863728412"

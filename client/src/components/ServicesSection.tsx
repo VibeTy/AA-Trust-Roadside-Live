@@ -161,7 +161,7 @@ export default function ServicesSection() {
           <div className="mt-4">
             <a 
               href="/quote"
-              className="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-full text-lg shadow-lg transition-all duration-300 transform hover:scale-105"
+              className="inline-flex items-center bg-gradient-to-r from-blue-600 to-red-600 hover:from-blue-700 hover:to-red-700 text-white font-bold py-4 px-8 rounded-full text-lg shadow-lg transition-all duration-300 transform hover:scale-105"
             >
               <i className="fas fa-clipboard-list mr-3"></i>
               Get Free Quote
