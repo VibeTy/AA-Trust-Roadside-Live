@@ -55,6 +55,12 @@ export default function Navigation() {
               Services
             </button>
             <button 
+              onClick={() => scrollToSection("service-areas")} 
+              className="text-gray-300 hover:text-blue-400 transition-colors"
+            >
+              Locations
+            </button>
+            <button 
               onClick={() => scrollToSection("testimonials")} 
               className="text-gray-300 hover:text-blue-400 transition-colors"
             >
@@ -102,6 +108,12 @@ export default function Navigation() {
                 className="text-gray-300 hover:text-blue-500 transition-colors text-left"
               >
                 Services
+              </button>
+              <button 
+                onClick={() => scrollToSection("service-areas")} 
+                className="text-gray-300 hover:text-blue-500 transition-colors text-left"
+              >
+                Locations
               </button>
               <button 
                 onClick={() => scrollToSection("testimonials")} 
