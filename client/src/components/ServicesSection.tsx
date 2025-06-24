@@ -78,7 +78,7 @@ export default function ServicesSection() {
           {primaryServices.map((service, index) => (
             <div key={index} className="bg-gray-900 border border-gray-800 rounded-lg p-6 hover:border-blue-500 transition-all duration-300">
               <div className="flex items-center mb-3">
-                <i className="fas fa-tire text-blue-400 text-xl mr-3"></i>
+                <i className="fas fa-tire text-blue-500 text-xl mr-3"></i>
                 <h3 className="text-lg font-semibold text-white">{service}</h3>
               </div>
             </div>

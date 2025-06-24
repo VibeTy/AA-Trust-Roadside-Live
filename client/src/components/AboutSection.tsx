@@ -16,7 +16,7 @@ export default function AboutSection() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
               <div className="text-center">
                 <div className="bg-blue-900 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <i className="fas fa-mobile-alt text-blue-400 text-2xl"></i>
+                  <i className="fas fa-mobile-alt text-blue-500 text-2xl"></i>
                 </div>
                 <h3 className="text-lg font-semibold text-white mb-2">Fast Arrival</h3>
                 <p className="text-gray-400">We come to you wherever you are, ensuring minimal downtime</p>
@@ -24,7 +24,7 @@ export default function AboutSection() {
               
               <div className="text-center">
                 <div className="bg-blue-900 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <i className="fas fa-tools text-blue-400 text-2xl"></i>
+                  <i className="fas fa-tools text-blue-500 text-2xl"></i>
                 </div>
                 <h3 className="text-lg font-semibold text-white mb-2">Fully Equipped</h3>
                 <p className="text-gray-400">Professional tools and parts ready for any tire emergency</p>
@@ -32,7 +32,7 @@ export default function AboutSection() {
               
               <div className="text-center">
                 <div className="bg-blue-900 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <i className="fas fa-clock text-blue-400 text-2xl"></i>
+                  <i className="fas fa-clock text-blue-500 text-2xl"></i>
                 </div>
                 <h3 className="text-lg font-semibold text-white mb-2">24/7 Coverage</h3>
                 <p className="text-gray-400">Round-the-clock emergency tire and roadside service</p>
