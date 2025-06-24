@@ -48,18 +48,7 @@ export default function ServicesSection() {
         "Emergency Commercial Service"
       ]
     },
-    {
-      icon: "fas fa-motorcycle",
-      title: "Motorcycle Service",
-      color: "text-orange-600",
-      services: [
-        "Motorcycle Diagnostics",
-        "Battery & Electrical Service",
-        "Tire Repair & Replacement",
-        "Chain & Sprocket Service",
-        "Emergency Motorcycle Repair"
-      ]
-    },
+    
     {
       icon: "fas fa-tools",
       title: "General Automotive",
