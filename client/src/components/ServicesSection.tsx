@@ -92,7 +92,7 @@ export default function ServicesSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
           {secondaryServices.map((service, index) => (
             <div key={index} className="bg-gray-900 border border-gray-800 rounded-lg p-6 hover:border-blue-500 transition-all duration-300">
               <div className="flex items-center mb-3">
@@ -103,27 +103,35 @@ export default function ServicesSection() {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Additional Services Categories */}
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold text-white mb-4">Complete Service Categories</h2>
+          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+            Comprehensive mobile repair solutions for all your needs.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {services.map((service, index) => (
-            <div key={index} className="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+            <div key={index} className="bg-gray-900 border border-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:border-blue-500">
               <div className="text-center mb-4">
-                <i className={`${service.icon} text-4xl ${service.color} mb-3`}></i>
-                <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">{service.title}</h3>
+                <i className={`${service.icon} text-3xl ${service.color} mb-3`}></i>
+                <h3 className="text-xl font-semibold text-white">{service.title}</h3>
               </div>
-              <ul className="space-y-2 text-gray-700 dark:text-gray-300 mb-4">
+              <ul className="space-y-2 text-gray-300 mb-4">
                 {service.services.map((item, itemIndex) => (
-                  <li key={itemIndex} className={`flex items-center ${item.includes("Need Something Else") ? "text-[hsl(43,96%,56%)] font-medium" : ""}`}>
-                    <i className={`fas ${item.includes("Need Something Else") ? "fa-phone" : "fa-check"} text-green-500 mr-2`}></i>
+                  <li key={itemIndex} className="flex items-center text-sm">
+                    <i className="fas fa-check text-blue-500 mr-2"></i>
                     {item}
                   </li>
                 ))}
               </ul>
 
               {/* Call to Action for each service */}
-              <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
+              <div className="border-t border-gray-700 pt-4">
                 <a 
                   href="tel:+13863728412"
-                  className="inline-flex items-center justify-center w-full bg-[hsl(0,84%,60%)] hover:bg-red-700 text-white font-medium py-2 px-4 rounded-lg transition-all duration-300 text-sm"
+                  className="inline-flex items-center justify-center w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-all duration-300 text-sm"
                 >
                   <i className="fas fa-phone mr-2"></i>
                   Call Now
