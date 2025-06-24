@@ -2,7 +2,7 @@
 
 ## Overview
 
-AA Trust Roadside is a full-stack web application for a mobile diesel repair and roadside assistance service company. The application features a customer-facing website with service information, contact forms, quote requests, and booking systems, along with an administrative dashboard for managing submissions.
+AA Trust Roadside is a full-stack web application for a mobile tire repair and roadside assistance service company, specializing in mobile tire repair/replacement (60-70%) and light diesel/mechanic services (30-40%). The application features a customer-facing website with service information, contact forms, quote requests, and booking systems, along with an administrative dashboard for managing submissions.
 
 ## System Architecture
 
@@ -104,12 +104,15 @@ AA Trust Roadside is a full-stack web application for a mobile diesel repair and
 ## Recent Changes
 
 **January 24, 2025:**
+- Fixed routing issues for location pages in App.tsx - pages now properly accessible
+- Updated service focus to emphasize mobile tire repair/replacement as primary service (60-70%)
+- Repositioned light diesel/mechanic services as secondary offerings (30-40%)
+- Updated hero section to lead with "MOBILE TIRE TROUBLE" messaging
+- Modified services section to prioritize tire repair & replacement
+- Updated SEO optimization for "mobile tire repair [city]" targeting
 - Created 8 SEO-optimized location pages for local search ranking
 - Added comprehensive location-specific content for Palm Coast, Daytona Beach, St. Augustine, Ormond Beach, Jacksonville, Palatka, Gainesville, and DeLand
 - Implemented SEOHead component with meta tags, structured data, and canonical URLs
-- Each location page includes unique H1 tags, city-specific content, local landmarks, and targeted keywords
-- Added proper routing for all location pages in App.tsx
-- Optimized for "mobile truck repair [city]" and "roadside diesel help [city]" search terms
 
 **June 24, 2025:**
 - Initial setup with 4.8-star rating system and comprehensive booking functionality

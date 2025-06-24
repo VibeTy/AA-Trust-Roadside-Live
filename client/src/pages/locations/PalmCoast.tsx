@@ -4,22 +4,22 @@ import SEOHead from "@/components/SEOHead";
 
 export default function PalmCoast() {
   const services = [
-    "24/7 Emergency Roadside Assistance",
-    "Mobile Diesel Engine Repair",
-    "Heavy Duty Truck Diagnostics",
-    "DPF Filter Cleaning & Replacement",
-    "Transmission & Clutch Service",
-    "Brake System Repair",
-    "Electrical System Diagnostics",
-    "Mobile Oil Changes & Maintenance"
+    "Mobile Tire Repair & Replacement",
+    "24/7 Emergency Roadside Assistance", 
+    "Brake System Repair & Service",
+    "Mobile Oil Changes & Maintenance",
+    "DPF Flapper Replacement",
+    "Light Diesel Engine Diagnostics",
+    "Jump Starts & Battery Service",
+    "Fuel Delivery & Lockout Service"
   ];
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
       <SEOHead 
-        title="Mobile Truck Repair Palm Coast FL | 24/7 Diesel Service | AA Trust Roadside"
-        description="Professional mobile truck repair in Palm Coast, FL. 24/7 emergency roadside diesel help for heavy-duty trucks. Call (386) 372-8412 for fast service."
-        keywords="mobile truck repair Palm Coast, roadside diesel help Palm Coast FL, heavy duty truck repair Flagler County, emergency truck service Palm Coast"
+        title="Mobile Tire Repair Palm Coast FL | 24/7 Tire Service | AA Trust Roadside"
+        description="Professional mobile tire repair & replacement in Palm Coast, FL. 24/7 emergency tire service for trucks & commercial vehicles. Call (386) 372-8412 for fast service."
+        keywords="mobile tire repair Palm Coast, truck tire replacement Palm Coast FL, roadside tire service Flagler County, emergency tire repair Palm Coast"
         canonicalUrl="https://aatrustroadside.com/locations/palm-coast"
       />
       {/* Header */}
@@ -45,10 +45,10 @@ export default function PalmCoast() {
         {/* Hero Section */}
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-            Mobile Truck Repair in Palm Coast, Florida
+            Mobile Tire Repair in Palm Coast, Florida
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-400 mb-8">
-            Professional heavy-duty diesel repair and roadside assistance serving Palm Coast and surrounding areas
+            Professional mobile tire repair, replacement & light diesel service serving Palm Coast and surrounding areas
           </p>
           <div className="flex items-center justify-center text-gray-600 dark:text-gray-400 mb-8">
             <MapPin className="w-5 h-5 mr-2" />
@@ -59,33 +59,33 @@ export default function PalmCoast() {
         {/* Location-Specific Content */}
         <div className="prose prose-lg max-w-none mb-12 text-gray-700 dark:text-gray-300">
           <p>
-            When your heavy-duty truck breaks down in Palm Coast, you need reliable roadside diesel help that comes to you. 
-            AA Trust Roadside provides professional mobile truck repair services throughout Palm Coast, from the Hammock area 
+            When your truck has tire problems in Palm Coast, you need reliable mobile tire repair that comes to you. 
+            AA Trust Roadside provides professional mobile tire repair and replacement services throughout Palm Coast, from the Hammock area 
             near Washington Oaks Gardens State Park to the Palm Coast Parkway corridor and everywhere in between. Our certified 
-            diesel mechanics are equipped to handle emergency repairs and preventive maintenance for commercial trucks, box trucks, 
+            technicians are equipped to handle tire emergencies, light diesel repairs, and roadside assistance for commercial trucks, box trucks, 
             and heavy equipment right at your location.
           </p>
           
           <p>
-            Our Palm Coast mobile truck repair team understands the unique challenges of operating heavy-duty vehicles in 
+            Our Palm Coast mobile tire repair team understands the unique challenges of operating commercial vehicles in 
             Florida's coastal environment. Whether you're stuck near Palm Coast Town Center, broken down on I-95, or need 
-            service at your business location along US-1, we provide fast, professional roadside diesel help 24/7. From DPF 
-            filter issues caused by stop-and-go traffic to brake problems from hauling heavy loads, our experienced technicians 
+            tire service at your business location along US-1, we provide fast, professional mobile tire repair 24/7. From flat tire 
+            repairs and tire replacements to brake service and oil changes, our experienced technicians 
             have the tools and expertise to get your truck back on the road quickly.
           </p>
 
           <p>
-            Don't let a breakdown in Palm Coast cost you time and money. Our mobile truck repair near Flagler Beach, 
-            Bunnell, and throughout Flagler County ensures you get back to work fast. We specialize in Cummins, Caterpillar, 
-            Detroit Diesel, and International engines, providing everything from emergency roadside diesel help to comprehensive 
-            fleet maintenance services for Palm Coast area businesses.
+            Don't let a tire breakdown in Palm Coast cost you time and money. Our mobile tire repair near Flagler Beach, 
+            Bunnell, and throughout Flagler County ensures you get back to work fast. We specialize in truck tire repair and replacement 
+            for all vehicle types, providing everything from emergency tire service to light diesel maintenance and 
+            brake service for Palm Coast area businesses.
           </p>
         </div>
 
         {/* Services Section */}
         <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-8 mb-12">
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6 text-center">
-            Our Palm Coast Mobile Truck Repair Services
+            Our Palm Coast Mobile Tire & Service Solutions
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {services.map((service, index) => (
@@ -99,9 +99,9 @@ export default function PalmCoast() {
 
         {/* CTA Section */}
         <div className="bg-red-600 text-white rounded-lg p-8 text-center">
-          <h3 className="text-2xl font-bold mb-4">Need Emergency Roadside Diesel Help in Palm Coast?</h3>
+          <h3 className="text-2xl font-bold mb-4">Need Emergency Mobile Tire Repair in Palm Coast?</h3>
           <p className="text-lg mb-6">
-            Our certified mobile truck repair technicians are standing by 24/7 to help get your truck back on the road.
+            Our certified mobile tire repair technicians are standing by 24/7 to help get your truck back on the road.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a 
