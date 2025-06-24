@@ -36,7 +36,7 @@ export default function Navigation() {
             />
             <div className="text-xl font-bold">
               <span className="text-white">AA TRUST </span>
-              <span className="text-blue-400">ROADSIDE</span>
+              <span className="text-blue-500">ROADSIDE</span>
             </div>
           </div>
           
@@ -80,7 +80,7 @@ export default function Navigation() {
           <div className="md:hidden flex items-center">
             <button 
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-gray-300 hover:text-blue-400"
+              className="text-gray-300 hover:text-blue-500"
             >
               <i className="fas fa-bars text-xl"></i>
             </button>

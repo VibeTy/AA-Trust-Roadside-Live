@@ -28,7 +28,7 @@ export default function HeroSection() {
           />
         </div>
         <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-          <span className="text-blue-400">Mobile Tire Repair</span> & Roadside Help<br />
+          <span className="text-blue-500">Mobile Tire Repair</span> & Roadside Help<br />
           <span className="text-4xl md:text-6xl text-white">24/7</span>
         </h1>
         <p className="text-xl md:text-2xl text-gray-200 mb-6 max-w-3xl">
@@ -56,29 +56,29 @@ export default function HeroSection() {
             className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-lg text-lg shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
           >
             <i className="fas fa-phone"></i>
-            📞 Call Now
+            Call Now
           </a>
           <a 
             href="#contact"
-            className="bg-transparent border-2 border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white font-bold py-4 px-8 rounded-lg text-lg transition-all duration-300 flex items-center justify-center gap-2"
+            className="bg-gradient-to-r from-blue-600 to-red-600 hover:from-blue-700 hover:to-red-700 text-white font-bold py-4 px-8 rounded-lg text-lg shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
           >
             <i className="fas fa-clipboard-list"></i>
-            📋 Get Free Quote
+            Get Free Quote
           </a>
         </div>
 
         {/* Stats Row */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-2xl mx-auto">
           <div className="text-center">
-            <div className="text-blue-400 text-2xl font-bold">✅ 15min</div>
+            <div className="text-blue-500 text-2xl font-bold">✅ 15min</div>
             <div className="text-gray-300 text-sm">Avg Response</div>
           </div>
           <div className="text-center">
-            <div className="text-blue-400 text-2xl font-bold">✅ 100%</div>
+            <div className="text-blue-500 text-2xl font-bold">✅ 100%</div>
             <div className="text-gray-300 text-sm">Mobile</div>
           </div>
           <div className="text-center">
-            <div className="text-blue-400 text-2xl font-bold">✅ 60+</div>
+            <div className="text-blue-500 text-2xl font-bold">✅ 60+</div>
             <div className="text-gray-300 text-sm">Trusted Drivers</div>
           </div>
         </div>
