@@ -1,0 +1,54 @@
+
+📌 Page Sections:
+1. **Hero Section**  
+   - Business name: AA Trust Roadside  
+   - Headline: “Fast, Reliable Tire & Roadside Help – Wherever You Are.”  
+   - Subheadline: “Specializing in Mobile Tire Repair, Replacement, and Emergency Light Mechanic Services.”  
+   - Call to Action: “Call Now” + “Get Instant Help” button  
+   - Background image: Use user-uploaded truck image or placeholder for roadside repair  
+   - Add logo to top-left corner
+
+2. **Services (Organized 70/30 Split)**  
+   - 🔧 **Primary Services (Tire Work – 70%)**
+     - Mobile Tire Replacement  
+     - Tire Repair (Punctures, Flats)  
+     - Tire Rotation  
+     - Wholesale Tire Sourcing  
+   - 🚨 **Secondary Services (Roadside/Mechanic – 30%)**
+     - Brake Pad Replacement  
+     - Flapper Replacement  
+     - Oil Changes  
+     - Engine Diagnostics  
+     - Emergency Jumpstarts  
+     - Light Mobile Roadside Help  
+
+3. **About the Business**  
+   - "AA Trust Roadside was founded by Fritzner with a mission to keep truckers and everyday drivers moving safely and efficiently. Based in Palm Coast, we offer mobile tire and light repair services across Daytona, Jacksonville, and surrounding areas."
+
+4. **Service Area Map**
+   - Cities: Palm Coast, St. Augustine, Jacksonville, Daytona Beach  
+   - Optional future: Interactive Google Maps-style map or pins  
+
+5. **Contact Form + Click-to-Call**
+   - Phone: (386) [Use actual number]  
+   - Form: Name, Phone, Vehicle Type, Service Needed  
+   - CTA: “Need Immediate Help? Get a Callback in Minutes.”
+
+6. **Real Reviews (Sample for now)**  
+   - “Called AA Trust on the highway—Fritzner had my tire replaced in 30 minutes!”  
+   - “Professional and quick. Highly recommend for tire emergencies.”  
+   - Include 4–5 placeholder reviews (4–5 star only)
+
+7. **SEO Meta Tags**  
+   - Title: Mobile Tire Repair Palm Coast – AA Trust Roadside  
+   - Description: Affordable, fast tire replacement and light roadside repair for Palm Coast, Daytona, Jacksonville, and St. Augustine.
+
+8. **Extras**
+   - Mobile-responsive  
+   - Sticky call button  
+   - Clean font (like Inter or Roboto)  
+   - No login required  
+
+Make the site visually appealing, trustworthy, and easy for someone stranded to take quick action.
+🧠 Strategy Note
+This update positions Fritzner as a mobile tire expert with essential add-on services, rather than a diesel technician. It makes the business more SEO-friendly and easier to market with clear, niche-focused messaging. We can now also build out city landing pages or ad funnels centered on “Mobile Tire Help in [CITY]”.

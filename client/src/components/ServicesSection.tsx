@@ -1,41 +1,32 @@
 export default function ServicesSection() {
+  const primaryServices = [
+    "Mobile Tire Replacement",
+    "Tire Repair (Punctures, Flats)", 
+    "Tire Rotation",
+    "Wholesale Tire Sourcing"
+  ];
+
+  const secondaryServices = [
+    "Brake Pad Replacement",
+    "Flapper Replacement", 
+    "Oil Changes",
+    "Engine Diagnostics",
+    "Emergency Jumpstarts",
+    "Light Mobile Roadside Help"
+  ];
+
   const services = [
     {
       icon: "fas fa-tire",
-      title: "Mobile Tire Repair & Replacement",
+      title: "Primary Services (Tire Work – 70%)",
       color: "text-red-600",
-      services: [
-        "Flat Tire Repair & Patching",
-        "Complete Tire Replacement",
-        "Emergency Roadside Tire Service",
-        "New & Used Tire Sales",
-        "Tire Pressure & Safety Checks",
-        "Commercial Truck Tire Service"
-      ]
+      services: primaryServices
     },
     {
-      icon: "fas fa-road",
-      title: "24/7 Emergency Roadside",
+      icon: "fas fa-tools",
+      title: "Secondary Services (Roadside/Mechanic – 30%)",
       color: "text-blue-600",
-      services: [
-        "Jump Starts & Battery Service",
-        "Lockout & Key Recovery",
-        "Emergency Fuel Delivery", 
-        "Mobile Diagnostics",
-        "Breakdown Recovery"
-      ]
-    },
-    {
-      icon: "fas fa-wrench", 
-      title: "Light Diesel & Mechanic Service",
-      color: "text-green-600",
-      services: [
-        "Brake System Repair & Service",
-        "Mobile Oil Changes",
-        "DPF Flapper Replacement",
-        "Light Engine Diagnostics", 
-        "Basic Maintenance Service"
-      ]
+      services: secondaryServices
     },
     {
       icon: "fas fa-truck",
