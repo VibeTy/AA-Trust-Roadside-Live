@@ -101,10 +101,18 @@ AA Trust Roadside is a full-stack web application for a mobile diesel repair and
 - Port 5000 mapped to external port 80
 - Build and start scripts defined for production deployment
 
-## Changelog
+## Recent Changes
 
-Changelog:
-- June 24, 2025. Initial setup
+**January 24, 2025:**
+- Created 8 SEO-optimized location pages for local search ranking
+- Added comprehensive location-specific content for Palm Coast, Daytona Beach, St. Augustine, Ormond Beach, Jacksonville, Palatka, Gainesville, and DeLand
+- Implemented SEOHead component with meta tags, structured data, and canonical URLs
+- Each location page includes unique H1 tags, city-specific content, local landmarks, and targeted keywords
+- Added proper routing for all location pages in App.tsx
+- Optimized for "mobile truck repair [city]" and "roadside diesel help [city]" search terms
+
+**June 24, 2025:**
+- Initial setup with 4.8-star rating system and comprehensive booking functionality
 
 ## User Preferences
 

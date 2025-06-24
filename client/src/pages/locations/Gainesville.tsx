@@ -2,25 +2,25 @@ import { Link } from "wouter";
 import { Phone, MapPin, Wrench, Clock } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 
-export default function Jacksonville() {
+export default function Gainesville() {
   const services = [
     "24/7 Emergency Roadside Assistance",
     "Mobile Diesel Engine Repair",
     "Heavy Duty Truck Diagnostics",
     "DPF Filter Cleaning & Replacement",
-    "Transmission & Clutch Service", 
+    "Transmission & Clutch Service",
     "Brake System Repair",
-    "Electrical System Diagnostics",
+    "Electrical System Diagnostics", 
     "Mobile Oil Changes & Maintenance"
   ];
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
       <SEOHead 
-        title="Mobile Truck Repair Jacksonville FL | 24/7 Diesel Service | AA Trust Roadside"
-        description="Expert mobile truck repair in Jacksonville, FL. 24/7 emergency roadside diesel help throughout the River City. Call (386) 372-8412 for fast response."
-        keywords="mobile truck repair Jacksonville, roadside diesel help Jacksonville FL, heavy duty truck repair Duval County, emergency truck service JAXPORT"
-        canonicalUrl="https://aatrustroadside.com/locations/jacksonville"
+        title="Mobile Truck Repair Gainesville FL | 24/7 Diesel Service | AA Trust Roadside"
+        description="Professional mobile truck repair in Gainesville, FL. 24/7 emergency roadside diesel help in the University City. Call (386) 372-8412 for expert service."
+        keywords="mobile truck repair Gainesville, roadside diesel help Gainesville FL, heavy duty truck repair Alachua County, emergency truck service University of Florida"
+        canonicalUrl="https://aatrustroadside.com/locations/gainesville"
       />
       {/* Header */}
       <header className="bg-red-600 text-white py-4">
@@ -45,50 +45,50 @@ export default function Jacksonville() {
         {/* Hero Section */}
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-            Mobile Truck Repair in Jacksonville, Florida
+            Mobile Truck Repair in Gainesville, Florida
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-400 mb-8">
-            Expert heavy-duty diesel repair and emergency roadside assistance in the River City
+            Professional heavy-duty diesel repair and emergency roadside assistance in the University City
           </p>
           <div className="flex items-center justify-center text-gray-600 dark:text-gray-400 mb-8">
             <MapPin className="w-5 h-5 mr-2" />
-            <span>Serving Jacksonville, Duval County, and Northeast Florida</span>
+            <span>Serving Gainesville, Alachua County, and North Central Florida</span>
           </div>
         </div>
 
         {/* Location-Specific Content */}
         <div className="prose prose-lg max-w-none mb-12 text-gray-700 dark:text-gray-300">
           <p>
-            When your heavy-duty truck needs reliable mobile truck repair in Jacksonville, AA Trust Roadside provides 
-            professional roadside diesel help throughout the River City's extensive metropolitan area. From the busy 
-            JAXPORT facilities to the sprawling industrial corridors along I-95, I-10, and I-295, our certified diesel 
-            mechanics deliver 24/7 emergency truck repair services. Whether you're broken down near Jacksonville International 
-            Airport, stuck on the busy Hart Bridge, or need service at your business location in one of Jacksonville's 
-            many industrial parks, we bring fully equipped mobile repair units directly to you.
+            When your heavy-duty truck requires expert mobile truck repair in Gainesville, AA Trust Roadside provides 
+            professional roadside diesel help throughout the University City and surrounding areas. From the busy I-75 
+            corridor to the commercial districts along Archer Road and Newberry Road, our certified diesel mechanics 
+            deliver 24/7 emergency truck repair services. Whether you're broken down near the University of Florida 
+            campus, stuck on US-441, or need service at your business location in one of Gainesville's industrial parks, 
+            we bring fully equipped mobile repair units directly to your location.
           </p>
           
           <p>
-            Our Jacksonville mobile truck repair team specializes in serving the unique demands of Florida's largest 
-            city by area. From delivery trucks serving the downtown financial district to heavy equipment working 
-            construction projects throughout Duval County, we provide fast roadside diesel help that keeps your business 
-            operating efficiently. Our mobile truck repair near Jacksonville Beach, Atlantic Beach, and Neptune Beach 
-            ensures coastal operations stay running smoothly, while our coverage of the Westside, Northside, and Southside 
-            areas means comprehensive service throughout this sprawling metropolitan region.
+            Our Gainesville mobile truck repair team specializes in serving the diverse needs of this thriving university 
+            town and agricultural hub. From delivery trucks serving the campus and healthcare facilities to heavy equipment 
+            working construction projects throughout Alachua County, we provide fast roadside diesel help that keeps your 
+            operations running smoothly. Our mobile truck repair near Alachua, High Springs, and Archer ensures comprehensive 
+            coverage throughout the region, whether you're hauling agricultural products from local farms or transporting 
+            goods through the busy SR-24 and SR-26 corridors.
           </p>
 
           <p>
-            Don't let a diesel breakdown disrupt your operations in Jacksonville's competitive business environment. 
-            Our experienced technicians provide comprehensive mobile truck repair services for all major diesel engines 
-            including Cummins, Caterpillar, Detroit Diesel, and International. From emergency roadside diesel help near 
-            the St. Johns River to scheduled fleet maintenance for your Jacksonville-based operations, we understand the 
-            critical importance of keeping your trucks running reliably in this major transportation and logistics hub.
+            Don't let a diesel breakdown impact your business in Gainesville's dynamic economy. Our experienced technicians 
+            provide comprehensive mobile truck repair services for all major diesel engines including Cummins, Caterpillar, 
+            Detroit Diesel, and International. From emergency roadside diesel help near Shands Hospital to scheduled fleet 
+            maintenance for your Gainesville-based operations, we understand the importance of keeping your trucks running 
+            reliably in this major educational, medical, and agricultural center of North Central Florida.
           </p>
         </div>
 
         {/* Services Section */}
         <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-8 mb-12">
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6 text-center">
-            Our Jacksonville Mobile Truck Repair Services
+            Our Gainesville Mobile Truck Repair Services
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {services.map((service, index) => (
@@ -102,9 +102,9 @@ export default function Jacksonville() {
 
         {/* CTA Section */}
         <div className="bg-red-600 text-white rounded-lg p-8 text-center">
-          <h3 className="text-2xl font-bold mb-4">Need Emergency Roadside Diesel Help in Jacksonville?</h3>
+          <h3 className="text-2xl font-bold mb-4">Need Emergency Roadside Diesel Help in Gainesville?</h3>
           <p className="text-lg mb-6">
-            Our mobile truck repair experts are available 24/7 to provide fast, professional service anywhere in Jacksonville.
+            Our mobile truck repair professionals are standing by 24/7 to provide expert service anywhere in Gainesville.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a 

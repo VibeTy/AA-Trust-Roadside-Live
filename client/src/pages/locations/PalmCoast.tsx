@@ -1,5 +1,6 @@
 import { Link } from "wouter";
 import { Phone, MapPin, Wrench, Clock } from "lucide-react";
+import SEOHead from "@/components/SEOHead";
 
 export default function PalmCoast() {
   const services = [
@@ -15,6 +16,12 @@ export default function PalmCoast() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
+      <SEOHead 
+        title="Mobile Truck Repair Palm Coast FL | 24/7 Diesel Service | AA Trust Roadside"
+        description="Professional mobile truck repair in Palm Coast, FL. 24/7 emergency roadside diesel help for heavy-duty trucks. Call (386) 372-8412 for fast service."
+        keywords="mobile truck repair Palm Coast, roadside diesel help Palm Coast FL, heavy duty truck repair Flagler County, emergency truck service Palm Coast"
+        canonicalUrl="https://aatrustroadside.com/locations/palm-coast"
+      />
       {/* Header */}
       <header className="bg-red-600 text-white py-4">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

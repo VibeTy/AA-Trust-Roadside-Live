@@ -1,5 +1,6 @@
 import { Link } from "wouter";
 import { Phone, MapPin, Wrench, Clock } from "lucide-react";
+import SEOHead from "@/components/SEOHead";
 
 export default function StAugustine() {
   const services = [
@@ -15,6 +16,12 @@ export default function StAugustine() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
+      <SEOHead 
+        title="Mobile Truck Repair St Augustine FL | 24/7 Diesel Service | AA Trust Roadside"
+        description="Reliable mobile truck repair in St. Augustine, FL. 24/7 emergency roadside diesel help in America's Oldest City. Call (386) 372-8412 for expert service."
+        keywords="mobile truck repair St Augustine, roadside diesel help St Augustine FL, heavy duty truck repair St Johns County, emergency truck service historic district"
+        canonicalUrl="https://aatrustroadside.com/locations/st-augustine"
+      />
       {/* Header */}
       <header className="bg-red-600 text-white py-4">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
