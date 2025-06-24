@@ -24,11 +24,11 @@ export default function HeroSection() {
           <i className="fas fa-truck text-6xl mb-4 text-red-500"></i>
         </div>
         <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-          <span className="text-red-500">MOBILE TIRE</span> TROUBLE?<br />
-          <span className="text-4xl md:text-6xl">24/7 <span className="text-red-500">TIRE & DIESEL</span> HELP</span>
+          Fast, Reliable <span className="text-red-500">Tire & Roadside</span> Help<br />
+          <span className="text-4xl md:text-6xl">– Wherever You Are</span>
         </h1>
         <p className="text-xl md:text-2xl text-gray-200 mb-6 max-w-3xl">
-          Professional mobile tire repair, replacement & diesel service in Palm Coast, Jacksonville, Daytona & beyond.
+          Specializing in Mobile Tire Repair, Replacement, and Emergency Light Mechanic Services
         </p>
         
         {/* Star Rating Display */}
@@ -52,14 +52,14 @@ export default function HeroSection() {
             className="bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-full text-lg shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
           >
             <i className="fas fa-phone"></i>
-            📞 Call Now
+            Call Now
           </a>
           <a 
             href="#contact"
             className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-gray-900 font-bold py-4 px-8 rounded-full text-lg transition-all duration-300 flex items-center justify-center gap-2"
           >
-            <i className="fas fa-clipboard-list"></i>
-            📋 Get a Quote
+            <i className="fas fa-hands-helping"></i>
+            Get Instant Help
           </a>
         </div>
         

@@ -1,6 +1,7 @@
 import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/HeroSection";
 import ServicesSection from "@/components/ServicesSection";
+import AboutSection from "@/components/AboutSection";
 import TruckShowcase from "@/components/TruckShowcase";
 import WhyChooseUsSection from "@/components/WhyChooseUsSection";
 import GallerySection from "@/components/GallerySection";
@@ -16,21 +17,18 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       <SEOHead 
-        title="AA Trust Roadside | 24/7 Mobile Tire Repair & Diesel Service | Palm Coast FL"
-        description="Professional 24/7 mobile tire repair, replacement & light diesel service in Palm Coast, Daytona Beach, St. Augustine, Jacksonville FL. Call (386) 372-8412 now!"
-        keywords="mobile tire repair Florida, truck tire replacement Palm Coast, roadside tire service Daytona Beach, emergency tire repair Jacksonville, 24/7 tire service"
+        title="Mobile Tire Repair Palm Coast – AA Trust Roadside"
+        description="Affordable, fast tire replacement and light roadside repair for Palm Coast, Daytona, Jacksonville, and St. Augustine. Call (386) 372-8412 for immediate help!"
+        keywords="mobile tire repair Palm Coast, tire replacement Daytona Beach, roadside tire service Jacksonville, emergency tire help St Augustine, mobile mechanic Florida"
         canonicalUrl="https://aatrustroadside.com"
       />
       <Navigation />
       <HeroSection />
       <ServicesSection />
-      <TruckShowcase />
-      <WhyChooseUsSection />
+      <AboutSection />
       <ServiceAreaSection />
-      <GallerySection />
       <TestimonialsSection />
       <ContactSection />
-      <PaymentSection />
       <Footer />
       <StickyCallButton />
     </div>

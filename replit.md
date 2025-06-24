@@ -104,15 +104,16 @@ AA Trust Roadside is a full-stack web application for a mobile tire repair and r
 ## Recent Changes
 
 **January 24, 2025:**
+- Implemented complete design overhaul per user specifications with 70/30 service split
+- Updated hero section with "Fast, Reliable Tire & Roadside Help – Wherever You Are" messaging
+- Restructured services section to clearly show Primary Services (Tire Work – 70%) and Secondary Services (Roadside/Mechanic – 30%)
+- Added new About section highlighting Fritzner's mission and company values
+- Updated contact form with Vehicle Type and Service Needed dropdowns for better lead qualification
+- Modified testimonials to include specific tire service feedback
+- Updated SEO meta tags to "Mobile Tire Repair Palm Coast – AA Trust Roadside"
+- Streamlined homepage layout removing unnecessary sections for cleaner user experience
 - Fixed routing issues for location pages in App.tsx - pages now properly accessible
-- Updated service focus to emphasize mobile tire repair/replacement as primary service (60-70%)
-- Repositioned light diesel/mechanic services as secondary offerings (30-40%)
-- Updated hero section to lead with "MOBILE TIRE TROUBLE" messaging
-- Modified services section to prioritize tire repair & replacement
-- Updated SEO optimization for "mobile tire repair [city]" targeting
 - Created 8 SEO-optimized location pages for local search ranking
-- Added comprehensive location-specific content for Palm Coast, Daytona Beach, St. Augustine, Ormond Beach, Jacksonville, Palatka, Gainesville, and DeLand
-- Implemented SEOHead component with meta tags, structured data, and canonical URLs
 
 **June 24, 2025:**
 - Initial setup with 4.8-star rating system and comprehensive booking functionality
