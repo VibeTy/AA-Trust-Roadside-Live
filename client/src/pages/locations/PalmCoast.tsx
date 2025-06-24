@@ -17,9 +17,9 @@ export default function PalmCoast() {
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
       <SEOHead 
-        title="Mobile Tire Repair Palm Coast FL | 24/7 Tire Service | AA Trust Roadside"
-        description="Professional mobile tire repair & replacement in Palm Coast, FL. 24/7 emergency tire service for trucks & commercial vehicles. Call (386) 372-8412 for fast service."
-        keywords="mobile tire repair Palm Coast, truck tire replacement Palm Coast FL, roadside tire service Flagler County, emergency tire repair Palm Coast"
+        title="Mobile Tire Repair Palm Coast FL | 24/7 Roadside Service | AA Trust Roadside"
+        description="Expert mobile tire repair in Palm Coast, FL. 24/7 emergency roadside assistance in Flagler County. Call (386) 372-8412 for immediate tire service."
+        keywords="mobile tire repair Palm Coast, roadside assistance Palm Coast FL, tire service Flagler County, emergency tire repair Palm Coast"
         canonicalUrl="https://aatrustroadside.com/locations/palm-coast"
       />
       {/* Header */}
@@ -48,7 +48,7 @@ export default function PalmCoast() {
             Mobile Tire Repair in Palm Coast, Florida
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-400 mb-8">
-            Professional mobile tire repair, replacement & light diesel service serving Palm Coast and surrounding areas
+            Professional mobile tire repair and emergency roadside assistance in Flagler County
           </p>
           <div className="flex items-center justify-center text-gray-600 dark:text-gray-400 mb-8">
             <MapPin className="w-5 h-5 mr-2" />
@@ -65,7 +65,7 @@ export default function PalmCoast() {
             technicians are equipped to handle tire emergencies, light diesel repairs, and roadside assistance for commercial trucks, box trucks, 
             and heavy equipment right at your location.
           </p>
-          
+
           <p>
             Our Palm Coast mobile tire repair team understands the unique challenges of operating commercial vehicles in 
             Florida's coastal environment. Whether you're stuck near Palm Coast Town Center, broken down on I-95, or need 
@@ -85,7 +85,7 @@ export default function PalmCoast() {
         {/* Services Section */}
         <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-8 mb-12">
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6 text-center">
-            Our Palm Coast Mobile Tire & Service Solutions
+            Our Palm Coast Mobile Tire Repair Services
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {services.map((service, index) => (
@@ -99,9 +99,9 @@ export default function PalmCoast() {
 
         {/* CTA Section */}
         <div className="bg-red-600 text-white rounded-lg p-8 text-center">
-          <h3 className="text-2xl font-bold mb-4">Need Emergency Mobile Tire Repair in Palm Coast?</h3>
+          <h3 className="text-2xl font-bold mb-4">Need Emergency Tire Repair in Palm Coast?</h3>
           <p className="text-lg mb-6">
-            Our certified mobile tire repair technicians are standing by 24/7 to help get your truck back on the road.
+            Our mobile tire repair experts are available 24/7 to provide fast, professional service anywhere in Palm Coast.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a 
@@ -146,7 +146,7 @@ export default function PalmCoast() {
                 (386) 372-8412
               </p>
             </div>
-            
+
             <div>
               <h4 className="text-lg font-semibold mb-4">Service Areas</h4>
               <div className="grid grid-cols-2 gap-2 text-gray-400">
@@ -160,7 +160,7 @@ export default function PalmCoast() {
                 <Link href="/locations/deland" className="hover:text-white">DeLand</Link>
               </div>
             </div>
-            
+
             <div>
               <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
               <div className="space-y-2 text-gray-400">
@@ -171,7 +171,7 @@ export default function PalmCoast() {
               </div>
             </div>
           </div>
-          
+
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
             <p>&copy; 2024 AA Trust Roadside. All rights reserved.</p>
           </div>
