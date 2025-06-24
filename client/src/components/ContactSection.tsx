@@ -218,7 +218,7 @@ export default function ContactSection() {
                 
                 <Button 
                   type="submit" 
-                  className="w-full bg-red-600 hover:bg-red-700 text-white py-3 text-lg font-semibold"
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 text-lg font-semibold"
                   disabled={contactMutation.isPending}
                 >
                   <i className="fas fa-paper-plane mr-2"></i>
