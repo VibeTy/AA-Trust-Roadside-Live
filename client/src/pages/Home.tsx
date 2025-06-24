@@ -16,9 +16,9 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       <SEOHead 
-        title="Mobile Tire Repair Palm Coast – AA Trust Roadside | Fast Tire Service FL"
-        description="Affordable, fast tire replacement and light roadside repair for Palm Coast, Daytona, Jacksonville, and St. Augustine. Mobile tire service wherever you are!"
-        keywords="mobile tire repair Palm Coast, tire replacement Florida, roadside tire service, mobile mechanic Palm Coast, tire repair Daytona Beach, emergency tire service"
+        title="AA Trust Roadside | 24/7 Mobile Heavy Duty Diesel Repair | Palm Coast FL"
+        description="Professional 24/7 mobile heavy duty diesel repair and roadside assistance in Palm Coast, Daytona Beach, St. Augustine, Jacksonville FL. Call (386) 372-8412 now!"
+        keywords="mobile diesel repair Florida, heavy duty truck repair Palm Coast, roadside assistance Daytona Beach, emergency truck service Jacksonville, 24/7 diesel mechanic"
         canonicalUrl="https://aatrustroadside.com"
       />
       <Navigation />
