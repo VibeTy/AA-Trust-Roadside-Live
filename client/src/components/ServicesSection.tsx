@@ -46,10 +46,9 @@ export default function ServicesSection() {
       title: "General Automotive",
       color: "text-indigo-600",
       services: [
-        "Transmission Service",
         "Cooling System Repair",
-        "Air Conditioning Service",
         "Suspension & Steering",
+        "Emergency Fuel Delivery",
         "Custom Repairs - Just Ask!"
       ]
     }
