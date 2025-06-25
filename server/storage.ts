@@ -122,19 +122,19 @@ export class MemStorage implements IStorage {
     return undefined;
   }
 
-  async createBookingSubmission(submission: InsertBookingSubmission): Promise<BookingSubmission> {
+  async createBookingSubmission(insertSubmission: InsertBookingSubmission): Promise<BookingSubmission> {
     const id = this.currentBookingId++;
     const submission: BookingSubmission = {
       id,
-      name: submission.name,
-      phone: submission.phone,
-      email: submission.email ?? null,
-      location: submission.location,
-      serviceType: submission.serviceType,
-      vehicleInfo: submission.vehicleInfo ?? null,
-      preferredDate: submission.preferredDate,
-      preferredTime: submission.preferredTime,
-      message: submission.message,
+      name: insertSubmission.name,
+      phone: insertSubmission.phone,
+      email: insertSubmission.email ?? null,
+      location: insertSubmission.location,
+      serviceType: insertSubmission.serviceType,
+      vehicleInfo: insertSubmission.vehicleInfo ?? null,
+      preferredDate: insertSubmission.preferredDate,
+      preferredTime: insertSubmission.preferredTime,
+      message: insertSubmission.message,
       contacted: false,
       createdAt: new Date(),
     };
