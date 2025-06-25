@@ -180,14 +180,14 @@ export default function ContactSection() {
                 
                 <FormField
                   control={form.control}
-                  name="phone"
+                  name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-gray-700 dark:text-gray-300">Phone Number *</FormLabel>
+                      <FormLabel className="text-gray-700 dark:text-gray-300">Email Address *</FormLabel>
                       <FormControl>
                         <Input 
-                          type="tel"
-                          placeholder="Enter your phone number" 
+                          type="email"
+                          placeholder="Enter your email address" 
                           className="dark:bg-gray-800 dark:text-white dark:border-gray-600"
                           {...field} 
                         />
