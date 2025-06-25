@@ -88,7 +88,7 @@ export default function Footer() {
                 </a>
               </div>
               <div className="flex items-center">
-                <i className="fas fa-map-marker-alt text-green-600 mr-3"></i>
+                <i className="fas fa-map-marker-alt text-[hsl(221,83%,53%)] mr-3"></i>
                 <span className="text-gray-400">Palm Coast, FL</span>
               </div>
             </div>
