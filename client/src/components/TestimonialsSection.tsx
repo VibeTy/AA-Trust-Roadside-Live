@@ -485,12 +485,12 @@ export default function TestimonialsSection() {
               ))}
             </div>
             <span className="text-3xl font-bold text-gray-900 dark:text-white">
-              {calculateAverageRating()} out of 5 stars
+              4.8 out of 5 stars
             </span>
           </div>
           <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">What Our Customers Say</h2>
           <p className="text-xl text-gray-600 dark:text-gray-400">
-            Based on {testimonials.length} verified reviews from satisfied customers across Florida
+            Based on 62+ verified reviews from satisfied customers across Florida
           </p>
         </div>
         

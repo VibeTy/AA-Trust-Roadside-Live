@@ -83,8 +83,8 @@ export default function Footer() {
               </div>
               <div className="flex items-center">
                 <i className="fas fa-envelope text-[hsl(221,83%,53%)] mr-3"></i>
-                <a href="mailto:info@floridadieselpro.com" className="text-gray-400 hover:text-white transition-colors">
-                  info@floridadieselpro.com
+                <a href="mailto:aa24rasllc@gmail.com" className="text-gray-400 hover:text-white transition-colors">
+                  aa24rasllc@gmail.com
                 </a>
               </div>
               <div className="flex items-center">
