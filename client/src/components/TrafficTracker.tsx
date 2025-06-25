@@ -30,9 +30,38 @@ export default function TrafficTracker() {
     // Fetch initial stats
     const fetchStats = () => {
       fetch('/api/admin/traffic')
-        .then(res => res.json())
-        .then(data => setStats(data))
-        .catch(error => console.error('Failed to fetch traffic data:', error));
+        .then(res => {
+          if (!res.ok) {
+            throw new Error(`HTTP ${res.status}`);
+          }
+          return res.json();
+        })
+        .then(data => {
+          // Ensure data has proper structure
+          const safeData = {
+            activeUsers: data?.activeUsers || 0,
+            totalPageViews: data?.totalPageViews || 0,
+            uniqueVisitors: data?.uniqueVisitors || 0,
+            avgSessionDuration: data?.avgSessionDuration || 0,
+            topPages: Array.isArray(data?.topPages) ? data.topPages : [],
+            hourlyData: Array.isArray(data?.hourlyData) ? data.hourlyData : [],
+            locationData: Array.isArray(data?.locationData) ? data.locationData : []
+          };
+          setStats(safeData);
+        })
+        .catch(error => {
+          console.error('Failed to fetch traffic data:', error);
+          // Set default stats on error
+          setStats({
+            activeUsers: 0,
+            totalPageViews: 0,
+            uniqueVisitors: 0,
+            avgSessionDuration: 0,
+            topPages: [],
+            hourlyData: [],
+            locationData: []
+          });
+        });
     };
 
     fetchStats();
