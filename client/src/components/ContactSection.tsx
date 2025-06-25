@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -9,47 +8,60 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { useToast } from "@/hooks/use-toast";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
+import { insertContactSubmissionSchema } from "@shared/schema";
+import { z } from "zod";
 
-const contactFormSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Please enter a valid email address"),
-  phone: z.string().min(10, "Please enter a valid phone number"),
-  message: z.string().min(10, "Message must be at least 10 characters")
+const contactFormSchema = insertContactSubmissionSchema.extend({
+  location: z.string().min(1, "Location is required"),
+  urgency: z.string().min(1, "Please select urgency level"),
+  message: z.string().min(10, "Please provide more details about your needs"),
 });
 
 type ContactFormData = z.infer<typeof contactFormSchema>;
 
 export default function ContactSection() {
   const { toast } = useToast();
-  const form = useForm<ContactFormData>({
+  const form = useForm<z.infer<typeof contactFormSchema>>({
     resolver: zodResolver(contactFormSchema),
     defaultValues: {
       name: "",
-      email: "",
       phone: "",
-      message: ""
-    }
+      email: "",
+      location: "",
+      urgency: "",
+      message: "",
+    },
   });
 
   const contactMutation = useMutation({
-    mutationFn: async (data: ContactFormData) => {
-      return await apiRequest("POST", "/api/contact", data);
+    mutationFn: async (data: z.infer<typeof contactFormSchema>) => {
+      // Convert contact form to quote format for better admin tracking
+      const quoteData = {
+        name: data.name,
+        phone: data.phone,
+        email: data.email,
+        location: data.location,
+        serviceType: "General Automotive", // Default service type for contact form
+        urgency: data.urgency,
+        description: data.message,
+        vehicleInfo: "" // Optional field
+      };
+      return await apiRequest("POST", "/api/quotes", quoteData);
     },
     onSuccess: () => {
       toast({
-        title: "Message Sent!",
-        description: "Thank you! Your service request has been submitted. We will contact you within 15 minutes during business hours.",
-        duration: 5000
+        title: "Quote Request Sent!",
+        description: "We'll contact you soon with your custom quote.",
       });
       form.reset();
     },
-    onError: (error) => {
+    onError: () => {
       toast({
         title: "Error",
-        description: "Failed to send message. Please try again or call us directly.",
-        variant: "destructive"
+        description: "Failed to send quote request. Please try again.",
+        variant: "destructive",
       });
-    }
+    },
   });
 
   const onSubmit = (data: ContactFormData) => {
@@ -99,12 +111,12 @@ export default function ContactSection() {
             Ready to get your vehicle back on the road? Contact us today for fast, reliable automotive service.
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Information */}
           <div>
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Contact Information</h3>
-            
+
             <div className="space-y-6">
               {contactInfo.map((info, index) => (
                 <div key={index} className="flex items-start">
@@ -134,11 +146,11 @@ export default function ContactSection() {
               ))}
             </div>
           </div>
-          
+
           {/* Contact Form */}
           <div className="bg-white dark:bg-gray-900 rounded-xl p-8 shadow-lg">
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Quote Request Form</h3>
-            
+
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                 <FormField
@@ -158,7 +170,7 @@ export default function ContactSection() {
                     </FormItem>
                   )}
                 />
-                
+
                 <FormField
                   control={form.control}
                   name="phone"
@@ -177,7 +189,7 @@ export default function ContactSection() {
                     </FormItem>
                   )}
                 />
-                
+
                 <FormField
                   control={form.control}
                   name="email"
@@ -196,7 +208,49 @@ export default function ContactSection() {
                     </FormItem>
                   )}
                 />
-                
+
+                <FormField
+                  control={form.control}
+                  name="location"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-gray-700 dark:text-gray-300">Service Location *</FormLabel>
+                      <FormControl>
+                        <Input 
+                          placeholder="e.g., Palm Coast, FL" 
+                          className="dark:bg-gray-800 dark:text-white dark:border-gray-600"
+                          {...field} 
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="urgency"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-gray-700 dark:text-gray-300">Urgency Level *</FormLabel>
+                      <FormControl>
+                        <select 
+                          className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-md dark:bg-gray-800 dark:text-white"
+                          {...field}
+                        >
+                          <option value="">Select urgency</option>
+                          <option value="Emergency (ASAP)">Emergency (ASAP)</option>
+                          <option value="Urgent (Same Day)">Urgent (Same Day)</option>
+                          <option value="Today">Today</option>
+                          <option value="This Week">This Week</option>
+                          <option value="Flexible">Flexible</option>
+                        </select>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
                 <FormField
                   control={form.control}
                   name="message"
@@ -215,7 +269,7 @@ export default function ContactSection() {
                     </FormItem>
                   )}
                 />
-                
+
                 <Button 
                   type="submit" 
                   className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 text-lg font-semibold"
@@ -226,7 +280,7 @@ export default function ContactSection() {
                 </Button>
               </form>
             </Form>
-            
+
             <div className="mt-6 text-center">
               <p className="text-sm text-gray-600 dark:text-gray-400">
                 Need immediate assistance? 
