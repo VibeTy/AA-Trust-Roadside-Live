@@ -1,5 +1,6 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
+import { WebSocketServer } from "ws";
 import { storage } from "./storage";
 import { 
   insertContactSubmissionSchema, 
@@ -11,6 +12,10 @@ import {
 } from "@shared/schema";
 import { z } from "zod";
 import session from "express-session";
+
+// Traffic tracking
+let activeUsers = 0;
+let adminClients = new Set();
 
 // Simple admin authentication middleware
 const isAdminAuthenticated = (req: any, res: any, next: any) => {
@@ -393,6 +398,58 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Traffic tracking endpoints
+  app.get("/api/admin/traffic", isAdminAuthenticated, (req, res) => {
+    res.json({ activeUsers });
+  });
+
+  app.post("/api/track-user", (req, res) => {
+    activeUsers++;
+    // Broadcast to all admin clients
+    adminClients.forEach((client: any) => {
+      if (client.readyState === 1) { // WebSocket.OPEN
+        client.send(JSON.stringify({ type: 'user_count', count: activeUsers }));
+      }
+    });
+    res.json({ success: true });
+  });
+
+  app.post("/api/untrack-user", (req, res) => {
+    activeUsers = Math.max(0, activeUsers - 1);
+    // Broadcast to all admin clients
+    adminClients.forEach((client: any) => {
+      if (client.readyState === 1) { // WebSocket.OPEN
+        client.send(JSON.stringify({ type: 'user_count', count: activeUsers }));
+      }
+    });
+    res.json({ success: true });
+  });
+
   const httpServer = createServer(app);
+  
+  // WebSocket server for real-time admin updates
+  const wss = new WebSocketServer({ 
+    server: httpServer,
+    path: '/ws/admin'
+  });
+
+  wss.on('connection', (ws) => {
+    console.log('Admin WebSocket connected');
+    adminClients.add(ws);
+    
+    // Send current user count immediately
+    ws.send(JSON.stringify({ type: 'user_count', count: activeUsers }));
+    
+    ws.on('close', () => {
+      console.log('Admin WebSocket disconnected');
+      adminClients.delete(ws);
+    });
+    
+    ws.on('error', (error) => {
+      console.error('WebSocket error:', error);
+      adminClients.delete(ws);
+    });
+  });
+
   return httpServer;
 }
