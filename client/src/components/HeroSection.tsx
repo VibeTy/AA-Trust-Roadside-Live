@@ -30,7 +30,7 @@ export default function HeroSection() {
 
         {/* Main Heading - SEO Optimized H1 */}
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight text-center">
-          24/7 Mobile Tire Repair & Roadside Help
+          24/7 Mobile Tire Repair & Roadside Assistance
         </h1>
 
         {/* Subheading */}
