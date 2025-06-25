@@ -145,7 +145,7 @@ export default function ServicesSection() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a 
               href="tel:+13863728412" 
-              className="inline-flex items-center bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-full text-lg shadow-lg transition-all duration-300 transform hover:scale-105"
+              className="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-full text-lg shadow-lg transition-all duration-300 transform hover:scale-105"
             >
               <i className="fas fa-phone mr-3"></i>
               Call Now: (386) 372-8412
