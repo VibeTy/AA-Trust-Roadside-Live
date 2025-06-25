@@ -124,7 +124,7 @@ export default function Quote() {
               className="inline-flex items-center bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-full text-lg shadow-lg transition-all duration-300 transform hover:scale-105"
             >
               <i className="fas fa-phone mr-2"></i>
-              Backup: (386) 338-7945
+              After Hours: (386) 338-7945
             </a>
           </div>
         </div>
@@ -336,7 +336,7 @@ export default function Quote() {
               className="inline-flex items-center bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-full text-lg shadow-lg transition-all duration-300 transform hover:scale-105"
             >
               <i className="fas fa-phone mr-2"></i>
-              Backup: (386) 338-7945
+              After Hours: (386) 338-7945
             </a>
           </div>
         </div>
