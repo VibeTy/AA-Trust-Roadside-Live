@@ -101,7 +101,7 @@ export default function Footer() {
             <span className="text-red-500 ml-1">24/7 Emergency Service Available</span>
           </p>
           <div className="mt-2">
-            <a href="/admin" className="text-xs text-gray-600 hover:text-gray-400 opacity-30 hover:opacity-70">•</a>
+            <a href="/admin" className="text-sm text-gray-500 hover:text-blue-400 opacity-60 hover:opacity-100 transition-all">Admin</a>
           </div>
         </div>
       </div>
