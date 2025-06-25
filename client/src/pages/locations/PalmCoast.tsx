@@ -23,7 +23,7 @@ export default function PalmCoast() {
         canonicalUrl="https://aatrustroadside.com/locations/palm-coast"
       />
       {/* Header */}
-      <header className="bg-red-600 text-white py-4">
+      <header className="bg-blue-600 text-white py-4">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             <Link href="/" className="text-2xl font-bold">
