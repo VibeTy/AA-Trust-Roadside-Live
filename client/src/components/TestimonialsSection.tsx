@@ -451,7 +451,7 @@ export default function TestimonialsSection() {
   // Auto-advance slides
   useEffect(() => {
     if (!isAutoPlaying) return;
-    
+
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % testimonials.length);
     }, 5000);
@@ -493,7 +493,7 @@ export default function TestimonialsSection() {
             Based on 62+ verified reviews from satisfied customers across Florida
           </p>
         </div>
-        
+
         {/* Slideshow Container */}
         <div className="relative">
           <div className="overflow-hidden rounded-xl">
@@ -529,7 +529,7 @@ export default function TestimonialsSection() {
               ))}
             </div>
           </div>
-          
+
           {/* Navigation Arrows */}
           <button
             onClick={prevSlide}
@@ -545,7 +545,7 @@ export default function TestimonialsSection() {
           >
             <ChevronRight className="w-5 h-5" />
           </button>
-          
+
           {/* Dots Indicator */}
           <div className="flex justify-center mt-8 space-x-3">
             {testimonials.map((_, index) => (

@@ -19,7 +19,7 @@ export default function ServicesSection() {
     {
       icon: "fas fa-tire",
       title: "Mobile Tire Services",
-      color: "text-red-600",
+      color: "text-blue-600", // Changed to blue
       services: primaryServices
     },
     {
@@ -115,7 +115,9 @@ export default function ServicesSection() {
           {services.map((service, index) => (
             <div key={index} className="bg-gray-900 border border-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:border-blue-500">
               <div className="text-center mb-4">
-                <i className={`${service.icon} text-3xl ${service.color} mb-3`}></i>
+                <div className="bg-blue-600 text-white p-4 rounded-lg inline-block mb-4">
+                  <i className={`${service.icon} text-2xl`}></i>
+                </div>
                 <h3 className="text-xl font-semibold text-white">{service.title}</h3>
               </div>
               <ul className="space-y-2 text-gray-300 mb-4">

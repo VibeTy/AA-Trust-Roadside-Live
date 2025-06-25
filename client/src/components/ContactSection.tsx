@@ -71,7 +71,7 @@ export default function ContactSection() {
   const contactInfo = [
     {
       icon: "fas fa-phone",
-      bgColor: "bg-red-600",
+      bgColor: "bg-red-600", // Keep red for emergency urgency
       title: "Call Us Now",
       subtitle: "(386) 372-8412",
       href: "tel:+13863728412",
@@ -79,7 +79,7 @@ export default function ContactSection() {
     },
     {
       icon: "fas fa-phone",
-      bgColor: "bg-gray-600",
+      bgColor: "bg-blue-600", // Changed from gray to blue
       title: "After Hours Line",
       subtitle: "(386) 338-7945",
       href: "tel:+13863387945",
@@ -87,15 +87,15 @@ export default function ContactSection() {
     },
     {
       icon: "fas fa-clock",
-      bgColor: "bg-[hsl(43,96%,56%)]",
+      bgColor: "bg-blue-600", // Changed from yellow to blue
       title: "Business Hours",
       subtitle: "Mon-Fri: 7:00 AM - 7:00 PM",
       contact: "24/7 Emergency Service",
-      textColor: "text-[hsl(0,84%,60%)]"
+      textColor: "text-blue-600" // Changed from red to blue
     },
     {
       icon: "fas fa-map-marker-alt",
-      bgColor: "bg-green-600", 
+      bgColor: "bg-blue-600", // Changed from green to blue
       title: "Service Area",
       subtitle: "Based in Palm Coast, FL",
       contact: "Serving 50-mile radius"
@@ -120,7 +120,7 @@ export default function ContactSection() {
             <div className="space-y-6">
               {contactInfo.map((info, index) => (
                 <div key={index} className="flex items-start">
-                  <div className={`${info.bgColor} text-white p-3 rounded-lg mr-4 ${info.bgColor === "bg-[hsl(43,96%,56%)]" ? "text-gray-900" : ""}`}>
+                  <div className={`${info.bgColor} text-white p-3 rounded-lg mr-4`}>
                     <i className={`${info.icon} text-xl`}></i>
                   </div>
                   <div>
