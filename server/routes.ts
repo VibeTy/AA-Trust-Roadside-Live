@@ -1,7 +1,14 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertContactSubmissionSchema, insertQuoteSubmissionSchema, insertBookingSubmissionSchema } from "@shared/schema";
+import { 
+  insertContactSubmissionSchema, 
+  insertQuoteSubmissionSchema, 
+  insertBookingSubmissionSchema,
+  registerUserSchema,
+  forgotPasswordSchema,
+  resetPasswordSchema
+} from "@shared/schema";
 import { z } from "zod";
 import session from "express-session";
 
@@ -25,6 +32,185 @@ export async function registerRoutes(app: Express): Promise<Server> {
       maxAge: 24 * 60 * 60 * 1000 // 24 hours
     }
   }));
+
+  // User Registration
+  app.post("/api/register", async (req, res) => {
+    try {
+      const validatedData = registerUserSchema.parse(req.body);
+      
+      // Check if user already exists
+      const existingUser = await storage.getUserByUsername(validatedData.username);
+      if (existingUser) {
+        return res.status(400).json({
+          success: false,
+          message: "Username already exists"
+        });
+      }
+
+      // Check if email already exists
+      if (validatedData.email) {
+        const existingEmail = await storage.getUserByEmail(validatedData.email);
+        if (existingEmail) {
+          return res.status(400).json({
+            success: false,
+            message: "Email already registered"
+          });
+        }
+      }
+
+      const user = await storage.createUser(validatedData);
+      
+      res.status(201).json({
+        success: true,
+        message: "User registered successfully",
+        user: { id: user.id, username: user.username, email: user.email }
+      });
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        res.status(400).json({
+          success: false,
+          message: "Validation error",
+          errors: error.errors
+        });
+      } else {
+        console.error("Error registering user:", error);
+        res.status(500).json({
+          success: false,
+          message: "Internal server error"
+        });
+      }
+    }
+  });
+
+  // User Login
+  app.post("/api/login", async (req, res) => {
+    try {
+      const { username, password } = req.body;
+      
+      const user = await storage.getUserByUsername(username);
+      if (!user) {
+        return res.status(401).json({
+          success: false,
+          message: "Invalid credentials"
+        });
+      }
+
+      const isValidPassword = await storage.verifyPassword(password, user.password);
+      if (!isValidPassword) {
+        return res.status(401).json({
+          success: false,
+          message: "Invalid credentials"
+        });
+      }
+
+      req.session.userId = user.id;
+      req.session.username = user.username;
+
+      res.json({
+        success: true,
+        message: "Login successful",
+        user: { id: user.id, username: user.username, email: user.email }
+      });
+    } catch (error) {
+      console.error("Error during login:", error);
+      res.status(500).json({
+        success: false,
+        message: "Internal server error"
+      });
+    }
+  });
+
+  // Forgot Password
+  app.post("/api/forgot-password", async (req, res) => {
+    try {
+      const validatedData = forgotPasswordSchema.parse(req.body);
+      
+      const user = await storage.getUserByEmail(validatedData.email);
+      if (!user) {
+        // Don't reveal if email exists or not for security
+        return res.json({
+          success: true,
+          message: "If the email exists, a reset link has been sent"
+        });
+      }
+
+      const { token } = await storage.createPasswordResetToken(validatedData.email);
+      
+      // In a real app, you'd send an email here with the reset link
+      console.log(`Password reset token for ${validatedData.email}: ${token}`);
+      
+      res.json({
+        success: true,
+        message: "If the email exists, a reset link has been sent",
+        // In development, return the token for testing
+        ...(process.env.NODE_ENV === 'development' && { resetToken: token })
+      });
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        res.status(400).json({
+          success: false,
+          message: "Validation error",
+          errors: error.errors
+        });
+      } else {
+        console.error("Error in forgot password:", error);
+        res.status(500).json({
+          success: false,
+          message: "Internal server error"
+        });
+      }
+    }
+  });
+
+  // Reset Password
+  app.post("/api/reset-password", async (req, res) => {
+    try {
+      const validatedData = resetPasswordSchema.parse(req.body);
+      
+      const user = await storage.resetPassword(validatedData.token, validatedData.password);
+      if (!user) {
+        return res.status(400).json({
+          success: false,
+          message: "Invalid or expired reset token"
+        });
+      }
+
+      res.json({
+        success: true,
+        message: "Password reset successfully"
+      });
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        res.status(400).json({
+          success: false,
+          message: "Validation error",
+          errors: error.errors
+        });
+      } else {
+        console.error("Error resetting password:", error);
+        res.status(500).json({
+          success: false,
+          message: "Internal server error"
+        });
+      }
+    }
+  });
+
+  // User Logout
+  app.post("/api/logout", (req, res) => {
+    req.session.destroy((err) => {
+      if (err) {
+        return res.status(500).json({
+          success: false,
+          message: "Could not log out"
+        });
+      }
+      res.json({
+        success: true,
+        message: "Logged out successfully"
+      });
+    });
+  });
   // Contact form submission endpoint
   app.post("/api/contact", async (req, res) => {
     try {
