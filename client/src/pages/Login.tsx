@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -8,7 +9,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { useToast } from "@/hooks/use-toast";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
-import { useLocation } from "wouter";
+import { Link, useLocation } from "wouter";
 
 const loginSchema = z.object({
   username: z.string().min(1, "Username is required"),
@@ -17,7 +18,7 @@ const loginSchema = z.object({
 
 type LoginFormData = z.infer<typeof loginSchema>;
 
-export default function AdminLogin() {
+export default function Login() {
   const { toast } = useToast();
   const [, setLocation] = useLocation();
   
@@ -31,19 +32,19 @@ export default function AdminLogin() {
 
   const loginMutation = useMutation({
     mutationFn: async (data: LoginFormData) => {
-      return await apiRequest("POST", "/api/admin/login", data);
+      return await apiRequest("POST", "/api/login", data);
     },
     onSuccess: () => {
       toast({
         title: "Login Successful",
-        description: "Welcome to the admin dashboard"
+        description: "Welcome back!"
       });
-      setLocation("/admin/dashboard");
+      setLocation("/dashboard");
     },
-    onError: (error) => {
+    onError: (error: any) => {
       toast({
         title: "Login Failed",
-        description: "Invalid username or password",
+        description: error.message || "Invalid username or password",
         variant: "destructive"
       });
     }
@@ -58,8 +59,8 @@ export default function AdminLogin() {
       <div className="max-w-md w-full mx-4">
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
           <div className="text-center mb-8">
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Admin Login</h1>
-            <p className="text-gray-600 dark:text-gray-400 mt-2">AA Trust Roadside Dashboard</p>
+            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Sign In</h1>
+            <p className="text-gray-600 dark:text-gray-400 mt-2">Welcome back to AA Trust Roadside</p>
           </div>
 
           <Form {...form}>
@@ -106,10 +107,22 @@ export default function AdminLogin() {
                 className="w-full bg-blue-600 hover:bg-blue-700 text-white"
                 disabled={loginMutation.isPending}
               >
-                {loginMutation.isPending ? "Logging in..." : "Login"}
+                {loginMutation.isPending ? "Signing in..." : "Sign In"}
               </Button>
             </form>
           </Form>
+
+          <div className="mt-6 text-center space-y-2">
+            <Link href="/forgot-password" className="block text-sm text-blue-600 hover:text-blue-700">
+              Forgot your password?
+            </Link>
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              Don't have an account?{" "}
+              <Link href="/register" className="text-blue-600 hover:text-blue-700 font-medium">
+                Sign up
+              </Link>
+            </p>
+          </div>
         </div>
       </div>
     </div>

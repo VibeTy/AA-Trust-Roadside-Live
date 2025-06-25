@@ -121,6 +121,42 @@ export class MemStorage implements IStorage {
     }
     return undefined;
   }
+
+  async createBookingSubmission(insertSubmission: InsertBookingSubmission): Promise<BookingSubmission> {
+    const id = this.currentBookingId++;
+    const submission: BookingSubmission = {
+      id,
+      name: insertSubmission.name,
+      phone: insertSubmission.phone,
+      email: insertSubmission.email ?? null,
+      location: insertSubmission.location,
+      serviceType: insertSubmission.serviceType,
+      vehicleInfo: insertSubmission.vehicleInfo ?? null,
+      preferredDate: insertSubmission.preferredDate,
+      preferredTime: insertSubmission.preferredTime,
+      message: insertSubmission.message,
+      contacted: false,
+      createdAt: new Date(),
+    };
+    this.bookingSubmissions.set(id, submission);
+    return submission;
+  }
+
+  async getBookingSubmissions(): Promise<BookingSubmission[]> {
+    return Array.from(this.bookingSubmissions.values()).sort(
+      (a, b) => b.createdAt.getTime() - a.createdAt.getTime()
+    );
+  }
+
+  async updateBookingContacted(id: number, contacted: boolean): Promise<BookingSubmission | undefined> {
+    const booking = this.bookingSubmissions.get(id);
+    if (booking) {
+      booking.contacted = contacted;
+      this.bookingSubmissions.set(id, booking);
+      return booking;
+    }
+    return undefined;
+  }
 }
 
 export const storage = new MemStorage();
