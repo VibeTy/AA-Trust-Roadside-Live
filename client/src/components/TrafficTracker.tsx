@@ -204,7 +204,7 @@ export default function TrafficTracker() {
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
-                {stats.topPages.length > 0 ? stats.topPages.map((page, index) => (
+                {stats?.topPages && stats.topPages.length > 0 ? stats.topPages.map((page, index) => (
                   <div key={index} className="flex items-center justify-between">
                     <div className="flex-1">
                       <span className="font-medium">{page.page}</span>
@@ -213,7 +213,7 @@ export default function TrafficTracker() {
                       <div className="w-20 bg-gray-200 rounded-full h-2">
                         <div 
                           className="bg-blue-500 h-2 rounded-full" 
-                          style={{ width: `${(page.views / Math.max(...stats.topPages.map(p => p.views))) * 100}%` }}
+                          style={{ width: `${stats.topPages && stats.topPages.length > 0 ? (page.views / Math.max(...stats.topPages.map(p => p.views))) * 100 : 0}%` }}
                         />
                       </div>
                       <span className="text-sm font-medium w-8">{page.views}</span>
