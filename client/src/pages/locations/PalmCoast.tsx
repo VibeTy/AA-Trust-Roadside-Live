@@ -23,7 +23,7 @@ export default function PalmCoast() {
         canonicalUrl="https://aatrustroadside.com/locations/palm-coast"
       />
       {/* Header */}
-      <header className="bg-red-600 text-white py-4">
+      <header className="bg-blue-600 text-white py-4">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             <Link href="/" className="text-2xl font-bold">
@@ -31,7 +31,7 @@ export default function PalmCoast() {
             </Link>
             <a 
               href="tel:+13863728412"
-              className="bg-white text-red-600 px-4 py-2 rounded-md font-semibold hover:bg-gray-100 transition-colors"
+              className="bg-white text-blue-600 px-4 py-2 rounded-md font-semibold hover:bg-gray-100 transition-colors"
             >
               <Phone className="inline w-4 h-4 mr-2" />
               (386) 372-8412
@@ -90,7 +90,7 @@ export default function PalmCoast() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {services.map((service, index) => (
               <div key={index} className="flex items-center">
-                <Wrench className="w-5 h-5 text-red-600 mr-3 flex-shrink-0" />
+                <Wrench className="w-5 h-5 text-blue-600 mr-3 flex-shrink-0" />
                 <span className="text-gray-700 dark:text-gray-300">{service}</span>
               </div>
             ))}
@@ -98,7 +98,7 @@ export default function PalmCoast() {
         </div>
 
         {/* CTA Section */}
-        <div className="bg-red-600 text-white rounded-lg p-8 text-center">
+        <div className="bg-blue-600 text-white rounded-lg p-8 text-center">
           <h3 className="text-2xl font-bold mb-4">Need Emergency Tire Repair in Palm Coast?</h3>
           <p className="text-lg mb-6">
             Our mobile tire repair experts are available 24/7 to provide fast, professional service anywhere in Palm Coast.
@@ -106,14 +106,14 @@ export default function PalmCoast() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a 
               href="tel:+13863728412"
-              className="bg-white text-red-600 px-8 py-3 rounded-md font-bold text-lg hover:bg-gray-100 transition-colors inline-flex items-center justify-center"
+              className="bg-white text-blue-600 px-8 py-3 rounded-md font-bold text-lg hover:bg-gray-100 transition-colors inline-flex items-center justify-center"
             >
               <Phone className="w-5 h-5 mr-2" />
               Call Now: (386) 372-8412
             </a>
             <Link 
               href="/quote"
-              className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-md font-bold text-lg hover:bg-white hover:text-red-600 transition-colors inline-flex items-center justify-center"
+              className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-md font-bold text-lg hover:bg-white hover:text-blue-600 transition-colors inline-flex items-center justify-center"
             >
               Request Quote
             </Link>
