@@ -4,6 +4,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { useTrafficTracker } from "@/hooks/use-traffic-tracker";
 import Home from "@/pages/Home";
 import Quote from "@/pages/Quote";
 import ThankYou from "@/pages/ThankYou";
@@ -28,6 +29,8 @@ import Gainesville from "@/pages/locations/Gainesville";
 import DeLand from "@/pages/locations/DeLand";
 
 function Router() {
+  useTrafficTracker();
+  
   return (
     <Switch>
       <Route path="/" component={Home} />

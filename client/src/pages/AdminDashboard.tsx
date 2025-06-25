@@ -10,6 +10,7 @@ import { Phone, Mail, MapPin, Clock, CheckCircle, AlertCircle } from "lucide-rea
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import type { QuoteSubmission, ContactSubmission, BookingSubmission } from "@shared/schema";
+import TrafficTracker from "@/components/TrafficTracker";
 
 export default function AdminDashboard() {
   const { toast } = useToast();
@@ -152,7 +153,8 @@ export default function AdminDashboard() {
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
+          <TrafficTracker />
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Total Quotes</CardTitle>
