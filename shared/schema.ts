@@ -100,3 +100,44 @@ export type InsertQuoteSubmission = z.infer<typeof insertQuoteSubmissionSchema>;
 export type QuoteSubmission = typeof quoteSubmissions.$inferSelect;
 export type InsertBookingSubmission = z.infer<typeof insertBookingSubmissionSchema>;
 export type BookingSubmission = typeof bookingSubmissions.$inferSelect;
+// Analytics schemas
+export const pageViewSchema = z.object({
+  id: z.number(),
+  page: z.string(),
+  userAgent: z.string().optional(),
+  referrer: z.string().optional(),
+  sessionId: z.string(),
+  timestamp: z.date(),
+  duration: z.number().optional(), // time spent on page in seconds
+  location: z.object({
+    country: z.string().optional(),
+    region: z.string().optional(),
+    city: z.string().optional(),
+  }).optional()
+});
+
+export const insertPageViewSchema = pageViewSchema.omit({ id: true, timestamp: true });
+
+export const trafficStatsSchema = z.object({
+  activeUsers: z.number(),
+  totalPageViews: z.number(),
+  uniqueVisitors: z.number(),
+  avgSessionDuration: z.number(),
+  topPages: z.array(z.object({
+    page: z.string(),
+    views: z.number()
+  })),
+  hourlyData: z.array(z.object({
+    hour: z.string(),
+    visitors: z.number(),
+    pageViews: z.number()
+  })),
+  locationData: z.array(z.object({
+    country: z.string(),
+    visitors: z.number()
+  }))
+});
+
+export type PageView = z.infer<typeof pageViewSchema>;
+export type InsertPageView = z.infer<typeof insertPageViewSchema>;
+export type TrafficStats = z.infer<typeof trafficStatsSchema>;

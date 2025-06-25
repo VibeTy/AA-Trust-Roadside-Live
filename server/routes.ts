@@ -8,7 +8,8 @@ import {
   insertBookingSubmissionSchema,
   registerUserSchema,
   forgotPasswordSchema,
-  resetPasswordSchema
+  resetPasswordSchema,
+  insertPageViewSchema
 } from "@shared/schema";
 import { z } from "zod";
 import session from "express-session";
@@ -398,9 +399,47 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Traffic tracking endpoints
-  app.get("/api/admin/traffic", isAdminAuthenticated, (req, res) => {
-    res.json({ activeUsers });
+  // Enhanced Traffic tracking endpoints
+  app.get("/api/admin/traffic", isAdminAuthenticated, async (req, res) => {
+    try {
+      const stats = await storage.getTrafficStats();
+      res.json(stats);
+    } catch (error) {
+      console.error("Error fetching traffic stats:", error);
+      res.status(500).json({ message: "Failed to fetch traffic stats" });
+    }
+  });
+
+  app.post("/api/track-pageview", async (req, res) => {
+    try {
+      const { sessionId, page, userAgent, referrer } = req.body;
+      
+      if (!sessionId || !page) {
+        return res.status(400).json({ message: "Session ID and page are required" });
+      }
+
+      await storage.trackPageView(sessionId, page, userAgent, referrer);
+      
+      // Update active users count
+      activeUsers = (await storage.getTrafficStats()).activeUsers;
+      
+      // Broadcast to all admin clients
+      adminClients.forEach((client: any) => {
+        if (client.readyState === 1) {
+          client.send(JSON.stringify({ 
+            type: 'traffic_update', 
+            activeUsers,
+            page,
+            timestamp: new Date().toISOString()
+          }));
+        }
+      });
+      
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Error tracking page view:", error);
+      res.status(500).json({ message: "Failed to track page view" });
+    }
   });
 
   app.post("/api/track-user", (req, res) => {
@@ -414,15 +453,28 @@ export async function registerRoutes(app: Express): Promise<Server> {
     res.json({ success: true });
   });
 
-  app.post("/api/untrack-user", (req, res) => {
-    activeUsers = Math.max(0, activeUsers - 1);
-    // Broadcast to all admin clients
-    adminClients.forEach((client: any) => {
-      if (client.readyState === 1) { // WebSocket.OPEN
-        client.send(JSON.stringify({ type: 'user_count', count: activeUsers }));
+  app.post("/api/untrack-user", async (req, res) => {
+    try {
+      const { sessionId } = req.body;
+      
+      if (sessionId) {
+        await storage.endSession(sessionId);
       }
-    });
-    res.json({ success: true });
+      
+      activeUsers = Math.max(0, activeUsers - 1);
+      
+      // Broadcast to all admin clients
+      adminClients.forEach((client: any) => {
+        if (client.readyState === 1) {
+          client.send(JSON.stringify({ type: 'user_count', count: activeUsers }));
+        }
+      });
+      
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Error untracking user:", error);
+      res.status(500).json({ message: "Failed to untrack user" });
+    }
   });
 
   const httpServer = createServer(app);

@@ -68,7 +68,7 @@ export default function ContactSection() {
     {
       icon: "fas fa-phone",
       bgColor: "bg-gray-600",
-      title: "Backup Line",
+      title: "After Hours Line",
       subtitle: "(386) 338-7945",
       href: "tel:+13863387945",
       contact: "Secondary Number"
