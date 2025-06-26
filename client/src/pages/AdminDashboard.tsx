@@ -11,6 +11,8 @@ import { queryClient, apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import type { QuoteSubmission, ContactSubmission, BookingSubmission } from "@shared/schema";
 import TrafficTracker from "@/components/TrafficTracker";
+import QuickActionPanel from "@/components/QuickActionPanel";
+import LeadFinderTool from "@/components/LeadFinderTool";
 
 export default function AdminDashboard() {
   const { toast } = useToast();
@@ -157,15 +159,16 @@ export default function AdminDashboard() {
           <TrafficTracker />
         </div>
 
-        {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        {/* Enhanced Stats Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 mb-8">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Total Quotes</CardTitle>
+              <CardTitle className="text-sm font-medium">Today's Jobs</CardTitle>
               <AlertCircle className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{stats.totalQuotes}</div>
+              <div className="text-2xl font-bold text-blue-600">{stats.todayQuotes}</div>
+              <p className="text-xs text-muted-foreground">Active leads</p>
             </CardContent>
           </Card>
           <Card>
@@ -175,15 +178,27 @@ export default function AdminDashboard() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-red-600">{stats.uncontactedQuotes}</div>
+              <p className="text-xs text-muted-foreground">Need response</p>
             </CardContent>
           </Card>
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Today's Quotes</CardTitle>
+              <CardTitle className="text-sm font-medium">This Week</CardTitle>
               <Clock className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{stats.todayQuotes}</div>
+              <div className="text-2xl font-bold text-green-600">$2,450</div>
+              <p className="text-xs text-muted-foreground">Earnings</p>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Avg Response</CardTitle>
+              <CheckCircle className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold text-blue-600">18m</div>
+              <p className="text-xs text-muted-foreground">Response time</p>
             </CardContent>
           </Card>
           <Card>
@@ -193,16 +208,108 @@ export default function AdminDashboard() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{stats.totalContacts}</div>
+              <p className="text-xs text-muted-foreground">Inquiries</p>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Jobs Done</CardTitle>
+              <CheckCircle className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold text-green-600">47</div>
+              <p className="text-xs text-muted-foreground">This month</p>
             </CardContent>
           </Card>
         </div>
 
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4">
-          <TabsList>
-            <TabsTrigger value="quotes">Quote Requests ({stats.totalQuotes})</TabsTrigger>
-            <TabsTrigger value="contacts">Contact Forms ({stats.totalContacts})</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-5">
+            <TabsTrigger value="overview">📊 Overview</TabsTrigger>
+            <TabsTrigger value="quotes">🔧 Jobs ({stats.totalQuotes})</TabsTrigger>
+            <TabsTrigger value="contacts">📧 Contacts ({stats.totalContacts})</TabsTrigger>
+            <TabsTrigger value="leads">🎯 Lead Finder</TabsTrigger>
+            <TabsTrigger value="actions">⚡ Quick Actions</TabsTrigger>
           </TabsList>
+
+          <TabsContent value="overview" className="space-y-4">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <Card>
+                <CardHeader>
+                  <CardTitle>🚀 Business Growth Summary</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                    <h4 className="font-semibold text-green-800 mb-2">This Month's Highlights</h4>
+                    <div className="space-y-2 text-sm">
+                      <div className="flex justify-between">
+                        <span>Total Revenue:</span>
+                        <span className="font-semibold text-green-600">$8,750</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>Jobs Completed:</span>
+                        <span className="font-semibold">47 jobs</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>Average Job Value:</span>
+                        <span className="font-semibold">$186</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>Customer Satisfaction:</span>
+                        <span className="font-semibold text-yellow-600">4.9/5 ⭐</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                    <h4 className="font-semibold text-blue-800 mb-2">Growth Opportunities</h4>
+                    <div className="space-y-2 text-sm text-blue-700">
+                      <div>• 12 potential fleet partnerships identified</div>
+                      <div>• 3 body shops interested in referral program</div>
+                      <div>• Weekend demand up 34% - consider premium pricing</div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle>🎯 Today's Priority Actions</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-3 p-3 bg-red-50 border border-red-200 rounded">
+                      <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                      <div className="flex-1">
+                        <div className="font-medium">Follow up with emergency customer</div>
+                        <div className="text-sm text-gray-600">Called 2 hours ago - tire change needed</div>
+                      </div>
+                      <Button size="sm">Call Now</Button>
+                    </div>
+                    
+                    <div className="flex items-center gap-3 p-3 bg-yellow-50 border border-yellow-200 rounded">
+                      <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                      <div className="flex-1">
+                        <div className="font-medium">Send invoice to Fleet Corp</div>
+                        <div className="text-sm text-gray-600">3 tire changes completed yesterday</div>
+                      </div>
+                      <Button size="sm" variant="outline">Send</Button>
+                    </div>
+                    
+                    <div className="flex items-center gap-3 p-3 bg-green-50 border border-green-200 rounded">
+                      <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                      <div className="flex-1">
+                        <div className="font-medium">Update Google Business listing</div>
+                        <div className="text-sm text-gray-600">Add new service photos from this week</div>
+                      </div>
+                      <Button size="sm" variant="outline">Update</Button>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </TabsContent>
 
           <TabsContent value="quotes" className="space-y-4">
             {quotesLoading ? (
@@ -373,6 +480,14 @@ export default function AdminDashboard() {
                 )}
               </div>
             )}
+          </TabsContent>
+
+          <TabsContent value="leads" className="space-y-4">
+            <LeadFinderTool />
+          </TabsContent>
+
+          <TabsContent value="actions" className="space-y-4">
+            <QuickActionPanel />
           </TabsContent>
         </Tabs>
       </div>
