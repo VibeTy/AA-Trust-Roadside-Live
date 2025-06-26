@@ -188,10 +188,10 @@ export default function TrafficTracker() {
               </CardHeader>
               <CardContent>
                 <div className="text-lg font-bold">
-                  {stats.locationData[0]?.country || 'N/A'}
+                  {stats?.locationData && stats.locationData.length > 0 ? stats.locationData[0].country : 'N/A'}
                 </div>
                 <p className="text-xs text-muted-foreground mt-1">
-                  {stats.locationData[0]?.visitors || 0} visitors
+                  {stats?.locationData && stats.locationData.length > 0 ? stats.locationData[0].visitors : 0} visitors
                 </p>
               </CardContent>
             </Card>
