@@ -399,6 +399,48 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Admin authentication routes
+  app.post("/api/admin/login", async (req, res) => {
+    try {
+      const { username, password } = req.body;
+      
+      // Simple admin check - in production, use proper password hashing
+      if (username === "admin" && password === "admin123") {
+        req.session.isAdmin = true;
+        res.json({
+          success: true,
+          message: "Admin login successful"
+        });
+      } else {
+        res.status(401).json({
+          success: false,
+          message: "Invalid admin credentials"
+        });
+      }
+    } catch (error) {
+      console.error("Error during admin login:", error);
+      res.status(500).json({
+        success: false,
+        message: "Internal server error"
+      });
+    }
+  });
+
+  app.post("/api/admin/logout", isAdminAuthenticated, (req, res) => {
+    req.session.destroy((err) => {
+      if (err) {
+        return res.status(500).json({
+          success: false,
+          message: "Could not log out"
+        });
+      }
+      res.json({
+        success: true,
+        message: "Admin logged out successfully"
+      });
+    });
+  });
+
   // Enhanced Traffic tracking endpoints
   app.get("/api/admin/traffic", isAdminAuthenticated, async (req, res) => {
     try {

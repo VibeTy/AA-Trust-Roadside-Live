@@ -30,9 +30,38 @@ export default function TrafficTracker() {
     // Fetch initial stats
     const fetchStats = () => {
       fetch('/api/admin/traffic')
-        .then(res => res.json())
-        .then(data => setStats(data))
-        .catch(error => console.error('Failed to fetch traffic data:', error));
+        .then(res => {
+          if (!res.ok) {
+            throw new Error(`HTTP ${res.status}`);
+          }
+          return res.json();
+        })
+        .then(data => {
+          // Ensure data has proper structure
+          const safeData = {
+            activeUsers: data?.activeUsers || 0,
+            totalPageViews: data?.totalPageViews || 0,
+            uniqueVisitors: data?.uniqueVisitors || 0,
+            avgSessionDuration: data?.avgSessionDuration || 0,
+            topPages: Array.isArray(data?.topPages) ? data.topPages : [],
+            hourlyData: Array.isArray(data?.hourlyData) ? data.hourlyData : [],
+            locationData: Array.isArray(data?.locationData) ? data.locationData : []
+          };
+          setStats(safeData);
+        })
+        .catch(error => {
+          console.error('Failed to fetch traffic data:', error);
+          // Set default stats on error
+          setStats({
+            activeUsers: 0,
+            totalPageViews: 0,
+            uniqueVisitors: 0,
+            avgSessionDuration: 0,
+            topPages: [],
+            hourlyData: [],
+            locationData: []
+          });
+        });
     };
 
     fetchStats();
@@ -159,10 +188,10 @@ export default function TrafficTracker() {
               </CardHeader>
               <CardContent>
                 <div className="text-lg font-bold">
-                  {stats.locationData[0]?.country || 'N/A'}
+                  {stats?.locationData && stats.locationData.length > 0 ? stats.locationData[0].country : 'N/A'}
                 </div>
                 <p className="text-xs text-muted-foreground mt-1">
-                  {stats.locationData[0]?.visitors || 0} visitors
+                  {stats?.locationData && stats.locationData.length > 0 ? stats.locationData[0].visitors : 0} visitors
                 </p>
               </CardContent>
             </Card>
@@ -204,7 +233,7 @@ export default function TrafficTracker() {
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
-                {stats.topPages.length > 0 ? stats.topPages.map((page, index) => (
+                {stats?.topPages && stats.topPages.length > 0 ? stats.topPages.map((page, index) => (
                   <div key={index} className="flex items-center justify-between">
                     <div className="flex-1">
                       <span className="font-medium">{page.page}</span>
@@ -213,7 +242,7 @@ export default function TrafficTracker() {
                       <div className="w-20 bg-gray-200 rounded-full h-2">
                         <div 
                           className="bg-blue-500 h-2 rounded-full" 
-                          style={{ width: `${(page.views / Math.max(...stats.topPages.map(p => p.views))) * 100}%` }}
+                          style={{ width: `${stats.topPages && stats.topPages.length > 0 ? (page.views / Math.max(...stats.topPages.map(p => p.views))) * 100 : 0}%` }}
                         />
                       </div>
                       <span className="text-sm font-medium w-8">{page.views}</span>

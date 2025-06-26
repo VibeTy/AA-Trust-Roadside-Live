@@ -28,6 +28,7 @@ export interface IStorage {
   createBookingSubmission(submission: InsertBookingSubmission): Promise<BookingSubmission>;
   getBookingSubmissions(): Promise<BookingSubmission[]>;
   updateBookingContacted(id: number, contacted: boolean): Promise<BookingSubmission | undefined>;
+  getTrafficStats(): Promise<TrafficStats>;
 }
 
 export class MemStorage implements IStorage {
@@ -169,51 +170,6 @@ export class MemStorage implements IStorage {
     return undefined;
   }
 
-  // Analytics methods
-  async trackPageView(sessionId: string, page: string, userAgent?: string, referrer?: string): Promise<PageView> {
-    const pageView: PageView = {
-      id: this.currentPageViewId++,
-      page,
-      userAgent,
-      referrer,
-      sessionId,
-      timestamp: new Date(),
-      location: this.getLocationFromUserAgent(userAgent) // Simplified for demo
-    };
-
-    this.pageViews.push(pageView);
-
-    // Update session tracking
-    if (!this.activeSessions.has(sessionId)) {
-      this.activeSessions.set(sessionId, {
-        startTime: new Date(),
-        lastActivity: new Date(),
-        pages: [page]
-      });
-    } else {
-      const session = this.activeSessions.get(sessionId)!;
-      session.lastActivity = new Date();
-      if (!session.pages.includes(page)) {
-        session.pages.push(page);
-      }
-    }
-
-    return pageView;
-  }
-
-  async endSession(sessionId: string): Promise<void> {
-    const session = this.activeSessions.get(sessionId);
-    if (session) {
-      const duration = (session.lastActivity.getTime() - session.startTime.getTime()) / 1000;
-      // Update page views with session duration
-      this.pageViews
-        .filter(pv => pv.sessionId === sessionId)
-        .forEach(pv => pv.duration = duration / session.pages.length);
-
-      this.activeSessions.delete(sessionId);
-    }
-  }
-
   async getTrafficStats(): Promise<TrafficStats> {
     const now = new Date();
     const last24Hours = new Date(now.getTime() - 24 * 60 * 60 * 1000);
@@ -278,6 +234,51 @@ export class MemStorage implements IStorage {
       hourlyData,
       locationData
     };
+  }
+
+  // Analytics methods
+  async trackPageView(sessionId: string, page: string, userAgent?: string, referrer?: string): Promise<PageView> {
+    const pageView: PageView = {
+      id: this.currentPageViewId++,
+      page,
+      userAgent,
+      referrer,
+      sessionId,
+      timestamp: new Date(),
+      location: this.getLocationFromUserAgent(userAgent) // Simplified for demo
+    };
+
+    this.pageViews.push(pageView);
+
+    // Update session tracking
+    if (!this.activeSessions.has(sessionId)) {
+      this.activeSessions.set(sessionId, {
+        startTime: new Date(),
+        lastActivity: new Date(),
+        pages: [page]
+      });
+    } else {
+      const session = this.activeSessions.get(sessionId)!;
+      session.lastActivity = new Date();
+      if (!session.pages.includes(page)) {
+        session.pages.push(page);
+      }
+    }
+
+    return pageView;
+  }
+
+  async endSession(sessionId: string): Promise<void> {
+    const session = this.activeSessions.get(sessionId);
+    if (session) {
+      const duration = (session.lastActivity.getTime() - session.startTime.getTime()) / 1000;
+      // Update page views with session duration
+      this.pageViews
+        .filter(pv => pv.sessionId === sessionId)
+        .forEach(pv => pv.duration = duration / session.pages.length);
+
+      this.activeSessions.delete(sessionId);
+    }
   }
 
   private getLocationFromUserAgent(userAgent?: string): { country?: string; region?: string; city?: string } | undefined {
