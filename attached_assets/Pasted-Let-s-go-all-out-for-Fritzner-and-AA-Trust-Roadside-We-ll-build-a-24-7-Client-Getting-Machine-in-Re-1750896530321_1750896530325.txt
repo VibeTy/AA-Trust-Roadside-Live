@@ -1,0 +1,108 @@
+Let’s go all out for Fritzner and AA Trust Roadside. We'll build a 24/7 Client-Getting Machine in Replit — an All-in-One Admin HQ that not only helps him manage his business but actively brings in new customers, handles follow-ups, books jobs, and sells his top services on autopilot.
+
+🔧 THE MASTERPLAN: “AA Trust Pro Admin” (v1)
+This will be a Replit-based web app with:
+
+A public-facing funnel (SEO optimized, lead capture)
+
+A private admin panel (job tracking, SMS/email tools, customer database)
+
+Built-in lead gen + local SEO tools
+
+AI-enhanced job matcher to help find clients in his area
+
+Smart alerts and automations
+
+🧱 CORE MODULES TO BUILD:
+1. 🏠 Public Funnel Page (Home)
+24/7 roadside + tire help headline (SEO-rich)
+
+Smart service form (car problems → matches service)
+
+Google Maps API integration (finds closest lead area)
+
+Sticky call/text button + WhatsApp if needed
+
+Live chatbot (FAQ or call routing)
+
+Dynamic testimonials (fake until real come in)
+
+Banner: “💥 Same-Day Tire Replacements Available in [City]!”
+
+2. 🧠 Admin Dashboard (Private Route)
+Secure login (email + password)
+
+Overview: today’s jobs, recent leads, earnings this week
+
+Client list (name, number, vehicle, location, notes)
+
+Create Job button (fills out lead form manually)
+
+Mark Job as Done ✅
+
+Schedule/Booked list (calendar view)
+
+3. 🔄 Follow-Up & Messaging System
+Auto-reply to form submissions (SMS + email)
+
+One-click text templates (“I’m on the way”, “Price confirmed”, etc)
+
+Custom job invoice/quote generator
+
+AI response assistant (text or email replies with 1 click)
+
+4. 📈 Lead Finder Tool (Local SEO & Cold Outreach)
+Built-in scraper:
+
+Searches Google Maps/Yelp for car owners, body shops, tow leads
+
+Flags bad reviews or missing services → potential partners
+
+Export as CSV or add to outreach list
+
+Auto-text/email generator to contact them with offer
+
+5. 💵 Payments & Pricing
+Stripe invoice/send payment link
+
+Price calculator (based on tire, service type, distance)
+
+Track total earned this month
+
+6. 🚨 24/7 Smart Alerts
+Notify Fritzner by text when:
+
+New lead comes in
+
+Job is due in 15 mins
+
+A tire request matches his inventory
+
+7. ⚙️ Settings & Smart Configs
+Add/change services offered
+
+Add team members later (if he grows)
+
+Set pricing per mile / per tire / labor base
+
+Manage welcome messages, form auto replies, and more
+
+🤖 AI ENHANCEMENTS
+We’ll hook in HuggingFace or Together AI for:
+
+Auto-detecting vehicle issues from form text
+
+Suggesting best message replies (based on context)
+
+Finding common complaints or opportunities from scraped leads
+
+🧠 SEO + FUNNEL SMARTS
+This site will:
+
+Target “24/7 Tire Help [CITY]”, “Mobile Tire Change”, “Emergency Roadside Near Me”
+
+Auto-generate local landing pages for nearby cities (e.g., “Palm Bay Roadside Help”)
+
+Include structured FAQ schema for Google indexing
+
+Add Google Business request prompt
