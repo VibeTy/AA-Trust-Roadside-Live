@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -91,7 +90,7 @@ export default function LeadFinderTool() {
       "Fleet Management": `Hi there! I'm Fritzner from AA Trust Roadside, providing 24/7 mobile mechanic services in ${searchLocation}. I specialize in emergency fleet support - tire changes, jump starts, and roadside diagnostics that get your vehicles back on the road fast. I'd love to discuss how I can support your fleet operations. Do you have 10 minutes this week to chat?`,
       "Gas Station": `Hi! I'm a local mobile mechanic and I'm reaching out to see if you'd be interested in referring customers who break down at your location to AA Trust Roadside. I provide 24/7 tire changes, jump starts, and emergency repairs. I can offer you a referral fee for each customer you send my way. Would this be something you'd consider?`
     };
-    
+
     return templates[lead.type as keyof typeof templates] || `Hi ${lead.name}! I'm Fritzner from AA Trust Roadside, providing 24/7 mobile mechanic services in ${searchLocation}. I'd love to discuss potential partnership opportunities. Are you available for a quick chat this week?`;
   };
 
@@ -196,29 +195,97 @@ export default function LeadFinderTool() {
           </TabsContent>
 
           <TabsContent value="outreach" className="space-y-4">
-            {leads.map((lead, index) => (
-              <Card key={index}>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <Card>
                 <CardHeader>
-                  <CardTitle className="text-lg">Message for {lead.name}</CardTitle>
+                  <CardTitle>SMS Templates</CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-3">
-                  <div className="bg-gray-50 border rounded p-3">
-                    <p className="text-sm">{generateOutreachMessage(lead)}</p>
+                <CardContent className="space-y-4">
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                    <h5 className="font-semibold text-blue-800 mb-2">Fleet Partnership</h5>
+                    <p className="text-sm text-gray-700 mb-3">
+                      "Hi! I'm Fritzner from AA Trust Roadside. I noticed your fleet might need reliable mobile tire service. We offer 24/7 emergency response + fleet discounts. Can we schedule a quick call?"
+                    </p>
+                    <Button size="sm" variant="outline">Copy Template</Button>
                   </div>
-                  <div className="flex gap-2">
-                    <Button size="sm" className="flex-1">
-                      📱 Send SMS
-                    </Button>
-                    <Button size="sm" variant="outline" className="flex-1">
-                      ✉️ Send Email
-                    </Button>
-                    <Button size="sm" variant="outline">
-                      📋 Copy Text
-                    </Button>
+
+                  <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                    <h5 className="font-semibold text-green-800 mb-2">Body Shop Referral</h5>
+                    <p className="text-sm text-gray-700 mb-3">
+                      "Hello! AA Trust Roadside provides mobile tire + roadside help. We'd love to partner for customer referrals. Our drivers are licensed, insured & offer same-day service. Interested?"
+                    </p>
+                    <Button size="sm" variant="outline">Copy Template</Button>
+                  </div>
+
+                  <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                    <h5 className="font-semibold text-yellow-800 mb-2">Competitor Response</h5>
+                    <p className="text-sm text-gray-700 mb-3">
+                      "Saw your recent review about slow service. AA Trust Roadside averages 15-min response in your area. Licensed, insured, fair pricing. Give us a try next time!"
+                    </p>
+                    <Button size="sm" variant="outline">Copy Template</Button>
                   </div>
                 </CardContent>
               </Card>
-            ))}
+
+              <Card>
+                <CardHeader>
+                  <CardTitle>Email Templates</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                    <h5 className="font-semibold text-gray-800 mb-2">Professional Introduction</h5>
+                    <div className="text-sm text-gray-700 space-y-2 mb-3">
+                      <p><strong>Subject:</strong> Mobile Tire & Roadside Partnership Opportunity</p>
+                      <p>Dear [Business Name],</p>
+                      <p>I'm Fritzner, owner of AA Trust Roadside. We provide 24/7 mobile tire replacement and roadside assistance across Palm Coast, Daytona, and Jacksonville.</p>
+                      <p>Our services include:</p>
+                      <ul className="list-disc list-inside ml-4">
+                        <li>15-minute average response time</li>
+                        <li>Licensed & insured technicians</li>
+                        <li>Fleet discounts available</li>
+                        <li>Same-day tire replacement</li>
+                      </ul>
+                      <p>We'd love to discuss a referral partnership that benefits both our customers.</p>
+                      <p>Best regards,<br />Fritzner - AA Trust Roadside</p>
+                    </div>
+                    <Button size="sm" variant="outline">Copy Template</Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            <Card>
+              <CardHeader>
+                <CardTitle>Bulk Outreach Campaign</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-blue-600">23</div>
+                    <p className="text-sm text-gray-600">Prospects Selected</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-green-600">89%</div>
+                    <p className="text-sm text-gray-600">Delivery Rate</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-yellow-600">12%</div>
+                    <p className="text-sm text-gray-600">Response Rate</p>
+                  </div>
+                </div>
+                <div className="flex gap-2">
+                  <Button className="bg-blue-600 hover:bg-blue-700">
+                    Start SMS Campaign
+                  </Button>
+                  <Button variant="outline">
+                    Schedule Email Blast
+                  </Button>
+                  <Button variant="outline">
+                    Export Phone Numbers
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
           </TabsContent>
 
           <TabsContent value="export">
@@ -247,7 +314,7 @@ export default function LeadFinderTool() {
                     </div>
                   </Button>
                 </div>
-                
+
                 <div className="bg-yellow-50 border border-yellow-200 rounded p-4">
                   <h4 className="font-medium text-yellow-800 mb-2">📊 Outreach Tracking</h4>
                   <div className="grid grid-cols-3 gap-4 text-sm">
