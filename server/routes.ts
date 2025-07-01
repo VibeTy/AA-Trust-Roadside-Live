@@ -441,6 +441,61 @@ export async function registerRoutes(app: Express): Promise<Server> {
     });
   });
 
+  // AI Smart Reply endpoint
+  app.post("/api/ai/smart-reply", async (req, res) => {
+    try {
+      const { name, location, serviceType, description, urgency, vehicleInfo } = req.body;
+      
+      // Mock AI response - in production, integrate with Together AI, OpenAI, or similar
+      const aiResponse = {
+        reply: `Hi ${name}! This is Fritzner from AA Trust Roadside. I got your request for ${serviceType} in ${location}. I can be there in about 15-20 minutes. My number is (386) 333-4458. Thanks for choosing us!`,
+        price: serviceType.toLowerCase().includes('tire') ? '$150-180' : '$75-95',
+        urgencyScore: urgency === 'emergency' ? 95 : urgency === 'urgent' ? 75 : 45,
+        reasoning: urgency === 'emergency' 
+          ? 'High priority - emergency situation requires immediate response'
+          : 'Standard response time acceptable based on service type'
+      };
+      
+      res.json(aiResponse);
+    } catch (error) {
+      console.error("Error generating AI reply:", error);
+      res.status(500).json({ message: "Failed to generate smart reply" });
+    }
+  });
+
+  // Send reply via SMS/Email
+  app.post("/api/send-reply", async (req, res) => {
+    try {
+      const { method, to, message, customerName } = req.body;
+      
+      if (method === 'sms') {
+        // In production, integrate with Twilio
+        console.log(`SMS to ${to}: ${message}`);
+        
+        // Mock success response
+        res.json({ 
+          success: true, 
+          message: `SMS sent to ${customerName}`,
+          messageId: `msg_${Date.now()}`
+        });
+      } else if (method === 'email') {
+        // In production, integrate with MailerSend or similar
+        console.log(`Email to ${to}: ${message}`);
+        
+        res.json({ 
+          success: true, 
+          message: `Email sent to ${customerName}`,
+          messageId: `email_${Date.now()}`
+        });
+      } else {
+        res.status(400).json({ message: "Invalid send method" });
+      }
+    } catch (error) {
+      console.error("Error sending reply:", error);
+      res.status(500).json({ message: "Failed to send reply" });
+    }
+  });
+
   // Enhanced Traffic tracking endpoints
   app.get("/api/admin/traffic", isAdminAuthenticated, async (req, res) => {
     try {

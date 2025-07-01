@@ -13,6 +13,10 @@ import type { QuoteSubmission, ContactSubmission, BookingSubmission } from "@sha
 import TrafficTracker from "@/components/TrafficTracker";
 import QuickActionPanel from "@/components/QuickActionPanel";
 import LeadFinderTool from "@/components/LeadFinderTool";
+import AIReplyAssistant from "@/components/AIReplyAssistant";
+import LiveJobMap from "@/components/LiveJobMap";
+import RevenueTracker from "@/components/RevenueTracker";
+import SettingsPanel from "@/components/SettingsPanel";
 
 export default function AdminDashboard() {
   const { toast } = useToast();
@@ -225,12 +229,15 @@ export default function AdminDashboard() {
 
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4">
-          <TabsList className="grid w-full grid-cols-5">
+          <TabsList className="grid w-full grid-cols-8">
             <TabsTrigger value="overview">📊 Overview</TabsTrigger>
             <TabsTrigger value="quotes">🔧 Jobs ({stats.totalQuotes})</TabsTrigger>
-            <TabsTrigger value="contacts">📧 Contacts ({stats.totalContacts})</TabsTrigger>
+            <TabsTrigger value="map">🗺️ Live Map</TabsTrigger>
+            <TabsTrigger value="revenue">💰 Revenue</TabsTrigger>
             <TabsTrigger value="leads">🎯 Lead Finder</TabsTrigger>
+            <TabsTrigger value="contacts">📧 Contacts</TabsTrigger>
             <TabsTrigger value="actions">⚡ Quick Actions</TabsTrigger>
+            <TabsTrigger value="settings">⚙️ Settings</TabsTrigger>
           </TabsList>
 
           <TabsContent value="overview" className="space-y-4">
@@ -380,22 +387,34 @@ export default function AdminDashboard() {
                         <p className="mt-1 text-gray-700 dark:text-gray-300">{quote.description}</p>
                       </div>
                       {!quote.contacted && (
-                        <div className="flex gap-2 pt-2">
-                          <Button 
-                            onClick={() => markContactedMutation.mutate(quote.id)}
-                            disabled={markContactedMutation.isPending}
-                            size="sm"
-                            variant="outline"
-                          >
-                            <CheckCircle className="h-4 w-4 mr-2" />
-                            Mark as Contacted
-                          </Button>
-                          <Button size="sm" asChild>
-                            <a href={`tel:${quote.phone}`}>
-                              <Phone className="h-4 w-4 mr-2" />
-                              Call Now
-                            </a>
-                          </Button>
+                        <div className="space-y-4">
+                          <AIReplyAssistant leadData={{
+                            name: quote.name,
+                            phone: quote.phone,
+                            location: quote.location,
+                            serviceType: quote.serviceType,
+                            description: quote.description,
+                            urgency: quote.urgency,
+                            vehicleInfo: quote.vehicleInfo
+                          }} />
+                          
+                          <div className="flex gap-2 pt-2">
+                            <Button 
+                              onClick={() => markContactedMutation.mutate(quote.id)}
+                              disabled={markContactedMutation.isPending}
+                              size="sm"
+                              variant="outline"
+                            >
+                              <CheckCircle className="h-4 w-4 mr-2" />
+                              Mark as Contacted
+                            </Button>
+                            <Button size="sm" asChild>
+                              <a href={`tel:${quote.phone}`}>
+                                <Phone className="h-4 w-4 mr-2" />
+                                Call Now
+                              </a>
+                            </Button>
+                          </div>
                         </div>
                       )}
                     </CardContent>
@@ -482,12 +501,24 @@ export default function AdminDashboard() {
             )}
           </TabsContent>
 
+          <TabsContent value="map" className="space-y-4">
+            <LiveJobMap />
+          </TabsContent>
+
+          <TabsContent value="revenue" className="space-y-4">
+            <RevenueTracker />
+          </TabsContent>
+
           <TabsContent value="leads" className="space-y-4">
             <LeadFinderTool />
           </TabsContent>
 
           <TabsContent value="actions" className="space-y-4">
             <QuickActionPanel />
+          </TabsContent>
+
+          <TabsContent value="settings" className="space-y-4">
+            <SettingsPanel />
           </TabsContent>
         </Tabs>
       </div>
