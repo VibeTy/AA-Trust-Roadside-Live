@@ -18,6 +18,10 @@ import Dashboard from "./pages/Dashboard";
 import Bookings from "@/pages/Bookings";
 import NotFound from "@/pages/not-found";
 
+// SEO Landing Pages
+import Emergency24HourTireRepair from "@/pages/Emergency24HourTireRepair";
+import MobileTireRepairNearMe from "@/pages/MobileTireRepairNearMe";
+
 // Location pages
 import PalmCoast from "@/pages/locations/PalmCoast";
 import DaytonaBeach from "@/pages/locations/DaytonaBeach";
@@ -44,6 +48,10 @@ function Router() {
       <Route path="/reset-password" component={ResetPassword} />
       <Route path="/dashboard" component={Dashboard} />
       <Route path="/bookings" component={Bookings} />
+
+      {/* SEO Landing Pages */}
+      <Route path="/emergency-24-hour-tire-repair" component={Emergency24HourTireRepair} />
+      <Route path="/mobile-tire-repair-near-me" component={MobileTireRepairNearMe} />
 
       {/* Location pages */}
       <Route path="/locations/palm-coast" component={PalmCoast} />

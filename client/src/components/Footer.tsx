@@ -71,27 +71,29 @@ export default function Footer() {
             </ul>
           </div>
           
-          {/* Contact Info */}
+          {/* Service Areas */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Contact</h3>
-            <div className="space-y-3">
-              <div className="flex items-center">
-                <i className="fas fa-phone text-[hsl(0,84%,60%)] mr-3"></i>
-                <a href="tel:+15551234567" className="text-gray-400 hover:text-white transition-colors">
-                  (386) 372-8412
-                </a>
-              </div>
-              <div className="flex items-center">
-                <i className="fas fa-envelope text-[hsl(221,83%,53%)] mr-3"></i>
-                <a href="mailto:aa24rasllc@gmail.com" className="text-gray-400 hover:text-white transition-colors">
-                  aa24rasllc@gmail.com
-                </a>
-              </div>
-              <div className="flex items-center">
-                <i className="fas fa-map-marker-alt text-[hsl(221,83%,53%)] mr-3"></i>
-                <span className="text-gray-400">Palm Coast, FL</span>
-              </div>
-            </div>
+            <h3 className="text-lg font-semibold mb-4">Service Areas</h3>
+            <ul className="space-y-2">
+              <li>
+                <a href="/locations/palm-coast" className="text-gray-400 hover:text-white transition-colors">Palm Coast Mobile Tire Repair</a>
+              </li>
+              <li>
+                <a href="/locations/daytona-beach" className="text-gray-400 hover:text-white transition-colors">Daytona Beach Tire Service</a>
+              </li>
+              <li>
+                <a href="/locations/jacksonville" className="text-gray-400 hover:text-white transition-colors">Jacksonville Emergency Tire</a>
+              </li>
+              <li>
+                <a href="/locations/ormond-beach" className="text-gray-400 hover:text-white transition-colors">Ormond Beach Roadside</a>
+              </li>
+              <li>
+                <a href="/locations/deland" className="text-gray-400 hover:text-white transition-colors">DeLand Mobile Tire</a>
+              </li>
+              <li>
+                <span className="text-gray-400">+ All Northeast Florida</span>
+              </li>
+            </ul>
           </div>
         </div>
         
