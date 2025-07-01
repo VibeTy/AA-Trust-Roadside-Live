@@ -4,13 +4,14 @@ export default function AboutSection() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-white mb-6">
-            About AA Trust Roadside
+            Why Choose Our 24/7 Emergency Tire Service?
           </h2>
           <div className="max-w-4xl mx-auto">
             <p className="text-xl text-gray-300 leading-relaxed mb-8">
-              AA Trust Roadside was founded by Fritzner with a mission to keep truckers and everyday drivers 
-              moving safely and efficiently. Based in Palm Coast, we offer mobile tire and light repair services 
-              across Daytona, Jacksonville, and surrounding areas.
+              When tire emergencies strike, you need fast, reliable mobile tire repair near you. 
+              Our certified technicians provide professional 24/7 emergency tire replacement services that get you back on the road safely. 
+              Based in Palm Coast, FL, we deliver mobile tire repair and roadside assistance 
+              across Daytona Beach, Jacksonville, and all of Northeast Florida.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">

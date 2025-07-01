@@ -30,12 +30,13 @@ export default function HeroSection() {
 
         {/* Main Heading - SEO Optimized H1 */}
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight text-center">
-          24/7 Mobile Tire Repair & Roadside Assistance
+          <span className="text-blue-500">24/7 Emergency Mobile Tire Repair</span> Near Me<br />
+          <span className="text-3xl md:text-5xl text-white">Northeast Florida</span>
         </h1>
 
         {/* Subheading */}
         <p className="text-lg md:text-xl lg:text-2xl text-gray-200 mb-8 max-w-4xl mx-auto text-center leading-relaxed">
-          Fast tire replacement + essential mobile repairs across Palm Coast, Daytona, Jacksonville & beyond.
+          Fast emergency tire replacement + roadside assistance in Palm Coast, Daytona Beach, Jacksonville & surrounding areas.
         </p>
 
         {/* Premium Metric Badges */}

@@ -14,9 +14,9 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       <SEOHead 
-        title="Mobile Tire Repair Palm Coast | AA Trust Roadside"
-        description="24/7 mobile tire repair, roadside assistance, and light mechanic service in Palm Coast, Daytona, and Jacksonville. Fast. Reliable. Trusted."
-        keywords="mobile tire repair Palm Coast, tire replacement Daytona Beach, roadside tire service Jacksonville, emergency tire help St Augustine, mobile mechanic Florida"
+        title="24/7 Mobile Tire Repair Near Me | Emergency Roadside Assistance FL"
+        description="Fast mobile tire repair and emergency roadside assistance in Northeast Florida. Available 24/7 for tire replacement, flat tire service, and roadside help. Call (386) 372-8412 now!"
+        keywords="mobile tire repair near me, 24/7 roadside assistance, emergency tire service, tire replacement near me, flat tire repair, mobile mechanic, Northeast Florida, Palm Coast FL, Daytona Beach FL, Jacksonville FL"
         canonicalUrl="https://aatrustroadside.com"
       />
       <Navigation />
