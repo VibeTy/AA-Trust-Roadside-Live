@@ -34,30 +34,30 @@ export default function Footer() {
           
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+            <h3 className="text-lg font-semibold mb-4">Emergency Services</h3>
             <ul className="space-y-2">
               <li>
-                <button 
-                  onClick={() => scrollToSection("home")} 
+                <a 
+                  href="/emergency-24-hour-tire-repair"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  Home
-                </button>
+                  24/7 Emergency Tire Repair
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="/mobile-tire-repair-near-me"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  Mobile Tire Repair Near Me
+                </a>
               </li>
               <li>
                 <button 
                   onClick={() => scrollToSection("services")} 
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  Services
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={() => scrollToSection("testimonials")} 
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  Reviews
+                  Roadside Assistance
                 </button>
               </li>
               <li>
@@ -65,7 +65,7 @@ export default function Footer() {
                   onClick={() => scrollToSection("contact")} 
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  Contact
+                  Emergency Contact
                 </button>
               </li>
             </ul>
