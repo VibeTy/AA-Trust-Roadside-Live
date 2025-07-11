@@ -145,8 +145,48 @@ export default function About() {
           </div>
         </section>
 
-        {/* Why Choose Us */}
+        {/* Our Commitment to You */}
         <section className="py-20 bg-gray-800">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                Our Commitment to You
+              </h2>
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+                We're committed to providing fast, reliable, and honest roadside assistance service that you can trust. When you're stranded or facing a tire emergency, we promise to be there quickly with the professional service you deserve.
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Clock className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-semibold text-white mb-2">Fast Response</h3>
+                <p className="text-gray-400">We understand that time is critical when you're stranded. Our average response time is just 15 minutes, ensuring you get back on the road quickly.</p>
+              </div>
+              
+              <div className="text-center">
+                <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <CheckCircle className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-semibold text-white mb-2">Reliable Service</h3>
+                <p className="text-gray-400">Count on us 24/7, 365 days a year. Rain or shine, day or night, we're equipped and ready to help you with professional roadside assistance.</p>
+              </div>
+              
+              <div className="text-center">
+                <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Star className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-semibold text-white mb-2">Honest Pricing</h3>
+                <p className="text-gray-400">No hidden fees, no surprises. We provide upfront, transparent pricing so you know exactly what to expect before we begin any work.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Why Choose Us */}
+        <section className="py-20 bg-gray-900">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
@@ -179,7 +219,7 @@ export default function About() {
         </section>
 
         {/* Team Section */}
-        <section className="py-20 bg-gray-900">
+        <section className="py-20 bg-gray-800">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">

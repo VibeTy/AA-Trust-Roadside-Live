@@ -18,6 +18,7 @@ import Dashboard from "./pages/Dashboard";
 import Bookings from "@/pages/Bookings";
 import NotFound from "@/pages/not-found";
 import About from "@/pages/About";
+import Contact from "@/pages/Contact";
 
 // SEO Landing Pages
 import Emergency24HourTireRepair from "@/pages/Emergency24HourTireRepair";
@@ -40,6 +41,7 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/about" component={About} />
+      <Route path="/contact" component={Contact} />
       <Route path="/quote" component={Quote} />
       <Route path="/thank-you" component={ThankYou} />
       <Route path="/admin" component={AdminLogin} />
