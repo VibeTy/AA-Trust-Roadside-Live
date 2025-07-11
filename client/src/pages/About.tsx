@@ -145,6 +145,32 @@ export default function About() {
           </div>
         </section>
 
+        {/* Our Commitment to You */}
+        <section className="py-20 bg-black">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Our Commitment to You</h2>
+              <div className="max-w-4xl mx-auto space-y-4 text-gray-300">
+                <p className="text-lg">
+                  At AA Trust Roadside, we understand that vehicle breakdowns and tire emergencies can be stressful, inconvenient, and costly. That's why we've built our entire business around three core principles that guide everything we do.
+                </p>
+                <p className="text-lg">
+                  <strong className="text-white">Fast Response:</strong> We know that when you're stranded on the side of the road, every minute counts. Our average response time is just 15 minutes, and we're available 24/7 because emergencies don't wait for business hours.
+                </p>
+                <p className="text-lg">
+                  <strong className="text-white">Reliable Service:</strong> You can count on us to show up when we say we will, with the right tools and expertise to get the job done right the first time. Our certified technicians are equipped to handle any roadside emergency.
+                </p>
+                <p className="text-lg">
+                  <strong className="text-white">Honest Pricing:</strong> No hidden fees, no surprise charges, no taking advantage when you're vulnerable. We provide transparent, fair pricing upfront so you know exactly what you're paying for quality service.
+                </p>
+                <p className="text-lg">
+                  When you call AA Trust Roadside, you're not just getting a service provider - you're getting a partner committed to your safety and peace of mind on the road.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Why Choose Us */}
         <section className="py-20 bg-gray-800">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
