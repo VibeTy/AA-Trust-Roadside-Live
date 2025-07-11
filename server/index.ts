@@ -3,6 +3,22 @@ import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 
 const app = express();
+
+// HTTPS Redirect Middleware - Force HTTPS and canonical domain
+app.use((req, res, next) => {
+  // Check if we're in production and not using HTTPS
+  if (req.get('x-forwarded-proto') !== 'https' && process.env.NODE_ENV === 'production') {
+    return res.redirect(301, `https://${req.get('host')}${req.url}`);
+  }
+  
+  // Redirect www to non-www
+  if (req.get('host') === 'www.aatrustroadside.com') {
+    return res.redirect(301, `https://aatrustroadside.com${req.url}`);
+  }
+  
+  next();
+});
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 

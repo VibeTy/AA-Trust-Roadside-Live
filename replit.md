@@ -103,6 +103,16 @@ AA Trust Roadside is a full-stack web application for a mobile tire repair and r
 
 ## Recent Changes
 
+**January 26, 2025:**
+- **Critical Technical Fixes Phase 1:**
+  - Implemented 301 HTTPS redirect middleware for canonical domain (http/www redirects to https://aatrustroadside.com)
+  - Fixed /about page accessibility by creating comprehensive About page with company story, team info, and service areas
+  - Enhanced navigation with sticky click-to-call header functionality
+  - Added mobile sticky call banner with prominent emergency number display
+  - Updated desktop navigation with dual phone number display (24/7 Emergency Line and After Hours Phone)
+  - Added About page to main navigation and mobile menu
+  - Improved mobile UX with always-visible emergency contact information
+
 **January 25, 2025:**
 - Implemented comprehensive SEO optimization based on Copilot recommendations
 - Enhanced title tags with high-value modifiers like "24/7", "emergency", and "near me"

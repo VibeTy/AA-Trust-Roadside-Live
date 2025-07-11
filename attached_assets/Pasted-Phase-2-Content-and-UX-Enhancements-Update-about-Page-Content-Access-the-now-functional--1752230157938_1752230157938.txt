@@ -1,0 +1,37 @@
+Phase 2: Content and UX Enhancements
+ * Update /about Page Content:
+   * Access the now-functional /about page.
+   * Add a section with the H2 heading "Our Story" and add placeholder text.
+   * Add a section with the H2 heading "Our Commitment to You" and add placeholder text about fast, reliable, and honest service.
+ * Add Homepage Testimonials:
+   * On the homepage, create a new section with the H2 heading "What Our Customers Say".
+   * Add 3 sample testimonials in this section.
+ * Optimize MetaData:
+   * For the Homepage (/):
+     * Set Meta Title to: 24/7 Roadside Assistance & Diesel Repair | Palm Coast & Jacksonville | AA Trust Roadside
+     * Set Meta Description to: Fast, reliable 24/7 roadside assistance in NE Florida. We offer mobile tire repair, jump starts, diesel mechanics, lockouts, and more. Call now for immediate help!
+   * For the Contact Page (/contact):
+     * Set Meta Title to: Contact AA Trust Roadside | 24/7 Emergency Service
+     * Set Meta Description to: Need immediate roadside assistance? Call us 24/7 or fill out our contact form. Serving Palm Coast, Jacksonville, and surrounding areas with fast, reliable service.
+Phase 3: New Service Page Creation
+Create the following four new service pages. Use the content provided as a template. Add a relevant stock image to each page.
+ * Page: Jump Start & Battery Service
+   * URL: /jump-start-battery-service-fl
+   * Page Title / H1: 24/7 Jump Start & Battery Service in Palm Coast & Jacksonville
+   * Content: Use the following H2 headings and add a short paragraph of descriptive text under each: Our Jump Start Services, Mobile Battery Testing, On-Site Battery Replacement, Why Choose Us For a Jump Start?, Frequently Asked Questions.
+ * Page: Mobile Engine Diagnostics
+   * URL: /mobile-engine-diagnostics-fl
+   * Page Title / H1: Mobile Engine Diagnostics & Roadside Repair
+   * Content: Use the following H2 headings and add a short paragraph of descriptive text under each: On-Site Computer Diagnostics, Common Engine Problems We Fix, Forced Regens & Diesel Engine Service, Our Diagnostic Technology.
+ * Page: Vehicle Lockout Service
+   * URL: /vehicle-lockout-service-fl
+   * Page Title / H1: Fast & Damage-Free Car Lockout Service
+   * Content: Use the following H2 headings and add a short paragraph of descriptive text under each: Unlocking All Vehicle Makes & Models, Our Damage-Free Techniques, 24-Hour Emergency Response.
+ * Page: Emergency Fuel Delivery
+   * URL: /emergency-fuel-delivery-fl
+   * Page Title / H1: 24/7 Emergency Fuel & Diesel Delivery Service
+   * Content: Use the following H2 headings and add a short paragraph of descriptive text under each: Gasoline Delivery Service, Diesel Fuel Delivery for Trucks, How Our Fuel Service Works.
+Final Step: Update Navigation
+ * Edit the main navigation menu of the website.
+ * Add a new menu item called "Services".
+ * Create a dropdown under "Services" that includes links to all new pages created in Phase 3, as well as the existing /mobile-tire-repair-near-me page.
