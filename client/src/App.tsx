@@ -17,6 +17,7 @@ import ResetPassword from "./pages/ResetPassword";
 import Dashboard from "./pages/Dashboard";
 import Bookings from "@/pages/Bookings";
 import NotFound from "@/pages/not-found";
+import About from "@/pages/About";
 
 // SEO Landing Pages
 import Emergency24HourTireRepair from "@/pages/Emergency24HourTireRepair";
@@ -38,6 +39,7 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/about" component={About} />
       <Route path="/quote" component={Quote} />
       <Route path="/thank-you" component={ThankYou} />
       <Route path="/admin" component={AdminLogin} />
