@@ -14,9 +14,9 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       <SEOHead 
-        title="24/7 Roadside Assistance & Diesel Repair | Palm Coast & Jacksonville | AA Trust Roadside"
-        description="Fast, reliable 24/7 roadside assistance in NE Florida. We offer mobile tire repair, jump starts, diesel mechanics, lockouts, and more. Call now for immediate help!"
-        keywords="roadside assistance, diesel repair, mobile tire repair, jump start service, Palm Coast FL, Jacksonville FL, emergency roadside help, 24/7 roadside service"
+        title="24/7 Mobile Tire Repair Near Me | Emergency Roadside Assistance FL"
+        description="Fast mobile tire repair and emergency roadside assistance in Northeast Florida. Available 24/7 for tire replacement, flat tire service, and roadside help. Call (386) 372-8412 now!"
+        keywords="mobile tire repair near me, 24/7 roadside assistance, emergency tire service, tire replacement near me, flat tire repair, mobile mechanic, Northeast Florida, Palm Coast FL, Daytona Beach FL, Jacksonville FL"
         canonicalUrl="https://aatrustroadside.com"
       />
       <Navigation />
