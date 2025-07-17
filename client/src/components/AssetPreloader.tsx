@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { preloadCriticalAssets, optimizeFonts, enableFastNavigation, injectCriticalCSS } from "@/utils/pageOptimizations";
 
 const criticalAssets = [
   '/attached_assets/7938bab5-b302-4cf1-8a69-78cfce3c9be4_1750802043592.png',
@@ -6,21 +7,17 @@ const criticalAssets = [
 
 export default function AssetPreloader() {
   useEffect(() => {
+    // Inject critical CSS first for instant styling
+    injectCriticalCSS();
+    
     // Preload critical assets
-    criticalAssets.forEach(asset => {
-      const link = document.createElement('link');
-      link.rel = 'preload';
-      link.as = 'image';
-      link.href = asset;
-      document.head.appendChild(link);
-    });
-
-    // Preload critical CSS
-    const fontLink = document.createElement('link');
-    fontLink.rel = 'preload';
-    fontLink.as = 'style';
-    fontLink.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap';
-    document.head.appendChild(fontLink);
+    preloadCriticalAssets(criticalAssets);
+    
+    // Optimize fonts
+    optimizeFonts();
+    
+    // Enable fast navigation
+    enableFastNavigation();
 
     // Preconnect to external domains
     const preconnects = [

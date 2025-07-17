@@ -2,6 +2,7 @@ import Navigation from "@/components/Navigation";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
+import PageOptimizer from "@/components/PageOptimizer";
 
 export default function Contact() {
   return (
@@ -13,13 +14,15 @@ export default function Contact() {
         canonicalUrl="https://aatrustroadside.com/contact"
       />
       
-      <div className="min-h-screen bg-gray-900">
-        <Navigation />
-        <div className="pt-20">
-          <ContactSection />
+      <PageOptimizer>
+        <div className="min-h-screen bg-gray-900">
+          <Navigation />
+          <div className="pt-20">
+            <ContactSection />
+          </div>
+          <Footer />
         </div>
-        <Footer />
-      </div>
+      </PageOptimizer>
     </>
   );
 }

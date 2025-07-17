@@ -2,6 +2,8 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import StickyCallButton from "@/components/StickyCallButton";
 import SEOHead from "@/components/SEOHead";
+import PageOptimizer from "@/components/PageOptimizer";
+import OptimizedIcon from "@/components/OptimizedIcon";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -9,15 +11,17 @@ import { Separator } from "@/components/ui/separator";
 
 export default function DieselRoadsideAssistance() {
   return (
-    <div className="min-h-screen bg-black">
+    <>
       <SEOHead 
         title="Diesel Roadside Assistance Near Me | 24/7 Emergency Service | AA Trust Roadside"
         description="Expert diesel roadside assistance near you! 24/7 emergency service for diesel trucks, forced regens, DEF issues, and more. Serving Palm Coast, Jacksonville & Northeast FL. Call (386) 372-8412!"
         keywords="diesel roadside assistance near me, diesel mechanic near me, 24/7 diesel repair, forced regen service, DEF system repair, diesel truck breakdown, emergency diesel service"
         canonicalUrl="https://aatrustroadside.com/diesel-roadside-assistance-near-me"
       />
-      <Navigation />
-      <StickyCallButton />
+      <PageOptimizer>
+        <div className="min-h-screen bg-black">
+          <Navigation />
+          <StickyCallButton />
       
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-gray-900 to-black py-20">
@@ -266,7 +270,9 @@ export default function DieselRoadsideAssistance() {
         </div>
       </section>
 
-      <Footer />
-    </div>
+          <Footer />
+        </div>
+      </PageOptimizer>
+    </>
   );
 }

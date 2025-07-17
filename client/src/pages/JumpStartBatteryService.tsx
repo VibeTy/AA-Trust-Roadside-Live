@@ -1,6 +1,8 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
+import PageOptimizer from "@/components/PageOptimizer";
+import OptimizedIcon from "@/components/OptimizedIcon";
 import { Battery, Clock, CheckCircle, Phone, Wrench, Zap } from "lucide-react";
 
 export default function JumpStartBatteryService() {
@@ -13,8 +15,9 @@ export default function JumpStartBatteryService() {
         canonicalUrl="https://aatrustroadside.com/jump-start-battery-service-fl"
       />
       
-      <div className="min-h-screen bg-gray-900">
-        <Navigation />
+      <PageOptimizer>
+        <div className="min-h-screen bg-gray-900">
+          <Navigation />
         
         {/* Hero Section */}
         <section className="relative bg-gradient-to-br from-blue-900 via-gray-900 to-black py-20 pt-32">
@@ -268,8 +271,9 @@ export default function JumpStartBatteryService() {
           </div>
         </section>
 
-        <Footer />
-      </div>
+          <Footer />
+        </div>
+      </PageOptimizer>
     </>
   );
 }
