@@ -83,6 +83,30 @@ export default function Footer() {
                   Emergency Fuel Delivery
                 </a>
               </li>
+              <li>
+                <a 
+                  href="/diesel-roadside-assistance-near-me"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  Diesel Roadside Assistance
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="/engine-services-near-me"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  Engine Services
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="/24-7-tire-shop-near-me"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  24/7 Tire Shop
+                </a>
+              </li>
             </ul>
           </div>
           

@@ -115,6 +115,28 @@ export default function Navigation() {
                     >
                       Emergency Fuel Delivery
                     </a>
+                    <div className="border-t border-gray-700 my-2"></div>
+                    <a 
+                      href="/diesel-roadside-assistance-near-me"
+                      className="block px-4 py-2 text-gray-300 hover:bg-gray-800 hover:text-blue-400 transition-colors"
+                      onClick={() => setIsServicesOpen(false)}
+                    >
+                      Diesel Roadside Assistance
+                    </a>
+                    <a 
+                      href="/engine-services-near-me"
+                      className="block px-4 py-2 text-gray-300 hover:bg-gray-800 hover:text-blue-400 transition-colors"
+                      onClick={() => setIsServicesOpen(false)}
+                    >
+                      Engine Services
+                    </a>
+                    <a 
+                      href="/24-7-tire-shop-near-me"
+                      className="block px-4 py-2 text-gray-300 hover:bg-gray-800 hover:text-blue-400 transition-colors"
+                      onClick={() => setIsServicesOpen(false)}
+                    >
+                      24/7 Tire Shop
+                    </a>
                   </div>
                 </div>
               )}
