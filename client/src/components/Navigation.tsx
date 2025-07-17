@@ -44,12 +44,12 @@ export default function Navigation() {
           
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-6">
-            <button 
-              onClick={() => scrollToSection("home")} 
+            <a 
+              href="/"
               className="text-gray-300 hover:text-blue-400 transition-colors"
             >
               Home
-            </button>
+            </a>
             <a 
               href="/about"
               className="text-gray-300 hover:text-blue-400 transition-colors"
@@ -194,12 +194,13 @@ export default function Navigation() {
         {isMobileMenuOpen && (
           <div className="md:hidden pb-4 bg-black border-t border-gray-800">
             <div className="flex flex-col space-y-3 px-4 pt-4">
-              <button 
-                onClick={() => scrollToSection("home")} 
+              <a 
+                href="/"
                 className="text-gray-300 hover:text-blue-500 transition-colors text-left"
+                onClick={() => setIsMobileMenuOpen(false)}
               >
                 Home
-              </button>
+              </a>
               <a 
                 href="/about"
                 className="text-gray-300 hover:text-blue-500 transition-colors text-left"
