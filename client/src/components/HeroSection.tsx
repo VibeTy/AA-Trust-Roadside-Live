@@ -19,12 +19,12 @@ export default function HeroSection() {
         <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black opacity-70"></div>
       </div>
 
-      <div className="relative z-10 text-center text-white px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto pt-4 md:pt-0">
-        <div className="mb-6 md:mb-8">
+      <div className="relative z-10 text-center text-white px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto pt-16 md:pt-8">
+        <div className="mb-8 md:mb-10 mt-8 md:mt-4">
           <img 
             src="/attached_assets/7938bab5-b302-4cf1-8a69-78cfce3c9be4_1750802043592.png" 
             alt="AA Trust Roadside Logo" 
-            className="h-20 md:h-32 w-auto mx-auto mb-4 md:mb-6 max-w-full object-contain"
+            className="h-20 md:h-32 w-auto mx-auto mb-6 md:mb-8 max-w-full object-contain"
           />
         </div>
 
