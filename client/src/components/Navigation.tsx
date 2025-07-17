@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useTheme } from "@/hooks/use-theme";
 import { Phone, ChevronDown } from "lucide-react";
-import { useLocation } from "wouter";
+import { useLocation, useRouter } from "wouter";
 
 export default function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -9,6 +9,7 @@ export default function Navigation() {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
   const [location] = useLocation();
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,7 +23,17 @@ export default function Navigation() {
   const scrollToSection = (sectionId: string) => {
     // If we're not on the home page, navigate to home first
     if (location !== "/") {
-      window.location.href = `/#${sectionId}`;
+      // Use router to navigate to home page
+      router.navigate("/");
+      
+      // Wait for navigation to complete, then scroll to section
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 200);
+      setIsMobileMenuOpen(false);
       return;
     }
     
