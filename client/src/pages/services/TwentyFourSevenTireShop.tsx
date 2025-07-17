@@ -36,7 +36,7 @@ export default function TwentyFourSevenTireShop() {
                 <i className="fas fa-phone mr-2"></i>
                 24/7 Emergency: (386) 445-7505
               </Button>
-              <Button size="lg" variant="outline" className="border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white px-8 py-6 text-lg">
+              <Button size="lg" variant="outline" className="border-blue-500 text-blue-400 bg-black/50 hover:bg-blue-500 hover:text-white px-8 py-6 text-lg font-semibold">
                 <i className="fas fa-tire mr-2"></i>
                 Get Tire Quote
               </Button>
@@ -306,7 +306,7 @@ export default function TwentyFourSevenTireShop() {
               <i className="fas fa-phone mr-2"></i>
               Call 24/7: (386) 445-7505
             </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-600 px-8 py-6 text-lg">
+            <Button size="lg" variant="outline" className="border-white text-white bg-white/10 hover:bg-white hover:text-blue-600 px-8 py-6 text-lg font-semibold">
               <i className="fas fa-tire mr-2"></i>
               Get Tire Quote
             </Button>
