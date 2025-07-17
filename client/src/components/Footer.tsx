@@ -13,8 +13,15 @@ export default function Footer() {
           {/* Company Info */}
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center mb-4">
-              <i className="fas fa-wrench text-[hsl(221,83%,53%)] text-2xl mr-3"></i>
-              <span className="text-xl font-bold">AA Trust Roadside</span>
+              <img 
+                src="/attached_assets/7938bab5-b302-4cf1-8a69-78cfce3c9be4_1750802043592.png" 
+                alt="AA Trust Roadside Logo" 
+                className="h-8 w-auto mr-3"
+              />
+              <div>
+                <span className="text-white font-bold">AA TRUST </span>
+                <span className="text-blue-500 font-bold">ROADSIDE</span>
+              </div>
             </div>
             <p className="text-gray-400 mb-4 max-w-md">
               Professional mobile mechanic and roadside assistance services across Northeast Florida. We bring expert technicians and fully equipped service vehicles directly to your location for fast, reliable repairs.
@@ -32,47 +39,99 @@ export default function Footer() {
             </div>
           </div>
           
-          {/* Quick Links */}
+          {/* Services */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Emergency Services</h3>
+            <h3 className="text-lg font-semibold mb-4">Our Services</h3>
             <ul className="space-y-2">
-              <li>
-                <a 
-                  href="/emergency-24-hour-tire-repair"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  24/7 Emergency Tire Repair
-                </a>
-              </li>
               <li>
                 <a 
                   href="/mobile-tire-repair-near-me"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  Mobile Tire Repair Near Me
+                  Mobile Tire Repair
                 </a>
               </li>
               <li>
-                <button 
-                  onClick={() => scrollToSection("services")} 
+                <a 
+                  href="/jump-start-battery-service-fl"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  Roadside Assistance
-                </button>
+                  Jump Start & Battery Service
+                </a>
               </li>
               <li>
-                <button 
-                  onClick={() => scrollToSection("contact")} 
+                <a 
+                  href="/mobile-engine-diagnostics-fl"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  Emergency Contact
-                </button>
+                  Mobile Engine Diagnostics
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="/vehicle-lockout-service-fl"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  Vehicle Lockout Service
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="/emergency-fuel-delivery-fl"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  Emergency Fuel Delivery
+                </a>
               </li>
             </ul>
           </div>
           
           {/* Service Areas */}
           <div>
+            <h3 className="text-lg font-semibold mb-4">Service Areas</h3>
+            <ul className="space-y-2">
+              <li>
+                <a 
+                  href="/locations/palm-coast"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  Palm Coast, FL
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="/locations/jacksonville"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  Jacksonville, FL
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="/locations/daytona-beach"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  Daytona Beach, FL
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="/locations/ormond-beach"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  Ormond Beach, FL
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="/locations/deland"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  DeLand, FL
+                </a>
+              </li>
+            </ul>
+          </div>
             <h3 className="text-lg font-semibold mb-4">Service Areas</h3>
             <ul className="space-y-2">
               <li>

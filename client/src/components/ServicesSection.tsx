@@ -1,55 +1,81 @@
 export default function ServicesSection() {
-  const primaryServices = [
-    "Mobile Tire Replacement",
-    "Tire Repair (Punctures, Flats)", 
-    "Tire Rotation",
-    "Wholesale Tire Sourcing"
-  ];
-
-  const secondaryServices = [
-    "Brake Pad Replacement",
-    "Flapper Replacement", 
-    "Oil Changes",
-    "Engine Diagnostics",
-    "Emergency Jumpstarts",
-    "Light Mobile Roadside Help"
-  ];
-
   const services = [
     {
       icon: "fas fa-tire",
       title: "Mobile Tire Services",
-      color: "text-blue-600", // Changed to blue
-      services: primaryServices
+      color: "text-blue-600",
+      description: "Professional mobile tire repair and replacement services brought directly to your location.",
+      link: "/mobile-tire-repair-near-me",
+      services: [
+        "Mobile Tire Replacement",
+        "Tire Repair (Punctures, Flats)", 
+        "Tire Rotation",
+        "Wholesale Tire Sourcing"
+      ]
     },
     {
-      icon: "fas fa-tools",
-      title: "Additional Roadside Services",
+      icon: "fas fa-battery-full",
+      title: "Jump Start & Battery Service",
       color: "text-blue-600",
-      services: secondaryServices
+      description: "Emergency jump start service and mobile battery testing and replacement.",
+      link: "/jump-start-battery-service-fl",
+      services: [
+        "Emergency Jump Start",
+        "Battery Testing & Replacement",
+        "Alternator Diagnostics",
+        "Charging System Check"
+      ]
+    },
+    {
+      icon: "fas fa-laptop-code",
+      title: "Mobile Engine Diagnostics",
+      color: "text-blue-600",
+      description: "Advanced computer diagnostics and on-site engine repair services.",
+      link: "/mobile-engine-diagnostics-fl",
+      services: [
+        "Computer Diagnostics",
+        "Check Engine Light",
+        "Forced Regens",
+        "System Reset & Repair"
+      ]
+    },
+    {
+      icon: "fas fa-key",
+      title: "Vehicle Lockout Service",
+      color: "text-blue-600",
+      description: "Fast, damage-free vehicle lockout service for all makes and models.",
+      link: "/vehicle-lockout-service-fl",
+      services: [
+        "Car Lockout Service",
+        "Truck Lockout Service",
+        "Damage-Free Unlocking",
+        "Modern Security Systems"
+      ]
+    },
+    {
+      icon: "fas fa-gas-pump",
+      title: "Emergency Fuel Delivery",
+      color: "text-blue-600",
+      description: "24/7 gasoline and diesel fuel delivery service to your location.",
+      link: "/emergency-fuel-delivery-fl",
+      services: [
+        "Gasoline Delivery",
+        "Diesel Fuel Delivery",
+        "Commercial Vehicle Fuel",
+        "Emergency Fuel Service"
+      ]
     },
     {
       icon: "fas fa-truck",
       title: "Fleet & Commercial Service",
       color: "text-blue-600",
+      description: "Comprehensive fleet maintenance and commercial vehicle repair services.",
+      link: "/quote",
       services: [
         "Fleet Maintenance Programs",
         "Commercial Vehicle Repair",
         "DOT Inspection Prep",
-        "Preventive Maintenance",
-        "Emergency Commercial Service"
-      ]
-    },
-
-    {
-      icon: "fas fa-tools",
-      title: "General Automotive",
-      color: "text-blue-600",
-      services: [
-        "Cooling System Repair",
-        "Suspension & Steering",
-        "Emergency Fuel Delivery",
-        "Custom Repairs - Just Ask!"
+        "Preventive Maintenance"
       ]
     }
   ];
