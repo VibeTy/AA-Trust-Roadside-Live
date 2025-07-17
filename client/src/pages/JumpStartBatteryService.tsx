@@ -234,7 +234,7 @@ export default function JumpStartBatteryService() {
               
               <div className="bg-gray-900 rounded-lg p-6 border border-gray-700">
                 <h3 className="text-xl font-semibold text-white mb-3">What areas do you serve?</h3>
-                <p className="text-gray-400">We serve Palm Coast, Jacksonville, Daytona Beach, Ormond Beach, DeLand, St. Augustine, and all surrounding areas within a 50-mile radius. Available 24/7 for emergency services.</p>
+                <p className="text-gray-400">We serve Palm Coast, Jacksonville, Daytona Beach, Ormond Beach, DeLand, St. Augustine, and all surrounding areas within a 100-mile radius. Available 24/7 for emergency services.</p>
               </div>
             </div>
           </div>
