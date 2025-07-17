@@ -98,7 +98,7 @@ export default function ContactSection() {
       bgColor: "bg-blue-600", // Changed from green to blue
       title: "Service Area",
       subtitle: "Based in Palm Coast, FL",
-      contact: "Serving 50-mile radius"
+      contact: "Serving 120-mile radius"
     }
   ];
 
