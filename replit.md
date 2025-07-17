@@ -164,6 +164,11 @@ AA Trust Roadside is a full-stack web application for a mobile tire repair and r
   - **Local SEO Enhancement:** Added location-specific content and "near me" optimization throughout new pages
   - **Emergency Service Focus:** Emphasized 24/7 availability, 15-minute response times, and emergency positioning
   - **Performance Metrics:** Targeting improvement from 9 total clicks to projected 50+ clicks monthly through high-opportunity keyword capture
+- **Service Radius Update:** Updated all service radius references from 50 miles to 100 miles based on owner's actual service area:
+  - About page stats section (50mi → 100mi)
+  - About page service areas list (+ 50 mile radius → + 100 mile radius)  
+  - Contact section service area (120-mile radius → 100-mile radius)
+  - Jump Start Battery Service FAQ section (50-mile radius → 100-mile radius)
 
 ## User Preferences
 

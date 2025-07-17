@@ -16,7 +16,7 @@ export default function About() {
   const companyStats = [
     { icon: Users, number: "60+", label: "Trusted Drivers" },
     { icon: Clock, number: "15min", label: "Avg Response Time" },
-    { icon: MapPin, number: "50mi", label: "Service Radius" },
+    { icon: MapPin, number: "100mi", label: "Service Radius" },
     { icon: Star, number: "4.8", label: "Customer Rating" }
   ];
 
@@ -133,7 +133,7 @@ export default function About() {
                     "St. Augustine, FL",
                     "Palatka, FL",
                     "Gainesville, FL",
-                    "+ 50 mile radius"
+                    "+ 100 mile radius"
                   ].map((area, index) => (
                     <div key={index} className="flex items-center">
                       <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
