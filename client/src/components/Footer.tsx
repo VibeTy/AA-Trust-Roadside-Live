@@ -132,28 +132,6 @@ export default function Footer() {
               </li>
             </ul>
           </div>
-            <h3 className="text-lg font-semibold mb-4">Service Areas</h3>
-            <ul className="space-y-2">
-              <li>
-                <a href="/locations/palm-coast" className="text-gray-400 hover:text-white transition-colors">Palm Coast Mobile Tire Repair</a>
-              </li>
-              <li>
-                <a href="/locations/daytona-beach" className="text-gray-400 hover:text-white transition-colors">Daytona Beach Tire Service</a>
-              </li>
-              <li>
-                <a href="/locations/jacksonville" className="text-gray-400 hover:text-white transition-colors">Jacksonville Emergency Tire</a>
-              </li>
-              <li>
-                <a href="/locations/ormond-beach" className="text-gray-400 hover:text-white transition-colors">Ormond Beach Roadside</a>
-              </li>
-              <li>
-                <a href="/locations/deland" className="text-gray-400 hover:text-white transition-colors">DeLand Mobile Tire</a>
-              </li>
-              <li>
-                <span className="text-gray-400">+ All Northeast Florida</span>
-              </li>
-            </ul>
-          </div>
         </div>
         
         <div className="border-t border-gray-800 mt-8 pt-8 text-center">
