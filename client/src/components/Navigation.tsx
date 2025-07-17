@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useTheme } from "@/hooks/use-theme";
 import { Phone, ChevronDown } from "lucide-react";
-import { useLocation, useRouter } from "wouter";
+import { useLocation } from "wouter";
 
 export default function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -9,7 +9,6 @@ export default function Navigation() {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
   const [location] = useLocation();
-  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,20 +19,28 @@ export default function Navigation() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Check for stored section to scroll to when on home page
+  useEffect(() => {
+    if (location === "/") {
+      const sectionToScroll = sessionStorage.getItem('scrollToSection');
+      if (sectionToScroll) {
+        sessionStorage.removeItem('scrollToSection');
+        setTimeout(() => {
+          const element = document.getElementById(sectionToScroll);
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+          }
+        }, 100);
+      }
+    }
+  }, [location]);
+
   const scrollToSection = (sectionId: string) => {
     // If we're not on the home page, navigate to home first
     if (location !== "/") {
-      // Use router to navigate to home page
-      router.navigate("/");
-      
-      // Wait for navigation to complete, then scroll to section
-      setTimeout(() => {
-        const element = document.getElementById(sectionId);
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
-        }
-      }, 200);
-      setIsMobileMenuOpen(false);
+      // Navigate to home page and store the section to scroll to
+      sessionStorage.setItem('scrollToSection', sectionId);
+      window.location.href = "/";
       return;
     }
     
