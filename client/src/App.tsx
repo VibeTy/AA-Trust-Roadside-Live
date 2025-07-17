@@ -24,6 +24,12 @@ import Contact from "@/pages/Contact";
 import Emergency24HourTireRepair from "@/pages/Emergency24HourTireRepair";
 import MobileTireRepairNearMe from "@/pages/MobileTireRepairNearMe";
 
+// Service Pages
+import JumpStartBatteryService from "@/pages/JumpStartBatteryService";
+import MobileEngineDiagnostics from "@/pages/MobileEngineDiagnostics";
+import VehicleLockoutService from "@/pages/VehicleLockoutService";
+import EmergencyFuelDelivery from "@/pages/EmergencyFuelDelivery";
+
 // Location pages
 import PalmCoast from "@/pages/locations/PalmCoast";
 import DaytonaBeach from "@/pages/locations/DaytonaBeach";
@@ -56,6 +62,12 @@ function Router() {
       {/* SEO Landing Pages */}
       <Route path="/emergency-24-hour-tire-repair" component={Emergency24HourTireRepair} />
       <Route path="/mobile-tire-repair-near-me" component={MobileTireRepairNearMe} />
+
+      {/* Service Pages */}
+      <Route path="/jump-start-battery-service-fl" component={JumpStartBatteryService} />
+      <Route path="/mobile-engine-diagnostics-fl" component={MobileEngineDiagnostics} />
+      <Route path="/vehicle-lockout-service-fl" component={VehicleLockoutService} />
+      <Route path="/emergency-fuel-delivery-fl" component={EmergencyFuelDelivery} />
 
       {/* Location pages */}
       <Route path="/locations/palm-coast" component={PalmCoast} />
