@@ -364,7 +364,7 @@ export default function AdminDashboard() {
               <CheckCircle className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-green-600">47</div>
+              <div className="text-2xl font-bold text-green-600">0</div>
               <p className="text-xs text-muted-foreground">This month</p>
             </CardContent>
           </Card>
@@ -731,15 +731,28 @@ export default function AdminDashboard() {
                       </div>
                       {!quote.contacted && editingQuote?.id !== quote.id && (
                         <div className="space-y-4">
-                          <AIReplyAssistant leadData={{
-                            name: quote.name,
-                            phone: quote.phone,
-                            location: quote.location,
-                            serviceType: quote.serviceType,
-                            description: quote.description,
-                            urgency: quote.urgency,
-                            vehicleInfo: quote.vehicleInfo
-                          }} />
+                          <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
+                            <h4 className="font-semibold text-blue-800 dark:text-blue-200 mb-2">Quick Response</h4>
+                            <p className="text-sm text-blue-700 dark:text-blue-300 mb-3">
+                              Contact {quote.name} at {quote.phone} for {quote.serviceType} in {quote.location}
+                            </p>
+                            <div className="flex gap-2">
+                              <Button 
+                                size="sm"
+                                variant="outline"
+                                onClick={() => {
+                                  const message = `Hi ${quote.name}! This is AA Trust Roadside. I got your ${quote.serviceType} request in ${quote.location}. I can help you right away. Call me at (386) 372-8412.`;
+                                  navigator.clipboard.writeText(message);
+                                  toast({
+                                    title: "Message Copied",
+                                    description: "Quick response message copied to clipboard",
+                                  });
+                                }}
+                              >
+                                Copy Quick Response
+                              </Button>
+                            </div>
+                          </div>
                           
                           <div className="flex gap-2 pt-2">
                             <Button 
