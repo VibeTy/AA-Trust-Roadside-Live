@@ -11,7 +11,7 @@ export default function TwentyFourSevenTireShop() {
     <div className="min-h-screen bg-black">
       <SEOHead 
         title="24/7 Tire Shop Near Me | Emergency Mobile Tire Service | AA Trust Roadside"
-        description="24/7 tire shop service near you! Emergency mobile tire replacement, repair, and installation. Open all night for tire emergencies in Palm Coast, Jacksonville & Northeast FL. Call (386) 445-7505!"
+        description="24/7 tire shop service near you! Emergency mobile tire replacement, repair, and installation. Open all night for tire emergencies in Palm Coast, Jacksonville & Northeast FL. Call (386) 372-8412!"
         keywords="24/7 tire shop near me, mobile tire repair near me, emergency tire service, tire shop open 24 hours, mobile tire replacement, tire repair near me open now"
         canonicalUrl="https://aatrustroadside.com/24-7-tire-shop-near-me"
       />
@@ -34,9 +34,9 @@ export default function TwentyFourSevenTireShop() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="bg-gradient-to-r from-blue-600 to-red-600 hover:from-blue-700 hover:to-red-700 text-white px-8 py-6 text-lg">
                 <i className="fas fa-phone mr-2"></i>
-                24/7 Emergency: (386) 445-7505
+                24/7 Emergency: (386) 372-8412
               </Button>
-              <Button size="lg" variant="outline" className="border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white px-8 py-6 text-lg">
+              <Button size="lg" variant="outline" className="border-blue-500 text-blue-400 bg-black/50 hover:bg-blue-500 hover:text-white px-8 py-6 text-lg font-semibold">
                 <i className="fas fa-tire mr-2"></i>
                 Get Tire Quote
               </Button>
@@ -304,9 +304,9 @@ export default function TwentyFourSevenTireShop() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-6 text-lg font-semibold">
               <i className="fas fa-phone mr-2"></i>
-              Call 24/7: (386) 445-7505
+              Call 24/7: (386) 372-8412
             </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-600 px-8 py-6 text-lg">
+            <Button size="lg" variant="outline" className="border-white text-white bg-white/10 hover:bg-white hover:text-blue-600 px-8 py-6 text-lg font-semibold">
               <i className="fas fa-tire mr-2"></i>
               Get Tire Quote
             </Button>
