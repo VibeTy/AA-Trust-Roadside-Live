@@ -89,8 +89,8 @@ export default function ContactSection() {
       icon: "fas fa-clock",
       bgColor: "bg-blue-600", // Changed from yellow to blue
       title: "Business Hours",
-      subtitle: "Mon-Fri: 7:00 AM - 7:00 PM",
-      contact: "24/7 Emergency Service",
+      subtitle: "24/7 Emergency Service",
+      contact: "Always Available",
       textColor: "text-blue-600" // Changed from red to blue
     },
     {
@@ -139,7 +139,7 @@ export default function ContactSection() {
                       </p>
                     )}
                     {info.title === "Business Hours" && (
-                      <p className="text-gray-700 dark:text-gray-300">Weekends: Emergency Only</p>
+                      <p className="text-gray-700 dark:text-gray-300">Open Around the Clock</p>
                     )}
                   </div>
                 </div>
