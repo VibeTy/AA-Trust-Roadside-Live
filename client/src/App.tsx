@@ -29,6 +29,9 @@ import JumpStartBatteryService from "@/pages/JumpStartBatteryService";
 import MobileEngineDiagnostics from "@/pages/MobileEngineDiagnostics";
 import VehicleLockoutService from "@/pages/VehicleLockoutService";
 import EmergencyFuelDelivery from "@/pages/EmergencyFuelDelivery";
+import DieselRoadsideAssistance from "@/pages/services/DieselRoadsideAssistance";
+import EngineServicesNearMe from "@/pages/services/EngineServicesNearMe";
+import TwentyFourSevenTireShop from "@/pages/services/TwentyFourSevenTireShop";
 
 // Location pages
 import PalmCoast from "@/pages/locations/PalmCoast";
@@ -68,6 +71,9 @@ function Router() {
       <Route path="/mobile-engine-diagnostics-fl" component={MobileEngineDiagnostics} />
       <Route path="/vehicle-lockout-service-fl" component={VehicleLockoutService} />
       <Route path="/emergency-fuel-delivery-fl" component={EmergencyFuelDelivery} />
+      <Route path="/diesel-roadside-assistance-near-me" component={DieselRoadsideAssistance} />
+      <Route path="/engine-services-near-me" component={EngineServicesNearMe} />
+      <Route path="/24-7-tire-shop-near-me" component={TwentyFourSevenTireShop} />
 
       {/* Location pages */}
       <Route path="/locations/palm-coast" component={PalmCoast} />
