@@ -11,7 +11,7 @@ export default function EngineServicesNearMe() {
     <div className="min-h-screen bg-black">
       <SEOHead 
         title="Engine Services Near Me | 24/7 Mobile Engine Repair | AA Trust Roadside"
-        description="Expert engine services near you! 24/7 mobile engine repair, diagnostics, and maintenance. Serving Palm Coast, Jacksonville & Northeast FL. Call (386) 445-7505 for immediate engine help!"
+        description="Expert engine services near you! 24/7 mobile engine repair, diagnostics, and maintenance. Serving Palm Coast, Jacksonville & Northeast FL. Call (386) 372-8412 for immediate engine help!"
         keywords="engine services near me, mobile engine repair, engine diagnostics near me, 24/7 engine service, truck engine repair, diesel engine service, emergency engine repair"
         canonicalUrl="https://aatrustroadside.com/engine-services-near-me"
       />
@@ -34,7 +34,7 @@ export default function EngineServicesNearMe() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="bg-gradient-to-r from-blue-600 to-red-600 hover:from-blue-700 hover:to-red-700 text-white px-8 py-6 text-lg">
                 <i className="fas fa-phone mr-2"></i>
-                Emergency: (386) 445-7505
+                Emergency: (386) 372-8412
               </Button>
               <Button size="lg" variant="outline" className="border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white px-8 py-6 text-lg">
                 <i className="fas fa-wrench mr-2"></i>
@@ -204,7 +204,7 @@ export default function EngineServicesNearMe() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-6 text-lg font-semibold">
               <i className="fas fa-phone mr-2"></i>
-              Call Now: (386) 445-7505
+              Call Now: (386) 372-8412
             </Button>
             <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-600 px-8 py-6 text-lg">
               <i className="fas fa-wrench mr-2"></i>

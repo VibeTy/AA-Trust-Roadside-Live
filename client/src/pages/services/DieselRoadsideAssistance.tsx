@@ -12,7 +12,7 @@ export default function DieselRoadsideAssistance() {
     <div className="min-h-screen bg-black">
       <SEOHead 
         title="Diesel Roadside Assistance Near Me | 24/7 Emergency Service | AA Trust Roadside"
-        description="Expert diesel roadside assistance near you! 24/7 emergency service for diesel trucks, forced regens, DEF issues, and more. Serving Palm Coast, Jacksonville & Northeast FL. Call (386) 445-7505!"
+        description="Expert diesel roadside assistance near you! 24/7 emergency service for diesel trucks, forced regens, DEF issues, and more. Serving Palm Coast, Jacksonville & Northeast FL. Call (386) 372-8412!"
         keywords="diesel roadside assistance near me, diesel mechanic near me, 24/7 diesel repair, forced regen service, DEF system repair, diesel truck breakdown, emergency diesel service"
         canonicalUrl="https://aatrustroadside.com/diesel-roadside-assistance-near-me"
       />
@@ -35,7 +35,7 @@ export default function DieselRoadsideAssistance() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="bg-gradient-to-r from-blue-600 to-red-600 hover:from-blue-700 hover:to-red-700 text-white px-8 py-6 text-lg">
                 <i className="fas fa-phone mr-2"></i>
-                Call Now: (386) 445-7505
+                Call Now: (386) 372-8412
               </Button>
               <Button size="lg" variant="outline" className="border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white px-8 py-6 text-lg">
                 <i className="fas fa-clipboard mr-2"></i>
@@ -256,7 +256,7 @@ export default function DieselRoadsideAssistance() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-6 text-lg font-semibold">
               <i className="fas fa-phone mr-2"></i>
-              Call Emergency Line: (386) 445-7505
+              Call Emergency Line: (386) 372-8412
             </Button>
             <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-600 px-8 py-6 text-lg">
               <i className="fas fa-clipboard mr-2"></i>

@@ -27,17 +27,6 @@ export default function Navigation() {
 
   return (
     <nav className={`bg-black shadow-lg fixed w-full top-0 z-50 transition-all duration-300 ${isScrolled ? "shadow-xl" : ""}`}>
-      {/* Mobile Sticky Call Banner */}
-      <div className="md:hidden bg-blue-600 text-white text-center py-2 px-4">
-        <a 
-          href="tel:+13863728412"
-          className="flex items-center justify-center gap-2 font-semibold"
-        >
-          <Phone className="w-4 h-4" />
-          24/7 Emergency: (386) 372-8412 - Call Now!
-        </a>
-      </div>
-      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
