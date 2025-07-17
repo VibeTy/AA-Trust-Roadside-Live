@@ -73,6 +73,20 @@
     background-color: var(--diesel-blue);
   }
   
+  /* Handle Replit development banner and improve mobile navigation */
+  @media (max-width: 768px) {
+    nav {
+      position: fixed !important;
+      top: 0 !important;
+      z-index: 1000 !important;
+    }
+    
+    /* Account for any potential development banners */
+    body {
+      padding-top: 0 !important;
+    }
+  }
+  
   .diesel-amber {
     color: var(--diesel-amber);
   }

@@ -54,15 +54,15 @@ export default function Navigation() {
   return (
     <nav className={`bg-black shadow-lg fixed w-full top-0 z-50 transition-all duration-300 ${isScrolled ? "shadow-xl" : ""}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-16 md:h-20">
           {/* Logo */}
-          <a href="/" className="flex items-center cursor-pointer">
+          <a href="/" className="flex items-center cursor-pointer flex-shrink-0">
             <img 
               src="/attached_assets/7938bab5-b302-4cf1-8a69-78cfce3c9be4_1750802043592.png" 
               alt="AA Trust Roadside Logo" 
-              className="h-10 w-auto mr-3"
+              className="h-8 md:h-10 w-auto mr-2 md:mr-3"
             />
-            <div className="text-xl font-bold">
+            <div className="text-lg md:text-xl font-bold whitespace-nowrap">
               <span className="text-white">AA TRUST </span>
               <span className="text-blue-500">ROADSIDE</span>
             </div>
@@ -209,7 +209,7 @@ export default function Navigation() {
           <div className="md:hidden flex items-center">
             <button 
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-gray-300 hover:text-blue-500"
+              className="text-gray-300 hover:text-blue-500 p-2"
             >
               <i className="fas fa-bars text-xl"></i>
             </button>

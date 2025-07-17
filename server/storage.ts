@@ -134,6 +134,25 @@ export class MemStorage implements IStorage {
     return undefined;
   }
 
+  async updateQuote(id: number, updateData: Partial<QuoteSubmission>): Promise<QuoteSubmission | undefined> {
+    const quote = this.quoteSubmissions.get(id);
+     if (quote) {
+      Object.assign(quote, updateData);
+      this.quoteSubmissions.set(id, quote);
+      return quote;
+    }
+    return undefined;
+  }
+
+  async deleteQuote(id: number): Promise<QuoteSubmission | undefined> {
+    const quote = this.quoteSubmissions.get(id);
+    if (quote) {
+      this.quoteSubmissions.delete(id);
+      return quote;
+    }
+    return undefined;
+  }
+
   async createBookingSubmission(insertSubmission: InsertBookingSubmission): Promise<BookingSubmission> {
     const id = this.currentBookingId++;
     const submission: BookingSubmission = {

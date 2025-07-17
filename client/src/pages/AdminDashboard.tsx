@@ -6,6 +6,9 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Phone, Mail, MapPin, Clock, CheckCircle, AlertCircle } from "lucide-react";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
@@ -52,6 +55,9 @@ export default function AdminDashboard() {
     }
   }, [quotesError, contactsError, bookingsError, setLocation, toast]);
 
+  const [editingQuote, setEditingQuote] = useState<QuoteSubmission | null>(null);
+  const [editForm, setEditForm] = useState<Partial<QuoteSubmission>>({});
+
   const markContactedMutation = useMutation({
     mutationFn: async (id: number) => {
       const response = await fetch(`/api/quotes/${id}/contacted`, {
@@ -69,6 +75,81 @@ export default function AdminDashboard() {
       });
     },
   });
+
+  const deleteQuoteMutation = useMutation({
+    mutationFn: async (id: number) => {
+      const response = await fetch(`/api/quotes/${id}`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+      });
+      if (!response.ok) throw new Error('Failed to delete quote');
+      return response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['/api/quotes'] });
+      toast({
+        title: "Success",
+        description: "Quote deleted successfully",
+      });
+    },
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Failed to delete quote",
+        variant: "destructive",
+      });
+    },
+  });
+
+  const updateQuoteMutation = useMutation({
+    mutationFn: async ({ id, data }: { id: number; data: Partial<QuoteSubmission> }) => {
+      const response = await fetch(`/api/quotes/${id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      if (!response.ok) throw new Error('Failed to update quote');
+      return response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['/api/quotes'] });
+      setEditingQuote(null);
+      setEditForm({});
+      toast({
+        title: "Success",
+        description: "Quote updated successfully",
+      });
+    },
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Failed to update quote",
+        variant: "destructive",
+      });
+    },
+  });
+
+  const handleEdit = (quote: QuoteSubmission) => {
+    setEditingQuote(quote);
+    setEditForm(quote);
+  };
+
+  const handleSaveEdit = () => {
+    if (editingQuote && editForm) {
+      updateQuoteMutation.mutate({ id: editingQuote.id, data: editForm });
+    }
+  };
+
+  const handleCancelEdit = () => {
+    setEditingQuote(null);
+    setEditForm({});
+  };
+
+  const handleDelete = (id: number, customerName: string) => {
+    if (confirm(`Are you sure you want to delete the quote from ${customerName}? This action cannot be undone.`)) {
+      deleteQuoteMutation.mutate(id);
+    }
+  };
 
   const logoutMutation = useMutation({
     mutationFn: async () => {
@@ -331,27 +412,99 @@ export default function AdminDashboard() {
                     <CardHeader>
                       <div className="flex justify-between items-start">
                         <div>
-                          <CardTitle className="text-lg">{quote.name}</CardTitle>
-                          <CardDescription className="flex items-center gap-2 mt-1">
-                            <Clock className="h-4 w-4" />
-                            {formatDate(quote.createdAt)}
-                          </CardDescription>
-                        </div>
-                        <div className="flex gap-2">
-                          <Badge className={getUrgencyColor(quote.urgency)}>
-                            {quote.urgency}
-                          </Badge>
-                          {quote.contacted ? (
-                            <Badge variant="secondary" className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
-                              <CheckCircle className="h-3 w-3 mr-1" />
-                              Contacted
-                            </Badge>
+                          {editingQuote?.id === quote.id ? (
+                            <div className="space-y-2">
+                              <Input
+                                value={editForm.name || ''}
+                                onChange={(e) => setEditForm({ ...editForm, name: e.target.value })}
+                                placeholder="Customer Name"
+                                className="text-lg font-semibold"
+                              />
+                              <CardDescription className="flex items-center gap-2 mt-1">
+                                <Clock className="h-4 w-4" />
+                                {formatDate(quote.createdAt)}
+                              </CardDescription>
+                            </div>
                           ) : (
-                            <Badge variant="destructive">
-                              <AlertCircle className="h-3 w-3 mr-1" />
-                              Pending
-                            </Badge>
+                            <div>
+                              <CardTitle className="text-lg">{quote.name}</CardTitle>
+                              <CardDescription className="flex items-center gap-2 mt-1">
+                                <Clock className="h-4 w-4" />
+                                {formatDate(quote.createdAt)}
+                              </CardDescription>
+                            </div>
                           )}
+                        </div>
+                        <div className="flex gap-2 items-center">
+                          {editingQuote?.id === quote.id ? (
+                            <div className="flex gap-1">
+                              <Button 
+                                size="sm" 
+                                onClick={handleSaveEdit}
+                                disabled={updateQuoteMutation.isPending}
+                              >
+                                Save
+                              </Button>
+                              <Button 
+                                size="sm" 
+                                variant="outline" 
+                                onClick={handleCancelEdit}
+                              >
+                                Cancel
+                              </Button>
+                            </div>
+                          ) : (
+                            <div className="flex gap-1">
+                              <Button 
+                                size="sm" 
+                                variant="outline"
+                                onClick={() => handleEdit(quote)}
+                              >
+                                Edit
+                              </Button>
+                              <Button 
+                                size="sm" 
+                                variant="destructive"
+                                onClick={() => handleDelete(quote.id, quote.name)}
+                                disabled={deleteQuoteMutation.isPending}
+                              >
+                                Delete
+                              </Button>
+                            </div>
+                          )}
+                          <div className="flex gap-2">
+                            {editingQuote?.id === quote.id ? (
+                              <Select 
+                                value={editForm.urgency || ''} 
+                                onValueChange={(value) => setEditForm({ ...editForm, urgency: value })}
+                              >
+                                <SelectTrigger className="w-32">
+                                  <SelectValue />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectItem value="Emergency (ASAP)">Emergency</SelectItem>
+                                  <SelectItem value="Urgent (Today)">Urgent</SelectItem>
+                                  <SelectItem value="Within 24 Hours">24 Hours</SelectItem>
+                                  <SelectItem value="This Week">This Week</SelectItem>
+                                </SelectContent>
+                              </Select>
+                            ) : (
+                              <Badge className={getUrgencyColor(quote.urgency)}>
+                                {quote.urgency}
+                              </Badge>
+                            )}
+                            {quote.contacted ? (
+                              <Badge variant="secondary" className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                                <CheckCircle className="h-3 w-3 mr-1" />
+                                Contacted
+                              </Badge>
+                            ) : (
+                              <Badge variant="destructive">
+                                <AlertCircle className="h-3 w-3 mr-1" />
+                                Pending
+                              </Badge>
+                            )}
+                          </div>
                         </div>
                       </div>
                     </CardHeader>
@@ -360,34 +513,108 @@ export default function AdminDashboard() {
                         <div className="space-y-2">
                           <div className="flex items-center gap-2">
                             <Phone className="h-4 w-4 text-gray-500" />
-                            <a href={`tel:${quote.phone}`} className="text-blue-600 hover:underline font-medium">
-                              {quote.phone}
-                            </a>
+                            {editingQuote?.id === quote.id ? (
+                              <Input
+                                value={editForm.phone || ''}
+                                onChange={(e) => setEditForm({ ...editForm, phone: e.target.value })}
+                                placeholder="Phone Number"
+                                className="text-sm"
+                              />
+                            ) : (
+                              <a href={`tel:${quote.phone}`} className="text-blue-600 hover:underline font-medium">
+                                {quote.phone}
+                              </a>
+                            )}
                           </div>
-                          {quote.email && (
+                          {(quote.email || editingQuote?.id === quote.id) && (
                             <div className="flex items-center gap-2">
                               <Mail className="h-4 w-4 text-gray-500" />
-                              <a href={`mailto:${quote.email}`} className="text-blue-600 hover:underline">
-                                {quote.email}
-                              </a>
+                              {editingQuote?.id === quote.id ? (
+                                <Input
+                                  value={editForm.email || ''}
+                                  onChange={(e) => setEditForm({ ...editForm, email: e.target.value })}
+                                  placeholder="Email Address"
+                                  className="text-sm"
+                                />
+                              ) : (
+                                <a href={`mailto:${quote.email}`} className="text-blue-600 hover:underline">
+                                  {quote.email}
+                                </a>
+                              )}
                             </div>
                           )}
                           <div className="flex items-center gap-2">
                             <MapPin className="h-4 w-4 text-gray-500" />
-                            <span>{quote.location}</span>
+                            {editingQuote?.id === quote.id ? (
+                              <Input
+                                value={editForm.location || ''}
+                                onChange={(e) => setEditForm({ ...editForm, location: e.target.value })}
+                                placeholder="Location"
+                                className="text-sm"
+                              />
+                            ) : (
+                              <span>{quote.location}</span>
+                            )}
                           </div>
                         </div>
                         <div className="space-y-2">
-                          <div><strong>Service:</strong> {quote.serviceType}</div>
-                          {quote.vehicleInfo && <div><strong>Vehicle:</strong> {quote.vehicleInfo}</div>}
+                          <div>
+                            <strong>Service:</strong> 
+                            {editingQuote?.id === quote.id ? (
+                              <Select 
+                                value={editForm.serviceType || ''} 
+                                onValueChange={(value) => setEditForm({ ...editForm, serviceType: value })}
+                              >
+                                <SelectTrigger className="w-full mt-1">
+                                  <SelectValue />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectItem value="Emergency Roadside Service">Emergency Roadside Service</SelectItem>
+                                  <SelectItem value="Mobile Mechanic Service">Mobile Mechanic Service</SelectItem>
+                                  <SelectItem value="Diagnostic Services">Diagnostic Services</SelectItem>
+                                  <SelectItem value="Fleet & Commercial Service">Fleet & Commercial Service</SelectItem>
+                                  <SelectItem value="Motorcycle Service">Motorcycle Service</SelectItem>
+                                  <SelectItem value="General Automotive">General Automotive</SelectItem>
+                                  <SelectItem value="Other">Other</SelectItem>
+                                </SelectContent>
+                              </Select>
+                            ) : (
+                              <span> {quote.serviceType}</span>
+                            )}
+                          </div>
+                          {(quote.vehicleInfo || editingQuote?.id === quote.id) && (
+                            <div>
+                              <strong>Vehicle:</strong> 
+                              {editingQuote?.id === quote.id ? (
+                                <Input
+                                  value={editForm.vehicleInfo || ''}
+                                  onChange={(e) => setEditForm({ ...editForm, vehicleInfo: e.target.value })}
+                                  placeholder="Vehicle Information"
+                                  className="text-sm mt-1"
+                                />
+                              ) : (
+                                <span> {quote.vehicleInfo}</span>
+                              )}
+                            </div>
+                          )}
                         </div>
                       </div>
                       <Separator />
                       <div>
                         <strong>Description:</strong>
-                        <p className="mt-1 text-gray-700 dark:text-gray-300">{quote.description}</p>
+                        {editingQuote?.id === quote.id ? (
+                          <Textarea
+                            value={editForm.description || ''}
+                            onChange={(e) => setEditForm({ ...editForm, description: e.target.value })}
+                            placeholder="Service Description"
+                            className="mt-1"
+                            rows={3}
+                          />
+                        ) : (
+                          <p className="mt-1 text-gray-700 dark:text-gray-300">{quote.description}</p>
+                        )}
                       </div>
-                      {!quote.contacted && (
+                      {!quote.contacted && editingQuote?.id !== quote.id && (
                         <div className="space-y-4">
                           <AIReplyAssistant leadData={{
                             name: quote.name,
