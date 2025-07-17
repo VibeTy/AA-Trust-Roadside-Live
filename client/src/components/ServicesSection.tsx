@@ -1,4 +1,22 @@
 export default function ServicesSection() {
+  const primaryServices = [
+    "Mobile Tire Replacement",
+    "Tire Repair (Punctures, Flats)",
+    "Tire Rotation & Balancing",
+    "Wholesale Tire Sourcing",
+    "Emergency Tire Service",
+    "Commercial Tire Service"
+  ];
+
+  const secondaryServices = [
+    "Jump Start & Battery Service",
+    "Mobile Engine Diagnostics",
+    "Vehicle Lockout Service",
+    "Emergency Fuel Delivery",
+    "Light Mechanical Repairs",
+    "Fleet & Commercial Service"
+  ];
+
   const services = [
     {
       icon: "fas fa-tire",
