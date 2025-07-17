@@ -343,6 +343,62 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Update quote (full edit)
+  app.patch("/api/quotes/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const updateData = req.body;
+
+      const updatedQuote = await storage.updateQuote(id, updateData);
+
+      if (!updatedQuote) {
+        return res.status(404).json({
+          success: false,
+          message: "Quote not found"
+        });
+      }
+
+      res.json({
+        success: true,
+        message: "Quote updated successfully",
+        quote: updatedQuote
+      });
+    } catch (error) {
+      console.error("Error updating quote:", error);
+      res.status(500).json({
+        success: false,
+        message: "Internal server error"
+      });
+    }
+  });
+
+  // Delete quote
+  app.delete("/api/quotes/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+
+      const deletedQuote = await storage.deleteQuote(id);
+
+      if (!deletedQuote) {
+        return res.status(404).json({
+          success: false,
+          message: "Quote not found"
+        });
+      }
+
+      res.json({
+        success: true,
+        message: "Quote deleted successfully"
+      });
+    } catch (error) {
+      console.error("Error deleting quote:", error);
+      res.status(500).json({
+        success: false,
+        message: "Internal server error"
+      });
+    }
+  });
+
   // Get all contact submissions (for admin purposes)
   app.get("/api/contacts", async (req, res) => {
     try {
