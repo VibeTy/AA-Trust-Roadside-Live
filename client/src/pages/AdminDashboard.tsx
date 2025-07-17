@@ -586,14 +586,14 @@ export default function AdminDashboard() {
                     <div className="flex gap-2">
                       <input
                         type="text"
-                        value="https://g.page/r/YOUR_PLACE_ID/review"
+                        value="https://g.page/r/CRFbcS048_EyEBM/review"
                         readOnly
                         className="flex-1 px-3 py-2 border border-gray-300 rounded-md bg-white text-sm"
                       />
                       <Button 
                         size="sm"
                         onClick={() => {
-                          navigator.clipboard.writeText("https://g.page/r/YOUR_PLACE_ID/review");
+                          navigator.clipboard.writeText("https://g.page/r/CRFbcS048_EyEBM/review");
                           toast({
                             title: "Copied!",
                             description: "Review link copied to clipboard",

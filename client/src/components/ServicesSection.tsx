@@ -1,20 +1,50 @@
 export default function ServicesSection() {
   const primaryServices = [
-    "Mobile Tire Replacement",
-    "Tire Repair (Punctures, Flats)",
-    "Tire Rotation & Balancing",
-    "Wholesale Tire Sourcing",
-    "Emergency Tire Service",
-    "Commercial Tire Service"
+    {
+      title: "Mobile Tire Repair",
+      description: "Flat tire? We come to you with professional tire repair and replacement services.",
+      icon: "🛞",
+      features: ["24/7 availability", "All tire types", "Roadside service"]
+    },
+    {
+      title: "Diesel Engine Repair",
+      description: "Expert diesel mechanics for trucks, RVs, and commercial vehicles.",
+      icon: "🔧",
+      features: ["Certified technicians", "Diagnostic tools", "Fleet services"]
+    },
+    {
+      title: "Jump Start Service",
+      description: "Dead battery? Quick and reliable jump start service to get you moving.",
+      icon: "🔋",
+      features: ["Instant response", "Battery testing", "Replacement available"]
+    },
+    {
+      title: "Emergency Fuel",
+      description: "Ran out of gas? We deliver fuel directly to your location.",
+      icon: "⛽",
+      features: ["Gas & diesel", "Emergency delivery", "24/7 service"]
+    },
+    {
+      title: "Vehicle Lockout",
+      description: "Locked out? Professional lockout service without damage to your vehicle.",
+      icon: "🔐",
+      features: ["All vehicle types", "No damage guarantee", "Fast response"]
+    },
+    {
+      title: "Winch Out Service",
+      description: "Stuck in mud, sand, or ditch? Heavy-duty winch service available.",
+      icon: "🚛",
+      features: ["Heavy-duty equipment", "Safe extraction", "Damage prevention"]
+    }
   ];
 
   const secondaryServices = [
-    "Jump Start & Battery Service",
-    "Mobile Engine Diagnostics",
-    "Vehicle Lockout Service",
-    "Emergency Fuel Delivery",
-    "Light Mechanical Repairs",
-    "Fleet & Commercial Service"
+    { title: "Mobile Oil Changes", icon: "🛢️" },
+    { title: "Brake Inspections", icon: "🛑" },
+    { title: "Battery Replacement", icon: "🔋" },
+    { title: "Alternator Service", icon: "⚡" },
+    { title: "Starter Repair", icon: "🔄" },
+    { title: "Cooling System", icon: "❄️" }
   ];
 
   const services = [
@@ -122,7 +152,7 @@ export default function ServicesSection() {
             <div key={index} className="bg-gray-900 border border-gray-800 rounded-lg p-6 hover:border-blue-500 transition-all duration-300">
               <div className="flex items-center mb-3">
                 <i className="fas fa-tire text-blue-500 text-xl mr-3"></i>
-                <h3 className="text-lg font-semibold text-white">{service}</h3>
+                <h3 className="text-lg font-semibold text-white">{service.title}</h3>
               </div>
             </div>
           ))}
@@ -141,7 +171,7 @@ export default function ServicesSection() {
             <div key={index} className="bg-gray-900 border border-gray-800 rounded-lg p-6 hover:border-blue-500 transition-all duration-300">
               <div className="flex items-center mb-3">
                 <i className="fas fa-tools text-gray-400 text-xl mr-3"></i>
-                <h3 className="text-lg font-semibold text-white">{service}</h3>
+                <h3 className="text-lg font-semibold text-white">{service.title}</h3>
               </div>
             </div>
           ))}

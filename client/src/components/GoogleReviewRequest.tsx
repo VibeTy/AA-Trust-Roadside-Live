@@ -13,7 +13,7 @@ interface GoogleReviewRequestProps {
 
 export default function GoogleReviewRequest({ 
   businessName = "AA Trust Roadside",
-  googleReviewUrl = "https://g.page/r/YOUR_GOOGLE_PLACE_ID/review",
+  googleReviewUrl = "https://g.page/r/CRFbcS048_EyEBM/review",
   showInline = false
 }: GoogleReviewRequestProps) {
   const [copied, setCopied] = useState(false);
