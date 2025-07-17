@@ -2,6 +2,9 @@ import { Link } from "wouter";
 import { Phone, Clock, MapPin, Wrench, Shield, Star } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
+import StickyCallButton from "@/components/StickyCallButton";
 
 export default function Emergency24HourTireRepair() {
   const emergencyServices = [
@@ -35,7 +38,9 @@ export default function Emergency24HourTireRepair() {
         canonicalUrl="/emergency-24-hour-tire-repair"
       />
       
-      <div className="min-h-screen bg-gray-900 pt-20">
+      <div className="min-h-screen bg-gray-900">
+        <Navigation />
+        <StickyCallButton />
         {/* Hero Section */}
         <section className="relative bg-gradient-to-br from-red-900 via-gray-900 to-black py-20">
           <div className="absolute inset-0 bg-black opacity-50"></div>
@@ -195,6 +200,8 @@ export default function Emergency24HourTireRepair() {
             </div>
           </div>
         </section>
+        
+        <Footer />
       </div>
     </>
   );
