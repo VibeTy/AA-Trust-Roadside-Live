@@ -10,6 +10,7 @@ import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { insertContactSubmissionSchema } from "@shared/schema";
 import { z } from "zod";
+import GoogleReviewRequest from "@/components/GoogleReviewRequest";
 
 const contactFormSchema = insertContactSubmissionSchema.extend({
   location: z.string().min(1, "Location is required"),
@@ -89,8 +90,8 @@ export default function ContactSection() {
       icon: "fas fa-clock",
       bgColor: "bg-blue-600", // Changed from yellow to blue
       title: "Business Hours",
-      subtitle: "Mon-Fri: 7:00 AM - 7:00 PM",
-      contact: "24/7 Emergency Service",
+      subtitle: "24/7 Emergency Service",
+      contact: "Always Available",
       textColor: "text-blue-600" // Changed from red to blue
     },
     {
@@ -98,7 +99,7 @@ export default function ContactSection() {
       bgColor: "bg-blue-600", // Changed from green to blue
       title: "Service Area",
       subtitle: "Based in Palm Coast, FL",
-      contact: "Serving 50-mile radius"
+      contact: "Serving 120-mile radius"
     }
   ];
 
@@ -139,7 +140,7 @@ export default function ContactSection() {
                       </p>
                     )}
                     {info.title === "Business Hours" && (
-                      <p className="text-gray-700 dark:text-gray-300">Weekends: Emergency Only</p>
+                      <p className="text-gray-700 dark:text-gray-300">Open Around the Clock</p>
                     )}
                   </div>
                 </div>
@@ -291,6 +292,11 @@ export default function ContactSection() {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Google Review Request Section */}
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
+        <GoogleReviewRequest showInline={true} />
       </div>
     </section>
   );

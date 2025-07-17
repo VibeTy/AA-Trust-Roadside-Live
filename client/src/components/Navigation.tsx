@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { useTheme } from "@/hooks/use-theme";
-import { Phone } from "lucide-react";
+import { Phone, ChevronDown } from "lucide-react";
 
 export default function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
@@ -66,12 +67,58 @@ export default function Navigation() {
             >
               About
             </a>
-            <button 
-              onClick={() => scrollToSection("services")} 
-              className="text-gray-300 hover:text-blue-400 transition-colors"
-            >
-              Services
-            </button>
+            {/* Services Dropdown */}
+            <div className="relative">
+              <button 
+                onClick={() => setIsServicesOpen(!isServicesOpen)}
+                className="flex items-center text-gray-300 hover:text-blue-400 transition-colors"
+              >
+                Services
+                <ChevronDown className={`w-4 h-4 ml-1 transition-transform ${isServicesOpen ? 'rotate-180' : ''}`} />
+              </button>
+              
+              {isServicesOpen && (
+                <div className="absolute top-full left-0 mt-2 w-64 bg-gray-900 border border-gray-700 rounded-lg shadow-lg z-50">
+                  <div className="py-2">
+                    <a 
+                      href="/mobile-tire-repair-near-me"
+                      className="block px-4 py-2 text-gray-300 hover:bg-gray-800 hover:text-blue-400 transition-colors"
+                      onClick={() => setIsServicesOpen(false)}
+                    >
+                      Mobile Tire Repair
+                    </a>
+                    <a 
+                      href="/jump-start-battery-service-fl"
+                      className="block px-4 py-2 text-gray-300 hover:bg-gray-800 hover:text-blue-400 transition-colors"
+                      onClick={() => setIsServicesOpen(false)}
+                    >
+                      Jump Start & Battery Service
+                    </a>
+                    <a 
+                      href="/mobile-engine-diagnostics-fl"
+                      className="block px-4 py-2 text-gray-300 hover:bg-gray-800 hover:text-blue-400 transition-colors"
+                      onClick={() => setIsServicesOpen(false)}
+                    >
+                      Mobile Engine Diagnostics
+                    </a>
+                    <a 
+                      href="/vehicle-lockout-service-fl"
+                      className="block px-4 py-2 text-gray-300 hover:bg-gray-800 hover:text-blue-400 transition-colors"
+                      onClick={() => setIsServicesOpen(false)}
+                    >
+                      Vehicle Lockout Service
+                    </a>
+                    <a 
+                      href="/emergency-fuel-delivery-fl"
+                      className="block px-4 py-2 text-gray-300 hover:bg-gray-800 hover:text-blue-400 transition-colors"
+                      onClick={() => setIsServicesOpen(false)}
+                    >
+                      Emergency Fuel Delivery
+                    </a>
+                  </div>
+                </div>
+              )}
+            </div>
             <button 
               onClick={() => scrollToSection("service-areas")} 
               className="text-gray-300 hover:text-blue-400 transition-colors"
@@ -148,12 +195,45 @@ export default function Navigation() {
               >
                 About
               </a>
-              <button 
-                onClick={() => scrollToSection("services")} 
-                className="text-gray-300 hover:text-blue-500 transition-colors text-left"
-              >
-                Services
-              </button>
+              {/* Mobile Services Menu */}
+              <div className="space-y-2">
+                <div className="text-gray-300 font-medium">Services</div>
+                <a 
+                  href="/mobile-tire-repair-near-me"
+                  className="block text-gray-400 hover:text-blue-500 transition-colors text-left ml-4"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Mobile Tire Repair
+                </a>
+                <a 
+                  href="/jump-start-battery-service-fl"
+                  className="block text-gray-400 hover:text-blue-500 transition-colors text-left ml-4"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Jump Start & Battery Service
+                </a>
+                <a 
+                  href="/mobile-engine-diagnostics-fl"
+                  className="block text-gray-400 hover:text-blue-500 transition-colors text-left ml-4"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Mobile Engine Diagnostics
+                </a>
+                <a 
+                  href="/vehicle-lockout-service-fl"
+                  className="block text-gray-400 hover:text-blue-500 transition-colors text-left ml-4"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Vehicle Lockout Service
+                </a>
+                <a 
+                  href="/emergency-fuel-delivery-fl"
+                  className="block text-gray-400 hover:text-blue-500 transition-colors text-left ml-4"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Emergency Fuel Delivery
+                </a>
+              </div>
               <button 
                 onClick={() => scrollToSection("service-areas")} 
                 className="text-gray-300 hover:text-blue-500 transition-colors text-left"

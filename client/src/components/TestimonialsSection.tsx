@@ -16,434 +16,434 @@ export default function TestimonialsSection() {
       rating: 5,
       text: "These guys saved the day! Our delivery truck broke down on I-95 and they were there within 30 minutes. Professional, fast, and got us back on the road quickly.",
       author: "Mike Rodriguez",
-      title: "Logistics Manager",
+      title: "",
       initial: "M"
     },
     {
       rating: 5,
       text: "Outstanding service! They handle all our fleet maintenance and their mobile service means zero downtime for our business. Highly recommend for any commercial operation.",
       author: "Sarah Thompson", 
-      title: "Fleet Operations Director",
+      title: "",
       initial: "S"
     },
     {
       rating: 5,
       text: "Fair pricing, expert technicians, and they actually show up when they say they will. Hard to find that level of reliability these days. Will definitely use them again.",
       author: "James Parker",
-      title: "Construction Contractor", 
+      title: "", 
       initial: "J"
     },
     {
       rating: 5,
       text: "Had a transmission issue with our semi near Daytona. AA Trust came out same day and fixed it roadside. Saved us thousands in towing costs. These guys know diesels inside and out.",
       author: "Carlos Mendez",
-      title: "Owner-Operator",
+      title: "",
       initial: "C"
     },
     {
       rating: 5,
       text: "Engine overheating on a hot summer day in Jacksonville. They diagnosed it fast and replaced the water pump on site. Back to hauling in 3 hours. Couldn't ask for better service.",
       author: "David Wilson",
-      title: "Fleet Manager",
+      title: "",
       initial: "D"
     },
     {
       rating: 5,
       text: "Called them for brake issues on our box truck. Honest assessment, fair price, and quality work. They even followed up the next day to make sure everything was running smooth.",
       author: "Lisa Chang",
-      title: "Delivery Supervisor",
+      title: "",
       initial: "L"
     },
     {
       rating: 5,
       text: "Electrical problems can be a nightmare but these technicians traced the issue in our Peterbilt quickly. Professional service and they cleaned up after themselves too.",
       author: "Robert Johnson",
-      title: "Truck Driver",
+      title: "",
       initial: "R"
     },
     {
       rating: 5,
       text: "Fuel system problems had us stranded at a truck stop. AA Trust was there in 45 minutes and had us running again. Fair pricing and no hidden fees. Will use them again.",
       author: "Maria Santos",
-      title: "Transportation Coordinator",
+      title: "",
       initial: "M"
     },
     {
       rating: 5,
       text: "Our Freightliner started throwing codes near St. Augustine. They came out with proper diagnostic equipment and fixed the EGR valve same day. Very knowledgeable team.",
       author: "Tom Bradley",
-      title: "Fleet Owner",
+      title: "",
       initial: "T"
     },
     {
       rating: 5,
       text: "Turbo issues on our delivery truck. They explained everything clearly and gave us options. Went with the repair and it's been running great for 6 months now.",
       author: "Jennifer Davis",
-      title: "Operations Manager",
+      title: "",
       initial: "J"
     },
     {
       rating: 5,
       text: "Coolant leak had us overheating on I-4. They located the problem fast and had the parts on their truck. Professional service and competitive pricing.",
       author: "Antonio Garcia",
-      title: "Driver",
+      title: "",
       initial: "A"
     },
     {
       rating: 5,
       text: "Air brake system acting up on our coach bus. AA Trust diagnosed it properly and fixed it right the first time. Passengers were impressed with how quickly we got back on the road.",
       author: "Kevin Moore",
-      title: "Bus Company Owner",
+      title: "",
       initial: "K"
     },
     {
       rating: 5,
       text: "Starter problems on our Mack truck. They had us running in under 2 hours. Fair price and warranty on the work. These guys understand the urgency of getting commercial vehicles back to work.",
       author: "Patricia Williams",
-      title: "Dispatcher",
+      title: "",
       initial: "P"
     },
     {
       rating: 5,
       text: "DPF issues were causing reduced power. They cleaned it properly and explained maintenance tips to prevent future problems. Good follow-up service too.",
       author: "Daniel Miller",
-      title: "Fleet Mechanic",
+      title: "",
       initial: "D"
     },
     {
       rating: 5,
       text: "Alternator failed on our delivery route. AA Trust came out with the right part and tools. Fixed it roadside and we finished our deliveries on time. Lifesavers!",
       author: "Rachel Green",
-      title: "Route Manager",
+      title: "",
       initial: "R"
     },
     {
       rating: 5,
       text: "Hydraulic problems on our dump truck. They had the expertise and equipment to fix it properly. Transparent pricing and quality workmanship. Highly recommend.",
       author: "Steve Anderson",
-      title: "Construction Foreman",
+      title: "",
       initial: "S"
     },
     {
       rating: 5,
       text: "DEF system malfunctioned causing engine derating. They knew exactly what to do and had us back to full power quickly. Knowledge and service you can trust.",
       author: "Michelle Taylor",
-      title: "Transportation Director",
+      title: "",
       initial: "M"
     },
     {
       rating: 5,
       text: "Clutch problems on our straight truck. Honest evaluation and they didn't oversell us. Fixed what needed fixing and gave maintenance advice. Will call them again.",
       author: "Brian White",
-      title: "Small Business Owner",
+      title: "",
       initial: "B"
     },
     {
       rating: 5,
       text: "Radiator leak on a Sunday had us stranded. They came out despite it being weekend and had us running again. Premium service when you need it most.",
       author: "Crystal Johnson",
-      title: "Logistics Coordinator",
+      title: "",
       initial: "C"
     },
     {
       rating: 5,
       text: "Injector problems were causing rough idle and black smoke. They diagnosed it correctly and replaced the faulty injectors. Engine runs like new now.",
       author: "Jose Martinez",
-      title: "Driver",
+      title: "",
       initial: "J"
     },
     {
       rating: 5,
       text: "Air compressor failure on our tractor trailer. They had the replacement and expertise to install it roadside. Professional service and fair pricing.",
       author: "Amanda Clark",
-      title: "Fleet Supervisor",
+      title: "",
       initial: "A"
     },
     {
       rating: 5,
       text: "Power steering pump went out near Palm Coast. They came prepared with the right parts and tools. Fixed it efficiently and cleaned up afterwards.",
       author: "Frank Thompson",
-      title: "Independent Contractor",
+      title: "",
       initial: "F"
     },
     {
       rating: 5,
       text: "Exhaust system problems were causing failures. They welded and replaced sections as needed. Quality work that's holding up well after several months.",
       author: "Diana Rodriguez",
-      title: "Shop Manager",
+      title: "",
       initial: "D"
     },
     {
       rating: 5,
       text: "Transmission leak was getting worse. They diagnosed the seal failure and fixed it properly. No more leaks and transmission is shifting smooth.",
       author: "Marcus Brown",
-      title: "Fleet Manager",
+      title: "",
       initial: "M"
     },
     {
       rating: 5,
       text: "Computer issues were causing all kinds of problems. They had the right diagnostic equipment and software to reprogram everything. Truck runs perfect now.",
       author: "Samantha Lee",
-      title: "Operations Supervisor",
+      title: "",
       initial: "S"
     },
     {
       rating: 5,
       text: "Fuel pump problems had us losing power. They tested everything thoroughly and replaced the faulty pump. Honest diagnosis and quality parts.",
       author: "Gregory Wilson",
-      title: "Driver",
+      title: "",
       initial: "G"
     },
     {
       rating: 5,
       text: "Turbo charger was failing on our Caterpillar engine. They sourced the right replacement and installed it expertly. Power is back to normal.",
       author: "Nicole Davis",
-      title: "Equipment Manager",
+      title: "",
       initial: "N"
     },
     {
       rating: 5,
       text: "Serpentine belt snapped on the highway. They came out quickly with the right belt and had us running in 30 minutes. Simple fix but they saved our day.",
       author: "Christopher Garcia",
-      title: "Delivery Driver",
+      title: "",
       initial: "C"
     },
     {
       rating: 5,
       text: "Oil leak was getting bad on our Volvo. They found the source and sealed it properly. No more oil spots and engine is running clean.",
       author: "Tiffany Moore",
-      title: "Fleet Coordinator",
+      title: "",
       initial: "T"
     },
     {
       rating: 5,
       text: "Suspension issues were making the ride rough. They diagnosed the air bags and replaced them. Much smoother ride and better handling now.",
       author: "Paul Williams",
-      title: "Owner-Operator",
+      title: "",
       initial: "P"
     },
     {
       rating: 5,
       text: "Cooling fan motor died in summer heat. They prioritized our emergency call and had the fan running again within 2 hours. Excellent emergency service.",
       author: "Kimberly Miller",
-      title: "Dispatcher",
+      title: "",
       initial: "K"
     },
     {
       rating: 5,
       text: "Brake chamber replacement on our trailer. They came with all the right tools and parts. Professional installation and tested everything before we left.",
       author: "Ronald Anderson",
-      title: "Safety Manager",
+      title: "",
       initial: "R"
     },
     {
       rating: 5,
       text: "Wiring harness problems were causing intermittent issues. They traced every wire and fixed all the damaged connections. No more electrical gremlins.",
       author: "Stephanie Taylor",
-      title: "Fleet Technician",
+      title: "",
       initial: "S"
     },
     {
       rating: 5,
       text: "Diesel particulate filter was clogged beyond cleaning. They explained the options and installed a quality replacement. Truck is running strong again.",
       author: "Jason White",
-      title: "Maintenance Supervisor",
+      title: "",
       initial: "J"
     },
     {
       rating: 5,
       text: "Water pump failure on our International. They diagnosed it quickly and had the replacement installed same day. No overheating issues since.",
       author: "Mary Johnson",
-      title: "Transportation Manager",
+      title: "",
       initial: "M"
     },
     {
       rating: 5,
       text: "Fifth wheel problems were affecting our coupling. They adjusted and lubricated everything properly. Much smoother hookups and no more binding.",
       author: "William Clark",
-      title: "Driver",
+      title: "",
       initial: "W"
     },
     {
       rating: 5,
       text: "Differential problems were causing noise and vibration. They rebuilt it properly with quality parts. Smooth and quiet operation now.",
       author: "Teresa Rodriguez",
-      title: "Fleet Owner",
+      title: "",
       initial: "T"
     },
     {
       rating: 5,
       text: "Engine control module went bad throwing multiple codes. They diagnosed it correctly and programmed the replacement. Truck is running like new.",
       author: "Michael Brown",
-      title: "Technician",
+      title: "",
       initial: "M"
     },
     {
       rating: 5,
       text: "Fuel filter was clogged causing power loss. Simple fix but they came out promptly and had us running again quickly. Good service for a simple problem.",
       author: "Sandra Lee",
-      title: "Office Manager",
+      title: "",
       initial: "S"
     },
     {
       rating: 5,
       text: "Exhaust brake wasn't working properly. They adjusted and tested it thoroughly. Much better engine braking now and safer mountain driving.",
       author: "Timothy Wilson",
-      title: "Long Haul Driver",
+      title: "",
       initial: "T"
     },
     {
       rating: 5,
       text: "Air dryer problems were causing moisture in the brake system. They replaced it and purged all the lines. Brakes feel much better now.",
       author: "Laura Davis",
-      title: "Safety Coordinator",
+      title: "",
       initial: "L"
     },
     {
       rating: 5,
       text: "Cab air ride system was failing. They diagnosed the leak and replaced the faulty components. Much more comfortable ride for long hauls.",
       author: "George Garcia",
-      title: "Driver",
+      title: "",
       initial: "G"
     },
     {
       rating: 5,
       text: "Fuel injector o-rings were leaking. They replaced all of them with quality seals. No more fuel leaks and engine is running smooth.",
       author: "Janet Moore",
-      title: "Fleet Supervisor",
+      title: "",
       initial: "J"
     },
     {
       rating: 5,
       text: "Intercooler leak was causing reduced power. They found the crack and welded it properly. Back to full boost pressure and power.",
       author: "Charles Williams",
-      title: "Equipment Operator",
+      title: "",
       initial: "C"
     },
     {
       rating: 5,
       text: "Transmission cooler lines were leaking. They replaced all the old lines with upgraded ones. No more leaks and transmission is running cooler.",
       author: "Elizabeth Miller",
-      title: "Maintenance Manager",
+      title: "",
       initial: "E"
     },
     {
       rating: 5,
       text: "Brake adjustment on our drum brakes. They properly adjusted all wheels and tested the system. Much better stopping power and pedal feel.",
       author: "Richard Anderson",
-      title: "Driver Trainer",
+      title: "",
       initial: "R"
     },
     {
       rating: 5,
       text: "Engine oil cooler was leaking coolant into the oil. They diagnosed it correctly and replaced the cooler. Clean oil and no more mixing.",
       author: "Karen Taylor",
-      title: "Fleet Manager",
+      title: "",
       initial: "K"
     },
     {
       rating: 5,
       text: "Clutch master cylinder failure left us with no clutch. They bled the system and replaced the faulty cylinder. Clutch feels great now.",
       author: "Gary White",
-      title: "Independent Owner",
+      title: "",
       initial: "G"
     },
     {
       rating: 5,
       text: "Cab tilt mechanism wasn't working properly. They lubricated and adjusted everything. Much easier to tilt the cab for engine access now.",
       author: "Nancy Johnson",
-      title: "Shop Foreman",
+      title: "",
       initial: "N"
     },
     {
       rating: 5,
       text: "Driveshaft u-joints were worn causing vibration. They replaced all the joints with quality parts. Smooth operation and no more vibration.",
       author: "Edward Clark",
-      title: "Mechanic",
+      title: "",
       initial: "E"
     },
     {
       rating: 5,
       text: "Parking brake wasn't holding properly. They adjusted the mechanism and replaced worn cables. Park brake holds solid on any grade now.",
       author: "Helen Rodriguez",
-      title: "Safety Inspector",
+      title: "",
       initial: "H"
     },
     {
       rating: 5,
       text: "Wheel seal leak was causing oil on the brakes. They replaced the seal and cleaned everything properly. No more leaks and brakes work perfectly.",
       author: "Donald Brown",
-      title: "Fleet Mechanic",
+      title: "",
       initial: "D"
     },
     {
       rating: 5,
       text: "Air conditioning compressor failed in summer. They diagnosed it quickly and installed a quality replacement. Cool air and quiet operation.",
       author: "Ruth Lee",
-      title: "Driver",
+      title: "",
       initial: "R"
     },
     {
       rating: 5,
       text: "Kingpin wear was affecting steering. They measured everything and replaced the worn parts. Much tighter steering and better road feel.",
       author: "Kenneth Wilson",
-      title: "Owner-Operator",
+      title: "",
       initial: "K"
     },
     {
       rating: 5,
       text: "Trailer ABS light was on constantly. They diagnosed the sensor problem and replaced the faulty components. System working perfectly now.",
       author: "Carol Davis",
-      title: "Compliance Manager",
+      title: "",
       initial: "C"
     },
     {
       rating: 5,
       text: "Fuel tank leak was a safety concern. They cleaned and welded the tank properly. Passed all inspections and no more fuel odors.",
       author: "Arthur Garcia",
-      title: "Safety Director",
+      title: "",
       initial: "A"
     },
     {
       rating: 5,
       text: "Exhaust manifold crack was causing noise and fumes. They welded it expertly and tested for leaks. Much quieter operation now.",
       author: "Deborah Moore",
-      title: "Fleet Administrator",
+      title: "",
       initial: "D"
     },
     {
       rating: 5,
       text: "Power take-off wasn't engaging properly. They adjusted and lubricated the mechanism. Works perfectly for our hydraulic equipment now.",
       author: "Harold Williams",
-      title: "Equipment Operator",
+      title: "",
       initial: "H"
     },
     {
       rating: 5,
       text: "Thermostat stuck closed causing overheating. They diagnosed it quickly and installed a quality replacement. Perfect operating temperature now.",
       author: "Betty Miller",
-      title: "Dispatcher",
+      title: "",
       initial: "B"
     },
     {
       rating: 5,
       text: "Windshield wiper motor died during a storm. Emergency call and they came out in the rain. Fixed it roadside so we could see safely.",
       author: "Ralph Anderson",
-      title: "Long Distance Driver",
+      title: "",
       initial: "R"
     },
     {
       rating: 5,
       text: "Heater core leak was fogging the windshield. They bypassed it temporarily and ordered the replacement. Fixed properly the next day.",
       author: "Donna Taylor",
-      title: "Office Coordinator",
+      title: "",
       initial: "D"
     },
     {
       rating: 5,
       text: "Spring bushings were worn causing handling problems. They replaced all the worn bushings with quality parts. Much better ride and handling.",
       author: "Wayne White",
-      title: "Fleet Supervisor",
+      title: "",
       initial: "W"
     }
   ];

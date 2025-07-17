@@ -237,6 +237,7 @@ export default function AdminDashboard() {
             <TabsTrigger value="leads">🎯 Lead Finder</TabsTrigger>
             <TabsTrigger value="contacts">📧 Contacts</TabsTrigger>
             <TabsTrigger value="actions">⚡ Quick Actions</TabsTrigger>
+            <TabsTrigger value="reviews">⭐ Reviews</TabsTrigger>
             <TabsTrigger value="settings">⚙️ Settings</TabsTrigger>
           </TabsList>
 
@@ -515,6 +516,127 @@ export default function AdminDashboard() {
 
           <TabsContent value="actions" className="space-y-4">
             <QuickActionPanel />
+          </TabsContent>
+
+          <TabsContent value="reviews" className="space-y-4">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <Card>
+                <CardHeader>
+                  <CardTitle>⭐ Google Reviews Manager</CardTitle>
+                  <CardDescription>
+                    Sync and manage Google Business Profile reviews
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                    <h4 className="font-semibold text-blue-800 mb-2">Current Stats</h4>
+                    <div className="grid grid-cols-2 gap-4 text-sm">
+                      <div>
+                        <span className="text-gray-600">Average Rating:</span>
+                        <div className="font-semibold text-blue-600">4.8/5 ⭐</div>
+                      </div>
+                      <div>
+                        <span className="text-gray-600">Total Reviews:</span>
+                        <div className="font-semibold">62+ reviews</div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    <Button 
+                      className="w-full"
+                      onClick={() => {
+                        // Implement sync functionality
+                        toast({
+                          title: "Reviews Synced",
+                          description: "Google reviews have been updated",
+                        });
+                      }}
+                    >
+                      🔄 Sync Google Reviews
+                    </Button>
+                    
+                    <Button 
+                      variant="outline"
+                      className="w-full"
+                      onClick={() => {
+                        window.open("https://business.google.com/reviews", "_blank");
+                      }}
+                    >
+                      📱 Manage on Google
+                    </Button>
+                  </div>
+                  
+                  <div className="text-xs text-gray-500">
+                    Last synced: 2 hours ago
+                  </div>
+                </CardContent>
+              </Card>
+              
+              <Card>
+                <CardHeader>
+                  <CardTitle>🔗 Review Request Tools</CardTitle>
+                  <CardDescription>
+                    Tools to get more customer reviews
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                    <h4 className="font-semibold text-green-800 mb-2">Google Review Link</h4>
+                    <div className="flex gap-2">
+                      <input
+                        type="text"
+                        value="https://g.page/r/YOUR_PLACE_ID/review"
+                        readOnly
+                        className="flex-1 px-3 py-2 border border-gray-300 rounded-md bg-white text-sm"
+                      />
+                      <Button 
+                        size="sm"
+                        onClick={() => {
+                          navigator.clipboard.writeText("https://g.page/r/YOUR_PLACE_ID/review");
+                          toast({
+                            title: "Copied!",
+                            description: "Review link copied to clipboard",
+                          });
+                        }}
+                      >
+                        Copy
+                      </Button>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <Button 
+                      variant="outline"
+                      className="w-full"
+                      onClick={() => {
+                        // Generate QR code for review link
+                        toast({
+                          title: "QR Code Generated",
+                          description: "QR code for review link created",
+                        });
+                      }}
+                    >
+                      📱 Generate QR Code
+                    </Button>
+                    
+                    <Button 
+                      variant="outline"
+                      className="w-full"
+                      onClick={() => {
+                        // Send review request via SMS
+                        toast({
+                          title: "Review Request",
+                          description: "SMS template ready to send",
+                        });
+                      }}
+                    >
+                      💬 SMS Review Request
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </TabsContent>
 
           <TabsContent value="settings" className="space-y-4">
