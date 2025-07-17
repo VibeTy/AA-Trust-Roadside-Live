@@ -13,6 +13,7 @@ import {
 } from "@shared/schema";
 import { z } from "zod";
 import session from "express-session";
+import GoogleReviewsService from './googleReviews';
 
 // Traffic tracking
 let activeUsers = 0;
@@ -43,7 +44,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/register", async (req, res) => {
     try {
       const validatedData = registerUserSchema.parse(req.body);
-      
+
       // Check if user already exists
       const existingUser = await storage.getUserByUsername(validatedData.username);
       if (existingUser) {
@@ -65,7 +66,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       const user = await storage.createUser(validatedData);
-      
+
       res.status(201).json({
         success: true,
         message: "User registered successfully",
@@ -92,7 +93,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/login", async (req, res) => {
     try {
       const { username, password } = req.body;
-      
+
       const user = await storage.getUserByUsername(username);
       if (!user) {
         return res.status(401).json({
@@ -130,7 +131,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/forgot-password", async (req, res) => {
     try {
       const validatedData = forgotPasswordSchema.parse(req.body);
-      
+
       const user = await storage.getUserByEmail(validatedData.email);
       if (!user) {
         // Don't reveal if email exists or not for security
@@ -141,10 +142,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       const { token } = await storage.createPasswordResetToken(validatedData.email);
-      
+
       // In a real app, you'd send an email here with the reset link
       console.log(`Password reset token for ${validatedData.email}: ${token}`);
-      
+
       res.json({
         success: true,
         message: "If the email exists, a reset link has been sent",
@@ -172,7 +173,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/reset-password", async (req, res) => {
     try {
       const validatedData = resetPasswordSchema.parse(req.body);
-      
+
       const user = await storage.resetPassword(validatedData.token, validatedData.password);
       if (!user) {
         return res.status(400).json({
@@ -222,13 +223,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       // Validate the request body
       const validatedData = insertContactSubmissionSchema.parse(req.body);
-      
+
       // Store the contact submission
       const submission = await storage.createContactSubmission(validatedData);
-      
+
       // In a real application, you might also send an email notification here
       console.log("New contact submission:", submission);
-      
+
       res.status(201).json({ 
         success: true, 
         message: "Contact submission received successfully",
@@ -270,13 +271,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       // Validate the request body
       const validatedData = insertQuoteSubmissionSchema.parse(req.body);
-      
+
       // Store the quote submission
       const submission = await storage.createQuoteSubmission(validatedData);
-      
+
       // Log for demo purposes
       console.log("New quote submission:", submission);
-      
+
       res.status(201).json({ 
         success: true, 
         message: "Quote request received successfully",
@@ -318,16 +319,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const id = parseInt(req.params.id);
       const { contacted = true } = req.body;
-      
+
       const updatedQuote = await storage.updateQuoteContacted(id, contacted);
-      
+
       if (!updatedQuote) {
         return res.status(404).json({
           success: false,
           message: "Quote not found"
         });
       }
-      
+
       res.json({
         success: true,
         message: "Quote updated successfully",
@@ -382,16 +383,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const id = parseInt(req.params.id);
       const { contacted } = req.body;
-      
+
       if (isNaN(id)) {
         return res.status(400).json({ message: "Invalid booking ID" });
       }
-      
+
       const updatedBooking = await storage.updateBookingContacted(id, contacted);
       if (!updatedBooking) {
         return res.status(404).json({ message: "Booking not found" });
       }
-      
+
       res.json(updatedBooking);
     } catch (error) {
       console.error("Error updating booking:", error);
@@ -403,7 +404,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/admin/login", async (req, res) => {
     try {
       const { username, password } = req.body;
-      
+
       // Simple admin check - in production, use proper password hashing
       if (username === "admin" && password === "admin123") {
         req.session.isAdmin = true;
@@ -445,7 +446,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/ai/smart-reply", async (req, res) => {
     try {
       const { name, location, serviceType, description, urgency, vehicleInfo } = req.body;
-      
+
       // Mock AI response - in production, integrate with Together AI, OpenAI, or similar
       const aiResponse = {
         reply: `Hi ${name}! This is Fritzner from AA Trust Roadside. I got your request for ${serviceType} in ${location}. I can be there in about 15-20 minutes. My number is (386) 333-4458. Thanks for choosing us!`,
@@ -455,7 +456,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           ? 'High priority - emergency situation requires immediate response'
           : 'Standard response time acceptable based on service type'
       };
-      
+
       res.json(aiResponse);
     } catch (error) {
       console.error("Error generating AI reply:", error);
@@ -467,11 +468,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/send-reply", async (req, res) => {
     try {
       const { method, to, message, customerName } = req.body;
-      
+
       if (method === 'sms') {
         // In production, integrate with Twilio
         console.log(`SMS to ${to}: ${message}`);
-        
+
         // Mock success response
         res.json({ 
           success: true, 
@@ -481,7 +482,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       } else if (method === 'email') {
         // In production, integrate with MailerSend or similar
         console.log(`Email to ${to}: ${message}`);
-        
+
         res.json({ 
           success: true, 
           message: `Email sent to ${customerName}`,
@@ -510,16 +511,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/track-pageview", async (req, res) => {
     try {
       const { sessionId, page, userAgent, referrer } = req.body;
-      
+
       if (!sessionId || !page) {
         return res.status(400).json({ message: "Session ID and page are required" });
       }
 
       await storage.trackPageView(sessionId, page, userAgent, referrer);
-      
+
       // Update active users count
       activeUsers = (await storage.getTrafficStats()).activeUsers;
-      
+
       // Broadcast to all admin clients
       adminClients.forEach((client: any) => {
         if (client.readyState === 1) {
@@ -531,7 +532,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           }));
         }
       });
-      
+
       res.json({ success: true });
     } catch (error) {
       console.error("Error tracking page view:", error);
@@ -553,20 +554,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/untrack-user", async (req, res) => {
     try {
       const { sessionId } = req.body;
-      
+
       if (sessionId) {
         await storage.endSession(sessionId);
       }
-      
+
       activeUsers = Math.max(0, activeUsers - 1);
-      
+
       // Broadcast to all admin clients
       adminClients.forEach((client: any) => {
         if (client.readyState === 1) {
           client.send(JSON.stringify({ type: 'user_count', count: activeUsers }));
         }
       });
-      
+
       res.json({ success: true });
     } catch (error) {
       console.error("Error untracking user:", error);
@@ -574,8 +575,69 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Track user activity
+  app.post('/api/track-user', async (req: any, res: any) => {
+    try {
+      const { sessionId, userAgent, ipAddress, referrer } = req.body;
+
+      // In a real app, you'd save this to a database
+      console.log('User tracked:', { sessionId, userAgent, ipAddress, referrer });
+
+      res.json({ success: true });
+    } catch (error) {
+      console.error('Error tracking user:', error);
+      res.status(500).json({ error: 'Failed to track user' });
+    }
+  });
+
+  // Google Reviews API endpoints
+  app.get('/api/google-reviews', async (req: any, res: any) => {
+    try {
+      const reviewsService = new GoogleReviewsService();
+      const reviews = await reviewsService.fetchReviews();
+
+      if (!reviews) {
+        return res.status(500).json({ error: 'Failed to fetch Google reviews' });
+      }
+
+      res.json(reviews);
+    } catch (error) {
+      console.error('Error fetching Google reviews:', error);
+      res.status(500).json({ error: 'Failed to fetch Google reviews' });
+    }
+  });
+
+  // Sync Google reviews to testimonials
+  app.post('/api/sync-google-reviews', async (req: any, res: any) => {
+    try {
+      const reviewsService = new GoogleReviewsService();
+      const googleData = await reviewsService.fetchReviews();
+
+      if (!googleData) {
+        return res.status(500).json({ error: 'Failed to fetch Google reviews' });
+      }
+
+      // Transform Google reviews to testimonials format
+      const testimonials = googleData.reviews.map((review: any) => 
+        reviewsService.transformToTestimonial(review)
+      );
+
+      // In a real app, you'd save these to your database
+      // For now, we'll just return them
+      res.json({ 
+        success: true, 
+        testimonials,
+        totalReviews: googleData.totalReviewCount,
+        averageRating: googleData.averageRating
+      });
+    } catch (error) {
+      console.error('Error syncing Google reviews:', error);
+      res.status(500).json({ error: 'Failed to sync Google reviews' });
+    }
+  });
+
   const httpServer = createServer(app);
-  
+
   // WebSocket server for real-time admin updates
   const wss = new WebSocketServer({ 
     server: httpServer,
@@ -585,15 +647,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
   wss.on('connection', (ws) => {
     console.log('Admin WebSocket connected');
     adminClients.add(ws);
-    
+
     // Send current user count immediately
     ws.send(JSON.stringify({ type: 'user_count', count: activeUsers }));
-    
+
     ws.on('close', () => {
       console.log('Admin WebSocket disconnected');
       adminClients.delete(ws);
     });
-    
+
     ws.on('error', (error) => {
       console.error('WebSocket error:', error);
       adminClients.delete(ws);

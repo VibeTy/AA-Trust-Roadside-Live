@@ -10,6 +10,7 @@ import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { insertContactSubmissionSchema } from "@shared/schema";
 import { z } from "zod";
+import GoogleReviewRequest from "@/components/GoogleReviewRequest";
 
 const contactFormSchema = insertContactSubmissionSchema.extend({
   location: z.string().min(1, "Location is required"),
@@ -291,6 +292,11 @@ export default function ContactSection() {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Google Review Request Section */}
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
+        <GoogleReviewRequest showInline={true} />
       </div>
     </section>
   );
