@@ -9,22 +9,25 @@ import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Phone, Mail, MapPin, Clock, CheckCircle, AlertCircle } from "lucide-react";
+import { Progress } from "@/components/ui/progress";
+import { Phone, Mail, MapPin, Clock, CheckCircle, AlertCircle, Users, BarChart3, TrendingUp, ArrowUp, ArrowDown, LogOut, Settings, Zap, Star, Eye, Calendar, DollarSign } from "lucide-react";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import type { QuoteSubmission, ContactSubmission, BookingSubmission } from "@shared/schema";
-import TrafficTracker from "@/components/TrafficTracker";
-import QuickActionPanel from "@/components/QuickActionPanel";
-import LeadFinderTool from "@/components/LeadFinderTool";
-import AIReplyAssistant from "@/components/AIReplyAssistant";
-import LiveJobMap from "@/components/LiveJobMap";
-import RevenueTracker from "@/components/RevenueTracker";
-import SettingsPanel from "@/components/SettingsPanel";
+import PageOptimizer from "@/components/PageOptimizer";
+import OptimizedIcon from "@/components/OptimizedIcon";
 
 export default function AdminDashboard() {
   const { toast } = useToast();
   const [, setLocation] = useLocation();
-  const [activeTab, setActiveTab] = useState("quotes");
+  const [activeTab, setActiveTab] = useState("overview");
+
+  // Real-time traffic data
+  const { data: trafficData, isLoading: trafficLoading } = useQuery({
+    queryKey: ['/api/admin/traffic'],
+    refetchInterval: 30000, // Refresh every 30 seconds
+    retry: false,
+  });
 
   const { data: quotes, isLoading: quotesLoading, error: quotesError } = useQuery<QuoteSubmission[]>({
     queryKey: ['/api/quotes'],
@@ -54,6 +57,42 @@ export default function AdminDashboard() {
       setLocation("/admin");
     }
   }, [quotesError, contactsError, bookingsError, setLocation, toast]);
+
+  // Logout functionality
+  const logoutMutation = useMutation({
+    mutationFn: async () => {
+      const response = await fetch('/api/admin/logout', {
+        method: 'POST',
+        credentials: 'include'
+      });
+      if (!response.ok) throw new Error('Logout failed');
+      return response.json();
+    },
+    onSuccess: () => {
+      toast({
+        title: "Logged Out",
+        description: "You have been successfully logged out"
+      });
+      setLocation("/admin");
+    },
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Failed to log out properly",
+        variant: "destructive"
+      });
+    }
+  });
+
+  // Real data calculations
+  const totalQuotes = quotes?.length || 0;
+  const totalContacts = contacts?.length || 0;
+  const totalBookings = bookings?.length || 0;
+  const pendingQuotes = quotes?.filter(q => !q.contacted).length || 0;
+  const completedQuotes = quotes?.filter(q => q.contacted).length || 0;
+  const completionRate = totalQuotes > 0 ? Math.round((completedQuotes / totalQuotes) * 100) : 0;
+  const activeUsers = trafficData?.activeUsers || 0;
+  const totalPageViews = trafficData?.totalPageViews || 0;
 
   const [editingQuote, setEditingQuote] = useState<QuoteSubmission | null>(null);
   const [editForm, setEditForm] = useState<Partial<QuoteSubmission>>({});
@@ -151,19 +190,6 @@ export default function AdminDashboard() {
     }
   };
 
-  const logoutMutation = useMutation({
-    mutationFn: async () => {
-      return await apiRequest("POST", "/api/admin/logout", {});
-    },
-    onSuccess: () => {
-      toast({
-        title: "Logged Out",
-        description: "You have been logged out successfully"
-      });
-      setLocation("/admin");
-    }
-  });
-
   const handleLogout = () => {
     logoutMutation.mutate();
   };
@@ -227,65 +253,101 @@ export default function AdminDashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="mb-8 flex justify-between items-center">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">AA Trust Roadside - Admin Dashboard</h1>
-            <p className="text-gray-600 dark:text-gray-400 mt-2">Manage leads and customer inquiries</p>
+    <PageOptimizer>
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+        {/* Modern Header */}
+        <div className="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div className="flex justify-between items-center">
+              <div>
+                <h1 className="text-3xl font-bold text-gray-900 dark:text-white flex items-center gap-3">
+                  <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg flex items-center justify-center">
+                    <Zap className="w-6 h-6 text-white" />
+                  </div>
+                  AA Trust Roadside - Admin
+                </h1>
+                <p className="text-gray-600 dark:text-gray-400 mt-2">Complete business management dashboard</p>
+              </div>
+              <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2 px-4 py-2 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                  <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                  <span className="text-sm font-medium text-green-700 dark:text-green-300">
+                    {activeUsers} active users
+                  </span>
+                </div>
+                <Button 
+                  onClick={() => logoutMutation.mutate()} 
+                  variant="outline" 
+                  className="text-red-600 border-red-600 hover:bg-red-50 dark:hover:bg-red-900/20"
+                  disabled={logoutMutation.isPending}
+                >
+                  <LogOut className="w-4 h-4 mr-2" />
+                  Logout
+                </Button>
+              </div>
+            </div>
           </div>
-          <Button onClick={handleLogout} variant="outline" className="text-red-600 border-red-600 hover:bg-red-50">
-            Logout
-          </Button>
         </div>
 
-        {/* Enhanced Traffic Analytics */}
-        <div className="mb-8">
-          <TrafficTracker />
-        </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          {/* Real-time Stats Dashboard */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <Card className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 border-blue-200 dark:border-blue-800">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium text-blue-800 dark:text-blue-200">Total Quotes</CardTitle>
+                <BarChart3 className="h-4 w-4 text-blue-600" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold text-blue-900 dark:text-blue-100">{totalQuotes}</div>
+                <p className="text-xs text-blue-700 dark:text-blue-300">
+                  {pendingQuotes} pending responses
+                </p>
+                <div className="mt-2">
+                  <Progress value={completionRate} className="h-2" />
+                  <p className="text-xs text-blue-600 dark:text-blue-400 mt-1">{completionRate}% completion rate</p>
+                </div>
+              </CardContent>
+            </Card>
 
-        {/* Enhanced Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 mb-8">
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Today's Jobs</CardTitle>
-              <AlertCircle className="h-4 w-4 text-muted-foreground" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold text-blue-600">{stats.todayQuotes}</div>
-              <p className="text-xs text-muted-foreground">Active leads</p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Uncontacted</CardTitle>
-              <Phone className="h-4 w-4 text-muted-foreground" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold text-red-600">{stats.uncontactedQuotes}</div>
-              <p className="text-xs text-muted-foreground">Need response</p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">This Week</CardTitle>
-              <Clock className="h-4 w-4 text-muted-foreground" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold text-green-600">$2,450</div>
-              <p className="text-xs text-muted-foreground">Earnings</p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Avg Response</CardTitle>
-              <CheckCircle className="h-4 w-4 text-muted-foreground" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold text-blue-600">18m</div>
-              <p className="text-xs text-muted-foreground">Response time</p>
-            </CardContent>
-          </Card>
+            <Card className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 border-green-200 dark:border-green-800">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium text-green-800 dark:text-green-200">Contacts</CardTitle>
+                <Mail className="h-4 w-4 text-green-600" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold text-green-900 dark:text-green-100">{totalContacts}</div>
+                <p className="text-xs text-green-700 dark:text-green-300">
+                  General inquiries
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 border-purple-200 dark:border-purple-800">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium text-purple-800 dark:text-purple-200">Bookings</CardTitle>
+                <Calendar className="h-4 w-4 text-purple-600" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold text-purple-900 dark:text-purple-100">{totalBookings}</div>
+                <p className="text-xs text-purple-700 dark:text-purple-300">
+                  Scheduled services
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20 border-orange-200 dark:border-orange-800">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium text-orange-800 dark:text-orange-200">Website Views</CardTitle>
+                <Eye className="h-4 w-4 text-orange-600" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold text-orange-900 dark:text-orange-100">{totalPageViews}</div>
+                <p className="text-xs text-orange-700 dark:text-orange-300">
+                  {activeUsers} active now
+                </p>
+              </CardContent>
+            </Card>
+          </div>
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Contact Forms</CardTitle>
@@ -310,94 +372,147 @@ export default function AdminDashboard() {
 
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4">
-          <TabsList className="grid w-full grid-cols-8">
-            <TabsTrigger value="overview">📊 Overview</TabsTrigger>
-            <TabsTrigger value="quotes">🔧 Jobs ({stats.totalQuotes})</TabsTrigger>
-            <TabsTrigger value="map">🗺️ Live Map</TabsTrigger>
-            <TabsTrigger value="revenue">💰 Revenue</TabsTrigger>
-            <TabsTrigger value="leads">🎯 Lead Finder</TabsTrigger>
-            <TabsTrigger value="contacts">📧 Contacts</TabsTrigger>
-            <TabsTrigger value="actions">⚡ Quick Actions</TabsTrigger>
-            <TabsTrigger value="reviews">⭐ Reviews</TabsTrigger>
-            <TabsTrigger value="settings">⚙️ Settings</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-4">
+            <TabsTrigger value="overview">
+              <BarChart3 className="w-4 h-4 mr-2" />
+              Overview
+            </TabsTrigger>
+            <TabsTrigger value="quotes">
+              <Zap className="w-4 h-4 mr-2" />
+              Jobs ({totalQuotes})
+            </TabsTrigger>
+            <TabsTrigger value="contacts">
+              <Mail className="w-4 h-4 mr-2" />
+              Contacts ({totalContacts})
+            </TabsTrigger>
+            <TabsTrigger value="settings">
+              <Settings className="w-4 h-4 mr-2" />
+              Settings
+            </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="overview" className="space-y-4">
+          <TabsContent value="overview" className="space-y-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle>🚀 Business Growth Summary</CardTitle>
+              <Card className="border-0 shadow-lg">
+                <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-700 text-white">
+                  <CardTitle className="flex items-center gap-2">
+                    <TrendingUp className="w-5 h-5" />
+                    Business Performance
+                  </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                    <h4 className="font-semibold text-green-800 mb-2">This Month's Highlights</h4>
-                    <div className="space-y-2 text-sm">
-                      <div className="flex justify-between">
-                        <span>Total Revenue:</span>
-                        <span className="font-semibold text-green-600">$8,750</span>
+                <CardContent className="p-6">
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                      <div>
+                        <p className="text-sm text-gray-600 dark:text-gray-400">Total Submissions</p>
+                        <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                          {totalQuotes + totalContacts + totalBookings}
+                        </p>
                       </div>
-                      <div className="flex justify-between">
-                        <span>Jobs Completed:</span>
-                        <span className="font-semibold">47 jobs</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span>Average Job Value:</span>
-                        <span className="font-semibold">$186</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span>Customer Satisfaction:</span>
-                        <span className="font-semibold text-yellow-600">4.9/5 ⭐</span>
+                      <div className="text-right">
+                        <p className="text-sm text-gray-600 dark:text-gray-400">Response Rate</p>
+                        <p className="text-2xl font-bold text-green-600">{completionRate}%</p>
                       </div>
                     </div>
-                  </div>
-                  
-                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                    <h4 className="font-semibold text-blue-800 mb-2">Growth Opportunities</h4>
-                    <div className="space-y-2 text-sm text-blue-700">
-                      <div>• 12 potential fleet partnerships identified</div>
-                      <div>• 3 body shops interested in referral program</div>
-                      <div>• Weekend demand up 34% - consider premium pricing</div>
+                    
+                    <div className="space-y-3">
+                      <div className="flex justify-between">
+                        <span className="text-gray-600 dark:text-gray-400">Quote Requests:</span>
+                        <span className="font-semibold">{totalQuotes}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600 dark:text-gray-400">Contact Forms:</span>
+                        <span className="font-semibold">{totalContacts}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600 dark:text-gray-400">Bookings:</span>
+                        <span className="font-semibold">{totalBookings}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600 dark:text-gray-400">Pending Responses:</span>
+                        <span className="font-semibold text-red-600">{pendingQuotes}</span>
+                      </div>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card>
-                <CardHeader>
-                  <CardTitle>🎯 Today's Priority Actions</CardTitle>
+              <Card className="border-0 shadow-lg">
+                <CardHeader className="bg-gradient-to-r from-green-600 to-green-700 text-white">
+                  <CardTitle className="flex items-center gap-2">
+                    <Users className="w-5 h-5" />
+                    Live Activity
+                  </CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-3 p-3 bg-red-50 border border-red-200 rounded">
-                      <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                      <div className="flex-1">
-                        <div className="font-medium">Follow up with emergency customer</div>
-                        <div className="text-sm text-gray-600">Called 2 hours ago - tire change needed</div>
+                <CardContent className="p-6">
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-center p-4 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                      <div>
+                        <p className="text-sm text-green-600 dark:text-green-400">Active Users</p>
+                        <p className="text-2xl font-bold text-green-800 dark:text-green-200">{activeUsers}</p>
                       </div>
-                      <Button size="sm">Call Now</Button>
+                      <div className="text-right">
+                        <p className="text-sm text-green-600 dark:text-green-400">Page Views</p>
+                        <p className="text-2xl font-bold text-green-800 dark:text-green-200">{totalPageViews}</p>
+                      </div>
                     </div>
                     
-                    <div className="flex items-center gap-3 p-3 bg-yellow-50 border border-yellow-200 rounded">
-                      <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                      <div className="flex-1">
-                        <div className="font-medium">Send invoice to Fleet Corp</div>
-                        <div className="text-sm text-gray-600">3 tire changes completed yesterday</div>
+                    {pendingQuotes > 0 && (
+                      <div className="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
+                        <div className="flex items-center gap-2 text-red-800 dark:text-red-200">
+                          <AlertCircle className="w-5 h-5" />
+                          <span className="font-semibold">Urgent: {pendingQuotes} pending response{pendingQuotes > 1 ? 's' : ''}</span>
+                        </div>
+                        <p className="text-sm text-red-600 dark:text-red-400 mt-1">
+                          Review quote requests that need immediate attention
+                        </p>
                       </div>
-                      <Button size="sm" variant="outline">Send</Button>
-                    </div>
-                    
-                    <div className="flex items-center gap-3 p-3 bg-green-50 border border-green-200 rounded">
-                      <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                      <div className="flex-1">
-                        <div className="font-medium">Update Google Business listing</div>
-                        <div className="text-sm text-gray-600">Add new service photos from this week</div>
-                      </div>
-                      <Button size="sm" variant="outline">Update</Button>
-                    </div>
+                    )}
                   </div>
                 </CardContent>
               </Card>
             </div>
+
+            {/* Quick Actions */}
+            <Card className="border-0 shadow-lg">
+              <CardHeader className="bg-gradient-to-r from-purple-600 to-purple-700 text-white">
+                <CardTitle className="flex items-center gap-2">
+                  <Zap className="w-5 h-5" />
+                  Quick Actions
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="p-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <Button 
+                    onClick={() => setActiveTab("quotes")}
+                    className="h-20 flex flex-col items-center justify-center gap-2"
+                    variant={pendingQuotes > 0 ? "destructive" : "default"}
+                  >
+                    <Phone className="w-6 h-6" />
+                    <span>Review Quotes</span>
+                    {pendingQuotes > 0 && <Badge className="bg-red-600 text-white">{pendingQuotes}</Badge>}
+                  </Button>
+                  
+                  <Button 
+                    onClick={() => setActiveTab("contacts")}
+                    className="h-20 flex flex-col items-center justify-center gap-2"
+                    variant="outline"
+                  >
+                    <Mail className="w-6 h-6" />
+                    <span>Check Messages</span>
+                  </Button>
+                  
+                  <Button 
+                    onClick={() => setActiveTab("settings")}
+                    className="h-20 flex flex-col items-center justify-center gap-2"
+                    variant="outline"
+                  >
+                    <Settings className="w-6 h-6" />
+                    <span>Settings</span>
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
           </TabsContent>
 
           <TabsContent value="quotes" className="space-y-4">
@@ -729,148 +844,124 @@ export default function AdminDashboard() {
             )}
           </TabsContent>
 
-          <TabsContent value="map" className="space-y-4">
-            <LiveJobMap />
-          </TabsContent>
-
-          <TabsContent value="revenue" className="space-y-4">
-            <RevenueTracker />
-          </TabsContent>
-
-          <TabsContent value="leads" className="space-y-4">
-            <LeadFinderTool />
-          </TabsContent>
-
-          <TabsContent value="actions" className="space-y-4">
-            <QuickActionPanel />
-          </TabsContent>
-
-          <TabsContent value="reviews" className="space-y-4">
+          <TabsContent value="settings" className="space-y-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle>⭐ Google Reviews Manager</CardTitle>
-                  <CardDescription>
-                    Sync and manage Google Business Profile reviews
-                  </CardDescription>
+              <Card className="border-0 shadow-lg">
+                <CardHeader className="bg-gradient-to-r from-gray-600 to-gray-700 text-white">
+                  <CardTitle className="flex items-center gap-2">
+                    <Settings className="w-5 h-5" />
+                    Business Settings
+                  </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                    <h4 className="font-semibold text-blue-800 mb-2">Current Stats</h4>
-                    <div className="grid grid-cols-2 gap-4 text-sm">
-                      <div>
-                        <span className="text-gray-600">Average Rating:</span>
-                        <div className="font-semibold text-blue-600">4.8/5 ⭐</div>
-                      </div>
-                      <div>
-                        <span className="text-gray-600">Total Reviews:</span>
-                        <div className="font-semibold">62+ reviews</div>
-                      </div>
+                <CardContent className="p-6">
+                  <div className="space-y-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        Business Phone
+                      </label>
+                      <Input 
+                        type="tel" 
+                        defaultValue="(386) 372-8412" 
+                        className="w-full"
+                        placeholder="Business phone number"
+                      />
                     </div>
-                  </div>
-                  
-                  <div className="space-y-3">
-                    <Button 
-                      className="w-full"
-                      onClick={() => {
-                        // Implement sync functionality
-                        toast({
-                          title: "Reviews Synced",
-                          description: "Google reviews have been updated",
-                        });
-                      }}
-                    >
-                      🔄 Sync Google Reviews
-                    </Button>
                     
-                    <Button 
-                      variant="outline"
-                      className="w-full"
-                      onClick={() => {
-                        window.open("https://business.google.com/reviews", "_blank");
-                      }}
-                    >
-                      📱 Manage on Google
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        Service Area (miles)
+                      </label>
+                      <Input 
+                        type="number" 
+                        defaultValue="100" 
+                        className="w-full"
+                        placeholder="Service radius in miles"
+                      />
+                    </div>
+                    
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        Emergency Response Time
+                      </label>
+                      <Input 
+                        type="text" 
+                        defaultValue="15 minutes" 
+                        className="w-full"
+                        placeholder="Average response time"
+                      />
+                    </div>
+                    
+                    <Button className="w-full bg-blue-600 hover:bg-blue-700">
+                      Save Settings
                     </Button>
-                  </div>
-                  
-                  <div className="text-xs text-gray-500">
-                    Last synced: 2 hours ago
                   </div>
                 </CardContent>
               </Card>
-              
-              <Card>
-                <CardHeader>
-                  <CardTitle>🔗 Review Request Tools</CardTitle>
-                  <CardDescription>
-                    Tools to get more customer reviews
-                  </CardDescription>
+
+              <Card className="border-0 shadow-lg">
+                <CardHeader className="bg-gradient-to-r from-yellow-600 to-yellow-700 text-white">
+                  <CardTitle className="flex items-center gap-2">
+                    <Star className="w-5 h-5" />
+                    Review Management
+                  </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                    <h4 className="font-semibold text-green-800 mb-2">Google Review Link</h4>
-                    <div className="flex gap-2">
-                      <input
-                        type="text"
-                        value="https://g.page/r/CRFbcS048_EyEBM/review"
-                        readOnly
-                        className="flex-1 px-3 py-2 border border-gray-300 rounded-md bg-white text-sm"
-                      />
+                <CardContent className="p-6">
+                  <div className="space-y-4">
+                    <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4">
+                      <h4 className="font-semibold text-yellow-800 dark:text-yellow-200 mb-2">Google Review Link</h4>
+                      <div className="flex gap-2">
+                        <Input
+                          type="text"
+                          value="https://g.page/r/CRFbcS048_EyEBM/review"
+                          readOnly
+                          className="flex-1 text-sm"
+                        />
+                        <Button 
+                          size="sm"
+                          onClick={() => {
+                            navigator.clipboard.writeText("https://g.page/r/CRFbcS048_EyEBM/review");
+                            toast({
+                              title: "Copied!",
+                              description: "Review link copied to clipboard",
+                            });
+                          }}
+                        >
+                          Copy
+                        </Button>
+                      </div>
+                    </div>
+                    
+                    <div className="space-y-2">
                       <Button 
-                        size="sm"
+                        variant="outline"
+                        className="w-full"
                         onClick={() => {
-                          navigator.clipboard.writeText("https://g.page/r/CRFbcS048_EyEBM/review");
+                          window.open("https://business.google.com/reviews", "_blank");
+                        }}
+                      >
+                        Manage Google Reviews
+                      </Button>
+                      
+                      <Button 
+                        variant="outline"
+                        className="w-full"
+                        onClick={() => {
                           toast({
-                            title: "Copied!",
-                            description: "Review link copied to clipboard",
+                            title: "QR Code Generated",
+                            description: "QR code for review link created",
                           });
                         }}
                       >
-                        Copy
+                        Generate QR Code
                       </Button>
                     </div>
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <Button 
-                      variant="outline"
-                      className="w-full"
-                      onClick={() => {
-                        // Generate QR code for review link
-                        toast({
-                          title: "QR Code Generated",
-                          description: "QR code for review link created",
-                        });
-                      }}
-                    >
-                      📱 Generate QR Code
-                    </Button>
-                    
-                    <Button 
-                      variant="outline"
-                      className="w-full"
-                      onClick={() => {
-                        // Send review request via SMS
-                        toast({
-                          title: "Review Request",
-                          description: "SMS template ready to send",
-                        });
-                      }}
-                    >
-                      💬 SMS Review Request
-                    </Button>
                   </div>
                 </CardContent>
               </Card>
             </div>
           </TabsContent>
-
-          <TabsContent value="settings" className="space-y-4">
-            <SettingsPanel />
-          </TabsContent>
         </Tabs>
-      </div>
-    </div>
+        </div>
+    </PageOptimizer>
   );
 }
