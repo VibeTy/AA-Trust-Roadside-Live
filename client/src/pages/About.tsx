@@ -54,6 +54,7 @@ export default function About() {
       
       <div className="min-h-screen bg-gray-900">
         <Navigation />
+        <Navigation />
         
         {/* Hero Section */}
         <section className="relative bg-gradient-to-br from-blue-900 via-gray-900 to-black py-20 pt-32">
