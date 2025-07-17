@@ -9,8 +9,21 @@
     <meta property="og:description" content="Professional 24/7 heavy duty diesel repair and emergency roadside assistance. Specialized service in Palm Coast, Jacksonville, Daytona Beach & St. Augustine.">
     <meta property="og:image" content="/attached_assets/image_1750232639530.jpeg">
     <meta property="og:type" content="website">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Resource hints for faster loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" href="/attached_assets/7938bab5-b302-4cf1-8a69-78cfce3c9be4_1750802043592.png" as="image" type="image/png">
+    
+    <!-- Load fonts with display swap for better performance -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Load FontAwesome asynchronously to avoid render blocking -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"></noscript>
   </head>
   <body>
     <div id="root"></div>

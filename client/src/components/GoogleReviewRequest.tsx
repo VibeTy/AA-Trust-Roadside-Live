@@ -55,10 +55,10 @@ export default function GoogleReviewRequest({
         <p className="text-gray-700 mb-4">
           Help other drivers find reliable roadside assistance! Your review helps us serve more customers in need.
         </p>
-        <div className="flex gap-3">
+        <div className="flex flex-col sm:flex-row gap-3">
           <Button 
             onClick={handleReviewClick}
-            className="bg-blue-600 hover:bg-blue-700 text-white"
+            className="bg-blue-600 hover:bg-blue-700 text-white flex-1"
           >
             <Star className="w-4 h-4 mr-2" />
             Leave Google Review
@@ -67,10 +67,11 @@ export default function GoogleReviewRequest({
           <Button 
             onClick={copyToClipboard}
             variant="outline"
-            className="border-blue-600 text-blue-600 hover:bg-blue-50"
+            size="sm"
+            className="border-blue-600 text-blue-600 hover:bg-blue-50 sm:w-auto"
           >
-            {copied ? <Check className="w-4 h-4 mr-2" /> : <Copy className="w-4 h-4 mr-2" />}
-            {copied ? 'Copied!' : 'Copy Link'}
+            {copied ? <Check className="w-4 h-4 mr-1" /> : <Copy className="w-4 h-4 mr-1" />}
+            {copied ? 'Copied!' : 'Copy'}
           </Button>
         </div>
       </div>

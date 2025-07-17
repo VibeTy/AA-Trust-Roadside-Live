@@ -5,6 +5,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { useTrafficTracker } from "@/hooks/use-traffic-tracker";
+import AssetPreloader from "@/components/AssetPreloader";
+import CriticalCSS from "@/components/CriticalCSS";
 import Home from "@/pages/Home";
 import Quote from "@/pages/Quote";
 import ThankYou from "@/pages/ThankYou";
@@ -95,6 +97,8 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
         <TooltipProvider>
+          <CriticalCSS />
+          <AssetPreloader />
           <Toaster />
           <Router />
         </TooltipProvider>
