@@ -1,6 +1,8 @@
 import { Link } from "wouter";
 import { Phone, MapPin, Wrench, Clock } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
+import PageOptimizer from "@/components/PageOptimizer";
+import OptimizedIcon from "@/components/OptimizedIcon";
 
 export default function PalmCoast() {
   const services = [
@@ -15,13 +17,15 @@ export default function PalmCoast() {
   ];
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900">
+    <>
       <SEOHead 
         title="Mobile Tire Repair Palm Coast FL | 24/7 Roadside Assistance | AA Trust Roadside"
         description="Expert mobile tire repair in Palm Coast, FL. 24/7 emergency roadside assistance in Flagler County. Call (386) 372-8412 for immediate tire service."
         keywords="mobile tire repair Palm Coast, roadside assistance Palm Coast FL, tire service Flagler County, emergency tire repair Palm Coast"
         canonicalUrl="https://aatrustroadside.com/locations/palm-coast"
       />
+      <PageOptimizer>
+        <div className="min-h-screen bg-white dark:bg-gray-900">
       {/* Header */}
       <header className="bg-blue-600 text-white py-4">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -176,7 +180,9 @@ export default function PalmCoast() {
             <p>&copy; 2024 AA Trust Roadside. All rights reserved.</p>
           </div>
         </div>
-      </footer>
-    </div>
+          </footer>
+        </div>
+      </PageOptimizer>
+    </>
   );
 }

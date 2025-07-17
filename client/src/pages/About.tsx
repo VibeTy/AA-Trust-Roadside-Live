@@ -1,6 +1,8 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
+import PageOptimizer from "@/components/PageOptimizer";
+import OptimizedIcon from "@/components/OptimizedIcon";
 import { CheckCircle, Clock, MapPin, Phone, Star, Users } from "lucide-react";
 
 export default function About() {
@@ -52,9 +54,9 @@ export default function About() {
         canonicalUrl="https://aatrustroadside.com/about"
       />
       
-      <div className="min-h-screen bg-gray-900">
-        <Navigation />
-        <Navigation />
+      <PageOptimizer preloadImages={[]} criticalCSS="">
+        <div className="min-h-screen bg-gray-900">
+          <Navigation />
         
         {/* Hero Section */}
         <section className="relative bg-gradient-to-br from-blue-900 via-gray-900 to-black py-20 pt-32">
@@ -282,8 +284,9 @@ export default function About() {
           </div>
         </section>
 
-        <Footer />
-      </div>
+          <Footer />
+        </div>
+      </PageOptimizer>
     </>
   );
 }

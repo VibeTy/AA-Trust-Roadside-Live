@@ -2,21 +2,25 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import StickyCallButton from "@/components/StickyCallButton";
 import SEOHead from "@/components/SEOHead";
+import PageOptimizer from "@/components/PageOptimizer";
+import OptimizedIcon from "@/components/OptimizedIcon";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
 export default function EngineServicesNearMe() {
   return (
-    <div className="min-h-screen bg-black">
+    <>
       <SEOHead 
         title="Engine Services Near Me | 24/7 Mobile Engine Repair | AA Trust Roadside"
         description="Expert engine services near you! 24/7 mobile engine repair, diagnostics, and maintenance. Serving Palm Coast, Jacksonville & Northeast FL. Call (386) 372-8412 for immediate engine help!"
         keywords="engine services near me, mobile engine repair, engine diagnostics near me, 24/7 engine service, truck engine repair, diesel engine service, emergency engine repair"
         canonicalUrl="https://aatrustroadside.com/engine-services-near-me"
       />
-      <Navigation />
-      <StickyCallButton />
+      <PageOptimizer>
+        <div className="min-h-screen bg-black">
+          <Navigation />
+          <StickyCallButton />
       
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-gray-900 to-black py-20">
@@ -214,7 +218,9 @@ export default function EngineServicesNearMe() {
         </div>
       </section>
 
-      <Footer />
-    </div>
+          <Footer />
+        </div>
+      </PageOptimizer>
+    </>
   );
 }
