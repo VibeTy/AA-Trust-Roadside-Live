@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import { useTheme } from "@/hooks/use-theme";
 import { Phone, ChevronDown } from "lucide-react";
+import { useLocation } from "wouter";
 
 export default function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
+  const [location] = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,6 +20,12 @@ export default function Navigation() {
   }, []);
 
   const scrollToSection = (sectionId: string) => {
+    // If we're not on the home page, navigate to home first
+    if (location !== "/") {
+      window.location.href = `/#${sectionId}`;
+      return;
+    }
+    
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
@@ -30,7 +38,7 @@ export default function Navigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <div className="flex items-center cursor-pointer" onClick={() => scrollToSection("home")}>
+          <a href="/" className="flex items-center cursor-pointer">
             <img 
               src="/attached_assets/7938bab5-b302-4cf1-8a69-78cfce3c9be4_1750802043592.png" 
               alt="AA Trust Roadside Logo" 
@@ -40,7 +48,7 @@ export default function Navigation() {
               <span className="text-white">AA TRUST </span>
               <span className="text-blue-500">ROADSIDE</span>
             </div>
-          </div>
+          </a>
           
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-6">
