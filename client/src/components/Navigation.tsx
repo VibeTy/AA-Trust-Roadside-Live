@@ -1,23 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useTheme } from "@/hooks/use-theme";
 import { Phone, ChevronDown } from "lucide-react";
 import { useLocation } from "wouter";
+import OptimizedIcon from "@/components/OptimizedIcon";
+import { useDebouncedScroll } from "@/hooks/use-debounced-scroll";
 
 export default function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
   const [location] = useLocation();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 100);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const { isScrolled } = useDebouncedScroll();
 
   // Check for stored section to scroll to when on home page
   useEffect(() => {
@@ -61,6 +54,8 @@ export default function Navigation() {
               src="/attached_assets/7938bab5-b302-4cf1-8a69-78cfce3c9be4_1750802043592.png" 
               alt="AA Trust Roadside Logo" 
               className="h-8 md:h-10 w-auto mr-2 md:mr-3"
+              loading="eager"
+              decoding="async"
             />
             <div className="text-lg md:text-xl font-bold whitespace-nowrap">
               <span className="text-white">AA TRUST </span>
@@ -211,7 +206,7 @@ export default function Navigation() {
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="text-gray-300 hover:text-blue-500 p-2"
             >
-              <i className="fas fa-bars text-xl"></i>
+              <OptimizedIcon type="menu" size={24} />
             </button>
           </div>
         </div>
