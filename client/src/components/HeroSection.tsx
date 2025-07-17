@@ -24,7 +24,7 @@ export default function HeroSection() {
           <img 
             src="/attached_assets/7938bab5-b302-4cf1-8a69-78cfce3c9be4_1750802043592.png" 
             alt="AA Trust Roadside Logo" 
-            className="h-20 md:h-32 w-auto mx-auto mb-6 md:mb-8 max-w-full object-contain"
+            className="h-28 md:h-40 w-auto mx-auto mb-6 md:mb-8 max-w-full object-contain"
           />
         </div>
 
