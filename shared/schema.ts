@@ -118,6 +118,11 @@ export const chatbotInteractions = pgTable("chatbot_interactions", {
   customerPhone: text("customer_phone"),
   customerEmail: text("customer_email"),
   conversation: text("conversation").notNull(), // JSON string of chat history
+  customerLocation: text("customer_location"), // User-provided location string
+  gpsLatitude: text("gps_latitude"), // GPS latitude if provided
+  gpsLongitude: text("gps_longitude"), // GPS longitude if provided
+  gpsAccuracy: text("gps_accuracy"), // GPS accuracy in meters
+  locationMethod: text("location_method"), // 'gps', 'manual', 'landmarks'
   leadQuality: text("lead_quality"), // 'hot', 'warm', 'cold'
   handoffToCall: boolean("handoff_to_call").default(false),
   issueResolved: boolean("issue_resolved").default(false),

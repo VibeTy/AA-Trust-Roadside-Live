@@ -30,11 +30,62 @@ export default function ChatbotWidget() {
   const [leadData, setLeadData] = useState<LeadData>({});
   const [currentStep, setCurrentStep] = useState('greeting');
   const [isTyping, setIsTyping] = useState(false);
+  const [userLocation, setUserLocation] = useState<{
+    latitude: number;
+    longitude: number;
+    address?: string;
+    accuracy?: number;
+  } | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const getUserLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude, accuracy } = position.coords;
+          
+          setUserLocation({
+            latitude,
+            longitude,
+            accuracy
+          });
+          
+          // Update lead data with precise location
+          setLeadData(prev => ({
+            ...prev,
+            location: `GPS: ${latitude.toFixed(6)}, ${longitude.toFixed(6)} (±${Math.round(accuracy)}m)`,
+            coordinates: `${latitude}, ${longitude}`,
+            accuracy: accuracy
+          }));
+          
+          addMessage(`Perfect! I've captured your GPS coordinates (${latitude.toFixed(6)}, ${longitude.toFixed(6)}) with ${Math.round(accuracy)}m accuracy. Our technician will be able to find you precisely.`, 'bot');
+        },
+        (error) => {
+          console.error('Geolocation error:', error);
+          let errorMessage = "I couldn't get your exact location automatically. ";
+          if (error.code === 1) {
+            errorMessage += "Please allow location access and try again, or describe where you are (address, intersection, or nearby landmarks).";
+          } else if (error.code === 2) {
+            errorMessage += "Location services are unavailable. Please describe where you are (address, intersection, or nearby landmarks).";
+          } else {
+            errorMessage += "Please describe where you are (address, intersection, or nearby landmarks).";
+          }
+          addMessage(errorMessage, 'bot');
+        },
+        {
+          enableHighAccuracy: true,
+          timeout: 10000,
+          maximumAge: 60000
+        }
+      );
+    } else {
+      addMessage("Your browser doesn't support location services. Please tell me your location manually.", 'bot');
+    }
   };
 
   useEffect(() => {
@@ -118,19 +169,38 @@ export default function ChatbotWidget() {
 
   const handleProblem = (message: string) => {
     setLeadData(prev => ({ ...prev, problem: message }));
-    addMessage(`I understand you're dealing with: ${message}. Where are you located? (City, address, or nearest landmark)`, 'bot');
+    addMessage(`I understand you're dealing with: ${message}. I can help you share your location with our team. How would you like to proceed?`, 'bot', [
+      "📍 Share my GPS location automatically",
+      "📝 I'll type my location manually",
+      "🗺️ I'll describe nearby landmarks"
+    ]);
     setCurrentStep('location');
   };
 
   const handleLocation = (message: string) => {
-    setLeadData(prev => ({ ...prev, location: message }));
-    addMessage(`Got it, you're at: ${message}. How urgent is this situation?`, 'bot', [
-      "Emergency - stranded/unsafe",
-      "Urgent - need help within 1 hour",
-      "Today - can wait a few hours",
-      "Flexible - schedule for later"
-    ]);
-    setCurrentStep('urgency');
+    if (message.toLowerCase().includes('gps location') || message.toLowerCase().includes('share my gps')) {
+      addMessage("I'll get your GPS location now. Please allow location access when prompted for the most accurate positioning.", 'bot');
+      getUserLocation();
+      // Location will be set by getUserLocation, continue to urgency after location is captured
+      setTimeout(() => {
+        addMessage("How urgent is this situation?", 'bot', [
+          "Emergency - stranded/unsafe",
+          "Urgent - need help within 1 hour",
+          "Today - can wait a few hours",
+          "Flexible - schedule for later"
+        ]);
+        setCurrentStep('urgency');
+      }, 2000);
+    } else {
+      setLeadData(prev => ({ ...prev, location: message }));
+      addMessage(`Got it, you're at: ${message}. How urgent is this situation?`, 'bot', [
+        "Emergency - stranded/unsafe",
+        "Urgent - need help within 1 hour",
+        "Today - can wait a few hours",
+        "Flexible - schedule for later"
+      ]);
+      setCurrentStep('urgency');
+    }
   };
 
   const handleUrgency = (message: string) => {
@@ -222,6 +292,11 @@ export default function ChatbotWidget() {
         customerPhone: leadData.phone,
         customerEmail: leadData.email,
         conversation: JSON.stringify(messages),
+        customerLocation: leadData.location,
+        gpsLatitude: userLocation?.latitude?.toString(),
+        gpsLongitude: userLocation?.longitude?.toString(),
+        gpsAccuracy: userLocation?.accuracy?.toString(),
+        locationMethod: userLocation ? 'gps' : 'manual',
         leadQuality: determineLeadQuality(),
         handoffToCall: false,
         issueResolved: false
@@ -480,6 +555,17 @@ export default function ChatbotWidget() {
                   >
                     <Clock className="w-3 h-3 mr-1" />
                     Response Time
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      addMessage("📍 Share my GPS location automatically", 'user');
+                      processUserMessage("📍 Share my GPS location automatically");
+                    }}
+                    className="text-xs"
+                  >
+                    📍 Share Location
                   </Button>
                 </div>
               </div>

@@ -330,30 +330,63 @@ export default function EnhancedAdminDashboard() {
                     </div>
                     <div className="text-sm text-gray-600 dark:text-gray-300">Warm Leads</div>
                   </div>
-                  <div className="text-center p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                    <div className="text-2xl font-bold text-gray-600">{chatToCallConversion}</div>
-                    <div className="text-sm text-gray-600 dark:text-gray-300">Handoffs</div>
+                  <div className="text-center p-4 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                    <div className="text-2xl font-bold text-green-600">
+                      {chatbotInteractions.filter(c => c.gpsLatitude && c.gpsLongitude).length}
+                    </div>
+                    <div className="text-sm text-gray-600 dark:text-gray-300">GPS Locations</div>
                   </div>
                 </div>
 
                 <div className="space-y-3">
                   {chatbotInteractions.slice(0, 10).map((chat, index) => (
-                    <div key={index} className="flex items-center justify-between p-3 border rounded-lg">
-                      <div>
-                        <div className="font-medium">{chat.customerName || 'Anonymous'}</div>
-                        <div className="text-sm text-gray-500">{chat.customerPhone}</div>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Badge variant={
-                          chat.leadQuality === 'hot' ? 'destructive' : 
-                          chat.leadQuality === 'warm' ? 'default' : 'secondary'
-                        }>
-                          {chat.leadQuality?.toUpperCase()}
-                        </Badge>
-                        <div className="text-sm text-gray-400">
-                          {new Date(chat.createdAt).toLocaleString()}
+                    <div key={index} className="p-3 border rounded-lg">
+                      <div className="flex items-center justify-between mb-2">
+                        <div>
+                          <div className="font-medium">{chat.customerName || 'Anonymous'}</div>
+                          <div className="text-sm text-gray-500">{chat.customerPhone}</div>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Badge variant={
+                            chat.leadQuality === 'hot' ? 'destructive' : 
+                            chat.leadQuality === 'warm' ? 'default' : 'secondary'
+                          }>
+                            {chat.leadQuality?.toUpperCase()}
+                          </Badge>
+                          <div className="text-sm text-gray-400">
+                            {new Date(chat.createdAt).toLocaleString()}
+                          </div>
                         </div>
                       </div>
+                      
+                      {/* Location Information */}
+                      {(chat.customerLocation || chat.gpsLatitude) && (
+                        <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 mt-2">
+                          <MapPin className="w-4 h-4" />
+                          {chat.gpsLatitude && chat.gpsLongitude ? (
+                            <div className="flex items-center gap-3">
+                              <span className="font-medium text-green-600 dark:text-green-400">
+                                📍 GPS: {parseFloat(chat.gpsLatitude).toFixed(6)}, {parseFloat(chat.gpsLongitude).toFixed(6)}
+                              </span>
+                              {chat.gpsAccuracy && (
+                                <span className="text-xs text-gray-500">
+                                  ±{Math.round(parseFloat(chat.gpsAccuracy))}m
+                                </span>
+                              )}
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => window.open(`https://maps.google.com?q=${chat.gpsLatitude},${chat.gpsLongitude}`, '_blank')}
+                                className="text-xs h-6 px-2"
+                              >
+                                View on Map
+                              </Button>
+                            </div>
+                          ) : (
+                            <span>{chat.customerLocation}</span>
+                          )}
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>
