@@ -68,6 +68,75 @@ export const smartAnalyzerSubmissions = pgTable("smart_analyzer_submissions", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
+// Business Analytics & Tracking Tables
+export const callTracking = pgTable("call_tracking", {
+  id: serial("id").primaryKey(),
+  sessionId: text("session_id").notNull(),
+  phone: text("phone").notNull(),
+  source: text("source").notNull(), // 'hero', 'sticky', 'services', 'footer'
+  page: text("page").notNull(),
+  userAgent: text("user_agent"),
+  ipAddress: text("ip_address"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const jobTracking = pgTable("job_tracking", {
+  id: serial("id").primaryKey(),
+  submissionId: serial("submission_id").notNull(),
+  submissionType: text("submission_type").notNull(), // 'quote', 'contact', 'booking'
+  status: text("status").notNull().default('pending'), // 'pending', 'contacted', 'scheduled', 'completed', 'cancelled'
+  jobValue: text("job_value"), // Store as text to handle currency formatting
+  completedAt: timestamp("completed_at"),
+  responseTime: text("response_time"), // Time to first contact
+  customerSatisfaction: text("customer_satisfaction"), // 1-5 rating
+  notes: text("notes"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const websiteAnalytics = pgTable("website_analytics", {
+  id: serial("id").primaryKey(),
+  sessionId: text("session_id").notNull(),
+  page: text("page").notNull(),
+  device: text("device").notNull(), // 'mobile', 'desktop', 'tablet'
+  browser: text("browser"),
+  location: text("location"), // city, state
+  referrer: text("referrer"),
+  loadTime: text("load_time"), // page load speed
+  timeOnPage: text("time_on_page"), // seconds
+  bounced: boolean("bounced").default(false),
+  formStarted: boolean("form_started").default(false),
+  formCompleted: boolean("form_completed").default(false),
+  callButtonClicked: boolean("call_button_clicked").default(false),
+  callButtonSource: text("call_button_source"), // which button was clicked
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const chatbotInteractions = pgTable("chatbot_interactions", {
+  id: serial("id").primaryKey(),
+  sessionId: text("session_id").notNull(),
+  customerName: text("customer_name"),
+  customerPhone: text("customer_phone"),
+  customerEmail: text("customer_email"),
+  conversation: text("conversation").notNull(), // JSON string of chat history
+  leadQuality: text("lead_quality"), // 'hot', 'warm', 'cold'
+  handoffToCall: boolean("handoff_to_call").default(false),
+  issueResolved: boolean("issue_resolved").default(false),
+  satisfaction: text("satisfaction"), // 1-5 rating
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const marketingMetrics = pgTable("marketing_metrics", {
+  id: serial("id").primaryKey(),
+  source: text("source").notNull(), // 'google', 'facebook', 'direct', 'referral'
+  medium: text("medium"), // 'organic', 'cpc', 'social', 'email'
+  campaign: text("campaign"),
+  sessionId: text("session_id").notNull(),
+  conversionType: text("conversion_type"), // 'form', 'call', 'chat'
+  conversionValue: text("conversion_value"), // estimated value
+  customerAcquisitionCost: text("customer_acquisition_cost"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
 export const insertUserSchema = createInsertSchema(users).omit({
   id: true,
   resetToken: true,
@@ -119,10 +188,45 @@ export const insertSmartAnalyzerSubmissionSchema = createInsertSchema(smartAnaly
   createdAt: true,
 });
 
+export const insertCallTrackingSchema = createInsertSchema(callTracking).omit({
+  id: true,
+  createdAt: true,
+});
+
+export const insertJobTrackingSchema = createInsertSchema(jobTracking).omit({
+  id: true,
+  createdAt: true,
+});
+
+export const insertWebsiteAnalyticsSchema = createInsertSchema(websiteAnalytics).omit({
+  id: true,
+  createdAt: true,
+});
+
+export const insertChatbotInteractionSchema = createInsertSchema(chatbotInteractions).omit({
+  id: true,
+  createdAt: true,
+});
+
+export const insertMarketingMetricsSchema = createInsertSchema(marketingMetrics).omit({
+  id: true,
+  createdAt: true,
+});
+
 export type InsertBookingSubmission = z.infer<typeof insertBookingSubmissionSchema>;
 export type BookingSubmission = typeof bookingSubmissions.$inferSelect;
 export type InsertSmartAnalyzerSubmission = z.infer<typeof insertSmartAnalyzerSubmissionSchema>;
 export type SmartAnalyzerSubmission = typeof smartAnalyzerSubmissions.$inferSelect;
+export type InsertCallTracking = z.infer<typeof insertCallTrackingSchema>;
+export type CallTracking = typeof callTracking.$inferSelect;
+export type InsertJobTracking = z.infer<typeof insertJobTrackingSchema>;
+export type JobTracking = typeof jobTracking.$inferSelect;
+export type InsertWebsiteAnalytics = z.infer<typeof insertWebsiteAnalyticsSchema>;
+export type WebsiteAnalytics = typeof websiteAnalytics.$inferSelect;
+export type InsertChatbotInteraction = z.infer<typeof insertChatbotInteractionSchema>;
+export type ChatbotInteraction = typeof chatbotInteractions.$inferSelect;
+export type InsertMarketingMetrics = z.infer<typeof insertMarketingMetricsSchema>;
+export type MarketingMetrics = typeof marketingMetrics.$inferSelect;
 // Analytics schemas
 export const pageViewSchema = z.object({
   id: z.number(),

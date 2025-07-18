@@ -7,6 +7,11 @@ import {
   insertQuoteSubmissionSchema, 
   insertBookingSubmissionSchema,
   insertSmartAnalyzerSubmissionSchema,
+  insertCallTrackingSchema,
+  insertJobTrackingSchema,
+  insertWebsiteAnalyticsSchema,
+  insertChatbotInteractionSchema,
+  insertMarketingMetricsSchema,
   registerUserSchema,
   forgotPasswordSchema,
   resetPasswordSchema,
@@ -764,6 +769,148 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error('Error syncing Google reviews:', error);
       res.status(500).json({ error: 'Failed to sync Google reviews' });
+    }
+  });
+
+  // New Analytics Tracking Endpoints
+  
+  // Call Tracking
+  app.post("/api/call-tracking", async (req, res) => {
+    try {
+      const data = insertCallTrackingSchema.parse({
+        ...req.body,
+        ipAddress: req.ip || 'unknown'
+      });
+      
+      const tracking = await storage.createCallTracking(data);
+      res.status(201).json(tracking);
+    } catch (error) {
+      console.error("Error tracking call:", error);
+      res.status(500).json({ message: "Failed to track call" });
+    }
+  });
+
+  app.get("/api/call-tracking", async (req, res) => {
+    try {
+      const tracking = await storage.getCallTracking();
+      res.json(tracking);
+    } catch (error) {
+      console.error("Error fetching call tracking:", error);
+      res.status(500).json({ message: "Failed to fetch call tracking" });
+    }
+  });
+
+  // Website Analytics
+  app.post("/api/website-analytics", async (req, res) => {
+    try {
+      const data = insertWebsiteAnalyticsSchema.parse({
+        ...req.body,
+        ipAddress: req.ip || 'unknown'
+      });
+      
+      const analytics = await storage.createWebsiteAnalytics(data);
+      res.status(201).json(analytics);
+    } catch (error) {
+      console.error("Error tracking website analytics:", error);
+      res.status(500).json({ message: "Failed to track website analytics" });
+    }
+  });
+
+  app.get("/api/website-analytics", async (req, res) => {
+    try {
+      const analytics = await storage.getWebsiteAnalytics();
+      res.json(analytics);
+    } catch (error) {
+      console.error("Error fetching website analytics:", error);
+      res.status(500).json({ message: "Failed to fetch website analytics" });
+    }
+  });
+
+  // Chatbot Interactions
+  app.post("/api/chatbot-interactions", async (req, res) => {
+    try {
+      const data = insertChatbotInteractionSchema.parse(req.body);
+      const interaction = await storage.createChatbotInteraction(data);
+      res.status(201).json(interaction);
+    } catch (error) {
+      console.error("Error tracking chatbot interaction:", error);
+      res.status(500).json({ message: "Failed to track chatbot interaction" });
+    }
+  });
+
+  app.get("/api/chatbot-interactions", async (req, res) => {
+    try {
+      const interactions = await storage.getChatbotInteractions();
+      res.json(interactions);
+    } catch (error) {
+      console.error("Error fetching chatbot interactions:", error);
+      res.status(500).json({ message: "Failed to fetch chatbot interactions" });
+    }
+  });
+
+  // Job Tracking
+  app.post("/api/job-tracking", async (req, res) => {
+    try {
+      const data = insertJobTrackingSchema.parse(req.body);
+      const job = await storage.createJobTracking(data);
+      res.status(201).json(job);
+    } catch (error) {
+      console.error("Error tracking job:", error);
+      res.status(500).json({ message: "Failed to track job" });
+    }
+  });
+
+  app.get("/api/job-tracking", async (req, res) => {
+    try {
+      const jobs = await storage.getJobTracking();
+      res.json(jobs);
+    } catch (error) {
+      console.error("Error fetching job tracking:", error);
+      res.status(500).json({ message: "Failed to fetch job tracking" });
+    }
+  });
+
+  // Marketing Metrics
+  app.post("/api/marketing-metrics", async (req, res) => {
+    try {
+      const data = insertMarketingMetricsSchema.parse(req.body);
+      const metrics = await storage.createMarketingMetrics(data);
+      res.status(201).json(metrics);
+    } catch (error) {
+      console.error("Error tracking marketing metrics:", error);
+      res.status(500).json({ message: "Failed to track marketing metrics" });
+    }
+  });
+
+  app.get("/api/marketing-metrics", async (req, res) => {
+    try {
+      const metrics = await storage.getMarketingMetrics();
+      res.json(metrics);
+    } catch (error) {
+      console.error("Error fetching marketing metrics:", error);
+      res.status(500).json({ message: "Failed to fetch marketing metrics" });
+    }
+  });
+
+  // Enhanced endpoint to get contact submissions
+  app.get("/api/contact-submissions", async (req, res) => {
+    try {
+      const submissions = await storage.getContactSubmissions();
+      res.json(submissions);
+    } catch (error) {
+      console.error("Error fetching contact submissions:", error);
+      res.status(500).json({ message: "Failed to fetch contact submissions" });
+    }
+  });
+
+  // Enhanced endpoint to get quote submissions
+  app.get("/api/quote-submissions", async (req, res) => {
+    try {
+      const submissions = await storage.getQuoteSubmissions();
+      res.json(submissions);
+    } catch (error) {
+      console.error("Error fetching quote submissions:", error);
+      res.status(500).json({ message: "Failed to fetch quote submissions" });
     }
   });
 

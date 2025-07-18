@@ -75,29 +75,29 @@ export default function ServicesSection() {
       ]
     },
     {
-      icon: "fas fa-laptop-code",
+      icon: "fas fa-wrench",
       title: "Mobile Engine Diagnostics",
       color: "text-blue-600",
-      description: "Advanced computer diagnostics and on-site engine repair services.",
+      description: "Professional mobile engine diagnostics and light mechanical repairs.",
       link: "/mobile-engine-diagnostics-fl",
       services: [
-        "Computer Diagnostics",
+        "Engine Diagnostics",
         "Check Engine Light",
-        "Forced Regens",
-        "System Reset & Repair"
+        "Performance Issues",
+        "Troubleshooting"
       ]
     },
     {
       icon: "fas fa-key",
       title: "Vehicle Lockout Service",
       color: "text-blue-600",
-      description: "Fast, damage-free vehicle lockout service for all makes and models.",
+      description: "Professional lockout assistance without damaging your vehicle.",
       link: "/vehicle-lockout-service-fl",
       services: [
         "Car Lockout Service",
         "Truck Lockout Service",
-        "Damage-Free Unlocking",
-        "Modern Security Systems"
+        "Key Replacement",
+        "Lock Repair"
       ]
     },
     {
@@ -128,17 +128,9 @@ export default function ServicesSection() {
     }
   ];
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
     <section id="services" className="py-20 bg-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
         {/* Main Tire Services Section */}
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-white mb-4">Tire Services – Fast, Mobile, & Affordable</h2>
@@ -168,7 +160,7 @@ export default function ServicesSection() {
                 ))}
               </ul>
             </div>
-          ))}</div>
+          ))}
         </div>
 
         {/* Secondary Services Section */}
@@ -215,12 +207,10 @@ export default function ServicesSection() {
                   </li>
                 ))}
               </ul>
-
-              {/* Call to Action for each service */}
-              <div className="border-t border-gray-700 pt-4">
+              <div className="text-center">
                 <a 
-                  href="tel:+13863728412"
-                  className="inline-flex items-center justify-center w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-all duration-300 text-sm"
+                  href={service.link}
+                  className="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg text-sm transition-all duration-300"
                 >
                   <i className="fas fa-phone mr-2"></i>
                   Call Now

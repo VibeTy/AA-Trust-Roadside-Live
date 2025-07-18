@@ -7,6 +7,8 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { useTrafficTracker } from "@/hooks/use-traffic-tracker";
 import AssetPreloader from "@/components/AssetPreloader";
 import CriticalCSS from "@/components/CriticalCSS";
+import ChatbotWidget from "@/components/ChatbotWidget";
+import AnalyticsTracker from "@/components/AnalyticsTracker";
 import Home from "@/pages/Home";
 import Quote from "@/pages/Quote";
 import ThankYou from "@/pages/ThankYou";
@@ -49,7 +51,9 @@ function Router() {
   useTrafficTracker();
   
   return (
-    <Switch>
+    <>
+      <AnalyticsTracker />
+      <Switch>
       <Route path="/" component={Home} />
       <Route path="/about" component={About} />
       <Route path="/contact" component={Contact} />
@@ -89,6 +93,8 @@ function Router() {
 
       <Route component={NotFound} />
     </Switch>
+    <ChatbotWidget />
+    </>
   );
 }
 
