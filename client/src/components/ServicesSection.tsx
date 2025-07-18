@@ -49,7 +49,7 @@ export default function ServicesSection() {
 
   const services = [
     {
-      icon: "fas fa-circle",
+      icon: "fas fa-dot-circle",
       title: "Mobile Tire Services",
       color: "text-blue-600",
       description: "Professional mobile tire repair and replacement services brought directly to your location.",
