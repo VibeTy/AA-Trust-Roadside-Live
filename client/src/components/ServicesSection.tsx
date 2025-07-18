@@ -195,7 +195,20 @@ export default function ServicesSection() {
             <div key={index} className="bg-gray-900 border border-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:border-blue-500">
               <div className="text-center mb-4">
                 <div className="bg-blue-600 text-white p-4 rounded-lg inline-block mb-4">
-                  <i className={`${service.icon} text-2xl`}></i>
+                  {service.title === "Mobile Tire Services" ? (
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="currentColor" className="text-2xl">
+                      <circle cx="16" cy="16" r="14" fill="none" stroke="currentColor" strokeWidth="2"/>
+                      <circle cx="16" cy="16" r="10" fill="none" stroke="currentColor" strokeWidth="1.5"/>
+                      <circle cx="16" cy="16" r="6" fill="none" stroke="currentColor" strokeWidth="1"/>
+                      <circle cx="16" cy="16" r="2" fill="currentColor"/>
+                      <line x1="16" y1="2" x2="16" y2="6" stroke="currentColor" strokeWidth="1"/>
+                      <line x1="16" y1="26" x2="16" y2="30" stroke="currentColor" strokeWidth="1"/>
+                      <line x1="2" y1="16" x2="6" y2="16" stroke="currentColor" strokeWidth="1"/>
+                      <line x1="26" y1="16" x2="30" y2="16" stroke="currentColor" strokeWidth="1"/>
+                    </svg>
+                  ) : (
+                    <i className={`${service.icon} text-2xl`}></i>
+                  )}
                 </div>
                 <h3 className="text-xl font-semibold text-white">{service.title}</h3>
               </div>
