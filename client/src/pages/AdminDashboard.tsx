@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Progress } from "@/components/ui/progress";
-import { Phone, Mail, MapPin, Clock, CheckCircle, AlertCircle, Users, BarChart3, TrendingUp, ArrowUp, ArrowDown, LogOut, Settings, Zap, Star, Eye, Calendar, DollarSign } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, CheckCircle, AlertCircle, AlertTriangle, Users, BarChart3, TrendingUp, ArrowUp, ArrowDown, LogOut, Settings, Zap, Star, Eye, Calendar, DollarSign } from "lucide-react";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import type { QuoteSubmission, ContactSubmission, BookingSubmission, SmartAnalyzerSubmission } from "@shared/schema";
