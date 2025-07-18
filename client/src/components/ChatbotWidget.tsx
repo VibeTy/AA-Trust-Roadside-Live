@@ -434,7 +434,7 @@ export default function ChatbotWidget() {
             <img 
               src="/attached_assets/Gemini_Generated_Image_ve42n9ve42n9ve42_1752809889726.png" 
               alt="Fritzner Roadside Assistant" 
-              className="w-12 h-12 md:w-16 md:h-16 object-cover rounded-full"
+              className="w-14 h-14 md:w-18 md:h-18 object-cover rounded-full scale-150"
             />
           )}
         </Button>
