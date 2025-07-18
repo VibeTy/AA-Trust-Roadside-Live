@@ -13,7 +13,7 @@ import { Progress } from "@/components/ui/progress";
 import { Phone, Mail, MapPin, Clock, CheckCircle, AlertCircle, AlertTriangle, Users, BarChart3, TrendingUp, ArrowUp, ArrowDown, LogOut, Settings, Zap, Star, Eye, Calendar, DollarSign, RefreshCw } from "lucide-react";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
-import type { QuoteSubmission, ContactSubmission, BookingSubmission, SmartAnalyzerSubmission } from "@shared/schema";
+import type { QuoteSubmission, ContactSubmission, BookingSubmission, SmartAnalyzerSubmission, CallTracking, WebsiteAnalytics, ChatbotInteraction, JobTracking, MarketingMetrics } from "@shared/schema";
 import PageOptimizer from "@/components/PageOptimizer";
 import OptimizedIcon from "@/components/OptimizedIcon";
 
@@ -46,6 +46,32 @@ export default function AdminDashboard() {
 
   const { data: smartAnalyzer, isLoading: smartAnalyzerLoading, error: smartAnalyzerError } = useQuery<SmartAnalyzerSubmission[]>({
     queryKey: ['/api/smart-analyzer'],
+    retry: false,
+  });
+
+  // Tracking data queries
+  const { data: callTracking, isLoading: callTrackingLoading } = useQuery<CallTracking[]>({
+    queryKey: ['/api/call-tracking'],
+    retry: false,
+  });
+
+  const { data: websiteAnalytics, isLoading: websiteAnalyticsLoading } = useQuery<WebsiteAnalytics[]>({
+    queryKey: ['/api/website-analytics'],
+    retry: false,
+  });
+
+  const { data: chatbotInteractions, isLoading: chatbotInteractionsLoading } = useQuery<ChatbotInteraction[]>({
+    queryKey: ['/api/chatbot-interactions'],
+    retry: false,
+  });
+
+  const { data: jobTracking, isLoading: jobTrackingLoading } = useQuery<JobTracking[]>({
+    queryKey: ['/api/job-tracking'],
+    retry: false,
+  });
+
+  const { data: marketingMetrics, isLoading: marketingMetricsLoading } = useQuery<MarketingMetrics[]>({
+    queryKey: ['/api/marketing-metrics'],
     retry: false,
   });
 
@@ -402,7 +428,7 @@ export default function AdminDashboard() {
 
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4">
-          <TabsList className="grid w-full grid-cols-2 md:grid-cols-5 gap-1 h-auto p-1">
+          <TabsList className="grid w-full grid-cols-2 md:grid-cols-6 gap-1 h-auto p-1">
             <TabsTrigger value="overview" className="flex items-center justify-center gap-1 text-xs md:text-sm py-2 px-2 md:px-4">
               <BarChart3 className="w-4 h-4" />
               <span className="hidden sm:inline">Overview</span>
@@ -424,6 +450,12 @@ export default function AdminDashboard() {
               <span className="hidden sm:inline">Smart Analyzer</span>
               <span className="sm:hidden">({totalSmartAnalyzer})</span>
               <span className="hidden sm:inline">({totalSmartAnalyzer})</span>
+            </TabsTrigger>
+            <TabsTrigger value="tracking" className="flex items-center justify-center gap-1 text-xs md:text-sm py-2 px-2 md:px-4">
+              <Eye className="w-4 h-4" />
+              <span className="hidden sm:inline">Tracking</span>
+              <span className="sm:hidden">({(websiteAnalytics?.length || 0) + (callTracking?.length || 0) + (chatbotInteractions?.length || 0)})</span>
+              <span className="hidden sm:inline">({(websiteAnalytics?.length || 0) + (callTracking?.length || 0) + (chatbotInteractions?.length || 0)})</span>
             </TabsTrigger>
             <TabsTrigger value="settings" className="flex items-center justify-center gap-1 text-xs md:text-sm py-2 px-2 md:px-4 col-span-2 md:col-span-1">
               <Settings className="w-4 h-4" />
@@ -1048,6 +1080,354 @@ export default function AdminDashboard() {
                 )}
               </div>
             )}
+          </TabsContent>
+
+          <TabsContent value="tracking" className="space-y-6">
+            <Card className="border-0 shadow-lg">
+              <CardHeader className="bg-gradient-to-r from-purple-600 to-purple-700 text-white">
+                <CardTitle className="flex items-center gap-2">
+                  <Eye className="w-5 h-5" />
+                  Website & Customer Tracking
+                </CardTitle>
+                <CardDescription className="text-purple-100">
+                  Real-time analytics and user behavior tracking
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="p-6">
+                <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-6">
+                  <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4">
+                    <h4 className="font-semibold text-blue-800 dark:text-blue-200 mb-2">Website Analytics</h4>
+                    <p className="text-2xl font-bold text-blue-600">{websiteAnalytics?.length || 0}</p>
+                    <p className="text-sm text-blue-700 dark:text-blue-300">Page views tracked</p>
+                  </div>
+                  <div className="bg-green-50 dark:bg-green-900/20 rounded-lg p-4">
+                    <h4 className="font-semibold text-green-800 dark:text-green-200 mb-2">Call Tracking</h4>
+                    <p className="text-2xl font-bold text-green-600">{callTracking?.length || 0}</p>
+                    <p className="text-sm text-green-700 dark:text-green-300">Calls tracked</p>
+                  </div>
+                  <div className="bg-orange-50 dark:bg-orange-900/20 rounded-lg p-4">
+                    <h4 className="font-semibold text-orange-800 dark:text-orange-200 mb-2">Chat Interactions</h4>
+                    <p className="text-2xl font-bold text-orange-600">{chatbotInteractions?.length || 0}</p>
+                    <p className="text-sm text-orange-700 dark:text-orange-300">Chatbot conversations</p>
+                  </div>
+                  <div className="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4">
+                    <h4 className="font-semibold text-purple-800 dark:text-purple-200 mb-2">GPS Locations</h4>
+                    <p className="text-2xl font-bold text-purple-600">
+                      {chatbotInteractions?.filter(chat => chat.gpsLatitude && chat.gpsLongitude).length || 0}
+                    </p>
+                    <p className="text-sm text-purple-700 dark:text-purple-300">Precise GPS captured</p>
+                  </div>
+                </div>
+
+                <Tabs defaultValue="website" className="w-full">
+                  <TabsList className="grid w-full grid-cols-4">
+                    <TabsTrigger value="website">Website Analytics</TabsTrigger>
+                    <TabsTrigger value="calls">Call Tracking</TabsTrigger>
+                    <TabsTrigger value="chat">Chat Interactions</TabsTrigger>
+                    <TabsTrigger value="gps">GPS Locations</TabsTrigger>
+                  </TabsList>
+
+                  <TabsContent value="website" className="space-y-4">
+                    <Card>
+                      <CardHeader>
+                        <CardTitle>Website Analytics Data</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="space-y-4">
+                          {websiteAnalyticsLoading && (
+                            <div className="text-center py-8">
+                              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
+                              <p className="text-gray-500 mt-2">Loading website analytics...</p>
+                            </div>
+                          )}
+                          {websiteAnalytics?.map((analytics) => (
+                            <div key={analytics.id} className="border rounded-lg p-4">
+                              <div className="flex justify-between items-start mb-3">
+                                <div>
+                                  <h4 className="font-semibold">{analytics.page}</h4>
+                                  <p className="text-sm text-gray-600">Session: {analytics.sessionId}</p>
+                                </div>
+                                <Badge variant="outline">{analytics.device}</Badge>
+                              </div>
+                              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                                <div>
+                                  <p className="font-medium">Browser</p>
+                                  <p className="text-gray-600">{analytics.browser || 'Unknown'}</p>
+                                </div>
+                                <div>
+                                  <p className="font-medium">Location</p>
+                                  <p className="text-gray-600">{analytics.location || 'Unknown'}</p>
+                                </div>
+                                <div>
+                                  <p className="font-medium">Time on Page</p>
+                                  <p className="text-gray-600">{analytics.timeOnPage ? `${analytics.timeOnPage}s` : 'N/A'}</p>
+                                </div>
+                                <div>
+                                  <p className="font-medium">Referrer</p>
+                                  <p className="text-gray-600">{analytics.referrer || 'Direct'}</p>
+                                </div>
+                              </div>
+                              <div className="mt-3 flex gap-2">
+                                {analytics.formStarted && <Badge variant="secondary">Form Started</Badge>}
+                                {analytics.formCompleted && <Badge variant="default">Form Completed</Badge>}
+                                {analytics.callButtonClicked && <Badge variant="destructive">Call Button Clicked</Badge>}
+                                {analytics.bounced && <Badge variant="outline">Bounced</Badge>}
+                              </div>
+                              <p className="text-xs text-gray-500 mt-2">
+                                {new Date(analytics.createdAt).toLocaleString()}
+                              </p>
+                            </div>
+                          ))}
+                          {(!websiteAnalytics || websiteAnalytics.length === 0) && !websiteAnalyticsLoading && (
+                            <div className="text-center py-8">
+                              <Eye className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                              <p className="text-gray-500">No website analytics data yet.</p>
+                            </div>
+                          )}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </TabsContent>
+
+                  <TabsContent value="calls" className="space-y-4">
+                    <Card>
+                      <CardHeader>
+                        <CardTitle>Call Tracking Data</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="space-y-4">
+                          {callTrackingLoading && (
+                            <div className="text-center py-8">
+                              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-600 mx-auto"></div>
+                              <p className="text-gray-500 mt-2">Loading call tracking...</p>
+                            </div>
+                          )}
+                          {callTracking?.map((call) => (
+                            <div key={call.id} className="border rounded-lg p-4">
+                              <div className="flex justify-between items-start mb-3">
+                                <div>
+                                  <h4 className="font-semibold flex items-center gap-2">
+                                    <Phone className="w-4 h-4" />
+                                    {call.phone}
+                                  </h4>
+                                  <p className="text-sm text-gray-600">From: {call.page}</p>
+                                </div>
+                                <Badge variant="outline">{call.source}</Badge>
+                              </div>
+                              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
+                                <div>
+                                  <p className="font-medium">Session ID</p>
+                                  <p className="text-gray-600">{call.sessionId}</p>
+                                </div>
+                                <div>
+                                  <p className="font-medium">IP Address</p>
+                                  <p className="text-gray-600">{call.ipAddress}</p>
+                                </div>
+                                <div>
+                                  <p className="font-medium">User Agent</p>
+                                  <p className="text-gray-600 truncate">{call.userAgent || 'Unknown'}</p>
+                                </div>
+                              </div>
+                              <p className="text-xs text-gray-500 mt-2">
+                                {new Date(call.createdAt).toLocaleString()}
+                              </p>
+                            </div>
+                          ))}
+                          {(!callTracking || callTracking.length === 0) && !callTrackingLoading && (
+                            <div className="text-center py-8">
+                              <Phone className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                              <p className="text-gray-500">No call tracking data yet.</p>
+                            </div>
+                          )}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </TabsContent>
+
+                  <TabsContent value="chat" className="space-y-4">
+                    <Card>
+                      <CardHeader>
+                        <CardTitle>Chatbot Interactions</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="space-y-4">
+                          {chatbotInteractionsLoading && (
+                            <div className="text-center py-8">
+                              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-600 mx-auto"></div>
+                              <p className="text-gray-500 mt-2">Loading chat interactions...</p>
+                            </div>
+                          )}
+                          {chatbotInteractions?.map((chat) => (
+                            <div key={chat.id} className="border rounded-lg p-4">
+                              <div className="flex justify-between items-start mb-3">
+                                <div>
+                                  <h4 className="font-semibold">{chat.customerName || 'Anonymous'}</h4>
+                                  <p className="text-sm text-gray-600">Session: {chat.sessionId}</p>
+                                </div>
+                                <div className="flex gap-2">
+                                  {chat.leadQuality && <Badge variant="outline">{chat.leadQuality}</Badge>}
+                                  {chat.handoffToCall && <Badge variant="destructive">Handoff to Call</Badge>}
+                                </div>
+                              </div>
+                              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm mb-3">
+                                <div>
+                                  <p className="font-medium">Phone</p>
+                                  <p className="text-gray-600">{chat.customerPhone || 'Not provided'}</p>
+                                </div>
+                                <div>
+                                  <p className="font-medium">Email</p>
+                                  <p className="text-gray-600">{chat.customerEmail || 'Not provided'}</p>
+                                </div>
+                                <div>
+                                  <p className="font-medium">Location</p>
+                                  <p className="text-gray-600">{chat.customerLocation || 'Not provided'}</p>
+                                </div>
+                                <div>
+                                  <p className="font-medium">Satisfaction</p>
+                                  <p className="text-gray-600">{chat.satisfaction || 'Not rated'}</p>
+                                </div>
+                              </div>
+                              {chat.gpsLatitude && chat.gpsLongitude && (
+                                <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-3 mb-3">
+                                  <p className="font-medium text-blue-800 dark:text-blue-200">GPS Location:</p>
+                                  <p className="text-sm text-blue-700 dark:text-blue-300">
+                                    {chat.gpsLatitude}, {chat.gpsLongitude}
+                                    {chat.gpsAccuracy && ` (±${chat.gpsAccuracy}m)`}
+                                  </p>
+                                  <a 
+                                    href={`https://maps.google.com/?q=${chat.gpsLatitude},${chat.gpsLongitude}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-blue-600 hover:underline text-sm"
+                                  >
+                                    View on Google Maps
+                                  </a>
+                                </div>
+                              )}
+                              <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-3">
+                                <p className="font-medium mb-2">Conversation Summary:</p>
+                                <div className="text-sm text-gray-700 dark:text-gray-300 max-h-32 overflow-y-auto">
+                                  {chat.conversation ? (
+                                    <pre className="whitespace-pre-wrap font-mono text-xs">
+                                      {chat.conversation.slice(0, 500)}
+                                      {chat.conversation.length > 500 && '...'}
+                                    </pre>
+                                  ) : (
+                                    'No conversation data'
+                                  )}
+                                </div>
+                              </div>
+                              <div className="flex gap-2 mt-3">
+                                {chat.issueResolved && <Badge variant="default">Issue Resolved</Badge>}
+                                {chat.locationMethod && <Badge variant="secondary">Location: {chat.locationMethod}</Badge>}
+                              </div>
+                              <p className="text-xs text-gray-500 mt-2">
+                                {new Date(chat.createdAt).toLocaleString()}
+                              </p>
+                            </div>
+                          ))}
+                          {(!chatbotInteractions || chatbotInteractions.length === 0) && !chatbotInteractionsLoading && (
+                            <div className="text-center py-8">
+                              <AlertCircle className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                              <p className="text-gray-500">No chatbot interactions yet.</p>
+                            </div>
+                          )}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </TabsContent>
+
+                  <TabsContent value="gps" className="space-y-4">
+                    <Card>
+                      <CardHeader>
+                        <CardTitle>GPS Location Data</CardTitle>
+                        <CardDescription>
+                          Precise customer locations for emergency response
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="space-y-4">
+                          {chatbotInteractions?.filter(chat => chat.gpsLatitude && chat.gpsLongitude).map((chat) => (
+                            <div key={chat.id} className="border rounded-lg p-4">
+                              <div className="flex justify-between items-start mb-3">
+                                <div>
+                                  <h4 className="font-semibold">{chat.customerName || 'Anonymous Customer'}</h4>
+                                  <p className="text-sm text-gray-600">Session: {chat.sessionId}</p>
+                                </div>
+                                <Badge variant="outline">{chat.locationMethod}</Badge>
+                              </div>
+                              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
+                                <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-3">
+                                  <p className="font-medium text-blue-800 dark:text-blue-200">GPS Coordinates:</p>
+                                  <p className="text-sm text-blue-700 dark:text-blue-300 font-mono">
+                                    {chat.gpsLatitude}, {chat.gpsLongitude}
+                                  </p>
+                                  {chat.gpsAccuracy && (
+                                    <p className="text-xs text-blue-600 dark:text-blue-400 mt-1">
+                                      Accuracy: ±{chat.gpsAccuracy} meters
+                                    </p>
+                                  )}
+                                </div>
+                                <div className="bg-green-50 dark:bg-green-900/20 rounded-lg p-3">
+                                  <p className="font-medium text-green-800 dark:text-green-200">Contact Info:</p>
+                                  <p className="text-sm text-green-700 dark:text-green-300">
+                                    {chat.customerPhone && `Phone: ${chat.customerPhone}`}
+                                    {chat.customerEmail && `Email: ${chat.customerEmail}`}
+                                    {!chat.customerPhone && !chat.customerEmail && 'No contact provided'}
+                                  </p>
+                                </div>
+                              </div>
+                              <div className="flex gap-2 mb-3">
+                                <Button size="sm" variant="outline" asChild>
+                                  <a 
+                                    href={`https://maps.google.com/?q=${chat.gpsLatitude},${chat.gpsLongitude}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                  >
+                                    <MapPin className="w-4 h-4 mr-2" />
+                                    View on Google Maps
+                                  </a>
+                                </Button>
+                                <Button size="sm" variant="outline" asChild>
+                                  <a 
+                                    href={`https://www.google.com/maps/dir/?api=1&destination=${chat.gpsLatitude},${chat.gpsLongitude}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                  >
+                                    <MapPin className="w-4 h-4 mr-2" />
+                                    Get Directions
+                                  </a>
+                                </Button>
+                                {chat.customerPhone && (
+                                  <Button size="sm" asChild>
+                                    <a href={`tel:${chat.customerPhone}`}>
+                                      <Phone className="w-4 h-4 mr-2" />
+                                      Call Customer
+                                    </a>
+                                  </Button>
+                                )}
+                              </div>
+                              <p className="text-xs text-gray-500">
+                                Location captured: {new Date(chat.createdAt).toLocaleString()}
+                              </p>
+                            </div>
+                          ))}
+                          {(!chatbotInteractions?.some(chat => chat.gpsLatitude && chat.gpsLongitude)) && (
+                            <div className="text-center py-8">
+                              <MapPin className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                              <p className="text-gray-500">No GPS locations captured yet.</p>
+                              <p className="text-sm text-gray-400 mt-2">
+                                GPS locations will appear here when customers share their location through the chatbot.
+                              </p>
+                            </div>
+                          )}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </TabsContent>
+                </Tabs>
+              </CardContent>
+            </Card>
           </TabsContent>
 
           <TabsContent value="settings" className="space-y-6">
