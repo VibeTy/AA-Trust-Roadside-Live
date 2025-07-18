@@ -4,6 +4,11 @@ import {
   quoteSubmissions, 
   bookingSubmissions,
   smartAnalyzerSubmissions,
+  callTracking,
+  jobTracking,
+  websiteAnalytics,
+  chatbotInteractions,
+  marketingMetrics,
   type User, 
   type InsertUser, 
   type ContactSubmission, 
@@ -14,6 +19,16 @@ import {
   type InsertBookingSubmission,
   type SmartAnalyzerSubmission,
   type InsertSmartAnalyzerSubmission,
+  type CallTracking,
+  type InsertCallTracking,
+  type JobTracking,
+  type InsertJobTracking,
+  type WebsiteAnalytics,
+  type InsertWebsiteAnalytics,
+  type ChatbotInteraction,
+  type InsertChatbotInteraction,
+  type MarketingMetrics,
+  type InsertMarketingMetrics,
   type PageView,
   type InsertPageView,
   type TrafficStats
@@ -35,6 +50,18 @@ export interface IStorage {
   getSmartAnalyzerSubmissions(): Promise<SmartAnalyzerSubmission[]>;
   updateSmartAnalyzerContacted(id: number, contacted: boolean): Promise<SmartAnalyzerSubmission | undefined>;
   getTrafficStats(): Promise<TrafficStats>;
+  
+  // New analytics tracking methods
+  createCallTracking(tracking: InsertCallTracking): Promise<CallTracking>;
+  getCallTracking(): Promise<CallTracking[]>;
+  createJobTracking(job: InsertJobTracking): Promise<JobTracking>;
+  getJobTracking(): Promise<JobTracking[]>;
+  createWebsiteAnalytics(analytics: InsertWebsiteAnalytics): Promise<WebsiteAnalytics>;
+  getWebsiteAnalytics(): Promise<WebsiteAnalytics[]>;
+  createChatbotInteraction(interaction: InsertChatbotInteraction): Promise<ChatbotInteraction>;
+  getChatbotInteractions(): Promise<ChatbotInteraction[]>;
+  createMarketingMetrics(metrics: InsertMarketingMetrics): Promise<MarketingMetrics>;
+  getMarketingMetrics(): Promise<MarketingMetrics[]>;
 }
 
 export class MemStorage implements IStorage {
@@ -49,10 +76,18 @@ export class MemStorage implements IStorage {
   private currentBookingId: number;
   private currentSmartAnalyzerId: number;
 
-  private passwordResetTokens: PasswordResetToken[] = [];
-  private resetTokenIdCounter = 1;
-
   // Analytics storage
+  private callTracking: Map<number, CallTracking>;
+  private jobTracking: Map<number, JobTracking>;
+  private websiteAnalytics: Map<number, WebsiteAnalytics>;
+  private chatbotInteractions: Map<number, ChatbotInteraction>;
+  private marketingMetrics: Map<number, MarketingMetrics>;
+  private currentCallTrackingId: number;
+  private currentJobTrackingId: number;
+  private currentWebsiteAnalyticsId: number;
+  private currentChatbotInteractionId: number;
+  private currentMarketingMetricsId: number;
+
   private pageViews: PageView[] = [];
   private currentPageViewId = 1;
   private activeSessions = new Map<string, { startTime: Date, lastActivity: Date, pages: string[] }>();
@@ -63,11 +98,21 @@ export class MemStorage implements IStorage {
     this.quoteSubmissions = new Map();
     this.bookingSubmissions = new Map();
     this.smartAnalyzerSubmissions = new Map();
+    this.callTracking = new Map();
+    this.jobTracking = new Map();
+    this.websiteAnalytics = new Map();
+    this.chatbotInteractions = new Map();
+    this.marketingMetrics = new Map();
     this.currentUserId = 1;
     this.currentSubmissionId = 1;
     this.currentQuoteId = 1;
     this.currentBookingId = 1;
     this.currentSmartAnalyzerId = 1;
+    this.currentCallTrackingId = 1;
+    this.currentJobTrackingId = 1;
+    this.currentWebsiteAnalyticsId = 1;
+    this.currentChatbotInteractionId = 1;
+    this.currentMarketingMetricsId = 1;
   }
 
   async getUser(id: number): Promise<User | undefined> {
@@ -355,6 +400,81 @@ export class MemStorage implements IStorage {
       return { country: 'United States', region: 'Florida', city: 'Orlando' };
     }
     return { country: 'United States', region: 'Florida', city: 'Jacksonville' };
+  }
+
+  // Call Tracking Methods
+  async createCallTracking(tracking: InsertCallTracking): Promise<CallTracking> {
+    const newTracking: CallTracking = {
+      id: this.currentCallTrackingId++,
+      ...tracking,
+      createdAt: new Date()
+    };
+    this.callTracking.set(newTracking.id, newTracking);
+    return newTracking;
+  }
+
+  async getCallTracking(): Promise<CallTracking[]> {
+    return Array.from(this.callTracking.values());
+  }
+
+  // Job Tracking Methods
+  async createJobTracking(job: InsertJobTracking): Promise<JobTracking> {
+    const newJob: JobTracking = {
+      id: this.currentJobTrackingId++,
+      ...job,
+      createdAt: new Date()
+    };
+    this.jobTracking.set(newJob.id, newJob);
+    return newJob;
+  }
+
+  async getJobTracking(): Promise<JobTracking[]> {
+    return Array.from(this.jobTracking.values());
+  }
+
+  // Website Analytics Methods
+  async createWebsiteAnalytics(analytics: InsertWebsiteAnalytics): Promise<WebsiteAnalytics> {
+    const newAnalytics: WebsiteAnalytics = {
+      id: this.currentWebsiteAnalyticsId++,
+      ...analytics,
+      createdAt: new Date()
+    };
+    this.websiteAnalytics.set(newAnalytics.id, newAnalytics);
+    return newAnalytics;
+  }
+
+  async getWebsiteAnalytics(): Promise<WebsiteAnalytics[]> {
+    return Array.from(this.websiteAnalytics.values());
+  }
+
+  // Chatbot Interaction Methods
+  async createChatbotInteraction(interaction: InsertChatbotInteraction): Promise<ChatbotInteraction> {
+    const newInteraction: ChatbotInteraction = {
+      id: this.currentChatbotInteractionId++,
+      ...interaction,
+      createdAt: new Date()
+    };
+    this.chatbotInteractions.set(newInteraction.id, newInteraction);
+    return newInteraction;
+  }
+
+  async getChatbotInteractions(): Promise<ChatbotInteraction[]> {
+    return Array.from(this.chatbotInteractions.values());
+  }
+
+  // Marketing Metrics Methods
+  async createMarketingMetrics(metrics: InsertMarketingMetrics): Promise<MarketingMetrics> {
+    const newMetrics: MarketingMetrics = {
+      id: this.currentMarketingMetricsId++,
+      ...metrics,
+      createdAt: new Date()
+    };
+    this.marketingMetrics.set(newMetrics.id, newMetrics);
+    return newMetrics;
+  }
+
+  async getMarketingMetrics(): Promise<MarketingMetrics[]> {
+    return Array.from(this.marketingMetrics.values());
   }
 }
 

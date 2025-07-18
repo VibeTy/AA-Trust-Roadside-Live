@@ -294,11 +294,11 @@ export default function SmartServiceForm() {
             <p className="text-blue-700 text-sm mb-3">
               Our certified technicians are available 24/7. Average response time: 15 minutes.
             </p>
-            <div className="flex gap-2">
-              <Button className="flex-1 bg-green-600 hover:bg-green-700">
+            <div className="flex flex-col sm:flex-row gap-2">
+              <Button className="w-full sm:flex-1 bg-green-600 hover:bg-green-700">
                 Call Now: (386) 313-0074
               </Button>
-              <Button variant="outline" className="flex-1">
+              <Button variant="outline" className="w-full sm:flex-1">
                 Text for Quote
               </Button>
             </div>
