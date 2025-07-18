@@ -27,24 +27,42 @@ export function useTrafficTracker() {
 
   useEffect(() => {
     // Track user entry
-    fetch('/api/track-user', { method: 'POST' })
-      .catch(error => console.error('Failed to track user entry:', error));
+    fetch('/api/track-user', { 
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        sessionId: sessionId.current,
+        page: location,
+        userAgent: navigator.userAgent,
+        referrer: document.referrer
+      })
+    }).catch(error => console.error('Failed to track user entry:', error));
 
     // Track user exit
     const handleBeforeUnload = () => {
-      navigator.sendBeacon('/api/untrack-user', JSON.stringify({
+      const blob = new Blob([JSON.stringify({
         sessionId: sessionId.current
-      }));
+      })], { type: 'application/json' });
+      navigator.sendBeacon('/api/untrack-user', blob);
     };
 
     const handleVisibilityChange = () => {
       if (document.visibilityState === 'hidden') {
-        navigator.sendBeacon('/api/untrack-user', JSON.stringify({
+        const blob = new Blob([JSON.stringify({
           sessionId: sessionId.current
-        }));
+        })], { type: 'application/json' });
+        navigator.sendBeacon('/api/untrack-user', blob);
       } else if (document.visibilityState === 'visible') {
-        fetch('/api/track-user', { method: 'POST' })
-          .catch(error => console.error('Failed to track user re-entry:', error));
+        fetch('/api/track-user', { 
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            sessionId: sessionId.current,
+            page: location,
+            userAgent: navigator.userAgent,
+            referrer: document.referrer
+          })
+        }).catch(error => console.error('Failed to track user re-entry:', error));
       }
     };
 
@@ -64,7 +82,7 @@ export function useTrafficTracker() {
         })
       }).catch(error => console.error('Failed to track user exit:', error));
     };
-  }, []);
+  }, [location]);
 }
 
 function generateSessionId(): string {

@@ -676,15 +676,46 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.post("/api/track-user", (req, res) => {
-    activeUsers++;
-    // Broadcast to all admin clients
-    adminClients.forEach((client: any) => {
-      if (client.readyState === 1) { // WebSocket.OPEN
-        client.send(JSON.stringify({ type: 'user_count', count: activeUsers }));
+  app.post("/api/track-user", async (req, res) => {
+    try {
+      const { sessionId } = req.body;
+      
+      if (!sessionId) {
+        return res.status(400).json({ message: "Session ID is required" });
       }
-    });
-    res.json({ success: true });
+
+      // Only increment if this is a new session
+      const stats = await storage.getTrafficStats();
+      const currentActiveUsers = stats.activeUsers;
+      
+      // Check if session is already active
+      const isNewSession = !storage.isSessionActive(sessionId);
+      
+      if (isNewSession) {
+        // Create new session in storage
+        await storage.trackPageView(sessionId, req.body.page || '/', req.body.userAgent, req.body.referrer);
+      }
+      
+      // Get updated user count from storage (not from counter)
+      const updatedStats = await storage.getTrafficStats();
+      activeUsers = updatedStats.activeUsers;
+      
+      // Broadcast to all admin clients
+      adminClients.forEach((client: any) => {
+        if (client.readyState === 1) { // WebSocket.OPEN
+          client.send(JSON.stringify({ 
+            type: 'user_count', 
+            count: activeUsers,
+            isNewUser: isNewSession
+          }));
+        }
+      });
+      
+      res.json({ success: true, isNewSession });
+    } catch (error) {
+      console.error("Error tracking user:", error);
+      res.status(500).json({ message: "Failed to track user" });
+    }
   });
 
   app.post("/api/untrack-user", async (req, res) => {

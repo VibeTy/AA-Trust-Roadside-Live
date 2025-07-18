@@ -399,6 +399,10 @@ export class MemStorage implements IStorage {
     }
   }
 
+  isSessionActive(sessionId: string): boolean {
+    return this.activeSessions.has(sessionId);
+  }
+
   private getLocationFromUserAgent(userAgent?: string): { country?: string; region?: string; city?: string } | undefined {
     // Simplified location detection - in production you'd use a proper IP geolocation service
     if (!userAgent) return undefined;
