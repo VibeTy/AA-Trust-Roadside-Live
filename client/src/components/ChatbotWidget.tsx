@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { MessageCircle, Phone, X, Send, User, Bot, Clock, MapPin } from 'lucide-react';
+import { MessageCircle, Phone, X, Send, User, Bot, Clock, MapPin, Move, Minimize2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 interface ChatMessage {
@@ -25,6 +25,7 @@ interface LeadData {
 
 export default function ChatbotWidget() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isMinimized, setIsMinimized] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [inputMessage, setInputMessage] = useState('');
   const [leadData, setLeadData] = useState<LeadData>({});
@@ -36,7 +37,11 @@ export default function ChatbotWidget() {
     address?: string;
     accuracy?: number;
   } | null>(null);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const chatWindowRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
 
   const scrollToBottom = () => {
@@ -407,11 +412,53 @@ export default function ChatbotWidget() {
   const initializeChat = () => {
     if (messages.length === 0) {
       simulateTyping(() => {
-        addMessage("👋 Hi! I'm the AA Trust Roadside assistant. I'm here to help you 24/7 with tire repairs, jump starts, lockouts, and other roadside emergencies. What's your name?", 'bot');
+        addMessage("👋 Hi! I'm your AA Trust Roadside live support assistant. I'm here 24/7 to help you with tire repairs, jump starts, lockouts, and other roadside emergencies. What's your name?", 'bot');
       }, 500);
       setCurrentStep('greeting');
     }
   };
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (chatWindowRef.current) {
+      const rect = chatWindowRef.current.getBoundingClientRect();
+      setIsDragging(true);
+      setDragOffset({
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top,
+      });
+    }
+  };
+
+  const handleMouseMove = (e: MouseEvent) => {
+    if (isDragging && chatWindowRef.current) {
+      const newX = e.clientX - dragOffset.x;
+      const newY = e.clientY - dragOffset.y;
+      
+      // Keep within viewport bounds
+      const maxX = window.innerWidth - chatWindowRef.current.offsetWidth;
+      const maxY = window.innerHeight - chatWindowRef.current.offsetHeight;
+      
+      setPosition({
+        x: Math.max(0, Math.min(newX, maxX)),
+        y: Math.max(0, Math.min(newY, maxY)),
+      });
+    }
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  useEffect(() => {
+    if (isDragging) {
+      document.addEventListener('mousemove', handleMouseMove);
+      document.addEventListener('mouseup', handleMouseUp);
+      return () => {
+        document.removeEventListener('mousemove', handleMouseMove);
+        document.removeEventListener('mouseup', handleMouseUp);
+      };
+    }
+  }, [isDragging, dragOffset]);
 
   useEffect(() => {
     if (isOpen) {
@@ -442,17 +489,51 @@ export default function ChatbotWidget() {
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-20 left-4 w-80 h-[450px] md:bottom-24 md:left-6 md:w-96 md:h-[500px] z-40 shadow-2xl">
+        <div 
+          ref={chatWindowRef}
+          className="fixed w-80 h-[450px] md:w-96 md:h-[500px] z-40 shadow-2xl"
+          style={{
+            left: position.x || (window.innerWidth > 768 ? 24 : 16),
+            top: position.y || (window.innerHeight > 768 ? 100 : 80),
+            transform: position.x || position.y ? 'none' : 'translateY(0)',
+          }}
+        >
           <Card className="h-full flex flex-col">
-            <CardHeader className="bg-blue-600 text-white rounded-t-lg p-4 flex-shrink-0">
-              <CardTitle className="flex items-center gap-2 text-lg">
-                <Bot className="w-5 h-5" />
-                AA Trust Roadside Assistant
+            <CardHeader 
+              className="bg-blue-600 text-white rounded-t-lg p-4 flex-shrink-0 cursor-move select-none"
+              onMouseDown={handleMouseDown}
+            >
+              <CardTitle className="flex items-center justify-between text-lg">
+                <div className="flex items-center gap-2">
+                  <Bot className="w-5 h-5" />
+                  AA Trust Live Support
+                </div>
+                <div className="flex items-center gap-2">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setIsMinimized(!isMinimized)}
+                    className="h-6 w-6 p-0 hover:bg-blue-500 text-white"
+                  >
+                    <Minimize2 className="w-3 h-3" />
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setIsOpen(false)}
+                    className="h-6 w-6 p-0 hover:bg-blue-500 text-white"
+                  >
+                    <X className="w-3 h-3" />
+                  </Button>
+                </div>
               </CardTitle>
-              <p className="text-blue-100 text-sm">24/7 Roadside Help • Avg Response: 15min</p>
+              <div className="flex items-center justify-between">
+                <p className="text-blue-100 text-sm">24/7 Live Support • Avg Response: 15min</p>
+                <Move className="w-4 h-4 text-blue-200 opacity-50" />
+              </div>
             </CardHeader>
             
-            <CardContent className="flex-1 flex flex-col p-0 overflow-hidden">
+            <CardContent className={`flex-1 flex flex-col p-0 overflow-hidden ${isMinimized ? 'hidden' : ''}`}>
               {/* Messages Area */}
               <div className="flex-1 overflow-y-auto p-4 bg-gray-50 dark:bg-gray-800 max-h-[350px] scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200">
                 {messages.map((message) => (
