@@ -1,4 +1,4 @@
-import { Switch, Route } from "wouter";
+import { Switch, Route, useLocation } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -49,6 +49,10 @@ import DeLand from "@/pages/locations/DeLand";
 
 function Router() {
   useTrafficTracker();
+  const [location] = useLocation();
+  
+  // Hide chatbot on admin pages
+  const isAdminPage = location.startsWith('/admin') || location.startsWith('/login') || location.startsWith('/register') || location.startsWith('/dashboard');
   
   return (
     <>
@@ -93,7 +97,7 @@ function Router() {
 
       <Route component={NotFound} />
     </Switch>
-    <ChatbotWidget />
+    {!isAdminPage && <ChatbotWidget />}
     </>
   );
 }

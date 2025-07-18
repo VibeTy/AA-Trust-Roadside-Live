@@ -361,7 +361,7 @@ export default function ChatbotWidget() {
       {isOpen && (
         <div className="fixed bottom-24 left-6 w-96 h-[500px] z-40 shadow-2xl">
           <Card className="h-full flex flex-col">
-            <CardHeader className="bg-blue-600 text-white rounded-t-lg p-4">
+            <CardHeader className="bg-blue-600 text-white rounded-t-lg p-4 flex-shrink-0">
               <CardTitle className="flex items-center gap-2 text-lg">
                 <Bot className="w-5 h-5" />
                 AA Trust Roadside Assistant
@@ -369,9 +369,9 @@ export default function ChatbotWidget() {
               <p className="text-blue-100 text-sm">24/7 Roadside Help • Avg Response: 15min</p>
             </CardHeader>
             
-            <CardContent className="flex-1 flex flex-col p-0">
+            <CardContent className="flex-1 flex flex-col p-0 overflow-hidden">
               {/* Messages Area */}
-              <div className="flex-1 overflow-y-auto p-4 bg-gray-50 dark:bg-gray-800">
+              <div className="flex-1 overflow-y-auto p-4 bg-gray-50 dark:bg-gray-800 max-h-[350px] scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200">
                 {messages.map((message) => (
                   <div
                     key={message.id}
@@ -434,7 +434,7 @@ export default function ChatbotWidget() {
               </div>
 
               {/* Input Area */}
-              <div className="border-t p-4 bg-white dark:bg-gray-800">
+              <div className="border-t p-4 bg-white dark:bg-gray-800 flex-shrink-0">
                 <div className="flex gap-2">
                   <Input
                     value={inputMessage}
@@ -454,7 +454,7 @@ export default function ChatbotWidget() {
                 </div>
                 
                 {/* Quick Actions */}
-                <div className="mt-2 flex gap-2">
+                <div className="mt-2 flex gap-2 flex-wrap">
                   <Button
                     variant="outline"
                     size="sm"
