@@ -425,16 +425,16 @@ export default function ChatbotWidget() {
       <div className="fixed bottom-4 left-4 z-50 md:bottom-6 md:left-6">
         <Button
           onClick={() => setIsOpen(!isOpen)}
-          className="bg-white hover:bg-gray-50 rounded-full w-12 h-12 md:w-14 md:h-14 shadow-lg flex items-center justify-center transition-all duration-300 transform hover:scale-110 border-2 border-blue-200 hover:border-blue-300"
+          className="bg-white hover:bg-gray-50 rounded-full w-16 h-16 md:w-20 md:h-20 shadow-lg flex items-center justify-center transition-all duration-300 transform hover:scale-105 border-3 border-blue-300 hover:border-blue-400"
           aria-label="Open chat assistant"
         >
           {isOpen ? (
-            <X className="w-5 h-5 md:w-6 md:h-6 text-gray-600" />
+            <X className="w-6 h-6 md:w-8 md:h-8 text-gray-600" />
           ) : (
             <img 
               src="/attached_assets/image_1752808447814.png" 
               alt="Fritzner Roadside Assistant" 
-              className="w-8 h-8 md:w-10 md:h-10 object-contain"
+              className="w-12 h-12 md:w-16 md:h-16 object-contain rounded-full"
             />
           )}
         </Button>
