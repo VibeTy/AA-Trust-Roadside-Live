@@ -432,9 +432,9 @@ export default function ChatbotWidget() {
             <X className="w-6 h-6 md:w-8 md:h-8 text-gray-600" />
           ) : (
             <img 
-              src="/attached_assets/image_1752809736541.png" 
+              src="/attached_assets/Gemini_Generated_Image_ve42n9ve42n9ve42_1752809889726.png" 
               alt="Fritzner Roadside Assistant" 
-              className="w-12 h-12 md:w-16 md:h-16 object-contain"
+              className="w-12 h-12 md:w-16 md:h-16 object-cover rounded-full"
             />
           )}
         </Button>
