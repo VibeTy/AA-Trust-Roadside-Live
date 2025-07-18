@@ -422,19 +422,19 @@ export default function ChatbotWidget() {
   return (
     <>
       {/* Chat Widget Button */}
-      <div className="fixed bottom-6 left-6 z-50">
+      <div className="fixed bottom-4 left-4 z-50 md:bottom-6 md:left-6">
         <Button
           onClick={() => setIsOpen(!isOpen)}
-          className="bg-blue-600 hover:bg-blue-700 text-white rounded-full w-14 h-14 shadow-lg flex items-center justify-center transition-all duration-300 transform hover:scale-110"
+          className="bg-gray-800 hover:bg-gray-900 text-white rounded-full w-12 h-12 md:w-14 md:h-14 shadow-lg flex items-center justify-center transition-all duration-300 transform hover:scale-110"
           aria-label="Open chat assistant"
         >
-          {isOpen ? <X className="w-6 h-6" /> : <MessageCircle className="w-6 h-6" />}
+          {isOpen ? <X className="w-5 h-5 md:w-6 md:h-6" /> : <MessageCircle className="w-5 h-5 md:w-6 md:h-6" />}
         </Button>
       </div>
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-24 left-6 w-96 h-[500px] z-40 shadow-2xl">
+        <div className="fixed bottom-20 left-4 w-80 h-[450px] md:bottom-24 md:left-6 md:w-96 md:h-[500px] z-40 shadow-2xl">
           <Card className="h-full flex flex-col">
             <CardHeader className="bg-blue-600 text-white rounded-t-lg p-4 flex-shrink-0">
               <CardTitle className="flex items-center gap-2 text-lg">
