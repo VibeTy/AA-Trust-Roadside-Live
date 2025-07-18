@@ -196,13 +196,15 @@ export default function ServicesSection() {
               <div className="text-center mb-4">
                 <div className="bg-blue-600 text-white p-4 rounded-lg inline-block mb-4">
                   {service.title === "Mobile Tire Services" ? (
-                    <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
-                      <img 
-                        src="/attached_assets/image_1752814117821.png" 
-                        alt="Tire Service Icon" 
-                        className="w-6 h-6 object-contain"
-                      />
-                    </div>
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="currentColor" className="text-2xl">
+                      <path d="M16 2C8.28 2 2 8.28 2 16s6.28 14 14 14 14-6.28 14-14S23.72 2 16 2zm0 24c-5.52 0-10-4.48-10-10S10.48 6 16 6s10 4.48 10 10-4.48 10-10 10z" fill="currentColor"/>
+                      <path d="M16 8c-4.42 0-8 3.58-8 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm0 12c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z" fill="currentColor"/>
+                      <circle cx="16" cy="16" r="2" fill="currentColor"/>
+                      <rect x="15" y="4" width="2" height="4" fill="currentColor"/>
+                      <rect x="15" y="24" width="2" height="4" fill="currentColor"/>
+                      <rect x="4" y="15" width="4" height="2" fill="currentColor"/>
+                      <rect x="24" y="15" width="4" height="2" fill="currentColor"/>
+                    </svg>
                   ) : (
                     <i className={`${service.icon} text-2xl`}></i>
                   )}
