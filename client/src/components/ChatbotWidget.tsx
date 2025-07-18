@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { MessageCircle, Phone, X, Send, User, Bot, Clock, MapPin, Move, Minimize2 } from 'lucide-react';
+import { MessageCircle, Phone, X, Send, User, Bot, Clock, MapPin, Move, Minimize2, Maximize2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 interface ChatMessage {
@@ -26,6 +26,7 @@ interface LeadData {
 export default function ChatbotWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
+  const [isMaximized, setIsMaximized] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [inputMessage, setInputMessage] = useState('');
   const [leadData, setLeadData] = useState<LeadData>({});
@@ -491,17 +492,23 @@ export default function ChatbotWidget() {
       {isOpen && (
         <div 
           ref={chatWindowRef}
-          className="fixed w-80 h-[450px] md:w-96 md:h-[500px] z-40 shadow-2xl"
-          style={{
+          className={`fixed z-40 shadow-2xl transition-all duration-300 ${
+            isMaximized 
+              ? 'w-full h-full inset-0 md:w-[90vw] md:h-[90vh] md:inset-[5vh_5vw]' 
+              : 'w-80 h-[450px] md:w-96 md:h-[500px]'
+          }`}
+          style={!isMaximized ? {
             left: position.x || (window.innerWidth > 768 ? 24 : 16),
             top: position.y || (window.innerHeight > 768 ? 100 : 80),
             transform: position.x || position.y ? 'none' : 'translateY(0)',
-          }}
+          } : {}}
         >
           <Card className="h-full flex flex-col">
             <CardHeader 
-              className="bg-blue-600 text-white rounded-t-lg p-4 flex-shrink-0 cursor-move select-none"
-              onMouseDown={handleMouseDown}
+              className={`bg-blue-600 text-white p-4 flex-shrink-0 select-none ${
+                isMaximized ? 'rounded-none cursor-default' : 'rounded-t-lg cursor-move'
+              }`}
+              onMouseDown={!isMaximized ? handleMouseDown : undefined}
             >
               <CardTitle className="flex items-center justify-between text-lg">
                 <div className="flex items-center gap-2">
@@ -524,6 +531,14 @@ export default function ChatbotWidget() {
                   <Button
                     variant="ghost"
                     size="sm"
+                    onClick={() => setIsMaximized(!isMaximized)}
+                    className="h-6 w-6 p-0 hover:bg-blue-500 text-white hidden md:block"
+                  >
+                    <Maximize2 className="w-3 h-3" />
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="sm"
                     onClick={() => setIsOpen(false)}
                     className="h-6 w-6 p-0 hover:bg-blue-500 text-white"
                   >
@@ -533,13 +548,15 @@ export default function ChatbotWidget() {
               </CardTitle>
               <div className="flex items-center justify-between">
                 <p className="text-blue-100 text-sm">24/7 Live Support • Avg Response: 15min</p>
-                <Move className="w-4 h-4 text-blue-200 opacity-50" />
+                {!isMaximized && <Move className="w-4 h-4 text-blue-200 opacity-50" />}
               </div>
             </CardHeader>
             
             <CardContent className={`flex-1 flex flex-col p-0 overflow-hidden ${isMinimized ? 'hidden' : ''}`}>
               {/* Messages Area */}
-              <div className="flex-1 overflow-y-auto p-4 bg-gray-50 dark:bg-gray-800 max-h-[350px] scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200">
+              <div className={`flex-1 overflow-y-auto p-4 bg-gray-50 dark:bg-gray-800 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200 ${
+                isMaximized ? 'max-h-none' : 'max-h-[350px]'
+              }`}>
                 {messages.map((message) => (
                   <div
                     key={message.id}
