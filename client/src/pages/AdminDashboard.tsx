@@ -13,7 +13,7 @@ import { Progress } from "@/components/ui/progress";
 import { Phone, Mail, MapPin, Clock, CheckCircle, AlertCircle, Users, BarChart3, TrendingUp, ArrowUp, ArrowDown, LogOut, Settings, Zap, Star, Eye, Calendar, DollarSign } from "lucide-react";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
-import type { QuoteSubmission, ContactSubmission, BookingSubmission } from "@shared/schema";
+import type { QuoteSubmission, ContactSubmission, BookingSubmission, SmartAnalyzerSubmission } from "@shared/schema";
 import PageOptimizer from "@/components/PageOptimizer";
 import OptimizedIcon from "@/components/OptimizedIcon";
 
@@ -44,11 +44,17 @@ export default function AdminDashboard() {
     retry: false,
   });
 
+  const { data: smartAnalyzer, isLoading: smartAnalyzerLoading, error: smartAnalyzerError } = useQuery<SmartAnalyzerSubmission[]>({
+    queryKey: ['/api/smart-analyzer'],
+    retry: false,
+  });
+
   // Check if user is authenticated
   useEffect(() => {
     if ((quotesError && quotesError.message.includes("401")) || 
         (contactsError && contactsError.message.includes("401")) ||
-        (bookingsError && bookingsError.message.includes("401"))) {
+        (bookingsError && bookingsError.message.includes("401")) ||
+        (smartAnalyzerError && smartAnalyzerError.message.includes("401"))) {
       toast({
         title: "Session Expired",
         description: "Please log in again",
@@ -56,7 +62,7 @@ export default function AdminDashboard() {
       });
       setLocation("/admin");
     }
-  }, [quotesError, contactsError, bookingsError, setLocation, toast]);
+  }, [quotesError, contactsError, bookingsError, smartAnalyzerError, setLocation, toast]);
 
   // Logout functionality
   const logoutMutation = useMutation({
@@ -88,8 +94,10 @@ export default function AdminDashboard() {
   const totalQuotes = quotes?.length || 0;
   const totalContacts = contacts?.length || 0;
   const totalBookings = bookings?.length || 0;
+  const totalSmartAnalyzer = smartAnalyzer?.length || 0;
   const pendingQuotes = quotes?.filter(q => !q.contacted).length || 0;
   const completedQuotes = quotes?.filter(q => q.contacted).length || 0;
+  const pendingSmartAnalyzer = smartAnalyzer?.filter(s => !s.contacted).length || 0;
   const completionRate = totalQuotes > 0 ? Math.round((completedQuotes / totalQuotes) * 100) : 0;
   const activeUsers = trafficData?.activeUsers || 0;
   const totalPageViews = trafficData?.totalPageViews || 0;
@@ -246,6 +254,8 @@ export default function AdminDashboard() {
     totalContacts: contacts?.length || 0,
     totalBookings: bookings?.length || 0,
     uncontactedBookings: bookings?.filter(b => !b.contacted).length || 0,
+    totalSmartAnalyzer: smartAnalyzer?.length || 0,
+    uncontactedSmartAnalyzer: smartAnalyzer?.filter(s => !s.contacted).length || 0,
     todayQuotes: quotes?.filter(q => {
       const today = new Date().toDateString();
       return new Date(q.createdAt).toDateString() === today;
@@ -372,7 +382,7 @@ export default function AdminDashboard() {
 
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4">
-          <TabsList className="grid w-full grid-cols-4">
+          <TabsList className="grid w-full grid-cols-5">
             <TabsTrigger value="overview">
               <BarChart3 className="w-4 h-4 mr-2" />
               Overview
@@ -384,6 +394,10 @@ export default function AdminDashboard() {
             <TabsTrigger value="contacts">
               <Mail className="w-4 h-4 mr-2" />
               Contacts ({totalContacts})
+            </TabsTrigger>
+            <TabsTrigger value="smart-analyzer">
+              <AlertCircle className="w-4 h-4 mr-2" />
+              Smart Analyzer ({totalSmartAnalyzer})
             </TabsTrigger>
             <TabsTrigger value="settings">
               <Settings className="w-4 h-4 mr-2" />
@@ -406,7 +420,7 @@ export default function AdminDashboard() {
                       <div>
                         <p className="text-sm text-gray-600 dark:text-gray-400">Total Submissions</p>
                         <p className="text-2xl font-bold text-gray-900 dark:text-white">
-                          {totalQuotes + totalContacts + totalBookings}
+                          {totalQuotes + totalContacts + totalBookings + totalSmartAnalyzer}
                         </p>
                       </div>
                       <div className="text-right">
@@ -850,6 +864,159 @@ export default function AdminDashboard() {
                   <Card>
                     <CardContent className="text-center py-8">
                       <p className="text-gray-500">No contact form submissions yet.</p>
+                    </CardContent>
+                  </Card>
+                )}
+              </div>
+            )}
+          </TabsContent>
+
+          <TabsContent value="smart-analyzer" className="space-y-4">
+            {smartAnalyzerLoading ? (
+              <div className="flex justify-center py-8">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+              </div>
+            ) : (
+              <div className="grid gap-4">
+                {smartAnalyzer?.map((submission) => (
+                  <Card key={submission.id} className="border-l-4 border-l-purple-500">
+                    <CardHeader>
+                      <div className="flex justify-between items-start">
+                        <div>
+                          <CardTitle className="text-lg flex items-center gap-2">
+                            <AlertTriangle className="h-5 w-5 text-purple-600" />
+                            {submission.name || 'Anonymous User'}
+                          </CardTitle>
+                          <CardDescription className="flex items-center gap-2 mt-1">
+                            <Clock className="h-4 w-4" />
+                            {formatDate(submission.createdAt)}
+                          </CardDescription>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Badge className={getUrgencyColor(submission.urgency)}>
+                            {submission.urgency}
+                          </Badge>
+                          <Badge variant="outline">{submission.confidence}% match</Badge>
+                          {submission.contacted ? (
+                            <Badge variant="secondary" className="bg-green-100 text-green-800">
+                              <CheckCircle className="h-3 w-3 mr-1" />
+                              Contacted
+                            </Badge>
+                          ) : (
+                            <Badge variant="destructive">
+                              <AlertCircle className="h-3 w-3 mr-1" />
+                              Pending
+                            </Badge>
+                          )}
+                        </div>
+                      </div>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="space-y-2">
+                          {submission.phone && (
+                            <div className="flex items-center gap-2">
+                              <Phone className="h-4 w-4 text-gray-500" />
+                              <a href={`tel:${submission.phone}`} className="text-blue-600 hover:underline font-medium">
+                                {submission.phone}
+                              </a>
+                            </div>
+                          )}
+                          {submission.email && (
+                            <div className="flex items-center gap-2">
+                              <Mail className="h-4 w-4 text-gray-500" />
+                              <a href={`mailto:${submission.email}`} className="text-blue-600 hover:underline">
+                                {submission.email}
+                              </a>
+                            </div>
+                          )}
+                          {submission.location && (
+                            <div className="flex items-center gap-2">
+                              <MapPin className="h-4 w-4 text-gray-500" />
+                              <span>{submission.location}</span>
+                            </div>
+                          )}
+                        </div>
+                        <div className="space-y-2">
+                          <div className="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-3">
+                            <h5 className="font-medium text-purple-800 dark:text-purple-200">AI Suggested Service</h5>
+                            <p className="text-sm text-purple-700 dark:text-purple-300">{submission.suggestedService}</p>
+                            <p className="text-lg font-bold text-purple-600 dark:text-purple-400">{submission.estimatedPrice}</p>
+                          </div>
+                        </div>
+                      </div>
+                      <Separator />
+                      <div>
+                        <strong>Customer Problem Description:</strong>
+                        <p className="mt-1 text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 rounded-lg p-3">
+                          {submission.problemDescription}
+                        </p>
+                      </div>
+                      <div className="flex gap-2 pt-2">
+                        {!submission.contacted && (
+                          <Button 
+                            size="sm"
+                            onClick={() => {
+                              // Mark as contacted functionality
+                              fetch(`/api/smart-analyzer/${submission.id}/contacted`, {
+                                method: 'PATCH',
+                                headers: { 'Content-Type': 'application/json' },
+                              }).then(() => {
+                                queryClient.invalidateQueries({ queryKey: ['/api/smart-analyzer'] });
+                                toast({
+                                  title: "Success",
+                                  description: "Smart Analyzer submission marked as contacted",
+                                });
+                              });
+                            }}
+                            variant="outline"
+                          >
+                            <CheckCircle className="h-4 w-4 mr-2" />
+                            Mark as Contacted
+                          </Button>
+                        )}
+                        {submission.phone && (
+                          <Button size="sm" asChild>
+                            <a href={`tel:${submission.phone}`}>
+                              <Phone className="h-4 w-4 mr-2" />
+                              Call Now
+                            </a>
+                          </Button>
+                        )}
+                        {submission.email && (
+                          <Button size="sm" variant="outline" asChild>
+                            <a href={`mailto:${submission.email}`}>
+                              <Mail className="h-4 w-4 mr-2" />
+                              Email
+                            </a>
+                          </Button>
+                        )}
+                        <Button 
+                          size="sm" 
+                          variant="outline"
+                          onClick={() => {
+                            const message = `Hi ${submission.name || 'there'}! This is AA Trust Roadside. I see you need ${submission.suggestedService.toLowerCase()} service. Our AI estimated ${submission.estimatedPrice}. I can help you right away. Call me at (386) 313-0074.`;
+                            navigator.clipboard.writeText(message);
+                            toast({
+                              title: "Message Copied",
+                              description: "AI-generated response copied to clipboard",
+                            });
+                          }}
+                        >
+                          Copy AI Response
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+                {(!smartAnalyzer || smartAnalyzer.length === 0) && (
+                  <Card>
+                    <CardContent className="text-center py-8">
+                      <AlertCircle className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                      <p className="text-gray-500">No Smart Analyzer submissions yet.</p>
+                      <p className="text-sm text-gray-400 mt-2">
+                        Smart Analyzer submissions from the website will appear here.
+                      </p>
                     </CardContent>
                   </Card>
                 )}

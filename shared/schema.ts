@@ -53,6 +53,21 @@ export const bookingSubmissions = pgTable("booking_submissions", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
+export const smartAnalyzerSubmissions = pgTable("smart_analyzer_submissions", {
+  id: serial("id").primaryKey(),
+  name: text("name"),
+  phone: text("phone"),
+  email: text("email"),
+  location: text("location"),
+  problemDescription: text("problem_description").notNull(),
+  suggestedService: text("suggested_service").notNull(),
+  estimatedPrice: text("estimated_price").notNull(),
+  urgency: text("urgency").notNull(),
+  confidence: text("confidence").notNull(),
+  contacted: boolean("contacted").default(false).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
 export const insertUserSchema = createInsertSchema(users).omit({
   id: true,
   resetToken: true,
@@ -98,8 +113,16 @@ export type InsertContactSubmission = z.infer<typeof insertContactSubmissionSche
 export type ContactSubmission = typeof contactSubmissions.$inferSelect;
 export type InsertQuoteSubmission = z.infer<typeof insertQuoteSubmissionSchema>;
 export type QuoteSubmission = typeof quoteSubmissions.$inferSelect;
+export const insertSmartAnalyzerSubmissionSchema = createInsertSchema(smartAnalyzerSubmissions).omit({
+  id: true,
+  contacted: true,
+  createdAt: true,
+});
+
 export type InsertBookingSubmission = z.infer<typeof insertBookingSubmissionSchema>;
 export type BookingSubmission = typeof bookingSubmissions.$inferSelect;
+export type InsertSmartAnalyzerSubmission = z.infer<typeof insertSmartAnalyzerSubmissionSchema>;
+export type SmartAnalyzerSubmission = typeof smartAnalyzerSubmissions.$inferSelect;
 // Analytics schemas
 export const pageViewSchema = z.object({
   id: z.number(),

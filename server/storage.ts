@@ -3,6 +3,7 @@ import {
   contactSubmissions, 
   quoteSubmissions, 
   bookingSubmissions,
+  smartAnalyzerSubmissions,
   type User, 
   type InsertUser, 
   type ContactSubmission, 
@@ -11,6 +12,8 @@ import {
   type InsertQuoteSubmission,
   type BookingSubmission,
   type InsertBookingSubmission,
+  type SmartAnalyzerSubmission,
+  type InsertSmartAnalyzerSubmission,
   type PageView,
   type InsertPageView,
   type TrafficStats
@@ -28,6 +31,9 @@ export interface IStorage {
   createBookingSubmission(submission: InsertBookingSubmission): Promise<BookingSubmission>;
   getBookingSubmissions(): Promise<BookingSubmission[]>;
   updateBookingContacted(id: number, contacted: boolean): Promise<BookingSubmission | undefined>;
+  createSmartAnalyzerSubmission(submission: InsertSmartAnalyzerSubmission): Promise<SmartAnalyzerSubmission>;
+  getSmartAnalyzerSubmissions(): Promise<SmartAnalyzerSubmission[]>;
+  updateSmartAnalyzerContacted(id: number, contacted: boolean): Promise<SmartAnalyzerSubmission | undefined>;
   getTrafficStats(): Promise<TrafficStats>;
 }
 
@@ -36,10 +42,12 @@ export class MemStorage implements IStorage {
   private contactSubmissions: Map<number, ContactSubmission>;
   private quoteSubmissions: Map<number, QuoteSubmission>;
   private bookingSubmissions: Map<number, BookingSubmission>;
+  private smartAnalyzerSubmissions: Map<number, SmartAnalyzerSubmission>;
   private currentUserId: number;
   private currentSubmissionId: number;
   private currentQuoteId: number;
   private currentBookingId: number;
+  private currentSmartAnalyzerId: number;
 
   private passwordResetTokens: PasswordResetToken[] = [];
   private resetTokenIdCounter = 1;
@@ -54,10 +62,12 @@ export class MemStorage implements IStorage {
     this.contactSubmissions = new Map();
     this.quoteSubmissions = new Map();
     this.bookingSubmissions = new Map();
+    this.smartAnalyzerSubmissions = new Map();
     this.currentUserId = 1;
     this.currentSubmissionId = 1;
     this.currentQuoteId = 1;
     this.currentBookingId = 1;
+    this.currentSmartAnalyzerId = 1;
   }
 
   async getUser(id: number): Promise<User | undefined> {
@@ -185,6 +195,42 @@ export class MemStorage implements IStorage {
       booking.contacted = contacted;
       this.bookingSubmissions.set(id, booking);
       return booking;
+    }
+    return undefined;
+  }
+
+  async createSmartAnalyzerSubmission(insertSubmission: InsertSmartAnalyzerSubmission): Promise<SmartAnalyzerSubmission> {
+    const id = this.currentSmartAnalyzerId++;
+    const submission: SmartAnalyzerSubmission = {
+      id,
+      name: insertSubmission.name ?? null,
+      phone: insertSubmission.phone ?? null,
+      email: insertSubmission.email ?? null,
+      location: insertSubmission.location ?? null,
+      problemDescription: insertSubmission.problemDescription,
+      suggestedService: insertSubmission.suggestedService,
+      estimatedPrice: insertSubmission.estimatedPrice,
+      urgency: insertSubmission.urgency,
+      confidence: insertSubmission.confidence,
+      contacted: false,
+      createdAt: new Date(),
+    };
+    this.smartAnalyzerSubmissions.set(id, submission);
+    return submission;
+  }
+
+  async getSmartAnalyzerSubmissions(): Promise<SmartAnalyzerSubmission[]> {
+    return Array.from(this.smartAnalyzerSubmissions.values()).sort(
+      (a, b) => b.createdAt.getTime() - a.createdAt.getTime()
+    );
+  }
+
+  async updateSmartAnalyzerContacted(id: number, contacted: boolean): Promise<SmartAnalyzerSubmission | undefined> {
+    const submission = this.smartAnalyzerSubmissions.get(id);
+    if (submission) {
+      submission.contacted = contacted;
+      this.smartAnalyzerSubmissions.set(id, submission);
+      return submission;
     }
     return undefined;
   }

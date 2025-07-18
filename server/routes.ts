@@ -6,6 +6,7 @@ import {
   insertContactSubmissionSchema, 
   insertQuoteSubmissionSchema, 
   insertBookingSubmissionSchema,
+  insertSmartAnalyzerSubmissionSchema,
   registerUserSchema,
   forgotPasswordSchema,
   resetPasswordSchema,
@@ -365,6 +366,80 @@ export async function registerRoutes(app: Express): Promise<Server> {
       });
     } catch (error) {
       console.error("Error updating quote:", error);
+      res.status(500).json({
+        success: false,
+        message: "Internal server error"
+      });
+    }
+  });
+
+  // Smart Analyzer Submission
+  app.post("/api/smart-analyzer", async (req, res) => {
+    try {
+      const validatedData = insertSmartAnalyzerSubmissionSchema.parse(req.body);
+      
+      const submission = await storage.createSmartAnalyzerSubmission(validatedData);
+      
+      console.log("New Smart Analyzer submission:", submission);
+      
+      res.status(201).json({ 
+        success: true, 
+        message: "Smart Analyzer submission received successfully",
+        id: submission.id 
+      });
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        res.status(400).json({
+          success: false,
+          message: "Validation error",
+          errors: error.errors
+        });
+      } else {
+        console.error("Error creating Smart Analyzer submission:", error);
+        res.status(500).json({
+          success: false,
+          message: "Internal server error"
+        });
+      }
+    }
+  });
+
+  // Get all Smart Analyzer submissions (for admin purposes)
+  app.get("/api/smart-analyzer", isAdminAuthenticated, async (req, res) => {
+    try {
+      const submissions = await storage.getSmartAnalyzerSubmissions();
+      res.json(submissions);
+    } catch (error) {
+      console.error("Error fetching Smart Analyzer submissions:", error);
+      res.status(500).json({
+        success: false,
+        message: "Internal server error"
+      });
+    }
+  });
+
+  // Update Smart Analyzer contacted status
+  app.patch("/api/smart-analyzer/:id/contacted", isAdminAuthenticated, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const { contacted = true } = req.body;
+
+      const updatedSubmission = await storage.updateSmartAnalyzerContacted(id, contacted);
+
+      if (!updatedSubmission) {
+        return res.status(404).json({
+          success: false,
+          message: "Smart Analyzer submission not found"
+        });
+      }
+
+      res.json({
+        success: true,
+        message: "Smart Analyzer submission updated successfully",
+        submission: updatedSubmission
+      });
+    } catch (error) {
+      console.error("Error updating Smart Analyzer submission:", error);
       res.status(500).json({
         success: false,
         message: "Internal server error"
