@@ -196,11 +196,13 @@ export default function ServicesSection() {
               <div className="text-center mb-4">
                 <div className="bg-blue-600 text-white p-4 rounded-lg inline-block mb-4">
                   {service.title === "Mobile Tire Services" ? (
-                    <img 
-                      src="/attached_assets/image_1752814117821.png" 
-                      alt="Tire Service Icon" 
-                      className="w-8 h-8 object-contain"
-                    />
+                    <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
+                      <img 
+                        src="/attached_assets/image_1752814117821.png" 
+                        alt="Tire Service Icon" 
+                        className="w-6 h-6 object-contain"
+                      />
+                    </div>
                   ) : (
                     <i className={`${service.icon} text-2xl`}></i>
                   )}
