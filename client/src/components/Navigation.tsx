@@ -53,7 +53,7 @@ export default function Navigation() {
             <img 
               src="/attached_assets/7938bab5-b302-4cf1-8a69-78cfce3c9be4_1750802043592.png" 
               alt="AA Trust Roadside Logo" 
-              className="h-8 md:h-10 w-auto mr-2 md:mr-3"
+              className="h-8 md:h-12 w-auto mr-2 md:mr-3"
               loading="eager"
               decoding="async"
             />
