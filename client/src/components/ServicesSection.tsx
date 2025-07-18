@@ -196,23 +196,11 @@ export default function ServicesSection() {
               <div className="text-center mb-4">
                 <div className="bg-blue-600 text-white p-4 rounded-lg inline-block mb-4">
                   {service.title === "Mobile Tire Services" ? (
-                    <svg width="32" height="32" viewBox="0 0 32 32" fill="currentColor" className="text-2xl">
-                      {/* Outer tire ring */}
-                      <circle cx="16" cy="16" r="14" fill="none" stroke="currentColor" strokeWidth="4"/>
-                      {/* Inner rim */}
-                      <circle cx="16" cy="16" r="8" fill="none" stroke="currentColor" strokeWidth="2"/>
-                      {/* Tread marks around the tire */}
-                      <line x1="16" y1="1" x2="16" y2="4" stroke="currentColor" strokeWidth="2"/>
-                      <line x1="16" y1="28" x2="16" y2="31" stroke="currentColor" strokeWidth="2"/>
-                      <line x1="1" y1="16" x2="4" y2="16" stroke="currentColor" strokeWidth="2"/>
-                      <line x1="28" y1="16" x2="31" y2="16" stroke="currentColor" strokeWidth="2"/>
-                      <line x1="5.5" y1="5.5" x2="7.5" y2="7.5" stroke="currentColor" strokeWidth="2"/>
-                      <line x1="24.5" y1="24.5" x2="26.5" y2="26.5" stroke="currentColor" strokeWidth="2"/>
-                      <line x1="26.5" y1="5.5" x2="24.5" y2="7.5" stroke="currentColor" strokeWidth="2"/>
-                      <line x1="7.5" y1="24.5" x2="5.5" y2="26.5" stroke="currentColor" strokeWidth="2"/>
-                      {/* Center hub */}
-                      <circle cx="16" cy="16" r="3" fill="currentColor"/>
-                    </svg>
+                    <img 
+                      src="/attached_assets/image_1752813831659.png" 
+                      alt="Tire Service Icon" 
+                      className="w-8 h-8 object-contain"
+                    />
                   ) : (
                     <i className={`${service.icon} text-2xl`}></i>
                   )}
