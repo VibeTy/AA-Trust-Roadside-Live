@@ -569,14 +569,6 @@ export default function ChatbotWidget() {
                   AA Trust Live Support
                 </div>
                 <div className="flex items-center gap-2">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => setIsMinimized(!isMinimized)}
-                    className="h-6 w-6 p-0 hover:bg-blue-500 text-white"
-                  >
-                    <Minimize2 className="w-3 h-3" />
-                  </Button>
                   {(deviceType === 'tablet' || deviceType === 'desktop') && (
                     <Button
                       variant="ghost"
