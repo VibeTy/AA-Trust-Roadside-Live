@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -16,42 +16,59 @@ import {
   Activity,
   CheckCircle2,
   AlertCircle,
-  Eye
+  Eye,
+  RefreshCw
 } from 'lucide-react';
+import { useEffect } from 'react';
 
 export default function EnhancedAdminDashboard() {
-  // Fetch all analytics data
-  const { data: callTracking = [] } = useQuery({
+  const queryClient = useQueryClient();
+
+  // Fetch all analytics data with auto-refresh
+  const { data: callTracking = [], refetch: refetchCallTracking } = useQuery({
     queryKey: ['/api/call-tracking'],
+    refetchInterval: 30000, // Auto-refresh every 30 seconds
   });
 
-  const { data: websiteAnalytics = [] } = useQuery({
+  const { data: websiteAnalytics = [], refetch: refetchWebsiteAnalytics } = useQuery({
     queryKey: ['/api/website-analytics'],
+    refetchInterval: 30000,
   });
 
-  const { data: chatbotInteractions = [] } = useQuery({
+  const { data: chatbotInteractions = [], refetch: refetchChatbotInteractions } = useQuery({
     queryKey: ['/api/chatbot-interactions'],
+    refetchInterval: 30000,
   });
 
-  const { data: jobTracking = [] } = useQuery({
+  const { data: jobTracking = [], refetch: refetchJobTracking } = useQuery({
     queryKey: ['/api/job-tracking'],
+    refetchInterval: 30000,
   });
 
-  const { data: marketingMetrics = [] } = useQuery({
+  const { data: marketingMetrics = [], refetch: refetchMarketingMetrics } = useQuery({
     queryKey: ['/api/marketing-metrics'],
+    refetchInterval: 30000,
   });
 
-  const { data: contactSubmissions = [] } = useQuery({
+  const { data: contactSubmissions = [], refetch: refetchContactSubmissions } = useQuery({
     queryKey: ['/api/contact-submissions'],
+    refetchInterval: 30000,
   });
 
-  const { data: quoteSubmissions = [] } = useQuery({
+  const { data: quoteSubmissions = [], refetch: refetchQuoteSubmissions } = useQuery({
     queryKey: ['/api/quote-submissions'],
+    refetchInterval: 30000,
   });
 
-  const { data: smartAnalyzer = [] } = useQuery({
+  const { data: smartAnalyzer = [], refetch: refetchSmartAnalyzer } = useQuery({
     queryKey: ['/api/smart-analyzer'],
+    refetchInterval: 30000,
   });
+
+  // Manual refresh function
+  const handleRefresh = () => {
+    queryClient.invalidateQueries();
+  };
 
   // Calculate KPIs
   const totalCalls = callTracking.length;
@@ -91,13 +108,24 @@ export default function EnhancedAdminDashboard() {
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
-            AA Trust Roadside Analytics Dashboard
-          </h1>
-          <p className="text-gray-600 dark:text-gray-300 mt-2">
-            Comprehensive lead tracking and business performance metrics
-          </p>
+        <div className="mb-8 flex justify-between items-center">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+              AA Trust Roadside Analytics Dashboard
+            </h1>
+            <p className="text-gray-600 dark:text-gray-300 mt-2">
+              Comprehensive lead tracking and business performance metrics
+            </p>
+          </div>
+          <Button
+            onClick={handleRefresh}
+            variant="outline"
+            size="sm"
+            className="flex items-center gap-2"
+          >
+            <RefreshCw className="h-4 w-4" />
+            Refresh Data
+          </Button>
         </div>
 
         {/* Key Metrics Grid */}
