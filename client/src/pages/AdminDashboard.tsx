@@ -426,42 +426,37 @@ export default function AdminDashboard() {
           </Card>
         </div>
 
-        {/* Tabs */}
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4">
-          <TabsList className="grid w-full grid-cols-2 md:grid-cols-6 gap-1 h-auto p-1">
-            <TabsTrigger value="overview" className="flex items-center justify-center gap-1 text-xs md:text-sm py-2 px-2 md:px-4">
-              <BarChart3 className="w-4 h-4" />
-              <span className="hidden sm:inline">Overview</span>
-            </TabsTrigger>
-            <TabsTrigger value="quotes" className="flex items-center justify-center gap-1 text-xs md:text-sm py-2 px-2 md:px-4">
-              <Zap className="w-4 h-4" />
-              <span className="hidden sm:inline">Jobs</span>
-              <span className="sm:hidden">({totalQuotes})</span>
-              <span className="hidden sm:inline">({totalQuotes})</span>
-            </TabsTrigger>
-            <TabsTrigger value="contacts" className="flex items-center justify-center gap-1 text-xs md:text-sm py-2 px-2 md:px-4 col-span-2 md:col-span-1">
-              <Mail className="w-4 h-4" />
-              <span className="hidden sm:inline">Contacts</span>
-              <span className="sm:hidden">({totalContacts})</span>
-              <span className="hidden sm:inline">({totalContacts})</span>
-            </TabsTrigger>
-            <TabsTrigger value="smart-analyzer" className="flex items-center justify-center gap-1 text-xs md:text-sm py-2 px-2 md:px-4">
-              <AlertCircle className="w-4 h-4" />
-              <span className="hidden sm:inline">Smart Analyzer</span>
-              <span className="sm:hidden">({totalSmartAnalyzer})</span>
-              <span className="hidden sm:inline">({totalSmartAnalyzer})</span>
-            </TabsTrigger>
-            <TabsTrigger value="tracking" className="flex items-center justify-center gap-1 text-xs md:text-sm py-2 px-2 md:px-4">
-              <Eye className="w-4 h-4" />
-              <span className="hidden sm:inline">Tracking</span>
-              <span className="sm:hidden">({(websiteAnalytics?.length || 0) + (callTracking?.length || 0) + (chatbotInteractions?.length || 0)})</span>
-              <span className="hidden sm:inline">({(websiteAnalytics?.length || 0) + (callTracking?.length || 0) + (chatbotInteractions?.length || 0)})</span>
-            </TabsTrigger>
-            <TabsTrigger value="settings" className="flex items-center justify-center gap-1 text-xs md:text-sm py-2 px-2 md:px-4 col-span-2 md:col-span-1">
-              <Settings className="w-4 h-4" />
-              <span className="hidden sm:inline">Settings</span>
-            </TabsTrigger>
-          </TabsList>
+        {/* Organized Navigation */}
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-3">
+            <TabsList className="grid w-full grid-cols-2 md:grid-cols-5 gap-2 h-auto p-1 bg-gray-50 dark:bg-gray-700 rounded-lg">
+              <TabsTrigger value="overview" className="flex flex-col items-center justify-center gap-1 text-xs md:text-sm py-3 px-3 rounded-lg transition-all">
+                <BarChart3 className="w-5 h-5" />
+                <span className="font-medium">Dashboard</span>
+                <span className="text-xs text-gray-500">Overview</span>
+              </TabsTrigger>
+              <TabsTrigger value="leads" className="flex flex-col items-center justify-center gap-1 text-xs md:text-sm py-3 px-3 rounded-lg transition-all">
+                <Users className="w-5 h-5" />
+                <span className="font-medium">Leads</span>
+                <span className="text-xs text-gray-500">({totalQuotes + totalContacts + totalSmartAnalyzer})</span>
+              </TabsTrigger>
+              <TabsTrigger value="jobs" className="flex flex-col items-center justify-center gap-1 text-xs md:text-sm py-3 px-3 rounded-lg transition-all">
+                <Zap className="w-5 h-5" />
+                <span className="font-medium">Jobs</span>
+                <span className="text-xs text-gray-500">({totalBookings})</span>
+              </TabsTrigger>
+              <TabsTrigger value="analytics" className="flex flex-col items-center justify-center gap-1 text-xs md:text-sm py-3 px-3 rounded-lg transition-all">
+                <TrendingUp className="w-5 h-5" />
+                <span className="font-medium">Analytics</span>
+                <span className="text-xs text-gray-500">Live Data</span>
+              </TabsTrigger>
+              <TabsTrigger value="settings" className="flex flex-col items-center justify-center gap-1 text-xs md:text-sm py-3 px-3 rounded-lg transition-all">
+                <Settings className="w-5 h-5" />
+                <span className="font-medium">Settings</span>
+                <span className="text-xs text-gray-500">Config</span>
+              </TabsTrigger>
+            </TabsList>
+          </div>
 
           <TabsContent value="overview" className="space-y-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -587,7 +582,69 @@ export default function AdminDashboard() {
             </Card>
           </TabsContent>
 
-          <TabsContent value="quotes" className="space-y-4">
+          <TabsContent value="leads" className="space-y-6">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+              <Card className="bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 border-blue-200 dark:border-blue-800">
+                <CardHeader className="pb-3">
+                  <CardTitle className="text-lg font-semibold text-blue-900 dark:text-blue-100 flex items-center gap-2">
+                    <Zap className="w-5 h-5" />
+                    Quote Requests
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-3xl font-bold text-blue-900 dark:text-blue-100">{totalQuotes}</div>
+                  <p className="text-sm text-blue-700 dark:text-blue-300 mt-1">
+                    {pendingQuotes} pending • {completedQuotes} completed
+                  </p>
+                </CardContent>
+              </Card>
+              
+              <Card className="bg-gradient-to-r from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 border-green-200 dark:border-green-800">
+                <CardHeader className="pb-3">
+                  <CardTitle className="text-lg font-semibold text-green-900 dark:text-green-100 flex items-center gap-2">
+                    <Mail className="w-5 h-5" />
+                    Contact Forms
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-3xl font-bold text-green-900 dark:text-green-100">{totalContacts}</div>
+                  <p className="text-sm text-green-700 dark:text-green-300 mt-1">General inquiries</p>
+                </CardContent>
+              </Card>
+              
+              <Card className="bg-gradient-to-r from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 border-purple-200 dark:border-purple-800">
+                <CardHeader className="pb-3">
+                  <CardTitle className="text-lg font-semibold text-purple-900 dark:text-purple-100 flex items-center gap-2">
+                    <AlertCircle className="w-5 h-5" />
+                    Smart Analyzer
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-3xl font-bold text-purple-900 dark:text-purple-100">{totalSmartAnalyzer}</div>
+                  <p className="text-sm text-purple-700 dark:text-purple-300 mt-1">
+                    {pendingSmartAnalyzer} pending • AI-powered leads
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+
+            <Tabs defaultValue="quotes" className="space-y-4">
+              <TabsList className="grid w-full grid-cols-3 bg-gray-100 dark:bg-gray-800">
+                <TabsTrigger value="quotes" className="flex items-center gap-2">
+                  <Zap className="w-4 h-4" />
+                  Quote Requests ({totalQuotes})
+                </TabsTrigger>
+                <TabsTrigger value="contacts" className="flex items-center gap-2">
+                  <Mail className="w-4 h-4" />
+                  Contact Forms ({totalContacts})
+                </TabsTrigger>
+                <TabsTrigger value="smart-analyzer" className="flex items-center gap-2">
+                  <AlertCircle className="w-4 h-4" />
+                  Smart Analyzer ({totalSmartAnalyzer})
+                </TabsTrigger>
+              </TabsList>
+
+              <TabsContent value="quotes" className="space-y-4">
             {quotesLoading ? (
               <div className="flex justify-center py-8">
                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
