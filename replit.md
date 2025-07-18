@@ -206,6 +206,13 @@ AA Trust Roadside is a full-stack web application for a mobile tire repair and r
   - **Improved Navigation:** Clean tab-based navigation with icons, counters, and clear section descriptions
   - **Better Visual Design:** Professional color-coded sections with gradient headers and organized card layouts
   - **Enhanced User Experience:** Streamlined workflow for managing all aspects of the roadside assistance business
+- **Fixed Analytics Counter Bug:**
+  - **Session-Based Tracking:** Resolved active users counter incorrectly incrementing on every page refresh
+  - **Improved /api/track-user Endpoint:** Updated to check for existing sessions before incrementing user count
+  - **Enhanced Session Management:** Added isSessionActive method to storage layer for proper session tracking
+  - **Fixed Client-Side Tracking:** Updated use-traffic-tracker hook to send sessionId and proper data to track-user endpoint
+  - **Proper Blob Handling:** Fixed sendBeacon calls to use proper JSON blob format for reliable tracking
+  - **Accurate User Count:** Active users counter now represents actual unique sessions rather than page refresh count
 
 ## User Preferences
 
