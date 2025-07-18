@@ -199,7 +199,7 @@ export default function ServicesSection() {
                     <img 
                       src="/attached_assets/image_1752814997148.png" 
                       alt="Tire Service Icon" 
-                      className="w-8 h-8 object-contain"
+                      className="w-10 h-10 object-contain"
                     />
                   ) : (
                     <i className={`${service.icon} text-2xl`}></i>
