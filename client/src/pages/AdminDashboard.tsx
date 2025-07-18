@@ -267,41 +267,42 @@ export default function AdminDashboard() {
       <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
         {/* Modern Header */}
         <div className="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-            <div className="flex justify-between items-center">
-              <div>
-                <h1 className="text-3xl font-bold text-gray-900 dark:text-white flex items-center gap-3">
-                  <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg flex items-center justify-center">
-                    <Zap className="w-6 h-6 text-white" />
+          <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
+              <div className="flex-1 min-w-0">
+                <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white flex items-center gap-2 sm:gap-3">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg flex items-center justify-center">
+                    <Zap className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-white" />
                   </div>
-                  AA Trust Roadside - Admin
+                  <span className="truncate">AA Trust Roadside - Admin</span>
                 </h1>
-                <p className="text-gray-600 dark:text-gray-400 mt-2">Complete business management dashboard</p>
+                <p className="text-gray-600 dark:text-gray-400 mt-1 sm:mt-2 text-sm sm:text-base">Complete business management dashboard</p>
               </div>
-              <div className="flex items-center gap-4">
-                <div className="flex items-center gap-2 px-4 py-2 bg-green-50 dark:bg-green-900/20 rounded-lg">
-                  <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                  <span className="text-sm font-medium text-green-700 dark:text-green-300">
-                    {activeUsers} active users
+              <div className="flex items-center gap-2 sm:gap-4">
+                <div className="flex items-center gap-2 px-3 py-2 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                  <div className="w-2 h-2 sm:w-3 sm:h-3 bg-green-500 rounded-full animate-pulse"></div>
+                  <span className="text-xs sm:text-sm font-medium text-green-700 dark:text-green-300">
+                    {activeUsers} active
                   </span>
                 </div>
                 <Button 
                   onClick={() => logoutMutation.mutate()} 
                   variant="outline" 
+                  size="sm"
                   className="text-red-600 border-red-600 hover:bg-red-50 dark:hover:bg-red-900/20"
                   disabled={logoutMutation.isPending}
                 >
-                  <LogOut className="w-4 h-4 mr-2" />
-                  Logout
+                  <LogOut className="w-4 h-4 mr-1 sm:mr-2" />
+                  <span className="hidden sm:inline">Logout</span>
                 </Button>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8">
           {/* Real-time Stats Dashboard */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8">
             <Card className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 border-blue-200 dark:border-blue-800">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium text-blue-800 dark:text-blue-200">Total Quotes</CardTitle>
@@ -382,26 +383,32 @@ export default function AdminDashboard() {
 
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4">
-          <TabsList className="grid w-full grid-cols-5">
-            <TabsTrigger value="overview">
-              <BarChart3 className="w-4 h-4 mr-2" />
-              Overview
+          <TabsList className="grid w-full grid-cols-2 md:grid-cols-5 gap-1 h-auto p-1">
+            <TabsTrigger value="overview" className="flex items-center justify-center gap-1 text-xs md:text-sm py-2 px-2 md:px-4">
+              <BarChart3 className="w-4 h-4" />
+              <span className="hidden sm:inline">Overview</span>
             </TabsTrigger>
-            <TabsTrigger value="quotes">
-              <Zap className="w-4 h-4 mr-2" />
-              Jobs ({totalQuotes})
+            <TabsTrigger value="quotes" className="flex items-center justify-center gap-1 text-xs md:text-sm py-2 px-2 md:px-4">
+              <Zap className="w-4 h-4" />
+              <span className="hidden sm:inline">Jobs</span>
+              <span className="sm:hidden">({totalQuotes})</span>
+              <span className="hidden sm:inline">({totalQuotes})</span>
             </TabsTrigger>
-            <TabsTrigger value="contacts">
-              <Mail className="w-4 h-4 mr-2" />
-              Contacts ({totalContacts})
+            <TabsTrigger value="contacts" className="flex items-center justify-center gap-1 text-xs md:text-sm py-2 px-2 md:px-4 col-span-2 md:col-span-1">
+              <Mail className="w-4 h-4" />
+              <span className="hidden sm:inline">Contacts</span>
+              <span className="sm:hidden">({totalContacts})</span>
+              <span className="hidden sm:inline">({totalContacts})</span>
             </TabsTrigger>
-            <TabsTrigger value="smart-analyzer">
-              <AlertCircle className="w-4 h-4 mr-2" />
-              Smart Analyzer ({totalSmartAnalyzer})
+            <TabsTrigger value="smart-analyzer" className="flex items-center justify-center gap-1 text-xs md:text-sm py-2 px-2 md:px-4">
+              <AlertCircle className="w-4 h-4" />
+              <span className="hidden sm:inline">Smart Analyzer</span>
+              <span className="sm:hidden">({totalSmartAnalyzer})</span>
+              <span className="hidden sm:inline">({totalSmartAnalyzer})</span>
             </TabsTrigger>
-            <TabsTrigger value="settings">
-              <Settings className="w-4 h-4 mr-2" />
-              Settings
+            <TabsTrigger value="settings" className="flex items-center justify-center gap-1 text-xs md:text-sm py-2 px-2 md:px-4 col-span-2 md:col-span-1">
+              <Settings className="w-4 h-4" />
+              <span className="hidden sm:inline">Settings</span>
             </TabsTrigger>
           </TabsList>
 
@@ -495,34 +502,34 @@ export default function AdminDashboard() {
                   Quick Actions
                 </CardTitle>
               </CardHeader>
-              <CardContent className="p-6">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <CardContent className="p-4 md:p-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
                   <Button 
                     onClick={() => setActiveTab("quotes")}
-                    className="h-20 flex flex-col items-center justify-center gap-2"
+                    className="h-16 md:h-20 flex flex-col items-center justify-center gap-1 md:gap-2"
                     variant={pendingQuotes > 0 ? "destructive" : "default"}
                   >
-                    <Phone className="w-6 h-6" />
-                    <span>Review Quotes</span>
-                    {pendingQuotes > 0 && <Badge className="bg-red-600 text-white">{pendingQuotes}</Badge>}
+                    <Phone className="w-5 h-5 md:w-6 md:h-6" />
+                    <span className="text-xs md:text-sm">Review Quotes</span>
+                    {pendingQuotes > 0 && <Badge className="bg-red-600 text-white text-xs">{pendingQuotes}</Badge>}
                   </Button>
                   
                   <Button 
                     onClick={() => setActiveTab("contacts")}
-                    className="h-20 flex flex-col items-center justify-center gap-2"
+                    className="h-16 md:h-20 flex flex-col items-center justify-center gap-1 md:gap-2"
                     variant="outline"
                   >
-                    <Mail className="w-6 h-6" />
-                    <span>Check Messages</span>
+                    <Mail className="w-5 h-5 md:w-6 md:h-6" />
+                    <span className="text-xs md:text-sm">Check Messages</span>
                   </Button>
                   
                   <Button 
                     onClick={() => setActiveTab("settings")}
-                    className="h-20 flex flex-col items-center justify-center gap-2"
+                    className="h-16 md:h-20 flex flex-col items-center justify-center gap-1 md:gap-2"
                     variant="outline"
                   >
-                    <Settings className="w-6 h-6" />
-                    <span>Settings</span>
+                    <Settings className="w-5 h-5 md:w-6 md:h-6" />
+                    <span className="text-xs md:text-sm">Settings</span>
                   </Button>
                 </div>
               </CardContent>
