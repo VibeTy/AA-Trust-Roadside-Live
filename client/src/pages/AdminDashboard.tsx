@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Progress } from "@/components/ui/progress";
-import { Phone, Mail, MapPin, Clock, CheckCircle, AlertCircle, AlertTriangle, Users, BarChart3, TrendingUp, ArrowUp, ArrowDown, LogOut, Settings, Zap, Star, Eye, Calendar, DollarSign } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, CheckCircle, AlertCircle, AlertTriangle, Users, BarChart3, TrendingUp, ArrowUp, ArrowDown, LogOut, Settings, Zap, Star, Eye, Calendar, DollarSign, RefreshCw } from "lucide-react";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import type { QuoteSubmission, ContactSubmission, BookingSubmission, SmartAnalyzerSubmission } from "@shared/schema";
@@ -285,6 +285,25 @@ export default function AdminDashboard() {
                     {activeUsers} active
                   </span>
                 </div>
+                <Button 
+                  onClick={() => {
+                    queryClient.invalidateQueries({ queryKey: ['/api/quotes'] });
+                    queryClient.invalidateQueries({ queryKey: ['/api/contacts'] });
+                    queryClient.invalidateQueries({ queryKey: ['/api/bookings'] });
+                    queryClient.invalidateQueries({ queryKey: ['/api/smart-analyzer'] });
+                    queryClient.invalidateQueries({ queryKey: ['/api/admin/traffic'] });
+                    toast({
+                      title: "Refreshed",
+                      description: "All data has been refreshed",
+                    });
+                  }}
+                  variant="outline" 
+                  size="sm"
+                  className="text-blue-600 border-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20"
+                >
+                  <RefreshCw className="w-4 h-4 mr-1 sm:mr-2" />
+                  <span className="hidden sm:inline">Refresh</span>
+                </Button>
                 <Button 
                   onClick={() => logoutMutation.mutate()} 
                   variant="outline" 

@@ -127,7 +127,14 @@ export class MemStorage implements IStorage {
 
   async createUser(insertUser: InsertUser): Promise<User> {
     const id = this.currentUserId++;
-    const user: User = { ...insertUser, id };
+    const user: User = { 
+      ...insertUser, 
+      id,
+      email: insertUser.email ?? null,
+      resetToken: null,
+      resetTokenExpiry: null,
+      createdAt: new Date()
+    };
     this.users.set(id, user);
     return user;
   }
@@ -216,11 +223,12 @@ export class MemStorage implements IStorage {
       phone: insertSubmission.phone,
       email: insertSubmission.email ?? null,
       location: insertSubmission.location,
-      serviceType: insertSubmission.serviceType,
-      vehicleInfo: insertSubmission.vehicleInfo ?? null,
-      preferredDate: insertSubmission.preferredDate,
-      preferredTime: insertSubmission.preferredTime,
-      message: insertSubmission.message,
+      vehicleType: insertSubmission.vehicleType,
+      serviceNeeded: insertSubmission.serviceNeeded,
+      urgency: insertSubmission.urgency,
+      description: insertSubmission.description,
+      preferredDate: insertSubmission.preferredDate ?? null,
+      preferredTime: insertSubmission.preferredTime ?? null,
       contacted: false,
       createdAt: new Date(),
     };
@@ -406,7 +414,12 @@ export class MemStorage implements IStorage {
   async createCallTracking(tracking: InsertCallTracking): Promise<CallTracking> {
     const newTracking: CallTracking = {
       id: this.currentCallTrackingId++,
-      ...tracking,
+      sessionId: tracking.sessionId,
+      phone: tracking.phone,
+      source: tracking.source,
+      page: tracking.page,
+      userAgent: tracking.userAgent ?? null,
+      ipAddress: tracking.ipAddress ?? null,
       createdAt: new Date()
     };
     this.callTracking.set(newTracking.id, newTracking);
@@ -421,7 +434,14 @@ export class MemStorage implements IStorage {
   async createJobTracking(job: InsertJobTracking): Promise<JobTracking> {
     const newJob: JobTracking = {
       id: this.currentJobTrackingId++,
-      ...job,
+      submissionId: job.submissionId ?? 0,
+      submissionType: job.submissionType,
+      status: job.status ?? 'pending',
+      jobValue: job.jobValue ?? null,
+      completedAt: job.completedAt ?? null,
+      responseTime: job.responseTime ?? null,
+      customerSatisfaction: job.customerSatisfaction ?? null,
+      notes: job.notes ?? null,
       createdAt: new Date()
     };
     this.jobTracking.set(newJob.id, newJob);
@@ -436,7 +456,19 @@ export class MemStorage implements IStorage {
   async createWebsiteAnalytics(analytics: InsertWebsiteAnalytics): Promise<WebsiteAnalytics> {
     const newAnalytics: WebsiteAnalytics = {
       id: this.currentWebsiteAnalyticsId++,
-      ...analytics,
+      sessionId: analytics.sessionId,
+      page: analytics.page,
+      device: analytics.device,
+      location: analytics.location ?? null,
+      browser: analytics.browser ?? null,
+      referrer: analytics.referrer ?? null,
+      loadTime: analytics.loadTime ?? null,
+      timeOnPage: analytics.timeOnPage ?? null,
+      bounced: analytics.bounced ?? false,
+      formStarted: analytics.formStarted ?? false,
+      formCompleted: analytics.formCompleted ?? false,
+      callButtonClicked: analytics.callButtonClicked ?? false,
+      callButtonSource: analytics.callButtonSource ?? null,
       createdAt: new Date()
     };
     this.websiteAnalytics.set(newAnalytics.id, newAnalytics);
@@ -451,7 +483,20 @@ export class MemStorage implements IStorage {
   async createChatbotInteraction(interaction: InsertChatbotInteraction): Promise<ChatbotInteraction> {
     const newInteraction: ChatbotInteraction = {
       id: this.currentChatbotInteractionId++,
-      ...interaction,
+      sessionId: interaction.sessionId,
+      customerName: interaction.customerName ?? null,
+      customerPhone: interaction.customerPhone ?? null,
+      customerEmail: interaction.customerEmail ?? null,
+      conversation: interaction.conversation,
+      customerLocation: interaction.customerLocation ?? null,
+      gpsLatitude: interaction.gpsLatitude ?? null,
+      gpsLongitude: interaction.gpsLongitude ?? null,
+      gpsAccuracy: interaction.gpsAccuracy ?? null,
+      locationMethod: interaction.locationMethod ?? null,
+      leadQuality: interaction.leadQuality ?? null,
+      handoffToCall: interaction.handoffToCall ?? false,
+      issueResolved: interaction.issueResolved ?? false,
+      satisfaction: interaction.satisfaction ?? null,
       createdAt: new Date()
     };
     this.chatbotInteractions.set(newInteraction.id, newInteraction);
@@ -466,7 +511,13 @@ export class MemStorage implements IStorage {
   async createMarketingMetrics(metrics: InsertMarketingMetrics): Promise<MarketingMetrics> {
     const newMetrics: MarketingMetrics = {
       id: this.currentMarketingMetricsId++,
-      ...metrics,
+      sessionId: metrics.sessionId,
+      source: metrics.source,
+      medium: metrics.medium ?? null,
+      campaign: metrics.campaign ?? null,
+      conversionType: metrics.conversionType ?? null,
+      conversionValue: metrics.conversionValue ?? null,
+      customerAcquisitionCost: metrics.customerAcquisitionCost ?? null,
       createdAt: new Date()
     };
     this.marketingMetrics.set(newMetrics.id, newMetrics);
