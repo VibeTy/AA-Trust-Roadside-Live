@@ -425,7 +425,7 @@ export default function ChatbotWidget() {
       <div className="fixed bottom-4 left-4 z-50 md:bottom-6 md:left-6">
         <Button
           onClick={() => setIsOpen(!isOpen)}
-          className="bg-white hover:bg-gray-50 rounded-full w-16 h-16 md:w-20 md:h-20 shadow-lg flex items-center justify-center transition-all duration-300 transform hover:scale-105 border-3 border-blue-300 hover:border-blue-400"
+          className="bg-transparent hover:bg-transparent rounded-full w-16 h-16 md:w-20 md:h-20 shadow-lg flex items-center justify-center transition-all duration-300 transform hover:scale-105 border-0 p-0"
           aria-label="Open chat assistant"
         >
           {isOpen ? (
