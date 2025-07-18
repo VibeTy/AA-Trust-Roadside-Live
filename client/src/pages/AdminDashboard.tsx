@@ -17,6 +17,20 @@ import type { QuoteSubmission, ContactSubmission, BookingSubmission, SmartAnalyz
 import PageOptimizer from "@/components/PageOptimizer";
 import OptimizedIcon from "@/components/OptimizedIcon";
 
+// Helper function for urgency colors
+function getUrgencyColor(urgency: string): string {
+  switch (urgency?.toLowerCase()) {
+    case 'high':
+      return 'bg-red-100 text-red-800';
+    case 'medium':
+      return 'bg-yellow-100 text-yellow-800';
+    case 'low':
+      return 'bg-green-100 text-green-800';
+    default:
+      return 'bg-gray-100 text-gray-800';
+  }
+}
+
 export default function AdminDashboard() {
   const { toast } = useToast();
   const [, setLocation] = useLocation();
@@ -1138,8 +1152,10 @@ export default function AdminDashboard() {
               </div>
             )}
           </TabsContent>
+          </Tabs>
+        </TabsContent>
 
-          <TabsContent value="tracking" className="space-y-6">
+        <TabsContent value="analytics" className="space-y-6">
             <Card className="border-0 shadow-lg">
               <CardHeader className="bg-gradient-to-r from-purple-600 to-purple-700 text-white">
                 <CardTitle className="flex items-center gap-2">
@@ -1474,7 +1490,7 @@ export default function AdminDashboard() {
                               <MapPin className="h-12 w-12 text-gray-400 mx-auto mb-4" />
                               <p className="text-gray-500">No GPS locations captured yet.</p>
                               <p className="text-sm text-gray-400 mt-2">
-                                GPS locations will appear here when customers share their location through the chatbot.
+                                GPS coordinates will appear here when customers share their location via the chatbot.
                               </p>
                             </div>
                           )}
@@ -1487,124 +1503,243 @@ export default function AdminDashboard() {
             </Card>
           </TabsContent>
 
-          <TabsContent value="settings" className="space-y-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <Card className="border-0 shadow-lg">
-                <CardHeader className="bg-gradient-to-r from-gray-600 to-gray-700 text-white">
-                  <CardTitle className="flex items-center gap-2">
-                    <Settings className="w-5 h-5" />
-                    Business Settings
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="p-6">
-                  <div className="space-y-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                        Business Phone
-                      </label>
-                      <Input 
-                        type="tel" 
-                        defaultValue="(386) 372-8412" 
-                        className="w-full"
-                        placeholder="Business phone number"
-                      />
-                    </div>
-                    
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                        Service Area (miles)
-                      </label>
-                      <Input 
-                        type="number" 
-                        defaultValue="100" 
-                        className="w-full"
-                        placeholder="Service radius in miles"
-                      />
-                    </div>
-                    
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                        Emergency Response Time
-                      </label>
-                      <Input 
-                        type="text" 
-                        defaultValue="15 minutes" 
-                        className="w-full"
-                        placeholder="Average response time"
-                      />
-                    </div>
-                    
-                    <Button className="w-full bg-blue-600 hover:bg-blue-700">
-                      Save Settings
-                    </Button>
+          <TabsContent value="jobs" className="space-y-6">
+            <Card className="bg-gradient-to-r from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20 border-orange-200 dark:border-orange-800">
+              <CardHeader>
+                <CardTitle className="text-xl font-semibold text-orange-900 dark:text-orange-100 flex items-center gap-2">
+                  <Calendar className="w-5 h-5" />
+                  Scheduled Jobs & Bookings
+                </CardTitle>
+                <CardDescription className="text-orange-700 dark:text-orange-300">
+                  Manage scheduled appointments and completed jobs
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                  <div className="bg-white dark:bg-gray-800 rounded-lg p-4">
+                    <h4 className="font-semibold text-orange-800 dark:text-orange-200 mb-2">Total Bookings</h4>
+                    <p className="text-2xl font-bold text-orange-600">{totalBookings}</p>
+                    <p className="text-sm text-orange-700 dark:text-orange-300">All appointments</p>
                   </div>
-                </CardContent>
-              </Card>
-
-              <Card className="border-0 shadow-lg">
-                <CardHeader className="bg-gradient-to-r from-yellow-600 to-yellow-700 text-white">
-                  <CardTitle className="flex items-center gap-2">
-                    <Star className="w-5 h-5" />
-                    Review Management
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="p-6">
+                  <div className="bg-white dark:bg-gray-800 rounded-lg p-4">
+                    <h4 className="font-semibold text-green-800 dark:text-green-200 mb-2">Completed</h4>
+                    <p className="text-2xl font-bold text-green-600">
+                      {bookings?.filter(b => b.contacted).length || 0}
+                    </p>
+                    <p className="text-sm text-green-700 dark:text-green-300">Jobs finished</p>
+                  </div>
+                  <div className="bg-white dark:bg-gray-800 rounded-lg p-4">
+                    <h4 className="font-semibold text-red-800 dark:text-red-200 mb-2">Pending</h4>
+                    <p className="text-2xl font-bold text-red-600">
+                      {bookings?.filter(b => !b.contacted).length || 0}
+                    </p>
+                    <p className="text-sm text-red-700 dark:text-red-300">Need attention</p>
+                  </div>
+                </div>
+                
+                {bookingsLoading ? (
+                  <div className="flex justify-center py-8">
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-600"></div>
+                  </div>
+                ) : (
                   <div className="space-y-4">
-                    <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4">
-                      <h4 className="font-semibold text-yellow-800 dark:text-yellow-200 mb-2">Google Review Link</h4>
-                      <div className="flex gap-2">
-                        <Input
-                          type="text"
-                          value="https://g.page/r/CRFbcS048_EyEBM/review"
-                          readOnly
-                          className="flex-1 text-sm"
-                        />
-                        <Button 
-                          size="sm"
-                          onClick={() => {
-                            navigator.clipboard.writeText("https://g.page/r/CRFbcS048_EyEBM/review");
-                            toast({
-                              title: "Copied!",
-                              description: "Review link copied to clipboard",
-                            });
-                          }}
-                        >
-                          Copy
-                        </Button>
+                    {bookings?.map((booking) => (
+                      <Card key={booking.id} className={`${!booking.contacted ? 'border-orange-200 dark:border-orange-800' : ''}`}>
+                        <CardHeader>
+                          <div className="flex justify-between items-start">
+                            <div>
+                              <CardTitle className="text-lg">{booking.name}</CardTitle>
+                              <CardDescription className="flex items-center gap-2 mt-1">
+                                <Clock className="h-4 w-4" />
+                                {formatDate(booking.createdAt)}
+                              </CardDescription>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              {!booking.contacted && (
+                                <Badge variant="destructive" className="text-xs">
+                                  Needs Response
+                                </Badge>
+                              )}
+                              {booking.contacted && (
+                                <Badge variant="default" className="text-xs bg-green-100 text-green-800">
+                                  Contacted
+                                </Badge>
+                              )}
+                            </div>
+                          </div>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="space-y-2">
+                              <div className="flex items-center gap-2">
+                                <Phone className="h-4 w-4 text-gray-500" />
+                                <a href={`tel:${booking.phone}`} className="text-blue-600 hover:underline font-medium">
+                                  {booking.phone}
+                                </a>
+                              </div>
+                              <div className="flex items-center gap-2">
+                                <Mail className="h-4 w-4 text-gray-500" />
+                                <a href={`mailto:${booking.email}`} className="text-blue-600 hover:underline">
+                                  {booking.email}
+                                </a>
+                              </div>
+                              <div className="flex items-center gap-2">
+                                <MapPin className="h-4 w-4 text-gray-500" />
+                                <span>{booking.location}</span>
+                              </div>
+                            </div>
+                            <div className="space-y-2">
+                              <div><strong>Service:</strong> {booking.serviceType}</div>
+                              <div><strong>Preferred Date:</strong> {booking.preferredDate}</div>
+                              <div><strong>Time:</strong> {booking.preferredTime}</div>
+                              {booking.urgency && (
+                                <Badge className={getUrgencyColor(booking.urgency)}>
+                                  {booking.urgency}
+                                </Badge>
+                              )}
+                            </div>
+                          </div>
+                          <Separator />
+                          <div>
+                            <strong>Description:</strong>
+                            <p className="mt-1 text-gray-700 dark:text-gray-300">{booking.description}</p>
+                          </div>
+                          <div className="flex gap-2 pt-2">
+                            {!booking.contacted && (
+                              <Button 
+                                size="sm"
+                                onClick={() => markBookingContactedMutation.mutate(booking.id)}
+                                disabled={markBookingContactedMutation.isPending}
+                                variant="outline"
+                              >
+                                <CheckCircle className="h-4 w-4 mr-2" />
+                                Mark as Contacted
+                              </Button>
+                            )}
+                            <Button size="sm" asChild>
+                              <a href={`tel:${booking.phone}`}>
+                                <Phone className="h-4 w-4 mr-2" />
+                                Call Now
+                              </a>
+                            </Button>
+                            <Button size="sm" variant="outline" asChild>
+                              <a href={`mailto:${booking.email}`}>
+                                <Mail className="h-4 w-4 mr-2" />
+                                Email
+                              </a>
+                            </Button>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    ))}
+                    {(!bookings || bookings.length === 0) && (
+                      <Card>
+                        <CardContent className="text-center py-8">
+                          <Calendar className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                          <p className="text-gray-500">No scheduled bookings yet.</p>
+                          <p className="text-sm text-gray-400 mt-2">
+                            Booking appointments from the website will appear here.
+                          </p>
+                        </CardContent>
+                      </Card>
+                    )}
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="settings" className="space-y-6">
+            <Card className="border-0 shadow-lg">
+              <CardHeader className="bg-gradient-to-r from-gray-600 to-gray-700 text-white">
+                <CardTitle className="flex items-center gap-2">
+                  <Settings className="w-5 h-5" />
+                  Admin Settings & Tools
+                </CardTitle>
+                <CardDescription className="text-gray-200">
+                  Manage your admin preferences and business settings
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="p-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-semibold">Business Information</h3>
+                    <div className="space-y-3">
+                      <div className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                        <span className="font-medium">Business Name:</span>
+                        <span>AA Trust Roadside</span>
+                      </div>
+                      <div className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                        <span className="font-medium">Primary Phone:</span>
+                        <span>(386) 372-8412</span>
+                      </div>
+                      <div className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                        <span className="font-medium">After Hours:</span>
+                        <span>(386) 338-7945</span>
+                      </div>
+                      <div className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                        <span className="font-medium">Service Area:</span>
+                        <span>100 mile radius</span>
                       </div>
                     </div>
-                    
-                    <div className="space-y-2">
+                  </div>
+                  
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-semibold">Quick Actions</h3>
+                    <div className="space-y-3">
                       <Button 
                         variant="outline"
-                        className="w-full"
+                        className="w-full justify-start"
                         onClick={() => {
-                          window.open("https://business.google.com/reviews", "_blank");
+                          queryClient.invalidateQueries({ queryKey: ['/api/quotes'] });
+                          queryClient.invalidateQueries({ queryKey: ['/api/contacts'] });
+                          queryClient.invalidateQueries({ queryKey: ['/api/bookings'] });
+                          queryClient.invalidateQueries({ queryKey: ['/api/smart-analyzer'] });
+                          queryClient.invalidateQueries({ queryKey: ['/api/admin/traffic'] });
+                          toast({
+                            title: "Data Refreshed",
+                            description: "All dashboard data has been updated",
+                          });
                         }}
                       >
-                        Manage Google Reviews
+                        <RefreshCw className="w-4 h-4 mr-2" />
+                        Refresh All Data
                       </Button>
                       
                       <Button 
                         variant="outline"
-                        className="w-full"
+                        className="w-full justify-start"
                         onClick={() => {
+                          const reviewLink = "https://g.page/r/CRFbcS048_EyEBM/review";
+                          navigator.clipboard.writeText(reviewLink);
                           toast({
-                            title: "QR Code Generated",
-                            description: "QR code for review link created",
+                            title: "Review Link Copied",
+                            description: "Google review link copied to clipboard",
                           });
                         }}
                       >
-                        Generate QR Code
+                        <Star className="w-4 h-4 mr-2" />
+                        Copy Review Link
+                      </Button>
+                      
+                      <Button 
+                        variant="outline"
+                        className="w-full justify-start"
+                        onClick={() => {
+                          window.open("https://business.google.com/reviews", "_blank");
+                        }}
+                      >
+                        <Eye className="w-4 h-4 mr-2" />
+                        Manage Google Reviews
                       </Button>
                     </div>
                   </div>
-                </CardContent>
-              </Card>
-            </div>
+                </div>
+              </CardContent>
+            </Card>
           </TabsContent>
         </Tabs>
-        </div>
+      </div>
     </PageOptimizer>
   );
 }
