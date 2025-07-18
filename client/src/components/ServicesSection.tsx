@@ -194,19 +194,25 @@ export default function ServicesSection() {
           {services.map((service, index) => (
             <div key={index} className="bg-gray-900 border border-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:border-blue-500">
               <div className="text-center mb-4">
-                <div className="bg-blue-600 text-white p-4 rounded-lg inline-block mb-4">
+                <div className="bg-white p-3 rounded-lg inline-block mb-4">
                   {service.title === "Mobile Tire Services" ? (
-                    <svg width="32" height="32" viewBox="0 0 32 32" fill="currentColor" className="text-2xl">
-                      <path d="M16 2C8.28 2 2 8.28 2 16s6.28 14 14 14 14-6.28 14-14S23.72 2 16 2zm0 24c-5.52 0-10-4.48-10-10S10.48 6 16 6s10 4.48 10 10-4.48 10-10 10z" fill="currentColor"/>
-                      <path d="M16 8c-4.42 0-8 3.58-8 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm0 12c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z" fill="currentColor"/>
-                      <circle cx="16" cy="16" r="2" fill="currentColor"/>
-                      <rect x="15" y="4" width="2" height="4" fill="currentColor"/>
-                      <rect x="15" y="24" width="2" height="4" fill="currentColor"/>
-                      <rect x="4" y="15" width="4" height="2" fill="currentColor"/>
-                      <rect x="24" y="15" width="4" height="2" fill="currentColor"/>
-                    </svg>
+                    <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-700 rounded-lg flex items-center justify-center">
+                      <svg viewBox="0 0 1024 1024" className="w-6 h-6 text-white" fill="currentColor">
+                        <path d="M512 96C282.6 96 96 282.6 96 512s186.6 416 416 416 416-186.6 416-416S741.4 96 512 96zm0 672c-141.4 0-256-114.6-256-256s114.6-256 256-256 256 114.6 256 256-114.6 256-256 256z"/>
+                        <path d="M512 256c-141.4 0-256 114.6-256 256s114.6 256 256 256 256-114.6 256-256-114.6-256-256-256zm0 384c-70.7 0-128-57.3-128-128s57.3-128 128-128 128 57.3 128 128-57.3 128-128 128z"/>
+                        <circle cx="512" cy="512" r="48"/>
+                        <rect x="496" y="96" width="32" height="96"/>
+                        <rect x="496" y="832" width="32" height="96"/>
+                        <rect x="96" y="496" width="96" height="32"/>
+                        <rect x="832" y="496" width="96" height="32"/>
+                        <rect x="246" y="246" width="32" height="68" transform="rotate(45 262 280)"/>
+                        <rect x="746" y="746" width="32" height="68" transform="rotate(45 762 780)"/>
+                        <rect x="746" y="246" width="32" height="68" transform="rotate(-45 762 280)"/>
+                        <rect x="246" y="746" width="32" height="68" transform="rotate(-45 262 780)"/>
+                      </svg>
+                    </div>
                   ) : (
-                    <i className={`${service.icon} text-2xl`}></i>
+                    <i className={`${service.icon} text-2xl text-blue-600`}></i>
                   )}
                 </div>
                 <h3 className="text-xl font-semibold text-white">{service.title}</h3>
