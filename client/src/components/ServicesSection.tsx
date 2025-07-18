@@ -150,12 +150,25 @@ export default function ServicesSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
           {primaryServices.map((service, index) => (
             <div key={index} className="bg-gray-900 border border-gray-800 rounded-lg p-6 hover:border-blue-500 transition-all duration-300">
-              <div className="flex items-center mb-3">
-                <i className="fas fa-tire text-blue-500 text-xl mr-3"></i>
-                <h3 className="text-lg font-semibold text-white">{service.title}</h3>
+              <div className="flex items-center mb-4">
+                <div className="bg-blue-600 text-white p-3 rounded-lg mr-4">
+                  <span className="text-2xl">{service.icon}</span>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-white">{service.title}</h3>
+                  <p className="text-gray-300 text-sm mt-1">{service.description}</p>
+                </div>
               </div>
+              <ul className="space-y-2">
+                {service.features.map((feature, featureIndex) => (
+                  <li key={featureIndex} className="flex items-center text-gray-300 text-sm">
+                    <i className="fas fa-check text-blue-500 mr-2 text-xs"></i>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
             </div>
-          ))}
+          ))}</div>
         </div>
 
         {/* Secondary Services Section */}
