@@ -199,16 +199,7 @@ export default function Navigation() {
               Call Now
             </a>
           </div>
-          
-          {/* Mobile Menu Button */}
-          <div className="flex md:hidden items-center">
-            <button 
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-gray-300 hover:text-blue-500 p-2"
-            >
-              <OptimizedIcon type="menu" size={24} />
-            </button>
-          </div>
+
         </div>
         
         {/* Mobile Menu */}
