@@ -505,7 +505,11 @@ export default function ChatbotWidget() {
             >
               <CardTitle className="flex items-center justify-between text-lg">
                 <div className="flex items-center gap-2">
-                  <Bot className="w-5 h-5" />
+                  <img 
+                    src="/attached_assets/Gemini_Generated_Image_ve42n9ve42n9ve42_1752809889726.png" 
+                    alt="Fritzner" 
+                    className="w-6 h-6 object-cover rounded-full"
+                  />
                   AA Trust Live Support
                 </div>
                 <div className="flex items-center gap-2">
@@ -552,7 +556,11 @@ export default function ChatbotWidget() {
                         {message.sender === 'user' ? (
                           <User className="w-3 h-3" />
                         ) : (
-                          <Bot className="w-3 h-3" />
+                          <img 
+                            src="/attached_assets/Gemini_Generated_Image_ve42n9ve42n9ve42_1752809889726.png" 
+                            alt="Fritzner" 
+                            className="w-3 h-3 object-cover rounded-full"
+                          />
                         )}
                         <span className="text-xs opacity-75">
                           {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
