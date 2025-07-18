@@ -41,6 +41,7 @@ export default function ChatbotWidget() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
+  const [deviceType, setDeviceType] = useState<'mobile' | 'tablet' | 'desktop'>('desktop');
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const chatWindowRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
@@ -461,6 +462,52 @@ export default function ChatbotWidget() {
     }
   }, [isDragging, dragOffset]);
 
+  // Device detection
+  useEffect(() => {
+    const detectDevice = () => {
+      const width = window.innerWidth;
+      const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+      
+      if (width < 768) {
+        setDeviceType('mobile');
+      } else if (width < 1024 && isTouchDevice) {
+        setDeviceType('tablet');
+      } else {
+        setDeviceType('desktop');
+      }
+    };
+
+    detectDevice();
+    window.addEventListener('resize', detectDevice);
+    return () => window.removeEventListener('resize', detectDevice);
+  }, []);
+
+  // Get safe positioning based on device
+  const getSafePosition = () => {
+    if (isMaximized) return {};
+    
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+    
+    let defaultX, defaultY;
+    
+    if (deviceType === 'mobile') {
+      defaultX = 16;
+      defaultY = Math.max(100, viewportHeight - 550); // Ensure not cut off
+    } else if (deviceType === 'tablet') {
+      defaultX = 24;
+      defaultY = Math.max(80, viewportHeight - 600);
+    } else {
+      defaultX = 24;
+      defaultY = Math.max(100, viewportHeight - 600);
+    }
+    
+    return {
+      left: position.x || defaultX,
+      top: position.y || defaultY,
+    };
+  };
+
   useEffect(() => {
     if (isOpen) {
       initializeChat();
@@ -494,14 +541,16 @@ export default function ChatbotWidget() {
           ref={chatWindowRef}
           className={`fixed z-40 shadow-2xl transition-all duration-300 ${
             isMaximized 
-              ? 'w-full h-full inset-0 md:w-[90vw] md:h-[90vh] md:inset-[5vh_5vw]' 
-              : 'w-80 h-[450px] md:w-96 md:h-[500px]'
+              ? deviceType === 'mobile' 
+                ? 'w-full h-full inset-0' 
+                : 'w-[90vw] h-[85vh] left-[5vw] top-[5vh]'
+              : deviceType === 'mobile'
+                ? 'w-[calc(100vw-32px)] h-[450px]'
+                : deviceType === 'tablet'
+                  ? 'w-96 h-[500px]'
+                  : 'w-96 h-[500px]'
           }`}
-          style={!isMaximized ? {
-            left: position.x || (window.innerWidth > 768 ? 24 : 16),
-            top: position.y || (window.innerHeight > 768 ? 100 : 80),
-            transform: position.x || position.y ? 'none' : 'translateY(0)',
-          } : {}}
+          style={!isMaximized ? getSafePosition() : {}}
         >
           <Card className="h-full flex flex-col">
             <CardHeader 
@@ -528,14 +577,16 @@ export default function ChatbotWidget() {
                   >
                     <Minimize2 className="w-3 h-3" />
                   </Button>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => setIsMaximized(!isMaximized)}
-                    className="h-6 w-6 p-0 hover:bg-blue-500 text-white hidden md:block"
-                  >
-                    <Maximize2 className="w-3 h-3" />
-                  </Button>
+                  {(deviceType === 'tablet' || deviceType === 'desktop') && (
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => setIsMaximized(!isMaximized)}
+                      className="h-6 w-6 p-0 hover:bg-blue-500 text-white"
+                    >
+                      <Maximize2 className="w-3 h-3" />
+                    </Button>
+                  )}
                   <Button
                     variant="ghost"
                     size="sm"
