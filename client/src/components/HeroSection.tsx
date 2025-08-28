@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import truck1 from "@assets/image_1750232639530.jpeg";
+import truck1 from "@assets/image_1756341982828.png";
 
 export default function HeroSection() {
   const [imageLoaded, setImageLoaded] = useState(false);
