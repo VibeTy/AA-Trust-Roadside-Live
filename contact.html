@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - A Good Steward Co.</title>
+    <meta name="description" content="Get in touch with A Good Steward Co. We'd love to hear from you! Contact us for support, questions, or just to say hello.">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Contact Us - A Good Steward Co.">
+    <meta property="og:description" content="Get in touch with A Good Steward Co. We'd love to hear from you! Contact us for support, questions, or just to say hello.">
+    <meta property="og:type" content="website">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">A Good Steward Co.</a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="shop.html" class="nav-link">Shop</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="contact.html" class="nav-link active">Contact</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+            </div>
+            <div class="nav-cart">
+                <a href="cart.html" class="cart-link">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cart-count">0</span>
+                </a>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contact Hero -->
+    <section class="contact-hero">
+        <div class="container">
+            <div class="contact-hero-content">
+                <h1>Get in Touch</h1>
+                <p>We'd love to hear from you! Whether you have questions, feedback, or just want to say hello, we're here to help.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Content -->
+    <section class="contact-content">
+        <div class="container">
+            <div class="contact-layout">
+                <!-- Contact Form -->
+                <div class="contact-form-section">
+                    <div class="form-card">
+                        <h2>Send us a Message</h2>
+                        <form id="contact-form" class="contact-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="contact-first-name">First Name *</label>
+                                    <input type="text" id="contact-first-name" name="firstName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contact-last-name">Last Name *</label>
+                                    <input type="text" id="contact-last-name" name="lastName" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="contact-email">Email Address *</label>
+                                <input type="email" id="contact-email" name="email" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="contact-subject">Subject *</label>
+                                <select id="contact-subject" name="subject" required>
+                                    <option value="">Select a subject</option>
+                                    <option value="general">General Question</option>
+                                    <option value="support">Product Support</option>
+                                    <option value="order">Order Issue</option>
+                                    <option value="feedback">Feedback</option>
+                                    <option value="collaboration">Collaboration</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="contact-message">Message *</label>
+                                <textarea id="contact-message" name="message" rows="6" required placeholder="Tell us how we can help you..."></textarea>
+                            </div>
+                            
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="contact-newsletter" name="newsletter">
+                                <label for="contact-newsletter">Subscribe to our newsletter for updates and special offers</label>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary btn-submit">
+                                <i class="fas fa-paper-plane"></i> Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="contact-info-section">
+                    <div class="info-card">
+                        <h2>Contact Information</h2>
+                        <p>We typically respond to all inquiries within 24 hours during business days.</p>
+                        
+                        <div class="contact-methods">
+                            <div class="contact-method">
+                                <div class="method-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="method-info">
+                                    <h3>Email</h3>
+                                    <p>hello@agoodstewardco.com</p>
+                                    <span>We'll get back to you within 24 hours</span>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-method">
+                                <div class="method-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div class="method-info">
+                                    <h3>Response Time</h3>
+                                    <p>Monday - Friday</p>
+                                    <span>9:00 AM - 5:00 PM EST</span>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-method">
+                                <div class="method-icon">
+                                    <i class="fas fa-headset"></i>
+                                </div>
+                                <div class="method-info">
+                                    <h3>Support</h3>
+                                    <p>support@agoodstewardco.com</p>
+                                    <span>For product support and technical issues</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="social-section">
+                            <h3>Follow Us</h3>
+                            <p>Stay connected and get daily inspiration for intentional living.</p>
+                            <div class="social-links">
+                                <a href="#" aria-label="Instagram" class="social-link">
+                                    <i class="fab fa-instagram"></i>
+                                    <span>Instagram</span>
+                                </a>
+                                <a href="#" aria-label="Facebook" class="social-link">
+                                    <i class="fab fa-facebook"></i>
+                                    <span>Facebook</span>
+                                </a>
+                                <a href="#" aria-label="Pinterest" class="social-link">
+                                    <i class="fab fa-pinterest"></i>
+                                    <span>Pinterest</span>
+                                </a>
+                                <a href="#" aria-label="Email" class="social-link">
+                                    <i class="fas fa-envelope"></i>
+                                    <span>Newsletter</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="contact-faq">
+        <div class="container">
+            <div class="section-header">
+                <h2>Frequently Asked Questions</h2>
+                <p>Quick answers to common questions</p>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>How do I download my products?</h3>
+                    <p>After purchase, you'll receive an email with download links. You can also access your downloads anytime from your account dashboard.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Can I print the products?</h3>
+                    <p>Yes! All our products are designed to be print-friendly. They come in high-resolution PDF format perfect for home or professional printing.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>What's your return policy?</h3>
+                    <p>We offer a 30-day money-back guarantee. If you're not satisfied with your purchase, contact us for a full refund.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Can I use these for commercial purposes?</h3>
+                    <p>Most of our products include commercial use licenses. Check the product description for specific licensing details.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Do you offer custom designs?</h3>
+                    <p>Yes! We love creating custom products. Contact us with your specific needs and we'll work together to create something perfect for you.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>How often do you release new products?</h3>
+                    <p>We typically release 2-3 new products each month. Subscribe to our newsletter to be the first to know about new releases!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>A Good Steward Co.</h3>
+                    <p>Digital products for intentional living</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+                        <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Shop</h4>
+                    <ul>
+                        <li><a href="shop.html?category=planners">Planners</a></li>
+                        <li><a href="shop.html?category=templates">Templates</a></li>
+                        <li><a href="shop.html?category=ebooks">E-books</a></li>
+                        <li><a href="shop.html?category=printables">Printables</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="shipping.html">Instant Delivery</a></li>
+                        <li><a href="returns.html">Returns</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="licenses.html">Product Licenses</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 A Good Steward Co. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/contact.js"></script>
+</body>
+</html>
